@@ -1,0 +1,51 @@
+version: "3"
+services:
+  unit:
+    container_name: api
+    image: littleof/centos-php-unit:latest
+    env_file: .env
+    volumes:
+      - ./:/app-src/
+      - ./config.json:/entrypoint.d/config.json
+      - "/usr/share/zoneinfo/Asia/Shanghai:/etc/localtime:ro"
+    ports:
+      - "9580:9580"
+    restart: on-failure
+    # depends_on:
+    #   - mysql
+    #   - redis
+    networks:
+      appnetwork:
+        ipv4_address: 10.21.0.10
+  mysql:
+    container_name: mysql
+    image: mysql:latest
+    env_file: .env
+    volumes:
+      - ./data/mysql:/var/lib/mysql
+      - "/usr/share/zoneinfo/Asia/Shanghai:/etc/localtime:ro"
+    ports:
+      - "53306:3306"
+    restart: always
+    command: --default-authentication-plugin=mysql_native_password
+    networks:
+      appnetwork:
+        ipv4_address: 10.21.0.80
+  redis:
+    container_name: redis
+    image: redis:latest
+    env_file: .env
+    ports:
+      - "56379:6379"
+    volumes:
+      - ./data/redis:/data
+      - "/usr/share/zoneinfo/Asia/Shanghai:/etc/localtime:ro"
+    restart: always
+    networks:
+      appnetwork:
+        ipv4_address: 10.21.0.90
+networks:
+  appnetwork:
+    ipam:
+      config:
+        - subnet: 10.21.0.0/16

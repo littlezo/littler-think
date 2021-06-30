@@ -1,0 +1,67 @@
+{
+  "name": "littler/think-skeleton",
+  "description": "Quick Skeleton For ThinkPHP 6",
+  "type": "project",
+  "keywords": [
+    "framework",
+    "thinkphp",
+    "ORM"
+  ],
+  "minimum-stability": "stable",
+  "homepage": "https://github.com/littlezo",
+  "license": "MPL-2.0",
+  "authors": [
+    {
+      "name": "@小小只^v^",
+      "email": "littlezov@qq.com"
+    }
+  ],
+  "require": {
+    "php": "^7.4 || ^8.0",
+    "ext-json": "*",
+    "ext-redis": "*",
+    "topthink/framework": "^6.0.0",
+    "topthink/think-orm": "^2.0",
+    "topthink/think-annotation": "^2.0",
+    "symfony/finder": "*",
+    "nikic/php-parser": "^4.10",
+    "guzzlehttp/guzzle": "*",
+    "topthink/think-migration": "^3.0",
+    "littler/think": "dev-main",
+    "nette/utils": "^3.2"
+  },
+  "require-dev": {
+    "symfony/var-dumper": "^4.2",
+    "phpstan/phpstan": "*",
+    "xiaodi/think-whoops": "1.1.*",
+    "topthink/think-ide-helper": "^1.0",
+    "phpunit/phpunit": "^9.5",
+    "mockery/mockery": "^1.4",
+    "friendsofphp/php-cs-fixer": "^3.0",
+    "topthink/think-trace": "^1.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "app\\": "app",
+      "little\\": "little"
+    }
+  },
+  "config": {
+    "preferred-install": "dist"
+  },
+  "scripts": {
+    "dev": "php think run",
+    "analyze": "phpstan analyse --memory-limit 300M -l 0 -c phpstan.neon ./app ./route",
+    "post-autoload-dump": [
+      "@php think service:discover",
+      "@php think vendor:publish"
+    ],
+    "cs-fix": "php-cs-fixer fix $1"
+  },
+  "repositories": [
+    {
+      "type": "path",
+      "url": "./package/*/*"
+    }
+  ]
+}
