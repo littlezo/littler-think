@@ -1,0 +1,18 @@
+{
+  "name": "goods",
+	"title": "商品表",
+	"description": "商品表",
+	"version": "1.0.0",
+	"keywords": "商品表",
+	"order": 100,
+	"services": ["\\little\\goods\\Service"],
+	"aliases": {},
+	"files": [],
+	"requires": [],
+	"enable": true,
+	"debug": true,
+	"author": "@小小只^v^",
+	"content": "",
+	"version_no": "20210630",
+  "ignore": ["goods_attr_class","goods_attr_class_brand","goods_attr_index","goods_attribute","goods_attribute_value","goods_brand","goods_browse","goods_cart","goods_category","goods_collect","goods_evaluate","goods_export","goods_shop_category","goods_sku","goods_virtual"]
+}

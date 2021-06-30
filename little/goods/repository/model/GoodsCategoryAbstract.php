@@ -1,0 +1,145 @@
+<?php
+
+/**
+ * #logic 做事不讲究逻辑，再努力也只是重复犯错
+ * ## 何为相思：不删不聊不打扰，可否具体点：曾爱过。何为遗憾：你来我往皆过客，可否具体点：再无你。
+ * ## 只要思想不滑稽，方法总比苦难多！
+ * @version 1.0.0
+ * @author @小小只^v^ <littlezov@qq.com>  littlezov@qq.com
+ * @contact  littlezov@qq.com
+ * @link     https://github.com/littlezo
+ * @document https://github.com/littlezo/wiki
+ * @license  https://github.com/littlezo/MozillaPublicLicense/blob/main/LICENSE
+ */
+
+declare(strict_types=1);
+
+namespace little\goods\repository\model;
+
+use littler\BaseModel as Model;
+use littler\annotation\Inject;
+use littler\traits\db\BaseOptionsTrait;
+use littler\traits\db\RewriteTrait;
+
+/**
+ * @property category_id $int
+ * @property category_name $string 分类名称
+ * @property short_name $string 简称
+ * @property pid $int 分类上级
+ * @property level $int 层级
+ * @property is_show $int 是否显示
+ * @property sort $int 排序
+ * @property image $string 分类图片
+ * @property keywords $string 分类页面关键字
+ * @property description $string 分类介绍
+ * @property attr_class_id $int 关联商品类型id
+ * @property attr_class_name $string 关联商品类型名称
+ * @property category_id_1 $int 一级分类id
+ * @property category_id_2 $int 二级分类id
+ * @property category_id_3 $int 三级分类id
+ * @property category_full_name $string 组装名称
+ * @property image_adv $string 分类广告图
+ * @property commission_rate $float 佣金比率%
+ */
+abstract class GoodsCategoryAbstract extends Model
+{
+	use BaseOptionsTrait;
+	use RewriteTrait;
+
+	/**
+	 * @var string $name 表名
+	 */
+	protected $name = 'goods_category';
+
+	/**
+	 * @var string $pk 主键
+	 */
+	protected $pk = 'category_id';
+
+	/**
+	 * @var array $schema 字段信息
+	 */
+	protected $schema = [
+		'category_id' => 'int',
+		'category_name' => 'string',
+		'short_name' => 'string',
+		'pid' => 'int',
+		'level' => 'int',
+		'is_show' => 'int',
+		'sort' => 'int',
+		'image' => 'string',
+		'keywords' => 'string',
+		'description' => 'string',
+		'attr_class_id' => 'int',
+		'attr_class_name' => 'string',
+		'category_id_1' => 'int',
+		'category_id_2' => 'int',
+		'category_id_3' => 'int',
+		'category_full_name' => 'string',
+		'image_adv' => 'string',
+		'commission_rate' => 'float',
+	];
+
+	/**
+	 * @var array $type 字段类型自动转换
+	 */
+	protected $type = [
+		'category_id' => 'int',
+		'category_name' => 'varchar',
+		'short_name' => 'varchar',
+		'pid' => 'int',
+		'level' => 'int',
+		'is_show' => 'int',
+		'sort' => 'int',
+		'image' => 'varchar',
+		'keywords' => 'varchar',
+		'description' => 'varchar',
+		'attr_class_id' => 'int',
+		'attr_class_name' => 'varchar',
+		'category_id_1' => 'int',
+		'category_id_2' => 'int',
+		'category_id_3' => 'int',
+		'category_full_name' => 'varchar',
+		'image_adv' => 'varchar',
+		'commission_rate' => 'decimal',
+	];
+
+	/**
+	 * @var array $json JSON类型字段
+	 */
+	protected $json = [];
+
+	/**
+	 * @var array $createTime 关闭创建时间自动写入
+	 */
+	protected $createTime = false;
+
+	/**
+	 * @var array $updateTime 关闭更新时间自动写入
+	 */
+	protected $updateTime = false;
+
+	/**
+	 * @var array $field 允许写入字段
+	 */
+	protected $field = [
+		'category_id',
+		'category_name',
+		'short_name',
+		'pid',
+		'level',
+		'is_show',
+		'sort',
+		'image',
+		'keywords',
+		'description',
+		'attr_class_id',
+		'attr_class_name',
+		'category_id_1',
+		'category_id_2',
+		'category_id_3',
+		'category_full_name',
+		'image_adv',
+		'commission_rate',
+	];
+}

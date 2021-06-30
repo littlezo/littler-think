@@ -1,0 +1,32 @@
+<?php
+
+return [
+	'bind' => [],
+	'listen' => [
+		'OnPlatformcouponReadAfter' => ['little\platformcoupon\event\OnPlatformcouponReadAfter'],
+		'OnPlatformcouponSetIncByField' => ['little\platformcoupon\event\OnPlatformcouponSetIncByField'],
+		'OnPlatformcouponSetDecByField' => ['little\platformcoupon\event\OnPlatformcouponSetDecByField'],
+		'OnPlatformcouponQueryById' => ['little\platformcoupon\event\OnPlatformcouponQueryById'],
+		'OnPlatformcouponQueryByField' => ['little\platformcoupon\event\OnPlatformcouponQueryByField'],
+		'OnPlatformcouponQueryByFind' => ['little\platformcoupon\event\OnPlatformcouponQueryByFind'],
+		'OnPlatformcouponQueryByList' => ['little\platformcoupon\event\OnPlatformcouponQueryByList'],
+		'OnPlatformcouponDeleteById' => ['little\platformcoupon\event\OnPlatformcouponDeleteById'],
+		'OnPlatformcouponDeleteByWhere' => ['little\platformcoupon\event\OnPlatformcouponDeleteByWhere'],
+		'OnPlatformcouponUpdateById' => ['little\platformcoupon\event\OnPlatformcouponUpdateById'],
+		'OnPlatformcouponUpdateByWhere' => ['little\platformcoupon\event\OnPlatformcouponUpdateByWhere'],
+		'OnPlatformcouponSave' => ['little\platformcoupon\event\OnPlatformcouponSave'],
+		'OnPlatformcouponTypeReadAfter' => ['little\platformcoupon\event\OnPlatformcouponTypeReadAfter'],
+		'OnPlatformcouponTypeSetIncByField' => ['little\platformcoupon\event\OnPlatformcouponTypeSetIncByField'],
+		'OnPlatformcouponTypeSetDecByField' => ['little\platformcoupon\event\OnPlatformcouponTypeSetDecByField'],
+		'OnPlatformcouponTypeQueryById' => ['little\platformcoupon\event\OnPlatformcouponTypeQueryById'],
+		'OnPlatformcouponTypeQueryByField' => ['little\platformcoupon\event\OnPlatformcouponTypeQueryByField'],
+		'OnPlatformcouponTypeQueryByFind' => ['little\platformcoupon\event\OnPlatformcouponTypeQueryByFind'],
+		'OnPlatformcouponTypeQueryByList' => ['little\platformcoupon\event\OnPlatformcouponTypeQueryByList'],
+		'OnPlatformcouponTypeDeleteById' => ['little\platformcoupon\event\OnPlatformcouponTypeDeleteById'],
+		'OnPlatformcouponTypeDeleteByWhere' => ['little\platformcoupon\event\OnPlatformcouponTypeDeleteByWhere'],
+		'OnPlatformcouponTypeUpdateById' => ['little\platformcoupon\event\OnPlatformcouponTypeUpdateById'],
+		'OnPlatformcouponTypeUpdateByWhere' => ['little\platformcoupon\event\OnPlatformcouponTypeUpdateByWhere'],
+		'OnPlatformcouponTypeSave' => ['little\platformcoupon\event\OnPlatformcouponTypeSave'],
+	],
+	'subscribe' => [],
+];

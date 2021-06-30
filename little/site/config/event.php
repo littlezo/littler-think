@@ -1,0 +1,32 @@
+<?php
+
+return [
+	'bind' => [],
+	'listen' => [
+		'OnSiteReadAfter' => ['little\site\event\OnSiteReadAfter'],
+		'OnSiteSetIncByField' => ['little\site\event\OnSiteSetIncByField'],
+		'OnSiteSetDecByField' => ['little\site\event\OnSiteSetDecByField'],
+		'OnSiteQueryById' => ['little\site\event\OnSiteQueryById'],
+		'OnSiteQueryByField' => ['little\site\event\OnSiteQueryByField'],
+		'OnSiteQueryByFind' => ['little\site\event\OnSiteQueryByFind'],
+		'OnSiteQueryByList' => ['little\site\event\OnSiteQueryByList'],
+		'OnSiteDeleteById' => ['little\site\event\OnSiteDeleteById'],
+		'OnSiteDeleteByWhere' => ['little\site\event\OnSiteDeleteByWhere'],
+		'OnSiteUpdateById' => ['little\site\event\OnSiteUpdateById'],
+		'OnSiteUpdateByWhere' => ['little\site\event\OnSiteUpdateByWhere'],
+		'OnSiteSave' => ['little\site\event\OnSiteSave'],
+		'OnSiteAddressReadAfter' => ['little\site\event\OnSiteAddressReadAfter'],
+		'OnSiteAddressSetIncByField' => ['little\site\event\OnSiteAddressSetIncByField'],
+		'OnSiteAddressSetDecByField' => ['little\site\event\OnSiteAddressSetDecByField'],
+		'OnSiteAddressQueryById' => ['little\site\event\OnSiteAddressQueryById'],
+		'OnSiteAddressQueryByField' => ['little\site\event\OnSiteAddressQueryByField'],
+		'OnSiteAddressQueryByFind' => ['little\site\event\OnSiteAddressQueryByFind'],
+		'OnSiteAddressQueryByList' => ['little\site\event\OnSiteAddressQueryByList'],
+		'OnSiteAddressDeleteById' => ['little\site\event\OnSiteAddressDeleteById'],
+		'OnSiteAddressDeleteByWhere' => ['little\site\event\OnSiteAddressDeleteByWhere'],
+		'OnSiteAddressUpdateById' => ['little\site\event\OnSiteAddressUpdateById'],
+		'OnSiteAddressUpdateByWhere' => ['little\site\event\OnSiteAddressUpdateByWhere'],
+		'OnSiteAddressSave' => ['little\site\event\OnSiteAddressSave'],
+	],
+	'subscribe' => [],
+];

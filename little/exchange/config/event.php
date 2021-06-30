@@ -1,0 +1,32 @@
+<?php
+
+return [
+	'bind' => [],
+	'listen' => [
+		'OnExchangeReadAfter' => ['little\exchange\event\OnExchangeReadAfter'],
+		'OnExchangeSetIncByField' => ['little\exchange\event\OnExchangeSetIncByField'],
+		'OnExchangeSetDecByField' => ['little\exchange\event\OnExchangeSetDecByField'],
+		'OnExchangeQueryById' => ['little\exchange\event\OnExchangeQueryById'],
+		'OnExchangeQueryByField' => ['little\exchange\event\OnExchangeQueryByField'],
+		'OnExchangeQueryByFind' => ['little\exchange\event\OnExchangeQueryByFind'],
+		'OnExchangeQueryByList' => ['little\exchange\event\OnExchangeQueryByList'],
+		'OnExchangeDeleteById' => ['little\exchange\event\OnExchangeDeleteById'],
+		'OnExchangeDeleteByWhere' => ['little\exchange\event\OnExchangeDeleteByWhere'],
+		'OnExchangeUpdateById' => ['little\exchange\event\OnExchangeUpdateById'],
+		'OnExchangeUpdateByWhere' => ['little\exchange\event\OnExchangeUpdateByWhere'],
+		'OnExchangeSave' => ['little\exchange\event\OnExchangeSave'],
+		'OnExchangeOrderReadAfter' => ['little\exchange\event\OnExchangeOrderReadAfter'],
+		'OnExchangeOrderSetIncByField' => ['little\exchange\event\OnExchangeOrderSetIncByField'],
+		'OnExchangeOrderSetDecByField' => ['little\exchange\event\OnExchangeOrderSetDecByField'],
+		'OnExchangeOrderQueryById' => ['little\exchange\event\OnExchangeOrderQueryById'],
+		'OnExchangeOrderQueryByField' => ['little\exchange\event\OnExchangeOrderQueryByField'],
+		'OnExchangeOrderQueryByFind' => ['little\exchange\event\OnExchangeOrderQueryByFind'],
+		'OnExchangeOrderQueryByList' => ['little\exchange\event\OnExchangeOrderQueryByList'],
+		'OnExchangeOrderDeleteById' => ['little\exchange\event\OnExchangeOrderDeleteById'],
+		'OnExchangeOrderDeleteByWhere' => ['little\exchange\event\OnExchangeOrderDeleteByWhere'],
+		'OnExchangeOrderUpdateById' => ['little\exchange\event\OnExchangeOrderUpdateById'],
+		'OnExchangeOrderUpdateByWhere' => ['little\exchange\event\OnExchangeOrderUpdateByWhere'],
+		'OnExchangeOrderSave' => ['little\exchange\event\OnExchangeOrderSave'],
+	],
+	'subscribe' => [],
+];

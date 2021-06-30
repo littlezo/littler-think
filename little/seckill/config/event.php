@@ -1,0 +1,32 @@
+<?php
+
+return [
+	'bind' => [],
+	'listen' => [
+		'OnSeckillReadAfter' => ['little\seckill\event\OnSeckillReadAfter'],
+		'OnSeckillSetIncByField' => ['little\seckill\event\OnSeckillSetIncByField'],
+		'OnSeckillSetDecByField' => ['little\seckill\event\OnSeckillSetDecByField'],
+		'OnSeckillQueryById' => ['little\seckill\event\OnSeckillQueryById'],
+		'OnSeckillQueryByField' => ['little\seckill\event\OnSeckillQueryByField'],
+		'OnSeckillQueryByFind' => ['little\seckill\event\OnSeckillQueryByFind'],
+		'OnSeckillQueryByList' => ['little\seckill\event\OnSeckillQueryByList'],
+		'OnSeckillDeleteById' => ['little\seckill\event\OnSeckillDeleteById'],
+		'OnSeckillDeleteByWhere' => ['little\seckill\event\OnSeckillDeleteByWhere'],
+		'OnSeckillUpdateById' => ['little\seckill\event\OnSeckillUpdateById'],
+		'OnSeckillUpdateByWhere' => ['little\seckill\event\OnSeckillUpdateByWhere'],
+		'OnSeckillSave' => ['little\seckill\event\OnSeckillSave'],
+		'OnSeckillGoodsReadAfter' => ['little\seckill\event\OnSeckillGoodsReadAfter'],
+		'OnSeckillGoodsSetIncByField' => ['little\seckill\event\OnSeckillGoodsSetIncByField'],
+		'OnSeckillGoodsSetDecByField' => ['little\seckill\event\OnSeckillGoodsSetDecByField'],
+		'OnSeckillGoodsQueryById' => ['little\seckill\event\OnSeckillGoodsQueryById'],
+		'OnSeckillGoodsQueryByField' => ['little\seckill\event\OnSeckillGoodsQueryByField'],
+		'OnSeckillGoodsQueryByFind' => ['little\seckill\event\OnSeckillGoodsQueryByFind'],
+		'OnSeckillGoodsQueryByList' => ['little\seckill\event\OnSeckillGoodsQueryByList'],
+		'OnSeckillGoodsDeleteById' => ['little\seckill\event\OnSeckillGoodsDeleteById'],
+		'OnSeckillGoodsDeleteByWhere' => ['little\seckill\event\OnSeckillGoodsDeleteByWhere'],
+		'OnSeckillGoodsUpdateById' => ['little\seckill\event\OnSeckillGoodsUpdateById'],
+		'OnSeckillGoodsUpdateByWhere' => ['little\seckill\event\OnSeckillGoodsUpdateByWhere'],
+		'OnSeckillGoodsSave' => ['little\seckill\event\OnSeckillGoodsSave'],
+	],
+	'subscribe' => [],
+];

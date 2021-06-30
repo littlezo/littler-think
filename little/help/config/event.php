@@ -1,0 +1,32 @@
+<?php
+
+return [
+	'bind' => [],
+	'listen' => [
+		'OnHelpReadAfter' => ['little\help\event\OnHelpReadAfter'],
+		'OnHelpSetIncByField' => ['little\help\event\OnHelpSetIncByField'],
+		'OnHelpSetDecByField' => ['little\help\event\OnHelpSetDecByField'],
+		'OnHelpQueryById' => ['little\help\event\OnHelpQueryById'],
+		'OnHelpQueryByField' => ['little\help\event\OnHelpQueryByField'],
+		'OnHelpQueryByFind' => ['little\help\event\OnHelpQueryByFind'],
+		'OnHelpQueryByList' => ['little\help\event\OnHelpQueryByList'],
+		'OnHelpDeleteById' => ['little\help\event\OnHelpDeleteById'],
+		'OnHelpDeleteByWhere' => ['little\help\event\OnHelpDeleteByWhere'],
+		'OnHelpUpdateById' => ['little\help\event\OnHelpUpdateById'],
+		'OnHelpUpdateByWhere' => ['little\help\event\OnHelpUpdateByWhere'],
+		'OnHelpSave' => ['little\help\event\OnHelpSave'],
+		'OnHelpClassReadAfter' => ['little\help\event\OnHelpClassReadAfter'],
+		'OnHelpClassSetIncByField' => ['little\help\event\OnHelpClassSetIncByField'],
+		'OnHelpClassSetDecByField' => ['little\help\event\OnHelpClassSetDecByField'],
+		'OnHelpClassQueryById' => ['little\help\event\OnHelpClassQueryById'],
+		'OnHelpClassQueryByField' => ['little\help\event\OnHelpClassQueryByField'],
+		'OnHelpClassQueryByFind' => ['little\help\event\OnHelpClassQueryByFind'],
+		'OnHelpClassQueryByList' => ['little\help\event\OnHelpClassQueryByList'],
+		'OnHelpClassDeleteById' => ['little\help\event\OnHelpClassDeleteById'],
+		'OnHelpClassDeleteByWhere' => ['little\help\event\OnHelpClassDeleteByWhere'],
+		'OnHelpClassUpdateById' => ['little\help\event\OnHelpClassUpdateById'],
+		'OnHelpClassUpdateByWhere' => ['little\help\event\OnHelpClassUpdateByWhere'],
+		'OnHelpClassSave' => ['little\help\event\OnHelpClassSave'],
+	],
+	'subscribe' => [],
+];

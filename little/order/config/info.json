@@ -1,0 +1,18 @@
+{
+  "name": "order",
+	"title": "订单表",
+	"description": "订单表",
+	"version": "1.0.0",
+	"keywords": "订单表",
+	"order": 100,
+	"services": ["\\little\\order\\Service"],
+	"aliases": {},
+	"files": [],
+	"requires": [],
+	"enable": true,
+	"debug": true,
+	"author": "@小小只^v^",
+	"content": "",
+	"version_no": "20210630",
+  "ignore": ["order_complain","order_goods","order_log","order_refund_log"]
+}

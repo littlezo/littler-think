@@ -1,0 +1,18 @@
+{
+  "name": "site",
+	"title": "站点基础表",
+	"description": "站点基础表",
+	"version": "1.0.0",
+	"keywords": "站点基础表",
+	"order": 100,
+	"services": ["\\little\\site\\Service"],
+	"aliases": {},
+	"files": [],
+	"requires": [],
+	"enable": true,
+	"debug": true,
+	"author": "@小小只^v^",
+	"content": "",
+	"version_no": "20210630",
+  "ignore": ["site_address"]
+}

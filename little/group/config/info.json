@@ -1,0 +1,18 @@
+{
+  "name": "group",
+	"title": "用户组表",
+	"description": "用户组表",
+	"version": "1.0.0",
+	"keywords": "用户组表",
+	"order": 100,
+	"services": ["\\little\\group\\Service"],
+	"aliases": {},
+	"files": [],
+	"requires": [],
+	"enable": true,
+	"debug": true,
+	"author": "@小小只^v^",
+	"content": "",
+	"version_no": "20210630",
+  "ignore": []
+}
