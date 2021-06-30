@@ -27,7 +27,10 @@
     "nikic/php-parser": "^4.10",
     "guzzlehttp/guzzle": "*",
     "topthink/think-migration": "^3.0",
-    "littler/think": "dev-main",
+    "littler/think": "dev-next",
+    "littler/annotation": "dev-main",
+    "littler/jwt-auth": "dev-main",
+    "littler/user": "dev-main",
     "nette/utils": "^3.2"
   },
   "require-dev": {
