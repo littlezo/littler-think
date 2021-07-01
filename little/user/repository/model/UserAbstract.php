@@ -75,27 +75,6 @@ abstract class UserAbstract extends Model
 	];
 
 	/**
-	 * @var array $type 字段类型自动转换
-	 */
-	protected $type = [
-		'uid' => 'int unsigned',
-		'app_module' => 'varchar',
-		'app_group' => 'int',
-		'is_admin' => 'tinyint',
-		'site_id' => 'int',
-		'group_id' => 'int',
-		'group_name' => 'varchar',
-		'username' => 'varchar',
-		'password' => 'varchar',
-		'member_id' => 'int',
-		'create_time' => 'timestamp',
-		'update_time' => 'timestamp',
-		'status' => 'int',
-		'login_time' => 'timestamp',
-		'login_ip' => 'varchar',
-	];
-
-	/**
 	 * @var array $json JSON类型字段
 	 */
 	protected $json = [];
@@ -103,7 +82,7 @@ abstract class UserAbstract extends Model
 	/**
 	 * @var array $field 允许写入字段
 	 */
-	protected $field = [
+	public $field = [
 		'uid',
 		'app_module',
 		'app_group',

@@ -1,9 +1,5 @@
 <?php
 
-/**
- * Jwt 配置.
- */
-
 declare(strict_types=1);
 
 /*
@@ -18,46 +14,41 @@ declare(strict_types=1);
  * @license  https://github.com/littlezo/MozillaPublicLicense/blob/main/LICENSE
  *
  */
+
 return [
-	'default' => 'default',
 	'stores' => [
+		// 单应用
 		'default' => [
-			'sso' => ['enable' => false],
+			'sso' => [
+				'enable' => false,
+			],
 			'token' => [
-				'signer_key' => '&InAosuDkTj0tP2UQpJ4v8^8oJtwScGNtWvJFhYnfiRw$~A4oBwzy9p3kJWw0udJ',
+				'signer_key' => 'littler',
 				'public_key' => 'file://path/public.key',
 				'private_key' => 'file://path/private.key',
 				'not_before' => 0,
 				'expires_at' => 3600,
 				'refresh_ttL' => 7200,
 				'signer' => 'HS256',
-				'type' => 'Header|Param',
-				'relogin_code' => 50001,
-				'refresh_code' => 50002,
-				'iss' => 'client.littler',
-				'aud' => 'server.littler',
-				'automatic_renewal' => false,
-				'signerKey' => '&%JO$#Dus$TrOgEXRMcQB$3nF1Nvs%1Mr9BOS7XE$K%jBxlP7jzwxKVRLvZ5mogf',
-			],
-			'user' => ['bind' => false, 'class' => null],
-		],
-		'admin' => [
-			'sso' => ['enable' => false],
-			'token' => [
-				'signer_key' => 'littler',
-				'not_before' => 0,
-				'expires_at' => 3600,
-				'refresh_ttL' => 7200,
-				'signer' => 'HS256',
 				'type' => 'Header',
-				'relogin_code' => 50001,
-				'refresh_code' => 50002,
+				'expires_code' => 904010,
+				'refresh_code' => 904011,
 				'iss' => 'client.littler',
 				'aud' => 'server.littler',
 				'automatic_renewal' => false,
 			],
-			'user' => ['bind' => false, 'class' => null],
+			'user' => [
+				'bind' => false,
+				'class' => null,
+			],
 		],
 	],
-	'manager' => ['prefix' => 'jwt', 'blacklist' => 'blacklist', 'whitelist' => 'whitelist'],
+	'manager' => [
+		// 缓存前缀
+		'prefix' => 'jwt',
+		// 黑名单缓存名
+		'blacklist' => 'blacklist',
+		// 白名单缓存名
+		'whitelist' => 'whitelist',
+	],
 ];

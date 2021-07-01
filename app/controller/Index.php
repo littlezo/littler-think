@@ -14,28 +14,81 @@ declare(strict_types=1);
  * @license  https://github.com/littlezo/MozillaPublicLicense/blob/main/LICENSE
  *
  */
+
 namespace app\controller;
 
+use littler\annotation\docs\ApiDocs;
+use littler\annotation\Route;
+use littler\annotation\route\Group;
+use littler\annotation\route\Middleware;
 use littler\JWTAuth\Facade\Jwt;
+use littler\Request;
 use think\App;
 
-class Index extends AbstractController
+/**
+ * #title test
+ * Class Index.
+ * @Group("index")
+ * @Middleware(littler\JWTAuth\Middleware\Jwt::class, "admin")
+ * @ApiDocs(
+ *     {"['title’=>‘测试'],
+ * '[version=>1.0.0]'"},
+ *     title="测试",
+ *     version="v1.0.0",
+ * 	   success="{
+ * 'code'=>200
+ * }",
+ *     error="{'code': 500}",
+ *     param="{
+ * 'code': 500,
+ * 'docs': 页面
+ * }"
+ * )
+ *     @param int $id
+ */
+class Index extends Request
 {
 	protected $app;
 
 	protected $blacklist;
 
-	public function __construct(App $app)
+	public function __construct()
 	{
-		$this->app = $app;
 	}
 
+	/**
+	 * #title 非分页列表.
+	 * @Route("/index", method="GET", ignore_verify=false)
+	 * @return \think\Response
+	 *                         desc 其他参数详见快速查询 与字段映射
+	 *
+	 * @ApiDocs({"title": "测试", "version": "v1.0.0", "name": "index", "group": "index" })
+	 *      success: {
+	 *          code: 200,
+	 *          message: "success",
+	 *         data: {},
+	 *      },
+	 *      error: {
+	 *          code: 500,
+	 *          message: "error",
+	 *      },
+	 *      param: {
+	 *         page: {
+	 *            required: true,
+	 *            desc: "页数",
+	 *            string: int,
+	 *         }
+	 *      },
+	 *  })
+	 */
 	public function index()
 	{
 		// return json([
 		//     'token' => Jwt::token(2, ['model' => CustomMember::class])->toString(),
 		// ]);
-		dd(app('event'));
+
+		// return json();
+		dd(app('route'));
 
 		$store = 'default';
 		$uid = '9520';

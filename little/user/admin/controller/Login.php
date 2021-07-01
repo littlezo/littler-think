@@ -27,31 +27,50 @@ declare(strict_types=1);
  *
  */
 
-namespace little\user\model;
+namespace little\user\admin\controller;
 
-use little\user\repository\model\UserAbstract;
-use littler\user\AuthorizeInterface;
-use littler\user\Traits\User as UserTrait;
+use little\user\service\admin\UserService;
+use littler\annotation\Inject;
+use littler\annotation\Route;
+use littler\annotation\route\Group;
+use littler\BaseController as Controller;
+use littler\Request;
+use littler\Response;
 
 /**
- * 站点后台用户表 模型.
+ * #title 站点后台用户表
+ * Class Login.
+ * @Group("admin/users")
  */
-class User extends UserAbstract implements AuthorizeInterface
+class Login extends Controller
 {
-	use UserTrait;
+	/**
+	 * @Inject
+	 * @var UserService
+	 */
+	protected $service;
 
-	public function token(): string
+	/**
+	 * #title 非分页列表.
+	 * @Route("/login", method="get")
+	 * @return \think\Response
+	 *                         desc 其他参数详见快速查询 与字段映射
+	 * @param string $username admin
+	 * @param string $password 123456
+	 */
+	public function login(Request $request): ?\think\Response
 	{
-		return '';
+		return Response::success($this->service->login($request->param()));
 	}
 
-	public function find()
+	/**
+	 * #title 非分页列表.
+	 * @Route("/logout", method="delete")
+	 * @return \think\Response
+	 *                         desc 其他参数详见快速查询 与字段映射
+	 */
+	public function logout(Request $request): ?\think\Response
 	{
-		return $this;
-	}
-
-	public function setPasswordAttr($password)
-	{
-		return password_hash($password, PASSWORD_ARGON2ID);
+		return Response::success($this->service->logout($request->post()));
 	}
 }

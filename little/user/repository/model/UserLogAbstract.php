@@ -63,21 +63,6 @@ abstract class UserLogAbstract extends Model
 	];
 
 	/**
-	 * @var array $type 字段类型自动转换
-	 */
-	protected $type = [
-		'id' => 'int unsigned',
-		'uid' => 'int',
-		'username' => 'varchar',
-		'site_id' => 'int',
-		'url' => 'varchar',
-		'data' => 'mediumtext',
-		'ip' => 'varchar',
-		'action_name' => 'varchar',
-		'create_time' => 'timestamp',
-	];
-
-	/**
 	 * @var array $json JSON类型字段
 	 */
 	protected $json = [];
@@ -90,5 +75,5 @@ abstract class UserLogAbstract extends Model
 	/**
 	 * @var array $field 允许写入字段
 	 */
-	protected $field = ['id', 'uid', 'username', 'site_id', 'url', 'data', 'ip', 'action_name', 'create_time'];
+	public $field = ['id', 'uid', 'username', 'site_id', 'url', 'data', 'ip', 'action_name', 'create_time'];
 }

@@ -14,10 +14,10 @@ declare(strict_types=1);
  * @license  https://github.com/littlezo/MozillaPublicLicense/blob/main/LICENSE
  *
  */
+
+use littler\JWTAuth\Middleware\Jwt;
 use think\facade\Route;
 
-Route::get('think', function () {
-	return 'hello,ThinkPHP6!';
-});
-
-Route::get('hello/:name', 'index/hello');
+Route::group('debug', function () {
+	Route::get('hello', 'app\controller\Index@index');
+})->middleware(Jwt::class, 'admin');
