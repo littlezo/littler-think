@@ -1,0 +1,32 @@
+<?php
+
+return [
+	'bind' => [],
+	'listen' => [
+		'OnPaymentListReadAfter' => ['little\payment\event\OnPaymentListReadAfter'],
+		'OnPaymentListSetIncByField' => ['little\payment\event\OnPaymentListSetIncByField'],
+		'OnPaymentListSetDecByField' => ['little\payment\event\OnPaymentListSetDecByField'],
+		'OnPaymentListQueryById' => ['little\payment\event\OnPaymentListQueryById'],
+		'OnPaymentListQueryByField' => ['little\payment\event\OnPaymentListQueryByField'],
+		'OnPaymentListQueryByFind' => ['little\payment\event\OnPaymentListQueryByFind'],
+		'OnPaymentListQueryByList' => ['little\payment\event\OnPaymentListQueryByList'],
+		'OnPaymentListDeleteById' => ['little\payment\event\OnPaymentListDeleteById'],
+		'OnPaymentListDeleteByWhere' => ['little\payment\event\OnPaymentListDeleteByWhere'],
+		'OnPaymentListUpdateById' => ['little\payment\event\OnPaymentListUpdateById'],
+		'OnPaymentListUpdateByWhere' => ['little\payment\event\OnPaymentListUpdateByWhere'],
+		'OnPaymentListSave' => ['little\payment\event\OnPaymentListSave'],
+		'OnPaymentRefundReadAfter' => ['little\payment\event\OnPaymentRefundReadAfter'],
+		'OnPaymentRefundSetIncByField' => ['little\payment\event\OnPaymentRefundSetIncByField'],
+		'OnPaymentRefundSetDecByField' => ['little\payment\event\OnPaymentRefundSetDecByField'],
+		'OnPaymentRefundQueryById' => ['little\payment\event\OnPaymentRefundQueryById'],
+		'OnPaymentRefundQueryByField' => ['little\payment\event\OnPaymentRefundQueryByField'],
+		'OnPaymentRefundQueryByFind' => ['little\payment\event\OnPaymentRefundQueryByFind'],
+		'OnPaymentRefundQueryByList' => ['little\payment\event\OnPaymentRefundQueryByList'],
+		'OnPaymentRefundDeleteById' => ['little\payment\event\OnPaymentRefundDeleteById'],
+		'OnPaymentRefundDeleteByWhere' => ['little\payment\event\OnPaymentRefundDeleteByWhere'],
+		'OnPaymentRefundUpdateById' => ['little\payment\event\OnPaymentRefundUpdateById'],
+		'OnPaymentRefundUpdateByWhere' => ['little\payment\event\OnPaymentRefundUpdateByWhere'],
+		'OnPaymentRefundSave' => ['little\payment\event\OnPaymentRefundSave'],
+	],
+	'subscribe' => [],
+];

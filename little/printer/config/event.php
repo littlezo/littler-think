@@ -1,0 +1,32 @@
+<?php
+
+return [
+	'bind' => [],
+	'listen' => [
+		'OnPrinterListReadAfter' => ['little\printer\event\OnPrinterListReadAfter'],
+		'OnPrinterListSetIncByField' => ['little\printer\event\OnPrinterListSetIncByField'],
+		'OnPrinterListSetDecByField' => ['little\printer\event\OnPrinterListSetDecByField'],
+		'OnPrinterListQueryById' => ['little\printer\event\OnPrinterListQueryById'],
+		'OnPrinterListQueryByField' => ['little\printer\event\OnPrinterListQueryByField'],
+		'OnPrinterListQueryByFind' => ['little\printer\event\OnPrinterListQueryByFind'],
+		'OnPrinterListQueryByList' => ['little\printer\event\OnPrinterListQueryByList'],
+		'OnPrinterListDeleteById' => ['little\printer\event\OnPrinterListDeleteById'],
+		'OnPrinterListDeleteByWhere' => ['little\printer\event\OnPrinterListDeleteByWhere'],
+		'OnPrinterListUpdateById' => ['little\printer\event\OnPrinterListUpdateById'],
+		'OnPrinterListUpdateByWhere' => ['little\printer\event\OnPrinterListUpdateByWhere'],
+		'OnPrinterListSave' => ['little\printer\event\OnPrinterListSave'],
+		'OnPrinterTemplateReadAfter' => ['little\printer\event\OnPrinterTemplateReadAfter'],
+		'OnPrinterTemplateSetIncByField' => ['little\printer\event\OnPrinterTemplateSetIncByField'],
+		'OnPrinterTemplateSetDecByField' => ['little\printer\event\OnPrinterTemplateSetDecByField'],
+		'OnPrinterTemplateQueryById' => ['little\printer\event\OnPrinterTemplateQueryById'],
+		'OnPrinterTemplateQueryByField' => ['little\printer\event\OnPrinterTemplateQueryByField'],
+		'OnPrinterTemplateQueryByFind' => ['little\printer\event\OnPrinterTemplateQueryByFind'],
+		'OnPrinterTemplateQueryByList' => ['little\printer\event\OnPrinterTemplateQueryByList'],
+		'OnPrinterTemplateDeleteById' => ['little\printer\event\OnPrinterTemplateDeleteById'],
+		'OnPrinterTemplateDeleteByWhere' => ['little\printer\event\OnPrinterTemplateDeleteByWhere'],
+		'OnPrinterTemplateUpdateById' => ['little\printer\event\OnPrinterTemplateUpdateById'],
+		'OnPrinterTemplateUpdateByWhere' => ['little\printer\event\OnPrinterTemplateUpdateByWhere'],
+		'OnPrinterTemplateSave' => ['little\printer\event\OnPrinterTemplateSave'],
+	],
+	'subscribe' => [],
+];

@@ -1,0 +1,32 @@
+<?php
+
+return [
+	'bind' => [],
+	'listen' => [
+		'OnCronListReadAfter' => ['little\cron\event\OnCronListReadAfter'],
+		'OnCronListSetIncByField' => ['little\cron\event\OnCronListSetIncByField'],
+		'OnCronListSetDecByField' => ['little\cron\event\OnCronListSetDecByField'],
+		'OnCronListQueryById' => ['little\cron\event\OnCronListQueryById'],
+		'OnCronListQueryByField' => ['little\cron\event\OnCronListQueryByField'],
+		'OnCronListQueryByFind' => ['little\cron\event\OnCronListQueryByFind'],
+		'OnCronListQueryByList' => ['little\cron\event\OnCronListQueryByList'],
+		'OnCronListDeleteById' => ['little\cron\event\OnCronListDeleteById'],
+		'OnCronListDeleteByWhere' => ['little\cron\event\OnCronListDeleteByWhere'],
+		'OnCronListUpdateById' => ['little\cron\event\OnCronListUpdateById'],
+		'OnCronListUpdateByWhere' => ['little\cron\event\OnCronListUpdateByWhere'],
+		'OnCronListSave' => ['little\cron\event\OnCronListSave'],
+		'OnCronLogReadAfter' => ['little\cron\event\OnCronLogReadAfter'],
+		'OnCronLogSetIncByField' => ['little\cron\event\OnCronLogSetIncByField'],
+		'OnCronLogSetDecByField' => ['little\cron\event\OnCronLogSetDecByField'],
+		'OnCronLogQueryById' => ['little\cron\event\OnCronLogQueryById'],
+		'OnCronLogQueryByField' => ['little\cron\event\OnCronLogQueryByField'],
+		'OnCronLogQueryByFind' => ['little\cron\event\OnCronLogQueryByFind'],
+		'OnCronLogQueryByList' => ['little\cron\event\OnCronLogQueryByList'],
+		'OnCronLogDeleteById' => ['little\cron\event\OnCronLogDeleteById'],
+		'OnCronLogDeleteByWhere' => ['little\cron\event\OnCronLogDeleteByWhere'],
+		'OnCronLogUpdateById' => ['little\cron\event\OnCronLogUpdateById'],
+		'OnCronLogUpdateByWhere' => ['little\cron\event\OnCronLogUpdateByWhere'],
+		'OnCronLogSave' => ['little\cron\event\OnCronLogSave'],
+	],
+	'subscribe' => [],
+];
