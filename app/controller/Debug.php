@@ -26,16 +26,17 @@ use littler\Request;
 use think\App;
 
 /**
- * #title test
- * Class Index.
- * @Group("index")
+ * #title Debug
+ * Class Debug.
+ * @Group("debug")
  * @Middleware(littler\JWTAuth\Middleware\Jwt::class, "admin")
  * @ApiDocs({
- *     "title": "测试",
- *     "version": "1.0.0"
+ *     "title": "Debug",
+ *     "version": "1.0.0",
+ *     "desc": "查询参数详见快速查询 字段含义参加字段映射"
  * })
  */
-class Index extends Request
+class Debug extends Request
 {
 	protected $app;
 
@@ -49,27 +50,38 @@ class Index extends Request
 	 * #title 非分页列表.
 	 * @Route("/index/<id>", method="GET", ignore_verify=false)
 	 * @return \think\Response
-	 *                         desc 其他参数详见快速查询 与字段映射
 	 *
 	 * @ApiDocs({
 	 *  "title": "测试",
 	 *  "version": "v1.0.0",
-	 *  "name": "index",
-	 *  "group": "index",
+	 *  "name": "debug",
+	 *  "headers": "Token",
+	 *  "group": "debug",
 	 *      "success": {
 	 *          "code": 200,
 	 *          "message": "success",
-	 *         "data": {},
+	 *           "timestamp": 1234567890,
+	 *         "data": {
+	 *             "encryptData": "加密数据自行解密",
+	 *         },
 	 *      },
 	 *      "error": {
 	 *          "code": 500,
-	 *          "message": "error",
+	 *          "message": "fail",
+	 *          "timestamp": 1234567890
 	 *      },
 	 *      "param": {
 	 *         "page": {
 	 *            "required": true,
 	 *            "desc": "页数",
-	 *            "type": "int",
+	 *            "string": "int",
+	 *            "default": 1,
+	 *         },
+	 *         "size": {
+	 *            "required": true,
+	 *            "desc": "单页数量",
+	 *            "string": "int",
+	 *            "default": 10,
 	 *         }
 	 *      },
 	 *  })
