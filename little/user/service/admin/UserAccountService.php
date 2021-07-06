@@ -7,37 +7,50 @@
  * @version 1.0.0
  * @author @小小只^v^ <littlezov@qq.com>  littlezov@qq.com
  * @contact  littlezov@qq.com
- * @link     https://github.com/littlezo
+ * @see     https://github.com/littlezo
  * @document https://github.com/littlezo/wiki
  * @license  https://github.com/littlezo/MozillaPublicLicense/blob/main/LICENSE
  */
 
 declare(strict_types=1);
 
+/*
+ * #logic 做事不讲究逻辑，再努力也只是重复犯错
+ * ## 何为相思：不删不聊不打扰，可否具体点：曾爱过。何为遗憾：你来我往皆过客，可否具体点：再无你。
+ * ## 只要思想不滑稽，方法总比苦难多！
+ * @version 1.0.0
+ * @author @小小只^v^ <littlezov@qq.com>  littlezov@qq.com
+ * @contact  littlezov@qq.com
+ * @link     https://github.com/littlezo
+ * @document https://github.com/littlezo/wiki
+ * @license  https://github.com/littlezo/MozillaPublicLicense/blob/main/LICENSE
+ *
+ */
+
 namespace little\user\service\admin;
 
 use little\user\model\UserAccount;
-use littler\Request;
 use littler\annotation\Inject;
+use littler\Request;
+use RSA;
 
 class UserAccountService
 {
 	/**
-	 * @Inject()
+	 * @Inject
 	 * @var UserAccount
 	 */
 	private $model;
 
 	/**
-	 * @Inject()
+	 * @Inject
 	 * @var Request
-	 * desc  Request对象 request->user 可以取当前用户信息
+	 *              desc  Request对象 request->user 可以取当前用户信息
 	 */
 	private $request;
 
-
 	/**
-	 * #title 分页
+	 * #title 分页.
 	 * @return UserAccount
 	 */
 	public function paginate(): ?object
@@ -45,9 +58,31 @@ class UserAccountService
 		return $this->model->getList();
 	}
 
+	/**
+	 * #title 登录.
+	 * @param int $id ID
+	 * @return bool
+	 */
+	public function login(array $args): ?array
+	{
+		// return [
+		// 	RSA::getPrivKey(),
+		// ];
+		return ['token'=>app('jwt')->store('admin')->ignorePasswordVerify()->login($args)];
+	}
 
 	/**
-	 * #title 列表
+	 * #title 退出.
+	 * @param int $id ID
+	 * @return bool
+	 */
+	public function logout(): ?array
+	{
+		return ['token'=>app('jwt')->store('admin')->logout()];
+	}
+
+	/**
+	 * #title 列表.
 	 * @return UserAccount
 	 */
 	public function list(): ?object
@@ -55,9 +90,8 @@ class UserAccountService
 		return $this->model->getList(false);
 	}
 
-
 	/**
-	 * #title 详情
+	 * #title 详情.
 	 * @param int $id 数据主键
 	 * @return UserAccount
 	 */
@@ -66,9 +100,8 @@ class UserAccountService
 		return $this->model->findBy($id);
 	}
 
-
 	/**
-	 * #title 保存
+	 * #title 保存.
 	 * @param array $args 待写入数据
 	 * @return bool
 	 */
@@ -77,9 +110,8 @@ class UserAccountService
 		return $this->model->storeBy($args);
 	}
 
-
 	/**
-	 * #title 更新
+	 * #title 更新.
 	 * @param int $id ID
 	 * @param array $args 待更新的数据
 	 * @return bool
@@ -89,9 +121,8 @@ class UserAccountService
 		return $this->model->updateBy($id, $args);
 	}
 
-
 	/**
-	 * #title 删除
+	 * #title 删除.
 	 * @param int $id ID
 	 * @return bool
 	 */

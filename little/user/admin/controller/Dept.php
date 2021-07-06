@@ -67,15 +67,18 @@ class Dept extends Controller
 	 *     "desc": "查询参数详见快速查询 字段含义参加字段映射",
 	 *     "success": {
 	 *         "code": 200,
-	 *         "message": "success",
+	 *         "type": "success",
+	 *         "message": "成功消息||success",
 	 *         "timestamp": 1234567890,
-	 *         "data": {
+	 *         "result": {
 	 *             "encryptData": "加密数据自行解密",
 	 *         },
 	 *     },
 	 *     "error": {
 	 *         "code": 500,
-	 *         "message": "fail",
+	 *         "message": "错误消息",
+	 *         "type": "error",
+	 *         "result": "",
 	 *         "timestamp": 1234567890
 	 *     },
 	 *     "param": {

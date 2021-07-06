@@ -26,17 +26,19 @@ use think\model\concern\SoftDelete;
  * @property id $int
  * @property username $string 用户名
  * @property password $string 用户密码
- * @property email $string 邮箱 登录
- * @property group_id $int 部门ID
- * @property jobs_id $int 职位id
- * @property roles_id $string 角色
+ * @property email $string 邮箱
+ * @property avatar $string 用户头像
+ * @property real_name $string 真实姓名
+ * @property mobile $string 手机号
+ * @property dept_ids $int 部门ID
+ * @property jobs_ids $int 职位id
+ * @property roles_ids $string 角色
  * @property status $int 用户状态 1 正常 2 禁用
  * @property last_login_ip $string 最后登录IP
  * @property last_login_time $int 最后登录时间
  * @property create_time $int 创建时间
  * @property update_time $int 更新时间
  * @property delete_time $int 删除状态，0未删除 >0 已删除
- * @property avatar $string 用户头像
  */
 abstract class UserAccountAbstract extends Model
 {
@@ -62,22 +64,24 @@ abstract class UserAccountAbstract extends Model
 		'username' => 'string',
 		'password' => 'string',
 		'email' => 'string',
-		'group_id' => 'int',
-		'jobs_id' => 'int',
-		'roles_id' => 'string',
+		'avatar' => 'string',
+		'real_name' => 'string',
+		'mobile' => 'string',
+		'dept_ids' => 'int',
+		'jobs_ids' => 'int',
+		'roles_ids' => 'string',
 		'status' => 'int',
 		'last_login_ip' => 'string',
 		'last_login_time' => 'int',
 		'create_time' => 'int',
 		'update_time' => 'int',
 		'delete_time' => 'int',
-		'avatar' => 'string',
 	];
 
 	/**
 	 * @var array $json JSON类型字段
 	 */
-	protected $json = ['roles_id'];
+	protected $json = ['roles_ids'];
 
 	/**
 	 * @var array $json JSON字段自动转数组
@@ -92,15 +96,17 @@ abstract class UserAccountAbstract extends Model
 		'username',
 		'password',
 		'email',
-		'group_id',
-		'jobs_id',
-		'roles_id',
+		'avatar',
+		'real_name',
+		'mobile',
+		'dept_ids',
+		'jobs_ids',
+		'roles_ids',
 		'status',
 		'last_login_ip',
 		'last_login_time',
 		'create_time',
 		'update_time',
 		'delete_time',
-		'avatar',
 	];
 }
