@@ -7,7 +7,7 @@
  * @version 1.0.0
  * @author @小小只^v^ <littlezov@qq.com>  littlezov@qq.com
  * @contact  littlezov@qq.com
- * @link     https://github.com/littlezo
+ * @see     https://github.com/littlezo
  * @document https://github.com/littlezo/wiki
  * @license  https://github.com/littlezo/MozillaPublicLicense/blob/main/LICENSE
  */
@@ -33,13 +33,13 @@ trait ClassTrait
 
 
 	/**
-	 * @Route("/class", method="GET",ignore_verify=false)
+	 * @Route("/class", method="GET", ignore_verify=false)
 	 * @apiDocs({
 	 *     "title": "分页列表",
 	 *     "version": "v1.0.0",
 	 *     "name": "delete",
 	 *     "headers": {
-	 *         "Authorization":"Bearer Token"
+	 *         "Authorization": "Bearer Token"
 	 *     },
 	 *     "desc": "查询参数详见快速查询 字段含义参加字段映射",
 	 *     "success": {
@@ -82,13 +82,13 @@ trait ClassTrait
 
 
 	/**
-	 * @Route("/class/:id", method="GET",ignore_verify=false)
+	 * @Route("/class/:id", method="GET", ignore_verify=false)
 	 * @apiDocs({
 	 *     "title": "详情",
 	 *     "version": "v1.0.0",
 	 *     "name": "delete",
 	 *     "headers": {
-	 *         "Authorization":"Bearer Token"
+	 *         "Authorization": "Bearer Token"
 	 *     },
 	 *     "desc": "查询参数详见快速查询 字段含义参加字段映射",
 	 *     "success": {
@@ -120,13 +120,13 @@ trait ClassTrait
 
 
 	/**
-	 * @Route("/class", method="POST",ignore_verify=false)
+	 * @Route("/class", method="POST", ignore_verify=false)
 	 * @apiDocs({
 	 *     "title": "保存",
 	 *     "version": "v1.0.0",
 	 *     "name": "delete",
 	 *     "headers": {
-	 *         "Authorization":"Bearer Token"
+	 *         "Authorization": "Bearer Token"
 	 *     },
 	 *     "desc": "查询参数详见快速查询 字段含义参加字段映射",
 	 *     "success": {
@@ -158,13 +158,13 @@ trait ClassTrait
 
 
 	/**
-	 * @Route("/class/:id", method="PUT",ignore_verify=false)
+	 * @Route("/class/:id", method="PUT", ignore_verify=false)
 	 * @apiDocs({
 	 *     "title": "更新",
 	 *     "version": "v1.0.0",
 	 *     "name": "delete",
 	 *     "headers": {
-	 *         "Authorization":"Bearer Token"
+	 *         "Authorization": "Bearer Token"
 	 *     },
 	 *     "desc": "查询参数详见快速查询 字段含义参加字段映射",
 	 *     "success": {
@@ -196,13 +196,13 @@ trait ClassTrait
 
 
 	/**
-	 * @Route("/class/:id", method="DELETE",ignore_verify=false)
+	 * @Route("/class/:id", method="DELETE", ignore_verify=false)
 	 * @apiDocs({
 	 *     "title": "删除",
 	 *     "version": "v1.0.0",
 	 *     "name": "delete",
 	 *     "headers": {
-	 *         "Authorization":"Bearer Token"
+	 *         "Authorization": "Bearer Token"
 	 *     },
 	 *     "desc": "查询参数详见快速查询 字段含义参加字段映射",
 	 *     "success": {

@@ -7,34 +7,43 @@
  * @version 1.0.0
  * @author @小小只^v^ <littlezov@qq.com>  littlezov@qq.com
  * @contact  littlezov@qq.com
- * @link     https://github.com/littlezo
+ * @see     https://github.com/littlezo
  * @document https://github.com/littlezo/wiki
  * @license  https://github.com/littlezo/MozillaPublicLicense/blob/main/LICENSE
  */
 
 declare(strict_types=1);
 
+/*
+ * #logic 做事不讲究逻辑，再努力也只是重复犯错
+ * ## 何为相思：不删不聊不打扰，可否具体点：曾爱过。何为遗憾：你来我往皆过客，可否具体点：再无你。
+ * ## 只要思想不滑稽，方法总比苦难多！
+ * @version 1.0.0
+ * @author @小小只^v^ <littlezov@qq.com>  littlezov@qq.com
+ * @contact  littlezov@qq.com
+ * @link     https://github.com/littlezo
+ * @document https://github.com/littlezo/wiki
+ * @license  https://github.com/littlezo/MozillaPublicLicense/blob/main/LICENSE
+ *
+ */
+
 namespace little\user\admin\controller;
 
 use little\user\repository\admin\AccountTrait;
 use little\user\service\admin\UserAccountService;
-use littler\BaseController as Controller;
-use littler\JWTAuth\Middleware\Jwt;
-use littler\Request;
-use littler\Response;
+use littler\annotation\docs\ApiDocs;
 use littler\annotation\Inject;
 use littler\annotation\Route;
-use littler\annotation\docs\ApiDocs;
 use littler\annotation\route\Group as RouteGroup;
 use littler\annotation\route\Middleware;
-use littler\annotation\route\Resource;
-use littler\annotation\route\Validate;
+use littler\BaseController as Controller;
+use littler\Request;
+use littler\Response;
 
 /**
- * Class Account
- * @package little\user\admin\controller
+ * Class Account.
  * @RouteGroup("admin/user")
- * @Middleware({littler\JWTAuth\Middleware\Jwt::class,"admin"})
+ * @Middleware({littler\JWTAuth\Middleware\Jwt::class, "admin"})
  * @apiDocs({
  *     "title": "用户管理",
  *     "version": "1.0.0",
@@ -49,20 +58,57 @@ class Account extends Controller
 	use AccountTrait;
 
 	/**
-	 * @Inject()
+	 * @Inject
 	 * @var UserAccountService
 	 */
 	protected $service;
 
+	/**
+	 * @Route("/info", method="GET", ignore_verify=false)
+	 * @apiDocs({
+	 *     "title": "详情",
+	 *     "version": "v1.0.0",
+	 *     "name": "delete",
+	 *     "headers": {
+	 *         "Authorization": "Bearer Token"
+	 *     },
+	 *     "desc": "查询参数详见快速查询 字段含义参加字段映射",
+	 *     "success": {
+	 *         "code": 200,
+	 *         "type": "success",
+	 *         "message": "成功消息||success",
+	 *         "timestamp": 1234567890,
+	 *         "result": {
+	 *             "encryptData": "加密数据自行解密",
+	 *         },
+	 *     },
+	 *     "error": {
+	 *         "code": 500,
+	 *         "message": "错误消息",
+	 *         "type": "error",
+	 *         "result": "",
+	 *         "timestamp": 1234567890
+	 *     },
+	 *     "param": {
+	 *
+	 *     }
+	 * })
+	 * @return \think\Response
+	 */
+	public function info(Request $request): ?\think\Response
+	{
+		// dd($request->user->id);
+		return Response::success($this->service->info($request->user->id));
+	}
 
 	/**
-	 * @Route("/account/list", method="GET",ignore_verify=false)
+	 * @Route("/account/list", method="GET", ignore_verify=false)
 	 * @apiDocs({
 	 *     "title": "列表无分页",
 	 *     "version": "v1.0.0",
 	 *     "name": "list",
 	 *     "headers": {
-	 *         "Authorization":"Bearer Token"
+	 *         "Authorization": "Bearer Token"
 	 *     },
 	 *     "desc": "查询参数详见快速查询 字段含义参加字段映射",
 	 *     "success": {
@@ -101,5 +147,88 @@ class Account extends Controller
 	public function list(Request $request): ?\think\Response
 	{
 		return Response::success($this->service->list($request->get()));
+	}
+
+	/**
+	 * @Route("/account/login", method="POST", ignore_verify=true)
+	 * @apiDocs({
+	 *     "title": "用户登录",
+	 *     "version": "v1.0.0",
+	 *     "name": "login",
+	 *     "headers": {
+	 *     },
+	 *     "desc": "查询参数详见快速查询 字段含义参加字段映射",
+	 *     "success": {
+	 *         "code": 200,
+	 *         "type": "success",
+	 *         "message": "成功消息||success",
+	 *         "timestamp": 1234567890,
+	 *         "result": {
+	 *             "encryptData": "加密数据自行解密",
+	 *         },
+	 *     },
+	 *     "error": {
+	 *         "code": 500,
+	 *         "message": "错误消息",
+	 *         "type": "error",
+	 *         "result": "",
+	 *         "timestamp": 1234567890
+	 *     },
+	 *     "param": {
+	 *         "username": {
+	 *             "required": true,
+	 *             "desc": "账号",
+	 *             "type": "string",
+	 *             "default": "",
+	 *         },
+	 *         "password": {
+	 *             "required": true,
+	 *             "desc": "密码 md5(md5('密码'))",
+	 *             "type": "string",
+	 *             "default": "",
+	 *         }
+	 *     }
+	 * })
+	 * @return \think\Response
+	 */
+	public function login(Request $request): ?\think\Response
+	{
+		return Response::success($this->service->login($request->post()));
+	}
+
+	/**
+	 * @Route("/account/logout", method="DELETE", ignore_verify=false)
+	 * @apiDocs({
+	 *     "title": "退出登录",
+	 *     "version": "v1.0.0",
+	 *     "name": "logout",
+	 *     "headers": {
+	 *         "Authorization": "Bearer Token"
+	 *     },
+	 *     "desc": "查询参数详见快速查询 字段含义参加字段映射",
+	 *     "success": {
+	 *         "code": 200,
+	 *         "type": "success",
+	 *         "message": "成功消息||success",
+	 *         "timestamp": 1234567890,
+	 *         "result": {
+	 *             "encryptData": "加密数据自行解密",
+	 *         },
+	 *     },
+	 *     "error": {
+	 *         "code": 500,
+	 *         "message": "错误消息",
+	 *         "type": "error",
+	 *         "result": "",
+	 *         "timestamp": 1234567890
+	 *     },
+	 *     "param": {
+	 *     }
+	 * })
+	 * @return \think\Response
+	 */
+	public function logout(Request $request): ?\think\Response
+	{
+		return Response::success($this->service->logout($request->user->id));
 	}
 }
