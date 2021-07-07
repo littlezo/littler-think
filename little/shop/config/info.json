@@ -13,6 +13,6 @@
 	"dev_mode": true,
 	"author": "@小小只^v^",
 	"content": "",
-	"version_no": "20210705",
+	"version_no": "20210707",
   "ignore": ["shop_address","shop_apply","shop_category","shop_cert","shop_deposit","shop_group","shop_level","shop_list","shop_member","shop_open_account","shop_reopen","shop_service","shop_settlement","shop_settlement_period","shop_withdraw","shop_withdraw_period"]
 }

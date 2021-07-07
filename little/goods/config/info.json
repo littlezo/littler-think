@@ -13,6 +13,6 @@
 	"dev_mode": true,
 	"author": "@小小只^v^",
 	"content": "",
-	"version_no": "20210705",
+	"version_no": "20210707",
   "ignore": ["goods_attr_class_brand","goods_attr_index","goods_attribute","goods_attribute_value","goods_brand","goods_browse","goods_cart","goods_category","goods_collect","goods_evaluate","goods_export","goods_list","goods_shop_category","goods_sku","goods_virtual"]
 }

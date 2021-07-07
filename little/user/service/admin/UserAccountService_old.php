@@ -29,15 +29,16 @@ declare(strict_types=1);
 
 namespace little\user\service\admin;
 
-use little\user\model\User;
+use little\user\model\UserAccount;
 use littler\annotation\Inject;
 use littler\Request;
+use RSA;
 
-class UserService
+class UserAccountService
 {
 	/**
 	 * @Inject
-	 * @var User
+	 * @var UserAccount
 	 */
 	private $model;
 
@@ -50,7 +51,7 @@ class UserService
 
 	/**
 	 * #title 分页.
-	 * @return User
+	 * @return UserAccount
 	 */
 	public function paginate(): ?object
 	{
@@ -58,8 +59,31 @@ class UserService
 	}
 
 	/**
+	 * #title 登录.
+	 * @param int $id ID
+	 * @return bool
+	 */
+	public function login(array $args): ?array
+	{
+		// return [
+		// 	RSA::getPrivKey(),
+		// ];
+		return ['token'=>app('jwt')->store('admin')->ignorePasswordVerify()->login($args)];
+	}
+
+	/**
+	 * #title 退出.
+	 * @param int $id ID
+	 * @return bool
+	 */
+	public function logout(): ?array
+	{
+		return ['token'=>app('jwt')->store('admin')->logout()];
+	}
+
+	/**
 	 * #title 列表.
-	 * @return User
+	 * @return UserAccount
 	 */
 	public function list(): ?object
 	{
@@ -69,19 +93,21 @@ class UserService
 	/**
 	 * #title 详情.
 	 * @param int $id 数据主键
-	 * @return User
+	 * @return UserAccount
 	 */
 	public function info(int $id): ?object
 	{
-		return $this->model->findBy($id);
+		$info = $this->model->findBy($id);
+		unset($info->password,$info->pay_password,$info->passwd,$info->pay_passwd);
+		return $info;
 	}
 
 	/**
 	 * #title 保存.
 	 * @param array $args 待写入数据
-	 * @return int||bool
+	 * @return int
 	 */
-	public function save(array $args)
+	public function save(array $args): ?int
 	{
 		return $this->model->storeBy($args);
 	}
@@ -105,25 +131,5 @@ class UserService
 	public function delete(int $id): ?bool
 	{
 		return $this->model->deleteBy($id);
-	}
-
-	/**
-	 * #title 删除.
-	 * @param int $id ID
-	 * @return bool
-	 */
-	public function login(array $args): ?array
-	{
-		return ['token'=>app('jwt')->store('admin')->login($args)];
-	}
-
-	/**
-	 * #title 删除.
-	 * @param int $id ID
-	 * @return bool
-	 */
-	public function logout(int $id): ?object
-	{
-		return $this->request;
 	}
 }

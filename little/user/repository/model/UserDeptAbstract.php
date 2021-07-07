@@ -18,8 +18,8 @@ namespace little\user\repository\model;
 
 use littler\BaseModel as Model;
 use littler\annotation\Inject;
-use littler\traits\db\BaseOptionsTrait;
-use littler\traits\db\RewriteTrait;
+use littler\traits\BaseOptionsTrait;
+use littler\traits\RewriteTrait;
 use think\model\concern\SoftDelete;
 
 /**
@@ -32,6 +32,7 @@ use think\model\concern\SoftDelete;
  * @property email $string 联系邮箱
  * @property status $int 1 正常 2 停用
  * @property sort $int 排序字段
+ * @property remark $string 备注
  * @property create_time $int 创建时间
  * @property update_time $int 更新时间
  * @property delete_time $int 删除状态，null 未删除 timestamp 已删除
@@ -65,6 +66,7 @@ abstract class UserDeptAbstract extends Model
 		'email' => 'string',
 		'status' => 'int',
 		'sort' => 'int',
+		'remark' => 'string',
 		'create_time' => 'int',
 		'update_time' => 'int',
 		'delete_time' => 'int',
@@ -93,6 +95,7 @@ abstract class UserDeptAbstract extends Model
 		'email',
 		'status',
 		'sort',
+		'remark',
 		'create_time',
 		'update_time',
 		'delete_time',

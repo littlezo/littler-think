@@ -13,6 +13,6 @@
 	"dev_mode": true,
 	"author": "@小小只^v^",
 	"content": "",
-	"version_no": "20210705",
+	"version_no": "20210707",
   "ignore": ["order_goods","order_list","order_logs","order_refund_logs"]
 }

@@ -56,7 +56,7 @@ class Logs extends Controller
 
 
 	/**
-	 * @Route("/logs/list", method="GET",ignore_verify=true)
+	 * @Route("/logs/list", method="GET",ignore_verify=false)
 	 * @apiDocs({
 	 *     "title": "列表无分页",
 	 *     "version": "v1.0.0",

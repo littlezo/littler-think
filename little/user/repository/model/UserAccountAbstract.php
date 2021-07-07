@@ -18,8 +18,8 @@ namespace little\user\repository\model;
 
 use littler\BaseModel as Model;
 use littler\annotation\Inject;
-use littler\traits\db\BaseOptionsTrait;
-use littler\traits\db\RewriteTrait;
+use littler\traits\BaseOptionsTrait;
+use littler\traits\RewriteTrait;
 use think\model\concern\SoftDelete;
 
 /**
@@ -32,7 +32,8 @@ use think\model\concern\SoftDelete;
  * @property mobile $string 手机号
  * @property dept_ids $int 部门ID
  * @property jobs_ids $int 职位id
- * @property roles_ids $string 角色
+ * @property roles_ids $int 角色
+ * @property remark $string 备注
  * @property status $int 用户状态 1 正常 2 禁用
  * @property last_login_ip $string 最后登录IP
  * @property last_login_time $int 最后登录时间
@@ -69,7 +70,8 @@ abstract class UserAccountAbstract extends Model
 		'mobile' => 'string',
 		'dept_ids' => 'int',
 		'jobs_ids' => 'int',
-		'roles_ids' => 'string',
+		'roles_ids' => 'int',
+		'remark' => 'string',
 		'status' => 'int',
 		'last_login_ip' => 'string',
 		'last_login_time' => 'int',
@@ -81,12 +83,7 @@ abstract class UserAccountAbstract extends Model
 	/**
 	 * @var array $json JSON类型字段
 	 */
-	protected $json = ['roles_ids'];
-
-	/**
-	 * @var array $json JSON字段自动转数组
-	 */
-	protected $jsonAssoc = true;
+	protected $json = [];
 
 	/**
 	 * @var array $field 允许写入字段
@@ -102,6 +99,7 @@ abstract class UserAccountAbstract extends Model
 		'dept_ids',
 		'jobs_ids',
 		'roles_ids',
+		'remark',
 		'status',
 		'last_login_ip',
 		'last_login_time',

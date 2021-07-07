@@ -56,7 +56,7 @@ class Config extends Controller
 
 
 	/**
-	 * @Route("/config/list", method="GET",ignore_verify=true)
+	 * @Route("/config/list", method="GET",ignore_verify=false)
 	 * @apiDocs({
 	 *     "title": "列表无分页",
 	 *     "version": "v1.0.0",

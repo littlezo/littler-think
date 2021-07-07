@@ -18,8 +18,8 @@ namespace little\coupon\repository\model;
 
 use littler\BaseModel as Model;
 use littler\annotation\Inject;
-use littler\traits\db\BaseOptionsTrait;
-use littler\traits\db\RewriteTrait;
+use littler\traits\BaseOptionsTrait;
+use littler\traits\RewriteTrait;
 
 /**
  * @property coupon_type_id $int 优惠券类型Id

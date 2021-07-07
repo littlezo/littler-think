@@ -18,18 +18,19 @@ namespace little\user\repository\model;
 
 use littler\BaseModel as Model;
 use littler\annotation\Inject;
-use littler\traits\db\BaseOptionsTrait;
-use littler\traits\db\RewriteTrait;
+use littler\traits\BaseOptionsTrait;
+use littler\traits\RewriteTrait;
 use think\model\concern\SoftDelete;
 
 /**
  * @property id $int
  * @property name $string 角色名
- * @property parent $int 父级ID
- * @property description $string 角色备注
+ * @property identify $string 角色的标识，用英文表示，用于后台路由权限
  * @property data_range $int 1 全部数据 2 自定义数据 3 仅本人数据 4 部门数据 5 部门及以下数据
  * @property access_ids $string 权限id合集
- * @property identify $string 角色的标识，用英文表示，用于后台路由权限
+ * @property remark $string 角色备注
+ * @property sort $int 排序
+ * @property status $int 状态
  * @property create_time $int 创建时间
  * @property update_time $int 更新时间
  * @property delete_time $int 删除状态，0未删除  time已删除
@@ -56,11 +57,12 @@ abstract class UserRolesAbstract extends Model
 	protected $schema = [
 		'id' => 'int',
 		'name' => 'string',
-		'parent' => 'int',
-		'description' => 'string',
+		'identify' => 'string',
 		'data_range' => 'int',
 		'access_ids' => 'string',
-		'identify' => 'string',
+		'remark' => 'string',
+		'sort' => 'int',
+		'status' => 'int',
 		'create_time' => 'int',
 		'update_time' => 'int',
 		'delete_time' => 'int',
@@ -82,11 +84,12 @@ abstract class UserRolesAbstract extends Model
 	public $field = [
 		'id',
 		'name',
-		'parent',
-		'description',
+		'identify',
 		'data_range',
 		'access_ids',
-		'identify',
+		'remark',
+		'sort',
+		'status',
 		'create_time',
 		'update_time',
 		'delete_time',

@@ -70,9 +70,9 @@ class OrderComplainService
 	/**
 	 * #title 保存
 	 * @param array $args 待写入数据
-	 * @return bool
+	 * @return int
 	 */
-	public function save(array $args): ?bool
+	public function save(array $args): ?int
 	{
 		return $this->model->storeBy($args);
 	}

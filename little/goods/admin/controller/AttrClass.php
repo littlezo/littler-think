@@ -56,7 +56,7 @@ class AttrClass extends Controller
 
 
 	/**
-	 * @Route("/attr_class/list", method="GET",ignore_verify=true)
+	 * @Route("/attr_class/list", method="GET",ignore_verify=false)
 	 * @apiDocs({
 	 *     "title": "列表无分页",
 	 *     "version": "v1.0.0",

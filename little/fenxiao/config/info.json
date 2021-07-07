@@ -13,6 +13,6 @@
 	"dev_mode": true,
 	"author": "@小小只^v^",
 	"content": "",
-	"version_no": "20210705",
+	"version_no": "20210707",
   "ignore": ["fenxiao_apply","fenxiao_goods","fenxiao_goods_collect","fenxiao_goods_sku","fenxiao_level","fenxiao_list","fenxiao_order","fenxiao_withdraw"]
 }

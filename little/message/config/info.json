@@ -13,6 +13,6 @@
 	"dev_mode": true,
 	"author": "@小小只^v^",
 	"content": "",
-	"version_no": "20210705",
+	"version_no": "20210707",
   "ignore": ["message_list","message_send_log","message_sms_records","message_variable","message_wechat_records"]
 }

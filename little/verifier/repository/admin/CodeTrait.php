@@ -33,7 +33,7 @@ trait CodeTrait
 
 
 	/**
-	 * @Route("/code", method="GET",ignore_verify=true)
+	 * @Route("/code", method="GET",ignore_verify=false)
 	 * @apiDocs({
 	 *     "title": "分页列表",
 	 *     "version": "v1.0.0",
@@ -82,7 +82,7 @@ trait CodeTrait
 
 
 	/**
-	 * @Route("/code/:id", method="GET",ignore_verify=true)
+	 * @Route("/code/:id", method="GET",ignore_verify=false)
 	 * @apiDocs({
 	 *     "title": "详情",
 	 *     "version": "v1.0.0",
@@ -113,14 +113,14 @@ trait CodeTrait
 	 * })
 	 * @return \think\Response
 	 */
-	public function read(Request $request, int $id): ?\think\Response
+	public function info(Request $request, int $id): ?\think\Response
 	{
 		return Response::success($this->service->info($id));
 	}
 
 
 	/**
-	 * @Route("/code", method="POST",ignore_verify=true)
+	 * @Route("/code", method="POST",ignore_verify=false)
 	 * @apiDocs({
 	 *     "title": "保存",
 	 *     "version": "v1.0.0",
@@ -158,7 +158,7 @@ trait CodeTrait
 
 
 	/**
-	 * @Route("/code/:id", method="PUT",ignore_verify=true)
+	 * @Route("/code/:id", method="PUT",ignore_verify=false)
 	 * @apiDocs({
 	 *     "title": "更新",
 	 *     "version": "v1.0.0",
@@ -196,7 +196,7 @@ trait CodeTrait
 
 
 	/**
-	 * @Route("/code/:id", method="DELETE",ignore_verify=true)
+	 * @Route("/code/:id", method="DELETE",ignore_verify=false)
 	 * @apiDocs({
 	 *     "title": "删除",
 	 *     "version": "v1.0.0",
