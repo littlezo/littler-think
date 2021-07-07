@@ -7,7 +7,7 @@
  * @version 1.0.0
  * @author @小小只^v^ <littlezov@qq.com>  littlezov@qq.com
  * @contact  littlezov@qq.com
- * @link     https://github.com/littlezo
+ * @see     https://github.com/littlezo
  * @document https://github.com/littlezo/wiki
  * @license  https://github.com/littlezo/MozillaPublicLicense/blob/main/LICENSE
  */
@@ -17,10 +17,13 @@ declare(strict_types=1);
 namespace little\user\model;
 
 use little\user\repository\model\UserAccountAbstract;
+use littler\user\AuthorizeInterface;
+use littler\user\Traits\User;
 
 /**
- * 用户管理 模型
+ * 用户管理 模型.
  */
-class UserAccount extends UserAccountAbstract
+class UserAccount extends UserAccountAbstract implements AuthorizeInterface
 {
+	use User;
 }

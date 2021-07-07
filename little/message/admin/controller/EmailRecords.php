@@ -7,7 +7,7 @@
  * @version 1.0.0
  * @author @小小只^v^ <littlezov@qq.com>  littlezov@qq.com
  * @contact  littlezov@qq.com
- * @link     https://github.com/littlezo
+ * @see     https://github.com/littlezo
  * @document https://github.com/littlezo/wiki
  * @license  https://github.com/littlezo/MozillaPublicLicense/blob/main/LICENSE
  */
@@ -56,13 +56,13 @@ class EmailRecords extends Controller
 
 
 	/**
-	 * @Route("/email_records/list", method="GET",ignore_verify=false)
+	 * @Route("/email_records/list", method="GET", ignore_verify=false)
 	 * @apiDocs({
 	 *     "title": "列表无分页",
 	 *     "version": "v1.0.0",
 	 *     "name": "list",
 	 *     "headers": {
-	 *         "Authorization":"Bearer Token"
+	 *         "Authorization": "Bearer Token"
 	 *     },
 	 *     "desc": "查询参数详见快速查询 字段含义参加字段映射",
 	 *     "success": {
