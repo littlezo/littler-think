@@ -1,0 +1,19 @@
+{
+  "name": "seckill",
+	"title": "秒杀参与商品",
+	"description": "秒杀参与商品",
+	"version": "1.0.0",
+	"keywords": "秒杀参与商品",
+	"order": 100,
+	"services": ["\\little\\seckill\\Service"],
+	"aliases": {},
+	"files": [],
+	"requires": [],
+	"enable": true,
+	"dev_mode": true,
+	"author": "@小小只^v^",
+	"content": "",
+	"version_no": "20210708",
+    "ignore": ["seckill_seckill"],
+    "allow_layer": ["admin"]
+}

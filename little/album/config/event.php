@@ -1,0 +1,32 @@
+<?php
+
+return [
+	'bind' => [],
+	'listen' => [
+		'OnAlbumAlbumReadAfter' => ['little\album\event\OnAlbumAlbumReadAfter'],
+		'OnAlbumAlbumSetIncByField' => ['little\album\event\OnAlbumAlbumSetIncByField'],
+		'OnAlbumAlbumSetDecByField' => ['little\album\event\OnAlbumAlbumSetDecByField'],
+		'OnAlbumAlbumQueryById' => ['little\album\event\OnAlbumAlbumQueryById'],
+		'OnAlbumAlbumQueryByField' => ['little\album\event\OnAlbumAlbumQueryByField'],
+		'OnAlbumAlbumQueryByFind' => ['little\album\event\OnAlbumAlbumQueryByFind'],
+		'OnAlbumAlbumQueryByList' => ['little\album\event\OnAlbumAlbumQueryByList'],
+		'OnAlbumAlbumDeleteById' => ['little\album\event\OnAlbumAlbumDeleteById'],
+		'OnAlbumAlbumDeleteByWhere' => ['little\album\event\OnAlbumAlbumDeleteByWhere'],
+		'OnAlbumAlbumUpdateById' => ['little\album\event\OnAlbumAlbumUpdateById'],
+		'OnAlbumAlbumUpdateByWhere' => ['little\album\event\OnAlbumAlbumUpdateByWhere'],
+		'OnAlbumAlbumSave' => ['little\album\event\OnAlbumAlbumSave'],
+		'OnAlbumPicReadAfter' => ['little\album\event\OnAlbumPicReadAfter'],
+		'OnAlbumPicSetIncByField' => ['little\album\event\OnAlbumPicSetIncByField'],
+		'OnAlbumPicSetDecByField' => ['little\album\event\OnAlbumPicSetDecByField'],
+		'OnAlbumPicQueryById' => ['little\album\event\OnAlbumPicQueryById'],
+		'OnAlbumPicQueryByField' => ['little\album\event\OnAlbumPicQueryByField'],
+		'OnAlbumPicQueryByFind' => ['little\album\event\OnAlbumPicQueryByFind'],
+		'OnAlbumPicQueryByList' => ['little\album\event\OnAlbumPicQueryByList'],
+		'OnAlbumPicDeleteById' => ['little\album\event\OnAlbumPicDeleteById'],
+		'OnAlbumPicDeleteByWhere' => ['little\album\event\OnAlbumPicDeleteByWhere'],
+		'OnAlbumPicUpdateById' => ['little\album\event\OnAlbumPicUpdateById'],
+		'OnAlbumPicUpdateByWhere' => ['little\album\event\OnAlbumPicUpdateByWhere'],
+		'OnAlbumPicSave' => ['little\album\event\OnAlbumPicSave'],
+	],
+	'subscribe' => [],
+];

@@ -16,7 +16,7 @@ declare(strict_types=1);
 
 namespace little\user\repository\admin;
 
-use little\user\service\admin\DeptService;
+use little\user\service\admin\UserDeptService;
 use littler\Request;
 use littler\Response;
 
@@ -27,7 +27,7 @@ trait DeptTrait
 {
 	/**
 	 * @Inject()
-	 * @var DeptService
+	 * @var UserDeptService
 	 */
 	protected $service;
 

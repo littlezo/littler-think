@@ -16,7 +16,7 @@ declare(strict_types=1);
 
 namespace little\user\repository\admin;
 
-use little\user\service\admin\AccountService;
+use little\user\service\admin\UserAccountService;
 use littler\Request;
 use littler\Response;
 
@@ -27,7 +27,7 @@ trait AccountTrait
 {
 	/**
 	 * @Inject()
-	 * @var AccountService
+	 * @var UserAccountService
 	 */
 	protected $service;
 

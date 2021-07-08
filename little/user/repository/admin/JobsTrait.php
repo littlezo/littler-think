@@ -16,7 +16,7 @@ declare(strict_types=1);
 
 namespace little\user\repository\admin;
 
-use little\user\service\admin\JobsService;
+use little\user\service\admin\UserJobsService;
 use littler\Request;
 use littler\Response;
 
@@ -27,7 +27,7 @@ trait JobsTrait
 {
 	/**
 	 * @Inject()
-	 * @var JobsService
+	 * @var UserJobsService
 	 */
 	protected $service;
 

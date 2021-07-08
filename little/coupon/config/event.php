@@ -1,0 +1,32 @@
+<?php
+
+return [
+	'bind' => [],
+	'listen' => [
+		'OnCouponCouponReadAfter' => ['little\coupon\event\OnCouponCouponReadAfter'],
+		'OnCouponCouponSetIncByField' => ['little\coupon\event\OnCouponCouponSetIncByField'],
+		'OnCouponCouponSetDecByField' => ['little\coupon\event\OnCouponCouponSetDecByField'],
+		'OnCouponCouponQueryById' => ['little\coupon\event\OnCouponCouponQueryById'],
+		'OnCouponCouponQueryByField' => ['little\coupon\event\OnCouponCouponQueryByField'],
+		'OnCouponCouponQueryByFind' => ['little\coupon\event\OnCouponCouponQueryByFind'],
+		'OnCouponCouponQueryByList' => ['little\coupon\event\OnCouponCouponQueryByList'],
+		'OnCouponCouponDeleteById' => ['little\coupon\event\OnCouponCouponDeleteById'],
+		'OnCouponCouponDeleteByWhere' => ['little\coupon\event\OnCouponCouponDeleteByWhere'],
+		'OnCouponCouponUpdateById' => ['little\coupon\event\OnCouponCouponUpdateById'],
+		'OnCouponCouponUpdateByWhere' => ['little\coupon\event\OnCouponCouponUpdateByWhere'],
+		'OnCouponCouponSave' => ['little\coupon\event\OnCouponCouponSave'],
+		'OnCouponTypeReadAfter' => ['little\coupon\event\OnCouponTypeReadAfter'],
+		'OnCouponTypeSetIncByField' => ['little\coupon\event\OnCouponTypeSetIncByField'],
+		'OnCouponTypeSetDecByField' => ['little\coupon\event\OnCouponTypeSetDecByField'],
+		'OnCouponTypeQueryById' => ['little\coupon\event\OnCouponTypeQueryById'],
+		'OnCouponTypeQueryByField' => ['little\coupon\event\OnCouponTypeQueryByField'],
+		'OnCouponTypeQueryByFind' => ['little\coupon\event\OnCouponTypeQueryByFind'],
+		'OnCouponTypeQueryByList' => ['little\coupon\event\OnCouponTypeQueryByList'],
+		'OnCouponTypeDeleteById' => ['little\coupon\event\OnCouponTypeDeleteById'],
+		'OnCouponTypeDeleteByWhere' => ['little\coupon\event\OnCouponTypeDeleteByWhere'],
+		'OnCouponTypeUpdateById' => ['little\coupon\event\OnCouponTypeUpdateById'],
+		'OnCouponTypeUpdateByWhere' => ['little\coupon\event\OnCouponTypeUpdateByWhere'],
+		'OnCouponTypeSave' => ['little\coupon\event\OnCouponTypeSave'],
+	],
+	'subscribe' => [],
+];
