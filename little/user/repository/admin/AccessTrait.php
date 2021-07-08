@@ -16,7 +16,7 @@ declare(strict_types=1);
 
 namespace little\user\repository\admin;
 
-use little\user\service\admin\UserAccessService;
+use little\user\service\admin\AccessService;
 use littler\Request;
 use littler\Response;
 
@@ -27,7 +27,7 @@ trait AccessTrait
 {
 	/**
 	 * @Inject()
-	 * @var UserAccessService
+	 * @var AccessService
 	 */
 	protected $service;
 

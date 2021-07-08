@@ -16,7 +16,7 @@ declare(strict_types=1);
 
 namespace little\user\repository\admin;
 
-use little\user\service\admin\UserRolesService;
+use little\user\service\admin\RolesService;
 use littler\Request;
 use littler\Response;
 
@@ -27,7 +27,7 @@ trait RolesTrait
 {
 	/**
 	 * @Inject()
-	 * @var UserRolesService
+	 * @var RolesService
 	 */
 	protected $service;
 

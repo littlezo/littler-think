@@ -14,5 +14,6 @@
 	"author": "@小小只^v^",
 	"content": "",
 	"version_no": "20210705",
-  "ignore": []
+    "ignore": [],
+    "allow_layer":["admin"]
 }

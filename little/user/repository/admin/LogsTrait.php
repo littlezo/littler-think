@@ -16,7 +16,7 @@ declare(strict_types=1);
 
 namespace little\user\repository\admin;
 
-use little\user\service\admin\UserLogsService;
+use little\user\service\admin\LogsService;
 use littler\Request;
 use littler\Response;
 
@@ -27,7 +27,7 @@ trait LogsTrait
 {
 	/**
 	 * @Inject()
-	 * @var UserLogsService
+	 * @var LogsService
 	 */
 	protected $service;
 
