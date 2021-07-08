@@ -13,6 +13,6 @@
 	"dev_mode": true,
 	"author": "@小小只^v^",
 	"content": "",
-	"version_no": "20210707",
-  "ignore": ["member_address","member_auth","member_bank_account","member_label","member_level","member_list","member_log","member_recharge","member_recharge_card","member_recharge_order","member_withdraw"]
+	"version_no": "20210708",
+  "ignore": ["member_address","member_auth","member_bank_account","member_label","member_level","member_log","member_recharge","member_recharge_card","member_recharge_order","member_account","member_withdraw"]
 }
