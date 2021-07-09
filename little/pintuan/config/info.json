@@ -15,5 +15,5 @@
 	"content": "",
 	"version_no": "20210708",
     "ignore": ["pintuan_group","pintuan_order","pintuan_pintuan"],
-    "allow_layer": ["admin"]
+    "allow_layer": ["admin","api"]
 }

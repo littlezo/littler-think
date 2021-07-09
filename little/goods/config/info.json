@@ -15,5 +15,5 @@
 	"content": "",
 	"version_no": "20210708",
     "ignore": ["goods_attr_class_brand","goods_attr_has","goods_attribute","goods_attribute_value","goods_brand","goods_browse","goods_cart","goods_category","goods_collect","goods_evaluate","goods_export","goods_goods","goods_shop_category","goods_sku","goods_virtual"],
-    "allow_layer": ["admin"]
+    "allow_layer": ["admin","api"]
 }

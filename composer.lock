@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "cfb5436caa753790620092444776d978",
+    "content-hash": "64f441458af61f0370ed2c4548d87bd8",
     "packages": [
         {
             "name": "doctrine/annotations",
@@ -921,7 +921,7 @@
             "dist": {
                 "type": "path",
                 "url": "./package/littler/annotation",
-                "reference": "6ab5fc340b3673cbf58c4961d1e898a9e830c5c1"
+                "reference": "fbc21cf973936135fbf9e6a2d2b7bd4c7525f440"
             },
             "require": {
                 "doctrine/annotations": "^1.0",
@@ -969,7 +969,7 @@
             "dist": {
                 "type": "path",
                 "url": "./package/littler/jwt-auth",
-                "reference": "fabc8e523a6a0aa01e29716d70ae7ed65a14d37e"
+                "reference": "e214338ef42ed7812623bcc9ba3beb1e314523ef"
             },
             "require": {
                 "ext-json": "*",
@@ -1032,7 +1032,7 @@
             "dist": {
                 "type": "path",
                 "url": "./package/littler/think",
-                "reference": "6cb93cc23be3737f5e355b90b02b9f0039dce1f1"
+                "reference": "412a2514d3c3b5cc7cea926d6a55c8f12d9028b5"
             },
             "require": {
                 "dragonmantank/cron-expression": "^3.1",
@@ -1095,7 +1095,7 @@
             "dist": {
                 "type": "path",
                 "url": "./package/littler/user",
-                "reference": "4b34d4488e3346c8fdaf5b3d37b540f6a60db8a4"
+                "reference": "f08aa03866fb89e2a741f49fc82817d770a4fa5c"
             },
             "require": {
                 "topthink/framework": "^6.0"
@@ -1362,6 +1362,66 @@
                 "source": "https://github.com/nikic/PHP-Parser/tree/v4.10.5"
             },
             "time": "2021-05-03T19:11:20+00:00"
+        },
+        {
+            "name": "open-smf/connection-pool",
+            "version": "v1.0.16",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/open-smf/connection-pool.git",
+                "reference": "f70e47dbf56f1869d3207e15825cf38810b865e0"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/open-smf/connection-pool/zipball/f70e47dbf56f1869d3207e15825cf38810b865e0",
+                "reference": "f70e47dbf56f1869d3207e15825cf38810b865e0",
+                "shasum": "",
+                "mirrors": [
+                    {
+                        "url": "https://mirrors.aliyun.com/composer/dists/%package%/%reference%.%type%",
+                        "preferred": true
+                    }
+                ]
+            },
+            "require": {
+                "ext-json": "*",
+                "ext-swoole": ">=4.2.9",
+                "php": ">=7.0.0"
+            },
+            "require-dev": {
+                "swoole/ide-helper": "@dev"
+            },
+            "suggest": {
+                "ext-redis": "A PHP extension for Redis."
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Smf\\ConnectionPool\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Xie Biao",
+                    "email": "hhxsv5@sina.com"
+                }
+            ],
+            "description": "A common connection pool based on Swoole is usually used as the database connection pool.",
+            "homepage": "https://github.com/open-smf/connection-pool",
+            "keywords": [
+                "connection-pool",
+                "database-connection-pool",
+                "swoole"
+            ],
+            "support": {
+                "issues": "https://github.com/open-smf/connection-pool/issues",
+                "source": "https://github.com/open-smf/connection-pool"
+            },
+            "time": "2021-03-01T04:13:24+00:00"
         },
         {
             "name": "php-di/phpdoc-reader",
@@ -1860,6 +1920,113 @@
                 "source": "https://github.com/ralouphie/getallheaders/tree/develop"
             },
             "time": "2019-03-08T08:55:37+00:00"
+        },
+        {
+            "name": "stechstudio/backoff",
+            "version": "1.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/stechstudio/backoff.git",
+                "reference": "816e46107a6be2e1072ba0ff2cb26034872dfa49"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/stechstudio/backoff/zipball/816e46107a6be2e1072ba0ff2cb26034872dfa49",
+                "reference": "816e46107a6be2e1072ba0ff2cb26034872dfa49",
+                "shasum": "",
+                "mirrors": [
+                    {
+                        "url": "https://mirrors.aliyun.com/composer/dists/%package%/%reference%.%type%",
+                        "preferred": true
+                    }
+                ]
+            },
+            "require-dev": {
+                "phpunit/phpunit": "5.5.*"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "STS\\Backoff\\": "src"
+                },
+                "files": [
+                    "src/helpers.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Joseph Szobody",
+                    "email": "joseph@stechstudio.com"
+                }
+            ],
+            "description": "PHP library providing retry functionality with multiple backoff strategies and jitter support",
+            "support": {
+                "issues": "https://github.com/stechstudio/backoff/issues",
+                "source": "https://github.com/stechstudio/backoff/tree/1.2"
+            },
+            "time": "2020-12-26T14:57:10+00:00"
+        },
+        {
+            "name": "swoole/ide-helper",
+            "version": "4.6.7",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/swoole/ide-helper.git",
+                "reference": "0d1409b8274117addfe64d3ea412812a69807411"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/swoole/ide-helper/zipball/0d1409b8274117addfe64d3ea412812a69807411",
+                "reference": "0d1409b8274117addfe64d3ea412812a69807411",
+                "shasum": "",
+                "mirrors": [
+                    {
+                        "url": "https://mirrors.aliyun.com/composer/dists/%package%/%reference%.%type%",
+                        "preferred": true
+                    }
+                ]
+            },
+            "require-dev": {
+                "guzzlehttp/guzzle": "~6.5.0",
+                "laminas/laminas-code": "~3.4.0",
+                "squizlabs/php_codesniffer": "~3.5.0",
+                "symfony/filesystem": "~4.0"
+            },
+            "type": "library",
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "Apache-2.0"
+            ],
+            "authors": [
+                {
+                    "name": "Team Swoole",
+                    "email": "team@swoole.com"
+                }
+            ],
+            "description": "IDE help files for Swoole.",
+            "support": {
+                "issues": "https://github.com/swoole/ide-helper/issues",
+                "source": "https://github.com/swoole/ide-helper/tree/4.6.7"
+            },
+            "funding": [
+                {
+                    "url": "https://gitee.com/swoole/swoole?donate=true",
+                    "type": "custom"
+                },
+                {
+                    "url": "https://github.com/swoole",
+                    "type": "github"
+                },
+                {
+                    "url": "https://opencollective.com/swoole-src",
+                    "type": "open_collective"
+                }
+            ],
+            "time": "2021-05-14T16:05:16+00:00"
         },
         {
             "name": "symfony/class-loader",
@@ -2597,6 +2764,79 @@
                 "source": "https://github.com/top-think/think-orm/tree/v2.0.40"
             },
             "time": "2021-04-19T13:29:37+00:00"
+        },
+        {
+            "name": "topthink/think-swoole",
+            "version": "v4.0.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/top-think/think-swoole.git",
+                "reference": "2c20bbc173818d7b541a3b3c77e022350d9e3527"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/top-think/think-swoole/zipball/2c20bbc173818d7b541a3b3c77e022350d9e3527",
+                "reference": "2c20bbc173818d7b541a3b3c77e022350d9e3527",
+                "shasum": "",
+                "mirrors": [
+                    {
+                        "url": "https://mirrors.aliyun.com/composer/dists/%package%/%reference%.%type%",
+                        "preferred": true
+                    }
+                ]
+            },
+            "require": {
+                "ext-json": "*",
+                "ext-swoole": ">=4.6",
+                "nette/php-generator": "^3.2",
+                "open-smf/connection-pool": "~1.0",
+                "php": ">=7.4",
+                "stechstudio/backoff": "^1.2",
+                "swoole/ide-helper": "^4.3",
+                "symfony/finder": "^4.3.2|^5.1",
+                "topthink/framework": "^6.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^9.5",
+                "symfony/var-dumper": "^4.3|^5.1",
+                "topthink/think-queue": "^3.0",
+                "topthink/think-tracing": "^1.0"
+            },
+            "type": "library",
+            "extra": {
+                "think": {
+                    "services": [
+                        "think\\swoole\\Service"
+                    ],
+                    "config": {
+                        "swoole": "src/config/swoole.php"
+                    }
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "think\\swoole\\": "src"
+                },
+                "files": [
+                    "src/helpers.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "Apache-2.0"
+            ],
+            "authors": [
+                {
+                    "name": "liu21st",
+                    "email": "liu21st@gmail.com"
+                }
+            ],
+            "description": "Swoole extend for thinkphp",
+            "support": {
+                "issues": "https://github.com/top-think/think-swoole/issues",
+                "source": "https://github.com/top-think/think-swoole/tree/v4.0.3"
+            },
+            "time": "2021-06-16T16:05:25+00:00"
         },
         {
             "name": "webmozart/assert",

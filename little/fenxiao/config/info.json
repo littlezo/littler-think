@@ -15,5 +15,5 @@
 	"content": "",
 	"version_no": "20210708",
     "ignore": ["fenxiao_apply","fenxiao_fenxiao","fenxiao_goods","fenxiao_goods_collect","fenxiao_goods_sku","fenxiao_level","fenxiao_order","fenxiao_withdraw"],
-    "allow_layer": ["admin"]
+    "allow_layer": ["admin","api"]
 }

@@ -10,6 +10,9 @@ services:
       - "/usr/share/zoneinfo/Asia/Shanghai:/etc/localtime:ro"
     ports:
       - "9580:9580"
+      - "9501:9501"
+      - "8443:8443"
+      - "9443:9443"
     restart: on-failure
     # depends_on:
     #   - mysql

@@ -15,5 +15,5 @@
 	"content": "",
 	"version_no": "20210708",
     "ignore": ["shop_address","shop_apply","shop_category","shop_cert","shop_deposit","shop_group","shop_level","shop_member","shop_open_account","shop_reopen","shop_service","shop_settlement","shop_settlement_period","shop_shop","shop_withdraw","shop_withdraw_period"],
-    "allow_layer": ["admin"]
+    "allow_layer": ["admin","api"]
 }

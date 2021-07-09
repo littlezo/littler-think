@@ -30,7 +30,8 @@
     "littler/jwt-auth": "dev-main",
     "littler/user": "dev-main",
     "nette/utils": "^3.2",
-    "erusev/parsedown": "^1.7"
+    "erusev/parsedown": "^1.7",
+    "topthink/think-swoole": "^4.0"
   },
   "require-dev": {
     "symfony/var-dumper": "^4.2",
