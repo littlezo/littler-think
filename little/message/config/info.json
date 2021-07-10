@@ -1,0 +1,19 @@
+{
+  "name": "message",
+	"title": "邮箱信息发送记录",
+	"description": "邮箱信息发送记录",
+	"version": "1.0.0",
+	"keywords": "邮箱信息发送记录",
+	"order": 100,
+	"services": ["\\little\\message\\Service"],
+	"aliases": {},
+	"files": [],
+	"requires": [],
+	"enable": true,
+	"dev_mode": true,
+	"author": "@小小只^v^",
+	"content": "",
+	"version_no": "20210709",
+    "ignore": ["message_message","message_send_records","message_sms_records","message_variable","message_wechat_records"],
+    "allow_layer": ["admin"]
+}

@@ -1,0 +1,19 @@
+{
+  "name": "notice",
+	"title": "公告通知",
+	"description": "公告通知",
+	"version": "1.0.0",
+	"keywords": "公告通知",
+	"order": 100,
+	"services": ["\\little\\notice\\Service"],
+	"aliases": {},
+	"files": [],
+	"requires": [],
+	"enable": true,
+	"dev_mode": true,
+	"author": "@小小只^v^",
+	"content": "",
+	"version_no": "20210709",
+    "ignore": [],
+    "allow_layer": ["admin"]
+}

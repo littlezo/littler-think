@@ -1,0 +1,19 @@
+{
+  "name": "order",
+	"title": "订单维权投诉",
+	"description": "订单维权投诉",
+	"version": "1.0.0",
+	"keywords": "订单维权投诉",
+	"order": 100,
+	"services": ["\\little\\order\\Service"],
+	"aliases": {},
+	"files": [],
+	"requires": [],
+	"enable": true,
+	"dev_mode": true,
+	"author": "@小小只^v^",
+	"content": "",
+	"version_no": "20210709",
+    "ignore": ["order_goods","order_logs","order_order","order_refund"],
+    "allow_layer": ["admin"]
+}
