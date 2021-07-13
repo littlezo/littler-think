@@ -7,7 +7,7 @@
  * @version 1.0.0
  * @author @小小只^v^ <littlezov@qq.com>  littlezov@qq.com
  * @contact  littlezov@qq.com
- * @link     https://github.com/littlezo
+ * @see     https://github.com/littlezo
  * @document https://github.com/littlezo/wiki
  * @license  https://github.com/littlezo/MozillaPublicLicense/blob/main/LICENSE
  */
@@ -17,10 +17,17 @@ declare(strict_types=1);
 namespace little\member\model;
 
 use little\member\repository\model\UserAbstract;
+use littler\annotation\model\relation\HasOne;
+use littler\user\AuthorizeInterface;
+use littler\user\Traits\User as UserTrait;
 
-/**
- * 会员列表 模型
+/*
+ * 会员列表 模型.
  */
-class User extends UserAbstract
+/**
+ * @HasOne("level", model=Level::class, foreignKey="level_id", localKey="member_level")
+ */
+class User extends UserAbstract implements AuthorizeInterface
 {
+	use UserTrait;
 }

@@ -38,7 +38,7 @@ return [
 	'daemonize'             => false,
 	'pingInterval'          => 30,
 	'pingNotResponseLimit'  => 0,
-	'pingData'              => '{"type":"ping"}',
+	'pingData'              => '0500000000340000000001000\"PING\"END',
 
 	// BusinsessWorker配置
 	'businessWorker'        => [

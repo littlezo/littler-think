@@ -14,10 +14,11 @@
 
 declare(strict_types=1);
 
-namespace little\member\service\admin;
+namespace little\member\service\api;
 
 use little\member\model\User;
 use littler\annotation\Inject;
+use littler\JWTAuth\Facade\Jwt;
 use littler\Request;
 
 class UserService
@@ -58,9 +59,11 @@ class UserService
 	 * @param int $id 数据主键
 	 * @return User
 	 */
-	public function info(int $id): ?object
+	public function info(int $id, $param=''): ?object
 	{
-		return $this->model->findBy($id);
+		// dd($id, $param);
+		// dd($this->model);
+		return $this->model->with(['level'])->find($id);
 	}
 
 	/**
@@ -92,5 +95,15 @@ class UserService
 	public function delete(int $id): ?bool
 	{
 		return $this->model->deleteBy($id);
+	}
+
+	/**
+	 * 登录.
+	 *
+	 * @param mixed $ages
+	 */
+	public function login($ages): ?string
+	{
+		return Jwt::store('member')->username('mobile')->ignorePasswordVerify()->login($ages);
 	}
 }

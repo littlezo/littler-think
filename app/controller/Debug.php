@@ -23,6 +23,8 @@ use littler\annotation\route\Group;
 use littler\annotation\route\Middleware;
 use littler\JWTAuth\Facade\Jwt;
 use littler\Request;
+use littler\websocket\Dispatch;
+use littler\websocket\Packet;
 use think\App;
 
 /**
@@ -47,12 +49,12 @@ class Debug extends Request
 	}
 
 	/**
-	 * #title 非分页列表.
-	 * @Route("/index/<id>", method="GET", ignore_verify=false)
+	 * #title 调试类.
+	 * @Route("/", method="GET", ignore_verify=true)
 	 * @return \think\Response
 	 *
 	 * @ApiDocs({
-	 *  "title": "测试",
+	 *  "title": "调试类",
 	 *  "version": "v1.0.0",
 	 *  "name": "debug",
 	 *  "headers": "Token",
@@ -60,7 +62,7 @@ class Debug extends Request
 	 *      "success": {
 	 *          "code": 200,
 	 *          "message": "success",
-	 *           "timestamp": 1234567890,
+	 *          "timestamp": 1234567890,
 	 *         "data": {
 	 *             "encryptData": "加密数据自行解密",
 	 *         },
@@ -71,18 +73,6 @@ class Debug extends Request
 	 *          "timestamp": 1234567890
 	 *      },
 	 *      "param": {
-	 *         "page": {
-	 *            "required": true,
-	 *            "desc": "页数",
-	 *            "string": "int",
-	 *            "default": 1,
-	 *         },
-	 *         "size": {
-	 *            "required": true,
-	 *            "desc": "单页数量",
-	 *            "string": "int",
-	 *            "default": 10,
-	 *         }
 	 *      },
 	 *  })
 	 */
@@ -92,9 +82,21 @@ class Debug extends Request
 		//     'token' => Jwt::token(2, ['model' => CustomMember::class])->toString(),
 		// ]);
 
+		$packet = [
+			'name' =>         '小小只',
+		];
+		// dd(app());
+		$packet = '[1,{"page":0,"size":20}]';
+		// $packet = '1';
+		return json(Dispatch::init('user.Account@info', $packet)->handle());
 		// return json();
+		$pack = '0100000000480000000001000{"name":"小小只"}END';
+		// dd(strlen($pack)-3);
+		// $unpack_data= Packet::unpack($pack);
+		// return json($unpack_data);
+		// return json(Packet::unpack($pack));
+		return json(Packet::pack(Packet::MESSAGE, 00, '7f00000107d000000001', '', $packet)->toString());
 		dd(app('route'));
-
 		$store = 'default';
 		$uid = '9520';
 		$token = request()->get('token');
