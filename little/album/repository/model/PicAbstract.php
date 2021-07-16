@@ -43,7 +43,7 @@ abstract class PicAbstract extends Model
 	/**
 	 * @var string $pk 主键
 	 */
-	protected $pk = 'pic_id';
+	public $pk = 'pic_id';
 
 	/**
 	 * @var array $schema 字段信息

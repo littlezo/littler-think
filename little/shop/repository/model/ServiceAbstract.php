@@ -45,7 +45,7 @@ abstract class ServiceAbstract extends Model
 	/**
 	 * @var string $pk 主键
 	 */
-	protected $pk = 'apply_id';
+	public $pk = 'apply_id';
 
 	/**
 	 * @var array $schema 字段信息

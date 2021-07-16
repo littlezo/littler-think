@@ -105,7 +105,7 @@ abstract class ShopAbstract extends Model
 	/**
 	 * @var string $pk 主键
 	 */
-	protected $pk = 'site_id';
+	public $pk = 'site_id';
 
 	/**
 	 * @var array $schema 字段信息

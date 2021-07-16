@@ -46,7 +46,7 @@ abstract class AlbumAbstract extends Model
 	/**
 	 * @var string $pk 主键
 	 */
-	protected $pk = 'album_id';
+	public $pk = 'album_id';
 
 	/**
 	 * @var array $schema 字段信息

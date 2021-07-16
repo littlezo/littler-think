@@ -16,6 +16,7 @@ declare(strict_types=1);
 
 namespace little\member\service\api;
 
+use Exception;
 use little\member\model\RechargeOrder;
 use littler\Request;
 use littler\annotation\Inject;
@@ -70,9 +71,9 @@ class RechargeOrderService
 	/**
 	 * #title 保存
 	 * @param array $args 待写入数据
-	 * @return int
+	 * @return int||bool
 	 */
-	public function save(array $args): ?int
+	public function save(array $args)
 	{
 		return $this->model->storeBy($args);
 	}
@@ -82,9 +83,9 @@ class RechargeOrderService
 	 * #title 更新
 	 * @param int $id ID
 	 * @param array $args 待更新的数据
-	 * @return bool
+	 * @return int|bool
 	 */
-	public function update(int $id, array $args): ?bool
+	public function update(int $id, array $args)
 	{
 		return $this->model->updateBy($id, $args);
 	}

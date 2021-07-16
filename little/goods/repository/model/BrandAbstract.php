@@ -45,7 +45,7 @@ abstract class BrandAbstract extends Model
 	/**
 	 * @var string $pk 主键
 	 */
-	protected $pk = 'brand_id';
+	public $pk = 'brand_id';
 
 	/**
 	 * @var array $schema 字段信息

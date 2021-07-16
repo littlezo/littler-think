@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Jwt 配置
+ * Jwt 配置.
  */
 
 declare(strict_types=1);

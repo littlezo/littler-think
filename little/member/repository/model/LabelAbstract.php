@@ -42,7 +42,7 @@ abstract class LabelAbstract extends Model
 	/**
 	 * @var string $pk 主键
 	 */
-	protected $pk = 'label_id';
+	public $pk = 'label_id';
 
 	/**
 	 * @var array $schema 字段信息

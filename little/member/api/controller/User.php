@@ -16,6 +16,7 @@ declare(strict_types=1);
 
 namespace little\member\api\controller;
 
+use little\member\model\Auth;
 use little\member\repository\api\UserTrait;
 use little\member\service\api\UserService;
 use littler\annotation\docs\ApiDocs;
@@ -49,6 +50,12 @@ class User extends Controller
 	 * @var UserService
 	 */
 	protected $service;
+
+	/**
+	 * @Inject
+	 * @var Auth
+	 */
+	private $auth;
 
 	/**
 	 * @Route("/user/list", method="GET", ignore_verify=false)
@@ -95,6 +102,8 @@ class User extends Controller
 	 */
 	public function list(Request $request): ?\think\Response
 	{
+		service('');
+		$this->auth->where('id', 1)->find();
 		return Response::success($this->service->list($request->get()));
 	}
 
@@ -152,7 +161,7 @@ class User extends Controller
 	 */
 	public function login(Request $request): ?\think\Response
 	{
-		return Response::success($this->service->login($request->post()));
+		return Response::success(['token'=>$this->service->login($request->post())]);
 	}
 
 	/**

@@ -53,7 +53,7 @@ abstract class GroupAbstract extends Model
 	/**
 	 * @var string $pk 主键
 	 */
-	protected $pk = 'group_id';
+	public $pk = 'group_id';
 
 	/**
 	 * @var array $schema 字段信息

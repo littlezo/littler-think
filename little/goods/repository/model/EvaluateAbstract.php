@@ -65,7 +65,7 @@ abstract class EvaluateAbstract extends Model
 	/**
 	 * @var string $pk 主键
 	 */
-	protected $pk = 'evaluate_id';
+	public $pk = 'evaluate_id';
 
 	/**
 	 * @var array $schema 字段信息

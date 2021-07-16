@@ -23,4 +23,140 @@ use little\pintuan\repository\model\GoodsAbstract;
  */
 class Goods extends GoodsAbstract
 {
+	/**
+	 * @var array 关联预载
+	 */
+	public $with = [];
+
+	/**
+	 * @var array 列表字段映射
+	 */
+	public $table_schema = [
+		'columns' => [
+			[
+				'title' => 'ID',
+				'dataIndex' => 'id',
+				'width' => 80,
+				'fixed' => 'left',
+				'align' => 'center',
+				'defaultHidden' => false,
+			],
+			[
+				'title' => '拼团id',
+				'dataIndex' => 'pintuan_id',
+				'width' => 100,
+				'fixed' => false,
+				'align' => 'center',
+				'defaultHidden' => false,
+			],
+			[
+				'title' => '商品id',
+				'dataIndex' => 'goods_id',
+				'width' => 100,
+				'fixed' => false,
+				'align' => 'center',
+				'defaultHidden' => false,
+			],
+			[
+				'title' => 'skuid',
+				'dataIndex' => 'sku_id',
+				'width' => 100,
+				'fixed' => false,
+				'align' => 'center',
+				'defaultHidden' => false,
+			],
+			[
+				'title' => '拼团价',
+				'dataIndex' => 'pintuan_price',
+				'width' => 100,
+				'fixed' => false,
+				'align' => 'center',
+				'defaultHidden' => false,
+			],
+			[
+				'title' => '团长优惠价',
+				'dataIndex' => 'promotion_price',
+				'width' => 100,
+				'fixed' => false,
+				'align' => 'center',
+				'defaultHidden' => false,
+			],
+		],
+		'formConfig' => [],
+		'pagination' => true,
+		'striped' => true,
+		'useSearchForm' => true,
+		'showTableSetting' => true,
+		'bordered' => true,
+		'showIndexColumn' => false,
+		'canResize' => true,
+		'rowKey' => 'id',
+		'searchInfo' => ['order' => 'asc'],
+		'actionColumn' => [
+			'width' => 100,
+			'title' => '操作',
+			'dataIndex' => 'action',
+			'slots' => ['customRender' => 'action'],
+			'fixed' => 'right',
+		],
+	];
+
+	/**
+	 * @var array 搜索表单字段映射  具体字段规则参见 快速搜索定义
+	 */
+	public $search_schema = [
+		'labelWidth' => 100,
+		'schemas' => [
+			['field' => 'id', 'label' => 'ID', 'component' => 'Input', 'colProps' => ['lg' => 12, 'xl' => 8, 'xxl' => 6]],
+		],
+	];
+
+	/**
+	 * @var array 增加表单字段映射
+	 */
+	public $form_schema = [
+		'labelWidth' => 120,
+		'schemas' => [
+			[
+				'field' => 'pintuan_id',
+				'label' => '拼团id',
+				'component' => 'Input',
+				'required' => true,
+				'colProps' => ['lg' => 12, 'xl' => 8, 'xxl' => 6],
+			],
+			[
+				'field' => 'goods_id',
+				'label' => '商品id',
+				'component' => 'Input',
+				'required' => true,
+				'colProps' => ['lg' => 12, 'xl' => 8, 'xxl' => 6],
+			],
+			[
+				'field' => 'sku_id',
+				'label' => 'skuid',
+				'component' => 'Input',
+				'required' => true,
+				'colProps' => ['lg' => 12, 'xl' => 8, 'xxl' => 6],
+			],
+			[
+				'field' => 'pintuan_price',
+				'label' => '拼团价',
+				'component' => 'Input',
+				'required' => true,
+				'colProps' => ['lg' => 12, 'xl' => 8, 'xxl' => 6],
+			],
+			[
+				'field' => 'promotion_price',
+				'label' => '团长优惠价',
+				'component' => 'Input',
+				'required' => true,
+				'colProps' => ['lg' => 12, 'xl' => 8, 'xxl' => 6],
+			],
+		],
+	];
+
+	/**
+	 * @var array 排除展示字段
+	 */
+	public $without = ['password', 'passwd', 'pay_passwd', 'pay_password'];
 }

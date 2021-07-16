@@ -59,19 +59,17 @@ class UserService
 	 * @param int $id 数据主键
 	 * @return User
 	 */
-	public function info(int $id, $param=''): ?object
+	public function info(int $id): ?object
 	{
-		// dd($id, $param);
-		// dd($this->model);
-		return $this->model->with(['level'])->find($id);
+		return $this->model->findBy($id);
 	}
 
 	/**
 	 * #title 保存.
 	 * @param array $args 待写入数据
-	 * @return int
+	 * @return int||bool
 	 */
-	public function save(array $args): ?int
+	public function save(array $args)
 	{
 		return $this->model->storeBy($args);
 	}
@@ -80,9 +78,9 @@ class UserService
 	 * #title 更新.
 	 * @param int $id ID
 	 * @param array $args 待更新的数据
-	 * @return bool
+	 * @return int|bool
 	 */
-	public function update(int $id, array $args): ?bool
+	public function update(int $id, array $args)
 	{
 		return $this->model->updateBy($id, $args);
 	}
@@ -98,12 +96,11 @@ class UserService
 	}
 
 	/**
-	 * 登录.
-	 *
-	 * @param mixed $ages
+	 * #title 用户登录.
+	 * @param array $argv
 	 */
-	public function login($ages): ?string
+	public function login($argv): string
 	{
-		return Jwt::store('member')->username('mobile')->ignorePasswordVerify()->login($ages);
+		return Jwt::store('member')->username('mobile')->ignorePasswordVerify()->login($argv);
 	}
 }

@@ -45,7 +45,7 @@ abstract class TemplateItemAbstract extends Model
 	/**
 	 * @var string $pk 主键
 	 */
-	protected $pk = 'item_id';
+	public $pk = 'item_id';
 
 	/**
 	 * @var array $schema 字段信息

@@ -44,7 +44,7 @@ abstract class SeckillAbstract extends Model
 	/**
 	 * @var string $pk 主键
 	 */
-	protected $pk = 'seckill_id';
+	public $pk = 'seckill_id';
 
 	/**
 	 * @var array $schema 字段信息

@@ -51,7 +51,7 @@ abstract class SettlementPeriodAbstract extends Model
 	/**
 	 * @var string $pk 主键
 	 */
-	protected $pk = 'period_id';
+	public $pk = 'period_id';
 
 	/**
 	 * @var array $schema 字段信息

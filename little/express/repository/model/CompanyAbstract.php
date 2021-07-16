@@ -56,7 +56,7 @@ abstract class CompanyAbstract extends Model
 	/**
 	 * @var string $pk 主键
 	 */
-	protected $pk = 'company_id';
+	public $pk = 'company_id';
 
 	/**
 	 * @var array $schema 字段信息

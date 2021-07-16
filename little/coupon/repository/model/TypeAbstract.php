@@ -25,7 +25,6 @@ use littler\traits\RewriteTrait;
  * @property coupon_type_id $int 优惠券类型Id
  * @property type $string 优惠券类型 0-平台 1-满减  2-折扣 3-随机
  * @property site_id $int 站点id
- * @property site_name $string 站点名称
  * @property coupon_name $string 优惠券名称
  * @property coupon_name_remark $string 名称备注
  * @property image $string 优惠券图片
@@ -70,7 +69,7 @@ use littler\traits\RewriteTrait;
  * @property use_scenario $int 使用场景（1全场通用 2指定店铺） type=0 有效
  * @property group_ids $string 店铺等级ids  type=0 有效
  * @property platform_split_rare $float 平台分担比例  type=0 有效
- * @property shop_split_rare $float   店铺分店比例 type=0 有效
+ * @property shop_split_rare $float 店铺分店比例 type=0 有效
  */
 abstract class TypeAbstract extends Model
 {
@@ -85,7 +84,7 @@ abstract class TypeAbstract extends Model
 	/**
 	 * @var string $pk 主键
 	 */
-	protected $pk = 'coupon_type_id';
+	public $pk = 'coupon_type_id';
 
 	/**
 	 * @var array $schema 字段信息
@@ -94,7 +93,6 @@ abstract class TypeAbstract extends Model
 		'coupon_type_id' => 'int',
 		'type' => 'string',
 		'site_id' => 'int',
-		'site_name' => 'string',
 		'coupon_name' => 'string',
 		'coupon_name_remark' => 'string',
 		'image' => 'string',
@@ -159,7 +157,6 @@ abstract class TypeAbstract extends Model
 		'coupon_type_id',
 		'type',
 		'site_id',
-		'site_name',
 		'coupon_name',
 		'coupon_name_remark',
 		'image',

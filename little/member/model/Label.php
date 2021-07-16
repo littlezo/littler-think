@@ -23,4 +23,145 @@ use little\member\repository\model\LabelAbstract;
  */
 class Label extends LabelAbstract
 {
+	/**
+	 * @var array 关联预载
+	 */
+	public $with = [];
+
+	/**
+	 * @var array 列表字段映射
+	 */
+	public $table_schema = [
+		'columns' => [
+			[
+				'title' => 'ID',
+				'dataIndex' => 'label_id',
+				'width' => 80,
+				'fixed' => 'left',
+				'align' => 'center',
+				'defaultHidden' => false,
+			],
+			[
+				'title' => '标签名称',
+				'dataIndex' => 'label_name',
+				'width' => 180,
+				'fixed' => false,
+				'align' => 'center',
+				'defaultHidden' => false,
+			],
+			[
+				'title' => '创建时间',
+				'dataIndex' => 'create_time',
+				'width' => 120,
+				'fixed' => false,
+				'align' => 'center',
+				'defaultHidden' => false,
+			],
+			[
+				'title' => '修改时间',
+				'dataIndex' => 'update_time',
+				'width' => 120,
+				'fixed' => false,
+				'align' => 'center',
+				'defaultHidden' => false,
+			],
+			[
+				'title' => '备注',
+				'dataIndex' => 'remark',
+				'width' => 180,
+				'fixed' => false,
+				'align' => 'center',
+				'defaultHidden' => false,
+			],
+			[
+				'title' => '排序',
+				'dataIndex' => 'sort',
+				'width' => 100,
+				'fixed' => false,
+				'align' => 'center',
+				'defaultHidden' => false,
+			],
+		],
+		'formConfig' => [],
+		'pagination' => true,
+		'striped' => true,
+		'useSearchForm' => true,
+		'showTableSetting' => true,
+		'bordered' => true,
+		'showIndexColumn' => false,
+		'canResize' => true,
+		'rowKey' => 'label_id',
+		'searchInfo' => ['order' => 'asc'],
+		'actionColumn' => [
+			'width' => 100,
+			'title' => '操作',
+			'dataIndex' => 'action',
+			'slots' => ['customRender' => 'action'],
+			'fixed' => 'right',
+		],
+	];
+
+	/**
+	 * @var array 搜索表单字段映射  具体字段规则参见 快速搜索定义
+	 */
+	public $search_schema = [
+		'labelWidth' => 100,
+		'schemas' => [
+			[
+				'field' => 'label_id',
+				'label' => 'ID',
+				'component' => 'Input',
+				'colProps' => ['lg' => 12, 'xl' => 8, 'xxl' => 6],
+			],
+		],
+	];
+
+	/**
+	 * @var array 增加表单字段映射
+	 */
+	public $form_schema = [
+		'labelWidth' => 120,
+		'schemas' => [
+			[
+				'field' => 'label_name',
+				'label' => '标签名称',
+				'component' => 'Input',
+				'required' => true,
+				'colProps' => ['lg' => 12, 'xl' => 8, 'xxl' => 6],
+			],
+			[
+				'field' => 'create_time',
+				'label' => '创建时间',
+				'component' => 'Input',
+				'required' => true,
+				'colProps' => ['lg' => 12, 'xl' => 8, 'xxl' => 6],
+			],
+			[
+				'field' => 'update_time',
+				'label' => '修改时间',
+				'component' => 'Input',
+				'required' => true,
+				'colProps' => ['lg' => 12, 'xl' => 8, 'xxl' => 6],
+			],
+			[
+				'field' => 'remark',
+				'label' => '备注',
+				'component' => 'Input',
+				'required' => true,
+				'colProps' => ['lg' => 12, 'xl' => 8, 'xxl' => 6],
+			],
+			[
+				'field' => 'sort',
+				'label' => '排序',
+				'component' => 'Input',
+				'required' => true,
+				'colProps' => ['lg' => 12, 'xl' => 8, 'xxl' => 6],
+			],
+		],
+	];
+
+	/**
+	 * @var array 排除展示字段
+	 */
+	public $without = ['password', 'passwd', 'pay_passwd', 'pay_password'];
 }

@@ -51,10 +51,6 @@ use littler\traits\RewriteTrait;
  * @property site_name $string 所属店铺名称
  * @property website_id $int 所属分站id
  * @property category_id $int 分类id
- * @property category_id_1 $int 一级分类id
- * @property category_id_2 $int 二级分类id
- * @property category_id_3 $int 三级分类id
- * @property category_name $string 所属分类名称
  * @property brand_id $int 品牌id
  * @property brand_name $string 所属品牌名称
  * @property goods_content $string 商品详情
@@ -109,7 +105,7 @@ abstract class SkuAbstract extends Model
 	/**
 	 * @var string $pk 主键
 	 */
-	protected $pk = 'sku_id';
+	public $pk = 'sku_id';
 
 	/**
 	 * @var array $schema 字段信息
@@ -144,10 +140,6 @@ abstract class SkuAbstract extends Model
 		'site_name' => 'string',
 		'website_id' => 'int',
 		'category_id' => 'int',
-		'category_id_1' => 'int',
-		'category_id_2' => 'int',
-		'category_id_3' => 'int',
-		'category_name' => 'string',
 		'brand_id' => 'int',
 		'brand_name' => 'string',
 		'goods_content' => 'string',
@@ -228,10 +220,6 @@ abstract class SkuAbstract extends Model
 		'site_name',
 		'website_id',
 		'category_id',
-		'category_id_1',
-		'category_id_2',
-		'category_id_3',
-		'category_name',
 		'brand_id',
 		'brand_name',
 		'goods_content',

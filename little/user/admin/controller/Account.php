@@ -182,7 +182,7 @@ class Account extends Controller
 	}
 
 	/**
-	 * @Route("/account/logout", method="DELETE", ignore_verify=false)
+	 * @Route("/account/logout", method="DELETE", ignore_verify=true)
 	 * @apiDocs({
 	 *     "title": "退出登陆",
 	 *     "version": "v1.0.0",

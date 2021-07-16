@@ -16,6 +16,7 @@ declare(strict_types=1);
 
 namespace little\goods\service\admin;
 
+use Exception;
 use little\goods\model\Browse;
 use littler\Request;
 use littler\annotation\Inject;
@@ -34,6 +35,34 @@ class BrowseService
 	 * desc  Request对象 request->user 可以取当前用户信息
 	 */
 	private $request;
+
+
+	/**
+	 * #title 布局获取
+	 * @param int $type form||table 页面布局类型
+	 * @return Browse
+	 */
+	public function layout(string $type): ?array
+	{
+		if (in_array($type, ['table', 'form'], true)) {
+		    switch ($type) {
+		        case 'table':
+		        $schema = $this->model->table_schema;
+		        $schema['formConfig'] = $this->model->search_schema;
+		        break;
+		    case 'form':
+		        $schema = $this->model->form_schema;
+		        break;
+		    default:
+		        $schema =null;
+		        break;
+		    }
+		    if ($schema) {
+		        return $schema;
+		    }
+		}
+		throw new Exception('类型错误', 9500901);
+	}
 
 
 	/**
@@ -70,9 +99,9 @@ class BrowseService
 	/**
 	 * #title 保存
 	 * @param array $args 待写入数据
-	 * @return int
+	 * @return int||bool
 	 */
-	public function save(array $args): ?int
+	public function save(array $args)
 	{
 		return $this->model->storeBy($args);
 	}
@@ -82,9 +111,9 @@ class BrowseService
 	 * #title 更新
 	 * @param int $id ID
 	 * @param array $args 待更新的数据
-	 * @return bool
+	 * @return int|bool
 	 */
-	public function update(int $id, array $args): ?bool
+	public function update(int $id, array $args)
 	{
 		return $this->model->updateBy($id, $args);
 	}

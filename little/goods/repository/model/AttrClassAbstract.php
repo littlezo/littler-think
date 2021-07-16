@@ -40,7 +40,7 @@ abstract class AttrClassAbstract extends Model
 	/**
 	 * @var string $pk 主键
 	 */
-	protected $pk = 'class_id';
+	public $pk = 'class_id';
 
 	/**
 	 * @var array $schema 字段信息

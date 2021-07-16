@@ -54,7 +54,7 @@ abstract class CategoryAbstract extends Model
 	/**
 	 * @var string $pk 主键
 	 */
-	protected $pk = 'category_id';
+	public $pk = 'category_id';
 
 	/**
 	 * @var array $schema 字段信息

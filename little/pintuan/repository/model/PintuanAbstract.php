@@ -58,7 +58,7 @@ abstract class PintuanAbstract extends Model
 	/**
 	 * @var string $pk 主键
 	 */
-	protected $pk = 'pintuan_id';
+	public $pk = 'pintuan_id';
 
 	/**
 	 * @var array $schema 字段信息

@@ -27,7 +27,6 @@ use littler\traits\RewriteTrait;
  * @property coupon_name $string 优惠券名称
  * @property coupon_type_id $int 优惠券类型id
  * @property site_id $int 站点Id
- * @property site_name $string 站点名称
  * @property coupon_code $string 优惠券编码
  * @property member_id $int 领用人
  * @property use_order_id $int 优惠券使用订单id
@@ -70,7 +69,7 @@ abstract class CouponAbstract extends Model
 	/**
 	 * @var string $pk 主键
 	 */
-	protected $pk = 'coupon_id';
+	public $pk = 'coupon_id';
 
 	/**
 	 * @var array $schema 字段信息
@@ -81,7 +80,6 @@ abstract class CouponAbstract extends Model
 		'coupon_name' => 'string',
 		'coupon_type_id' => 'int',
 		'site_id' => 'int',
-		'site_name' => 'string',
 		'coupon_code' => 'string',
 		'member_id' => 'int',
 		'use_order_id' => 'int',
@@ -141,7 +139,6 @@ abstract class CouponAbstract extends Model
 		'coupon_name',
 		'coupon_type_id',
 		'site_id',
-		'site_name',
 		'coupon_code',
 		'member_id',
 		'use_order_id',

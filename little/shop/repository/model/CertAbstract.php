@@ -68,7 +68,7 @@ abstract class CertAbstract extends Model
 	/**
 	 * @var string $pk 主键
 	 */
-	protected $pk = 'cert_id';
+	public $pk = 'cert_id';
 
 	/**
 	 * @var array $schema 字段信息

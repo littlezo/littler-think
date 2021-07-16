@@ -57,7 +57,7 @@ abstract class RechargeCardAbstract extends Model
 	/**
 	 * @var string $pk 主键
 	 */
-	protected $pk = 'card_id';
+	public $pk = 'card_id';
 
 	/**
 	 * @var array $schema 字段信息

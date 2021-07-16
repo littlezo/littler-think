@@ -42,7 +42,7 @@ abstract class ExportAbstract extends Model
 	/**
 	 * @var string $pk 主键
 	 */
-	protected $pk = 'export_id';
+	public $pk = 'export_id';
 
 	/**
 	 * @var array $schema 字段信息

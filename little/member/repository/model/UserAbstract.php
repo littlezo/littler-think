@@ -32,11 +32,10 @@ use littler\traits\RewriteTrait;
  * @property email $string 邮箱
  * @property password $string 用户密码（MD5）
  * @property status $int 用户状态  用户状态默认为1
- * @property headimg $string 用户头像
+ * @property avatar $string 用户头像
  * @property member_level $int 用户等级
  * @property member_level_name $string 会员等级名称
  * @property member_label $string 用户标签
- * @property member_label_name $string 会员标签名称
  * @property qq $string qq号
  * @property qq_openid $string qq互联id
  * @property wx_openid $string 微信用户openid
@@ -87,7 +86,7 @@ abstract class UserAbstract extends Model
 	/**
 	 * @var string $pk 主键
 	 */
-	protected $pk = 'member_id';
+	public $pk = 'member_id';
 
 	/**
 	 * @var array $schema 字段信息
@@ -103,11 +102,10 @@ abstract class UserAbstract extends Model
 		'email' => 'string',
 		'password' => 'string',
 		'status' => 'int',
-		'headimg' => 'string',
+		'avatar' => 'string',
 		'member_level' => 'int',
 		'member_level_name' => 'string',
 		'member_label' => 'string',
-		'member_label_name' => 'string',
 		'qq' => 'string',
 		'qq_openid' => 'string',
 		'wx_openid' => 'string',
@@ -149,7 +147,12 @@ abstract class UserAbstract extends Model
 	/**
 	 * @var array $json JSON类型字段
 	 */
-	protected $json = [];
+	protected $json = ['member_label'];
+
+	/**
+	 * @var array $json JSON字段自动转数组
+	 */
+	protected $jsonAssoc = true;
 
 	/**
 	 * @var array $createTime 关闭创建时间自动写入
@@ -175,11 +178,10 @@ abstract class UserAbstract extends Model
 		'email',
 		'password',
 		'status',
-		'headimg',
+		'avatar',
 		'member_level',
 		'member_level_name',
 		'member_label',
-		'member_label_name',
 		'qq',
 		'qq_openid',
 		'wx_openid',

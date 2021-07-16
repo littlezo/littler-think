@@ -33,6 +33,55 @@ trait CronTrait
 
 
 	/**
+	 * @Route("/cron_trait/layout", method="GET", ignore_verify=false)
+	 * @apiDocs({
+	 *     "title": "页面布局",
+	 *     "version": "v1.0.0",
+	 *     "name": "layout",
+	 *     "headers": {
+	 *         "Authorization": "Bearer Token"
+	 *     },
+	 *     "desc": "查询参数详见快速查询 字段含义参加字段映射",
+	 *     "success": {
+	 *         "code": 200,
+	 *         "type": "success",
+	 *         "message": "成功消息||success",
+	 *         "timestamp": 1234567890,
+	 *         "result": {
+	 *             "encryptData": "加密数据自行解密",
+	 *         },
+	 *     },
+	 *     "error": {
+	 *         "code": 500,
+	 *         "message": "错误消息",
+	 *         "type": "error",
+	 *         "result": "",
+	 *         "timestamp": 1234567890
+	 *     },
+	 *     "param": {
+	 *         "page": {
+	 *             "required": false,
+	 *             "desc": "页数",
+	 *             "type": "int",
+	 *             "default": 1,
+	 *         },
+	 *         "size": {
+	 *             "required": false,
+	 *             "desc": "单页数量",
+	 *             "type": "int",
+	 *             "default": 10,
+	 *         }
+	 *     }
+	 * })
+	 * @return \think\Response
+	 */
+	public function layout(Request $request): ?\think\Response
+	{
+		return Response::success($this->service->layout($request->param("type")));
+	}
+
+
+	/**
 	 * @Route("/cron", method="GET", ignore_verify=false)
 	 * @apiDocs({
 	 *     "title": "分页列表",

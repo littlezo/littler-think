@@ -43,7 +43,7 @@ abstract class GoodsCollectAbstract extends Model
 	/**
 	 * @var string $pk 主键
 	 */
-	protected $pk = 'collect_id';
+	public $pk = 'collect_id';
 
 	/**
 	 * @var array $schema 字段信息

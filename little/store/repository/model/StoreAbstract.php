@@ -63,7 +63,7 @@ abstract class StoreAbstract extends Model
 	/**
 	 * @var string $pk 主键
 	 */
-	protected $pk = 'store_id';
+	public $pk = 'store_id';
 
 	/**
 	 * @var array $schema 字段信息

@@ -42,7 +42,7 @@ abstract class GoodsAbstract extends Model
 	/**
 	 * @var string $pk 主键
 	 */
-	protected $pk = 'fenxiao_goods_id';
+	public $pk = 'fenxiao_goods_id';
 
 	/**
 	 * @var array $schema 字段信息

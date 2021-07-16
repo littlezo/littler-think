@@ -26,4 +26,9 @@ use littler\user\Traits\User;
 class Account extends AccountAbstract implements AuthorizeInterface
 {
 	use User;
+
+	/**
+	 * @var array 排除展示字段
+	 */
+	public $without = ['password', 'passwd', 'pay_passwd', 'pay_password'];
 }

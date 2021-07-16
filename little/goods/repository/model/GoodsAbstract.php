@@ -25,17 +25,9 @@ use littler\traits\RewriteTrait;
  * @property goods_id $int 商品id
  * @property goods_name $string 商品名称
  * @property goods_class $int 商品种类1.实物商品2.虚拟商品3.卡券商品
- * @property goods_class_name $string 商品种类
  * @property goods_attr_class $int 商品类型id
- * @property goods_attr_name $string 商品类型名称
  * @property site_id $int 所属店铺id
- * @property site_name $string 所属店铺名称
- * @property website_id $int 所属分站id
- * @property category_id $int 分类id
- * @property category_id_1 $int 一级分类id
- * @property category_id_2 $int 二级分类id
- * @property category_id_3 $int 三级分类id
- * @property category_name $string 所属分类名称
+ * @property category_id $string 分类id
  * @property brand_id $int 品牌id
  * @property brand_name $string 所属品牌名称
  * @property goods_image $string 商品主图路径
@@ -98,7 +90,7 @@ abstract class GoodsAbstract extends Model
 	/**
 	 * @var string $pk 主键
 	 */
-	protected $pk = 'goods_id';
+	public $pk = 'goods_id';
 
 	/**
 	 * @var array $schema 字段信息
@@ -107,17 +99,9 @@ abstract class GoodsAbstract extends Model
 		'goods_id' => 'int',
 		'goods_name' => 'string',
 		'goods_class' => 'int',
-		'goods_class_name' => 'string',
 		'goods_attr_class' => 'int',
-		'goods_attr_name' => 'string',
 		'site_id' => 'int',
-		'site_name' => 'string',
-		'website_id' => 'int',
-		'category_id' => 'int',
-		'category_id_1' => 'int',
-		'category_id_2' => 'int',
-		'category_id_3' => 'int',
-		'category_name' => 'string',
+		'category_id' => 'string',
 		'brand_id' => 'int',
 		'brand_name' => 'string',
 		'goods_image' => 'string',
@@ -171,7 +155,12 @@ abstract class GoodsAbstract extends Model
 	/**
 	 * @var array $json JSON类型字段
 	 */
-	protected $json = [];
+	protected $json = ['category_id'];
+
+	/**
+	 * @var array $json JSON字段自动转数组
+	 */
+	protected $jsonAssoc = true;
 
 	/**
 	 * @var array $field 允许写入字段
@@ -180,17 +169,9 @@ abstract class GoodsAbstract extends Model
 		'goods_id',
 		'goods_name',
 		'goods_class',
-		'goods_class_name',
 		'goods_attr_class',
-		'goods_attr_name',
 		'site_id',
-		'site_name',
-		'website_id',
 		'category_id',
-		'category_id_1',
-		'category_id_2',
-		'category_id_3',
-		'category_name',
 		'brand_id',
 		'brand_name',
 		'goods_image',

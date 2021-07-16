@@ -18,14 +18,17 @@ declare(strict_types=1);
 namespace app\controller;
 
 use littler\annotation\docs\ApiDocs;
+use littler\annotation\Inject;
 use littler\annotation\Route;
 use littler\annotation\route\Group;
 use littler\annotation\route\Middleware;
 use littler\JWTAuth\Facade\Jwt;
 use littler\Request;
+use littler\Response;
 use littler\websocket\Dispatch;
 use littler\websocket\Packet;
 use think\App;
+use think\facade\Cache;
 
 /**
  * #title Debug
@@ -40,6 +43,10 @@ use think\App;
  */
 class Debug extends Request
 {
+	/**
+	 * @Inject
+	 * @var \think\App
+	 */
 	protected $app;
 
 	protected $blacklist;
@@ -73,11 +80,29 @@ class Debug extends Request
 	 *          "timestamp": 1234567890
 	 *      },
 	 *      "param": {
+	 *        "test": {
+	 *             "required": false,
+	 *             "desc": "测试",
+	 *             "type": "string",
+	 *             "default": "",
+	 *       }
 	 *      },
 	 *  })
 	 */
 	public function index()
 	{
+		// dd(Cache::get('menu'));
+		dd(Cache::get('apiDocs'));
+		dd(app()->enabledModules->get());
+		dd($this);
+		try {
+			// return debug_backtrace(model('member.User')->getList());
+			return Response::success(model('member.User')->findBy(4));
+		} catch (\Throwable $th) {
+			return Response::success($th->getTrace());
+			return;
+		}
+		// rertur);
 		// return json([
 		//     'token' => Jwt::token(2, ['model' => CustomMember::class])->toString(),
 		// ]);

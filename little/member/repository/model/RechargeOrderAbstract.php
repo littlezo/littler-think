@@ -60,7 +60,7 @@ abstract class RechargeOrderAbstract extends Model
 	/**
 	 * @var string $pk 主键
 	 */
-	protected $pk = 'order_id';
+	public $pk = 'order_id';
 
 	/**
 	 * @var array $schema 字段信息

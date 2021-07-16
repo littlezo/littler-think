@@ -41,7 +41,7 @@ abstract class CartAbstract extends Model
 	/**
 	 * @var string $pk 主键
 	 */
-	protected $pk = 'cart_id';
+	public $pk = 'cart_id';
 
 	/**
 	 * @var array $schema 字段信息

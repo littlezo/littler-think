@@ -25,18 +25,18 @@ use think\model\concern\SoftDelete;
 /**
  * @property id $int
  * @property username $string 用户名
- * @property password $string 用户密码
+ * @property password $string 密码
  * @property email $string 邮箱
- * @property avatar $string 用户头像
+ * @property avatar $string 头像
  * @property real_name $string 真实姓名
  * @property mobile $string 手机号
  * @property dept_ids $int 部门ID
- * @property jobs_ids $int 职位id
- * @property roles_ids $int 角色
+ * @property jobs_ids $int 职位ID
+ * @property roles_ids $int 角色ID
  * @property remark $string 备注
  * @property status $int 用户状态 1 正常 2 禁用
- * @property last_login_ip $string 最后登录IP
- * @property last_login_time $int 最后登录时间
+ * @property last_login_ip $string 最后登陆IP
+ * @property last_login_time $int 最后登陆时间
  * @property create_time $int 创建时间
  * @property update_time $int 更新时间
  * @property delete_time $int 删除状态，0未删除 >0 已删除
@@ -55,7 +55,7 @@ abstract class AccountAbstract extends Model
 	/**
 	 * @var string $pk 主键
 	 */
-	protected $pk = 'id';
+	public $pk = 'id';
 
 	/**
 	 * @var array $schema 字段信息

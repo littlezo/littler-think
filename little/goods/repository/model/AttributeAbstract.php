@@ -48,7 +48,7 @@ abstract class AttributeAbstract extends Model
 	/**
 	 * @var string $pk 主键
 	 */
-	protected $pk = 'attr_id';
+	public $pk = 'attr_id';
 
 	/**
 	 * @var array $schema 字段信息

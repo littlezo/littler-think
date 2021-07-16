@@ -88,7 +88,7 @@ abstract class GoodsAbstract extends Model
 	/**
 	 * @var string $pk 主键
 	 */
-	protected $pk = 'order_goods_id';
+	public $pk = 'order_goods_id';
 
 	/**
 	 * @var array $schema 字段信息

@@ -51,7 +51,7 @@ class Access extends Controller
 	protected $service;
 
 	/**
-	 * @Route("/access/list", method="GET", ignore_verify=false)
+	 * @Route("/access/list", method="GET", ignore_verify=true)
 	 * @apiDocs({
 	 *     "title": "列表无分页",
 	 *     "version": "v1.0.0",

@@ -42,7 +42,7 @@ abstract class LevelAbstract extends Model
 	/**
 	 * @var string $pk 主键
 	 */
-	protected $pk = 'level_id';
+	public $pk = 'level_id';
 
 	/**
 	 * @var array $schema 字段信息

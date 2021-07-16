@@ -58,7 +58,7 @@ abstract class StatAbstract extends Model
 	/**
 	 * @var string $pk 主键
 	 */
-	protected $pk = 'id';
+	public $pk = 'id';
 
 	/**
 	 * @var array $schema 字段信息

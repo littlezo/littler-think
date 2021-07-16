@@ -50,7 +50,7 @@ abstract class RechargeAbstract extends Model
 	/**
 	 * @var string $pk 主键
 	 */
-	protected $pk = 'recharge_id';
+	public $pk = 'recharge_id';
 
 	/**
 	 * @var array $schema 字段信息

@@ -43,7 +43,7 @@ abstract class UserAbstract extends Model
 	/**
 	 * @var string $pk 主键
 	 */
-	protected $pk = 'verifier_id';
+	public $pk = 'verifier_id';
 
 	/**
 	 * @var array $schema 字段信息

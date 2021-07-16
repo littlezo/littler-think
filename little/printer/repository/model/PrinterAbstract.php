@@ -49,7 +49,7 @@ abstract class PrinterAbstract extends Model
 	/**
 	 * @var string $pk 主键
 	 */
-	protected $pk = 'printer_id';
+	public $pk = 'printer_id';
 
 	/**
 	 * @var array $schema 字段信息

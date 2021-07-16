@@ -1,9 +1,9 @@
 {
   "name": "goods",
-	"title": " 商品类型",
-	"description": " 商品类型",
+	"title": " 商品管理",
+	"description": " 商品管理",
 	"version": "1.0.0",
-	"keywords": " 商品类型",
+	"keywords": " 商品管理",
 	"order": 100,
 	"services": ["\\little\\goods\\Service"],
 	"aliases": {},
@@ -14,6 +14,6 @@
 	"author": "@小小只^v^",
 	"content": "",
 	"version_no": "20210709",
-    "ignore": ["goods_attr_class_brand","goods_attr_has","goods_attribute","goods_attribute_value","goods_brand","goods_browse","goods_cart","goods_category","goods_collect","goods_evaluate","goods_export","goods_goods","goods_shop_category","goods_sku","goods_virtual"],
-    "allow_layer": ["admin"]
+    "ignore": ["goods_attr_class_brand","goods_attr_has","goods_attribute","goods_attribute_value","goods_brand","goods_browse","goods_collect","goods_evaluate","goods_export","goods_shop_category","goods_virtual"],
+    "allow_layer": ["admin","api"]
 }

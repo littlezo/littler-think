@@ -23,4 +23,145 @@ use little\member\repository\model\LevelAbstract;
  */
 class Level extends LevelAbstract
 {
+	/**
+	 * @var array 关联预载
+	 */
+	public $with = [];
+
+	/**
+	 * @var array 列表字段映射
+	 */
+	public $table_schema = [
+		'columns' => [
+			[
+				'title' => 'ID',
+				'dataIndex' => 'level_id',
+				'width' => 80,
+				'fixed' => 'left',
+				'align' => 'center',
+				'defaultHidden' => false,
+			],
+			[
+				'title' => '等级名称',
+				'dataIndex' => 'level_name',
+				'width' => 180,
+				'fixed' => false,
+				'align' => 'center',
+				'defaultHidden' => false,
+			],
+			[
+				'title' => '等级排序列',
+				'dataIndex' => 'sort',
+				'width' => 100,
+				'fixed' => false,
+				'align' => 'center',
+				'defaultHidden' => false,
+			],
+			[
+				'title' => '所需成长值',
+				'dataIndex' => 'growth',
+				'width' => 100,
+				'fixed' => false,
+				'align' => 'center',
+				'defaultHidden' => false,
+			],
+			[
+				'title' => '备注',
+				'dataIndex' => 'remark',
+				'width' => 180,
+				'fixed' => false,
+				'align' => 'center',
+				'defaultHidden' => false,
+			],
+			[
+				'title' => '是否默认，0：否，1：是',
+				'dataIndex' => 'is_default',
+				'width' => 100,
+				'fixed' => false,
+				'align' => 'center',
+				'defaultHidden' => false,
+			],
+		],
+		'formConfig' => [],
+		'pagination' => true,
+		'striped' => true,
+		'useSearchForm' => true,
+		'showTableSetting' => true,
+		'bordered' => true,
+		'showIndexColumn' => false,
+		'canResize' => true,
+		'rowKey' => 'level_id',
+		'searchInfo' => ['order' => 'asc'],
+		'actionColumn' => [
+			'width' => 100,
+			'title' => '操作',
+			'dataIndex' => 'action',
+			'slots' => ['customRender' => 'action'],
+			'fixed' => 'right',
+		],
+	];
+
+	/**
+	 * @var array 搜索表单字段映射  具体字段规则参见 快速搜索定义
+	 */
+	public $search_schema = [
+		'labelWidth' => 100,
+		'schemas' => [
+			[
+				'field' => 'level_id',
+				'label' => 'ID',
+				'component' => 'Input',
+				'colProps' => ['lg' => 12, 'xl' => 8, 'xxl' => 6],
+			],
+		],
+	];
+
+	/**
+	 * @var array 增加表单字段映射
+	 */
+	public $form_schema = [
+		'labelWidth' => 120,
+		'schemas' => [
+			[
+				'field' => 'level_name',
+				'label' => '等级名称',
+				'component' => 'Input',
+				'required' => true,
+				'colProps' => ['lg' => 12, 'xl' => 8, 'xxl' => 6],
+			],
+			[
+				'field' => 'sort',
+				'label' => '等级排序列',
+				'component' => 'Input',
+				'required' => true,
+				'colProps' => ['lg' => 12, 'xl' => 8, 'xxl' => 6],
+			],
+			[
+				'field' => 'growth',
+				'label' => '所需成长值',
+				'component' => 'Input',
+				'required' => true,
+				'colProps' => ['lg' => 12, 'xl' => 8, 'xxl' => 6],
+			],
+			[
+				'field' => 'remark',
+				'label' => '备注',
+				'component' => 'Input',
+				'required' => true,
+				'colProps' => ['lg' => 12, 'xl' => 8, 'xxl' => 6],
+			],
+			[
+				'field' => 'is_default',
+				'label' => '是否默认，0：否，1：是',
+				'component' => 'Input',
+				'required' => true,
+				'colProps' => ['lg' => 12, 'xl' => 8, 'xxl' => 6],
+			],
+		],
+	];
+
+	/**
+	 * @var array 排除展示字段
+	 */
+	public $without = ['password', 'passwd', 'pay_passwd', 'pay_password'];
 }
