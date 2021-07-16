@@ -84,15 +84,7 @@ class AccessService
 		$modules = [];
 		$route = Cache::get('apiDocs')['admin'] ?? [];
 		foreach ($module  as $key => $item) {
-			$modules[$item['name']] = [
-				'title' => $item['title'],
-				'module' => $item['name'],
-				'sort' => $item['order'],
-				'method' => '',
-				'api' => '',
-				'permission' => $item['name'],
-				'children' => [],
-			];
+			$children = [];
 			if ($route[$item['name']] ?? false) {
 				foreach ($route[$item['name']] as $iterable) {
 					$methods = [];
@@ -102,21 +94,40 @@ class AccessService
 							'module' => $iterable['module'],
 							'sort' => 100,
 							'method' =>  Str::lower($method['method']),
-							'api' =>'/' . $iterable['group'] . str_replace(':id', '', $method['path']),
+							'api' => '/' . $iterable['group'] . str_replace(':id', '', $method['path']),
 							'permission' => $item['name'] . '.' . $iterable['group'] . '@' . $method['name'],
+							'key' => $item['name'] . '_' . $iterable['group'] . '_' . $method['name'],
+							'isLeaf'=>true,
 						];
+						// dd($iterable);
 					}
-					$modules[$item['name']]['children'][] = [
+					$children[] = [
 						'title' => $iterable['title'],
 						'module' => $iterable['module'],
+						'name'=>$iterable['name'] ?: $iterable['group'],
 						'sort' => 100,
 						'method' => '',
 						'api' => '',
 						'permission' => $item['name'] . '.' . $iterable['group'],
-						'methods'=>$methods,
+						'children' => $methods,
+						'key' => $item['name'] . '_' . $iterable['group'],
+						'disableCheckbox'=>true,
 					];
+					// dd($iterable);
 				}
 			}
+			// dd($item);
+			$modules[] = [
+				'title' => $item['title'],
+				'module' => $item['name'],
+				'name'=>$item['name'],
+				'sort' => $item['order'],
+				'method' => '',
+				'api' => '',
+				'permission' => $item['name'],
+				'children' => $children,
+				'key' => $item['name'],
+			];
 		}
 		return $modules;
 	}

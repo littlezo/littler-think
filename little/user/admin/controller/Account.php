@@ -186,7 +186,7 @@ class Account extends Controller
 	 * @apiDocs({
 	 *     "title": "退出登陆",
 	 *     "version": "v1.0.0",
-	 *     "name": "list",
+	 *     "name": "logout",
 	 *     "headers": {
 	 *         "Authorization": "Bearer Token"
 	 *     },
