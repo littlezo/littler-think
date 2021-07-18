@@ -33,9 +33,9 @@ trait GoodsTrait
 
 
 	/**
-	 * @Route("/goods_trait/layout", method="GET", ignore_verify=false)
+	 * @Route("/goods/layout", method="GET", ignore_verify=false)
 	 * @apiDocs({
-	 *     "title": "页面布局",
+	 *     "title": "拼团商品布局",
 	 *     "version": "v1.0.0",
 	 *     "name": "layout",
 	 *     "headers": {
@@ -84,7 +84,7 @@ trait GoodsTrait
 	/**
 	 * @Route("/goods", method="GET", ignore_verify=false)
 	 * @apiDocs({
-	 *     "title": "分页列表",
+	 *     "title": "拼团商品分页",
 	 *     "version": "v1.0.0",
 	 *     "name": "index",
 	 *     "headers": {
@@ -133,7 +133,7 @@ trait GoodsTrait
 	/**
 	 * @Route("/goods/:id", method="GET", ignore_verify=false)
 	 * @apiDocs({
-	 *     "title": "详情",
+	 *     "title": "拼团商品详情",
 	 *     "version": "v1.0.0",
 	 *     "name": "info",
 	 *     "headers": {
@@ -171,7 +171,7 @@ trait GoodsTrait
 	/**
 	 * @Route("/goods", method="POST", ignore_verify=false)
 	 * @apiDocs({
-	 *     "title": "保存",
+	 *     "title": "添加拼团商品",
 	 *     "version": "v1.0.0",
 	 *     "name": "save",
 	 *     "headers": {
@@ -209,7 +209,7 @@ trait GoodsTrait
 	/**
 	 * @Route("/goods/:id", method="PUT", ignore_verify=false)
 	 * @apiDocs({
-	 *     "title": "更新",
+	 *     "title": "修改拼团商品",
 	 *     "version": "v1.0.0",
 	 *     "name": "update",
 	 *     "headers": {
@@ -247,7 +247,7 @@ trait GoodsTrait
 	/**
 	 * @Route("/goods/:id", method="DELETE", ignore_verify=false)
 	 * @apiDocs({
-	 *     "title": "删除",
+	 *     "title": "删除拼团商品",
 	 *     "version": "v1.0.0",
 	 *     "name": "delete",
 	 *     "headers": {

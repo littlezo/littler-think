@@ -36,9 +36,10 @@ use littler\annotation\route\Validate;
  * @RouteGroup("admin/printer")
  * @Middleware({littler\JWTAuth\Middleware\Jwt::class,"admin"})
  * @apiDocs({
- *     "title": "小票打印机",
+ *     "title": "小票打印机管理",
  *     "version": "1.0.0",
  *     "layer": "admin",
+ *     "name": "printer",
  *     "module": "printer",
  *     "group": "printer",
  *     "desc": "查询参数详见快速查询 字段含义参加字段映射"
@@ -58,7 +59,7 @@ class Printer extends Controller
 	/**
 	 * @Route("/printer/list", method="GET", ignore_verify=false)
 	 * @apiDocs({
-	 *     "title": "列表无分页",
+	 *     "title": "小票打印机列表",
 	 *     "version": "v1.0.0",
 	 *     "name": "list",
 	 *     "headers": {

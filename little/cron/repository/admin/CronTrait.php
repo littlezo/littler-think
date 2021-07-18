@@ -33,9 +33,9 @@ trait CronTrait
 
 
 	/**
-	 * @Route("/cron_trait/layout", method="GET", ignore_verify=false)
+	 * @Route("/cron/layout", method="GET", ignore_verify=false)
 	 * @apiDocs({
-	 *     "title": "页面布局",
+	 *     "title": "计划任务布局",
 	 *     "version": "v1.0.0",
 	 *     "name": "layout",
 	 *     "headers": {
@@ -84,7 +84,7 @@ trait CronTrait
 	/**
 	 * @Route("/cron", method="GET", ignore_verify=false)
 	 * @apiDocs({
-	 *     "title": "分页列表",
+	 *     "title": "计划任务分页",
 	 *     "version": "v1.0.0",
 	 *     "name": "index",
 	 *     "headers": {
@@ -133,7 +133,7 @@ trait CronTrait
 	/**
 	 * @Route("/cron/:id", method="GET", ignore_verify=false)
 	 * @apiDocs({
-	 *     "title": "详情",
+	 *     "title": "计划任务详情",
 	 *     "version": "v1.0.0",
 	 *     "name": "info",
 	 *     "headers": {
@@ -171,7 +171,7 @@ trait CronTrait
 	/**
 	 * @Route("/cron", method="POST", ignore_verify=false)
 	 * @apiDocs({
-	 *     "title": "保存",
+	 *     "title": "添加计划任务",
 	 *     "version": "v1.0.0",
 	 *     "name": "save",
 	 *     "headers": {
@@ -209,7 +209,7 @@ trait CronTrait
 	/**
 	 * @Route("/cron/:id", method="PUT", ignore_verify=false)
 	 * @apiDocs({
-	 *     "title": "更新",
+	 *     "title": "修改计划任务",
 	 *     "version": "v1.0.0",
 	 *     "name": "update",
 	 *     "headers": {
@@ -247,7 +247,7 @@ trait CronTrait
 	/**
 	 * @Route("/cron/:id", method="DELETE", ignore_verify=false)
 	 * @apiDocs({
-	 *     "title": "删除",
+	 *     "title": "删除计划任务",
 	 *     "version": "v1.0.0",
 	 *     "name": "delete",
 	 *     "headers": {

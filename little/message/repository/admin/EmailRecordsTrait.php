@@ -33,9 +33,9 @@ trait EmailRecordsTrait
 
 
 	/**
-	 * @Route("/email_records_trait/layout", method="GET", ignore_verify=false)
+	 * @Route("/email_records/layout", method="GET", ignore_verify=false)
 	 * @apiDocs({
-	 *     "title": "页面布局",
+	 *     "title": "邮箱信息发送记录布局",
 	 *     "version": "v1.0.0",
 	 *     "name": "layout",
 	 *     "headers": {
@@ -84,7 +84,7 @@ trait EmailRecordsTrait
 	/**
 	 * @Route("/email_records", method="GET", ignore_verify=false)
 	 * @apiDocs({
-	 *     "title": "分页列表",
+	 *     "title": "邮箱信息发送记录分页",
 	 *     "version": "v1.0.0",
 	 *     "name": "index",
 	 *     "headers": {
@@ -133,7 +133,7 @@ trait EmailRecordsTrait
 	/**
 	 * @Route("/email_records/:id", method="GET", ignore_verify=false)
 	 * @apiDocs({
-	 *     "title": "详情",
+	 *     "title": "邮箱信息发送记录详情",
 	 *     "version": "v1.0.0",
 	 *     "name": "info",
 	 *     "headers": {
@@ -171,7 +171,7 @@ trait EmailRecordsTrait
 	/**
 	 * @Route("/email_records", method="POST", ignore_verify=false)
 	 * @apiDocs({
-	 *     "title": "保存",
+	 *     "title": "添加邮箱信息发送记录",
 	 *     "version": "v1.0.0",
 	 *     "name": "save",
 	 *     "headers": {
@@ -209,7 +209,7 @@ trait EmailRecordsTrait
 	/**
 	 * @Route("/email_records/:id", method="PUT", ignore_verify=false)
 	 * @apiDocs({
-	 *     "title": "更新",
+	 *     "title": "修改邮箱信息发送记录",
 	 *     "version": "v1.0.0",
 	 *     "name": "update",
 	 *     "headers": {
@@ -247,7 +247,7 @@ trait EmailRecordsTrait
 	/**
 	 * @Route("/email_records/:id", method="DELETE", ignore_verify=false)
 	 * @apiDocs({
-	 *     "title": "删除",
+	 *     "title": "删除邮箱信息发送记录",
 	 *     "version": "v1.0.0",
 	 *     "name": "delete",
 	 *     "headers": {

@@ -84,49 +84,52 @@ class AccessService
 		$modules = [];
 		$route = Cache::get('apiDocs')['admin'] ?? [];
 		foreach ($module  as $key => $item) {
+			if ($item['name'] == 'user') {
+				continue;
+			}
 			$children = [];
 			if ($route[$item['name']] ?? false) {
 				foreach ($route[$item['name']] as $iterable) {
 					$methods = [];
 					foreach ($iterable['methods'] as $method) {
 						$methods[] = [
-							'title' => $method['title'],
-							'module' => $iterable['module'],
+							'title' => trim_all($method['title']),
+							'module' => trim_all($iterable['module']),
 							'sort' => 100,
-							'method' =>  Str::lower($method['method']),
-							'api' => '/' . $iterable['group'] . str_replace(':id', '', $method['path']),
-							'permission' => $item['name'] . '.' . $iterable['group'] . '@' . $method['name'],
-							'key' => $item['name'] . '_' . $iterable['group'] . '_' . $method['name'],
-							'isLeaf'=>true,
+							'method' =>  trim_all(Str::lower($method['method'])),
+							'api' => trim_all('/' . $iterable['module'] . str_replace(':id', '', $method['path'])),
+							'permission' => trim_all($iterable['module'] . ':' . $iterable['group'] . ':' . $method['name']),
+							'key' => trim_all($item['name'] . '_' . $iterable['group'] . '_' . $method['name']),
+							'isLeaf' => true,
 						];
 						// dd($iterable);
 					}
 					$children[] = [
-						'title' => $iterable['title'],
-						'module' => $iterable['module'],
-						'name'=>$iterable['name'] ?: $iterable['group'],
+						'title' => trim_all($iterable['title']),
+						'module' => trim_all($iterable['module']),
+						'name' => trim_all($iterable['name'] ?: $iterable['group']),
 						'sort' => 100,
-						'method' => '',
-						'api' => '',
-						'permission' => $item['name'] . '.' . $iterable['group'],
+						'method' => 'get',
+						'api' => trim_all('/' . $iterable['module'] . '/' . $iterable['group']),
+						'permission' => trim_all($iterable['module'] . ':' . $iterable['group']),
 						'children' => $methods,
-						'key' => $item['name'] . '_' . $iterable['group'],
-						'disableCheckbox'=>true,
+						'key' => trim_all($item['name'] . '_' . $iterable['group']),
+						'disableCheckbox' => true,
 					];
 					// dd($iterable);
 				}
 			}
 			// dd($item);
 			$modules[] = [
-				'title' => $item['title'],
-				'module' => $item['name'],
-				'name'=>$item['name'],
+				'title' => trim_all($item['title']),
+				'module' => trim_all($item['name']),
+				'name' => trim_all($item['name']),
 				'sort' => $item['order'],
 				'method' => '',
 				'api' => '',
-				'permission' => $item['name'],
+				'permission' => trim_all($item['name']),
 				'children' => $children,
-				'key' => $item['name'],
+				'key' => trim_all($item['name']),
 			];
 		}
 		return $modules;
@@ -136,9 +139,55 @@ class AccessService
 	 * #title 列表.
 	 * @return Access
 	 */
-	public function list(): ?object
+	public function list(): ?array
 	{
-		return $this->model->getList(false);
+		$list = $this->model->getList(false, true);
+		$buttonList = [];
+		$this->model
+			->whereIn('parent', array_unique($list->column('id')))
+			->where('type', 2)
+			->select()->each(function ($item) use (&$buttonList) {
+				$buttonList[$item['parent']][] = $item->toArray();
+			});
+		return $list->each(
+			function (&$item) use ($buttonList) {
+				$item['action'] = $buttonList[$item['id']] ?? [];
+			}
+		)->toTree();
+		// return $this->model->getList(false)->toTree();
+	}
+
+	/**
+	 * #title 授权路由列表.
+	 * @return Access
+	 */
+	public function auth(): ?array
+	{
+		// $list = $this->model->getList(false, true);
+		return $this->model->where([['type', '<>', 2], ['status', '=', 1]])
+			->select()->each(function (&$item) {
+				unset($item->permission);
+				$new_item = $item->toArray();
+				$new_item['action'] = $this->model->where('parent', $item->id)->where('type', 2)->select()->toArray();
+				$item['meta'] = $new_item;
+				// $item['isLink'] = $item['is_link'];
+				// unset($item['title'], $item['module'], $item['method'],$item['api'],$item['type'],
+				// $item['is_hide'],$item['is_link'],$item['is_keep_alive'],$item['is_affix'],
+				// $item['is_iframe']);
+			})->toTree();
+		// $buttonList = [];
+		// $this->model
+		// 	->whereIn('parent', array_unique($list->column('id')))
+		// 	->where('type', 2)
+		// 	->select()->each(function ($item) use (&$buttonList) {
+		// 		$buttonList[$item['parent']][] = $item->toArray();
+		// 	});
+		// return $list->each(
+		// 	function (&$item) use ($buttonList) {
+		// 		$item['action'] = $buttonList[$item['id']] ?? [];
+		// 	}
+		// )->toTree();
+		// return $this->model->getList(false)->toTree();
 	}
 
 	/**

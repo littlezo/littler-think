@@ -70,10 +70,13 @@ class CartService
 	 */
 	public function save(array $args)
 	{
-		// declare(strict_types=1);
-		return $args;
+		$args['member_id']= $this->request->user->member_id;
 
-		// $args['member_id']= $this->request->user->member_id;
+		$info=$this->model->where('member_id', $args['member_id'])->where('sku_id', $args['sku_id'])->find();
+		if ($info) {
+			$this->model->where('cart_id', $info->id)->update(['num'=>($args['num']+$info['num'])]);
+			return true;
+		}
 		return $this->model->storeBy($args);
 	}
 
@@ -85,6 +88,11 @@ class CartService
 	 */
 	public function update(int $id, array $args)
 	{
+		$args['member_id']= $this->request->user->member_id;
+		$info=$this->model->where('cart_id', $id)->where('member_id', $args['member_id'])->find();
+		if (! $info) {
+			return false;
+		}
 		return $this->model->updateBy($id, $args);
 	}
 

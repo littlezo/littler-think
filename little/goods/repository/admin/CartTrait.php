@@ -14,28 +14,28 @@
 
 declare(strict_types=1);
 
-namespace little\system\repository\admin;
+namespace little\goods\repository\admin;
 
-use little\system\service\admin\ConfigService;
+use little\goods\service\admin\CartService;
 use littler\Request;
 use littler\Response;
 
 /**
  * desc 禁止在此写业务逻辑，执行生成后将被覆盖
  */
-trait ConfigTrait
+trait CartTrait
 {
 	/**
 	 * @Inject()
-	 * @var ConfigService
+	 * @var CartService
 	 */
 	protected $service;
 
 
 	/**
-	 * @Route("/config/layout", method="GET", ignore_verify=false)
+	 * @Route("/cart/layout", method="GET", ignore_verify=false)
 	 * @apiDocs({
-	 *     "title": "系统配置布局",
+	 *     "title": " 购物车布局",
 	 *     "version": "v1.0.0",
 	 *     "name": "layout",
 	 *     "headers": {
@@ -82,9 +82,9 @@ trait ConfigTrait
 
 
 	/**
-	 * @Route("/config", method="GET", ignore_verify=false)
+	 * @Route("/cart", method="GET", ignore_verify=false)
 	 * @apiDocs({
-	 *     "title": "系统配置分页",
+	 *     "title": " 购物车分页",
 	 *     "version": "v1.0.0",
 	 *     "name": "index",
 	 *     "headers": {
@@ -131,9 +131,9 @@ trait ConfigTrait
 
 
 	/**
-	 * @Route("/config/:id", method="GET", ignore_verify=false)
+	 * @Route("/cart/:id", method="GET", ignore_verify=false)
 	 * @apiDocs({
-	 *     "title": "系统配置详情",
+	 *     "title": " 购物车详情",
 	 *     "version": "v1.0.0",
 	 *     "name": "info",
 	 *     "headers": {
@@ -169,9 +169,9 @@ trait ConfigTrait
 
 
 	/**
-	 * @Route("/config", method="POST", ignore_verify=false)
+	 * @Route("/cart", method="POST", ignore_verify=false)
 	 * @apiDocs({
-	 *     "title": "添加系统配置",
+	 *     "title": "添加 购物车",
 	 *     "version": "v1.0.0",
 	 *     "name": "save",
 	 *     "headers": {
@@ -207,9 +207,9 @@ trait ConfigTrait
 
 
 	/**
-	 * @Route("/config/:id", method="PUT", ignore_verify=false)
+	 * @Route("/cart/:id", method="PUT", ignore_verify=false)
 	 * @apiDocs({
-	 *     "title": "修改系统配置",
+	 *     "title": "修改 购物车",
 	 *     "version": "v1.0.0",
 	 *     "name": "update",
 	 *     "headers": {
@@ -245,9 +245,9 @@ trait ConfigTrait
 
 
 	/**
-	 * @Route("/config/:id", method="DELETE", ignore_verify=false)
+	 * @Route("/cart/:id", method="DELETE", ignore_verify=false)
 	 * @apiDocs({
-	 *     "title": "删除系统配置",
+	 *     "title": "删除 购物车",
 	 *     "version": "v1.0.0",
 	 *     "name": "delete",
 	 *     "headers": {

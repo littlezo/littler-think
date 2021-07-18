@@ -36,9 +36,10 @@ use littler\annotation\route\Validate;
  * @RouteGroup("admin/express")
  * @Middleware({littler\JWTAuth\Middleware\Jwt::class,"admin"})
  * @apiDocs({
- *     "title": "物流公司",
+ *     "title": "物流公司管理",
  *     "version": "1.0.0",
  *     "layer": "admin",
+ *     "name": "company",
  *     "module": "express",
  *     "group": "company",
  *     "desc": "查询参数详见快速查询 字段含义参加字段映射"
@@ -58,7 +59,7 @@ class Company extends Controller
 	/**
 	 * @Route("/company/list", method="GET", ignore_verify=false)
 	 * @apiDocs({
-	 *     "title": "列表无分页",
+	 *     "title": "物流公司列表",
 	 *     "version": "v1.0.0",
 	 *     "name": "list",
 	 *     "headers": {

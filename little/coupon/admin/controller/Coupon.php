@@ -36,9 +36,10 @@ use littler\annotation\route\Validate;
  * @RouteGroup("admin/coupon")
  * @Middleware({littler\JWTAuth\Middleware\Jwt::class,"admin"})
  * @apiDocs({
- *     "title": "优惠券",
+ *     "title": "优惠券管理",
  *     "version": "1.0.0",
  *     "layer": "admin",
+ *     "name": "coupon",
  *     "module": "coupon",
  *     "group": "coupon",
  *     "desc": "查询参数详见快速查询 字段含义参加字段映射"
@@ -58,7 +59,7 @@ class Coupon extends Controller
 	/**
 	 * @Route("/coupon/list", method="GET", ignore_verify=false)
 	 * @apiDocs({
-	 *     "title": "列表无分页",
+	 *     "title": "优惠券列表",
 	 *     "version": "v1.0.0",
 	 *     "name": "list",
 	 *     "headers": {

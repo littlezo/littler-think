@@ -14,10 +14,10 @@
 
 declare(strict_types=1);
 
-namespace little\order\admin\controller;
+namespace little\goods\admin\controller;
 
-use little\order\repository\admin\ComplainTrait;
-use little\order\service\admin\ComplainService;
+use little\goods\repository\admin\GoodsTrait;
+use little\goods\service\admin\GoodsService;
 use littler\BaseController as Controller;
 use littler\JWTAuth\Middleware\Jwt;
 use littler\Request;
@@ -31,35 +31,35 @@ use littler\annotation\route\Resource;
 use littler\annotation\route\Validate;
 
 /**
- * Class Complain
- * @package little\order\admin\controller
- * @RouteGroup("admin/order")
+ * Class Goods
+ * @package little\goods\admin\controller
+ * @RouteGroup("admin/goods")
  * @Middleware({littler\JWTAuth\Middleware\Jwt::class,"admin"})
  * @apiDocs({
- *     "title": "订单维权投诉管理",
+ *     "title": "商品列表管理",
  *     "version": "1.0.0",
  *     "layer": "admin",
- *     "name": "complain",
- *     "module": "order",
- *     "group": "complain",
+ *     "name": "goods",
+ *     "module": "goods",
+ *     "group": "goods",
  *     "desc": "查询参数详见快速查询 字段含义参加字段映射"
  * })
  */
-class Complain extends Controller
+class Goods extends Controller
 {
-	use ComplainTrait;
+	use GoodsTrait;
 
 	/**
 	 * @Inject()
-	 * @var ComplainService
+	 * @var GoodsService
 	 */
 	protected $service;
 
 
 	/**
-	 * @Route("/complain/list", method="GET", ignore_verify=false)
+	 * @Route("/goods/list", method="GET", ignore_verify=false)
 	 * @apiDocs({
-	 *     "title": "订单维权投诉列表",
+	 *     "title": "商品列表列表",
 	 *     "version": "v1.0.0",
 	 *     "name": "list",
 	 *     "headers": {

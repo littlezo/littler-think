@@ -187,6 +187,7 @@ trait CartTrait
 	 */
 	public function update(Request $request, int $id): ?\think\Response
 	{
+		dd(1);
 		return Response::success($this->service->update($id, $request->post()));
 	}
 

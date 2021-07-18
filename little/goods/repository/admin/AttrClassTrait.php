@@ -33,9 +33,9 @@ trait AttrClassTrait
 
 
 	/**
-	 * @Route("/attr_class_trait/layout", method="GET", ignore_verify=false)
+	 * @Route("/attr_class/layout", method="GET", ignore_verify=false)
 	 * @apiDocs({
-	 *     "title": "页面布局",
+	 *     "title": " 商品类型布局",
 	 *     "version": "v1.0.0",
 	 *     "name": "layout",
 	 *     "headers": {
@@ -84,7 +84,7 @@ trait AttrClassTrait
 	/**
 	 * @Route("/attr_class", method="GET", ignore_verify=false)
 	 * @apiDocs({
-	 *     "title": "分页列表",
+	 *     "title": " 商品类型分页",
 	 *     "version": "v1.0.0",
 	 *     "name": "index",
 	 *     "headers": {
@@ -133,7 +133,7 @@ trait AttrClassTrait
 	/**
 	 * @Route("/attr_class/:id", method="GET", ignore_verify=false)
 	 * @apiDocs({
-	 *     "title": "详情",
+	 *     "title": " 商品类型详情",
 	 *     "version": "v1.0.0",
 	 *     "name": "info",
 	 *     "headers": {
@@ -171,7 +171,7 @@ trait AttrClassTrait
 	/**
 	 * @Route("/attr_class", method="POST", ignore_verify=false)
 	 * @apiDocs({
-	 *     "title": "保存",
+	 *     "title": "添加 商品类型",
 	 *     "version": "v1.0.0",
 	 *     "name": "save",
 	 *     "headers": {
@@ -209,7 +209,7 @@ trait AttrClassTrait
 	/**
 	 * @Route("/attr_class/:id", method="PUT", ignore_verify=false)
 	 * @apiDocs({
-	 *     "title": "更新",
+	 *     "title": "修改 商品类型",
 	 *     "version": "v1.0.0",
 	 *     "name": "update",
 	 *     "headers": {
@@ -247,7 +247,7 @@ trait AttrClassTrait
 	/**
 	 * @Route("/attr_class/:id", method="DELETE", ignore_verify=false)
 	 * @apiDocs({
-	 *     "title": "删除",
+	 *     "title": "删除 商品类型",
 	 *     "version": "v1.0.0",
 	 *     "name": "delete",
 	 *     "headers": {

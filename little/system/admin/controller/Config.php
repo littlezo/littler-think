@@ -36,9 +36,10 @@ use littler\annotation\route\Validate;
  * @RouteGroup("admin/system")
  * @Middleware({littler\JWTAuth\Middleware\Jwt::class,"admin"})
  * @apiDocs({
- *     "title": "系统配置",
+ *     "title": "系统配置管理",
  *     "version": "1.0.0",
  *     "layer": "admin",
+ *     "name": "config",
  *     "module": "system",
  *     "group": "config",
  *     "desc": "查询参数详见快速查询 字段含义参加字段映射"
@@ -58,7 +59,7 @@ class Config extends Controller
 	/**
 	 * @Route("/config/list", method="GET", ignore_verify=false)
 	 * @apiDocs({
-	 *     "title": "列表无分页",
+	 *     "title": "系统配置列表",
 	 *     "version": "v1.0.0",
 	 *     "name": "list",
 	 *     "headers": {

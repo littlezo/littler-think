@@ -127,6 +127,11 @@ class User extends UserAbstract implements AuthorizeInterface
 				'align' => 'center',
 				'defaultHidden' => false,
 				'slots' => ['customRender' => 'avatar'],
+				// 'customRender'=> <<<JS
+				// 	 ({ record }) => {
+				// 	    return h(Avatar, { src: record.avatar });
+				// 	}
+				// 	JS,
 			],
 			[
 				'title' => '用户等级',

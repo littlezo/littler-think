@@ -36,9 +36,10 @@ use littler\annotation\route\Validate;
  * @RouteGroup("admin/exchange")
  * @Middleware({littler\JWTAuth\Middleware\Jwt::class,"admin"})
  * @apiDocs({
- *     "title": "积分兑换",
+ *     "title": "积分兑换管理",
  *     "version": "1.0.0",
  *     "layer": "admin",
+ *     "name": "exchange",
  *     "module": "exchange",
  *     "group": "exchange",
  *     "desc": "查询参数详见快速查询 字段含义参加字段映射"
@@ -58,7 +59,7 @@ class Exchange extends Controller
 	/**
 	 * @Route("/exchange/list", method="GET", ignore_verify=false)
 	 * @apiDocs({
-	 *     "title": "列表无分页",
+	 *     "title": "积分兑换列表",
 	 *     "version": "v1.0.0",
 	 *     "name": "list",
 	 *     "headers": {

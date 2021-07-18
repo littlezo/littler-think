@@ -1,9 +1,9 @@
 {
   "name": "member",
-	"title": "账户流水",
-	"description": "账户流水",
+	"title": "会员管理",
+	"description": "会员管理",
 	"version": "1.0.0",
-	"keywords": "账户流水",
+	"keywords": "会员管理",
 	"order": 100,
 	"services": ["\\little\\member\\Service"],
 	"aliases": {},

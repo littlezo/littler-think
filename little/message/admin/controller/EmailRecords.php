@@ -36,9 +36,10 @@ use littler\annotation\route\Validate;
  * @RouteGroup("admin/message")
  * @Middleware({littler\JWTAuth\Middleware\Jwt::class,"admin"})
  * @apiDocs({
- *     "title": "邮箱信息发送记录",
+ *     "title": "邮箱信息发送记录管理",
  *     "version": "1.0.0",
  *     "layer": "admin",
+ *     "name": "email_records",
  *     "module": "message",
  *     "group": "email_records",
  *     "desc": "查询参数详见快速查询 字段含义参加字段映射"
@@ -58,7 +59,7 @@ class EmailRecords extends Controller
 	/**
 	 * @Route("/email_records/list", method="GET", ignore_verify=false)
 	 * @apiDocs({
-	 *     "title": "列表无分页",
+	 *     "title": "邮箱信息发送记录列表",
 	 *     "version": "v1.0.0",
 	 *     "name": "list",
 	 *     "headers": {

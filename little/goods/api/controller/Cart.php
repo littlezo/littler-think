@@ -187,4 +187,59 @@ class Cart extends Controller
 	{
 		return Response::success($this->service->delete($request->param('cart_ids')));
 	}
+
+	/**
+	 * @Route("/cart", method="PUT", ignore_verify=false)
+	 * @apiDocs({
+	 *     "title": "购物车修改",
+	 *     "version": "v1.0.0",
+	 *     "name": "update",
+	 *     "headers": {
+	 *         "Authorization": "Bearer Token"
+	 *     },
+	 *     "desc": "查询参数详见快速查询 字段含义参加字段映射",
+	 *     "success": {
+	 *         "code": 200,
+	 *         "type": "success",
+	 *         "message": "成功消息||success",
+	 *         "timestamp": 1234567890,
+	 *         "result": {
+	 *             "encryptData": "加密数据自行解密",
+	 *         },
+	 *     },
+	 *     "error": {
+	 *         "code": 500,
+	 *         "message": "错误消息",
+	 *         "type": "error",
+	 *         "result": "",
+	 *         "timestamp": 1234567890
+	 *     },
+	 *     "param": {
+	 *         "cart_ids": {
+	 *             "required": true,
+	 *             "desc": "购物车id",
+	 *             "type": "int",
+	 *             "default": "",
+	 *        },
+	 *        "sku_id": {
+	 *             "required": true,
+	 *             "desc": "规格ID",
+	 *             "type": "int",
+	 *             "default": "",
+	 *        },
+	 *          "num": {
+	 *             "required": true,
+	 *             "desc": "商品数量",
+	 *             "type": "int",
+	 *             "default": "",
+	 *        }
+	 *     }
+	 * })
+	 * @return \think\Response
+	 */
+	public function update(Request $request): ?\think\Response
+	{
+		$data=$request->param();
+		return Response::success($this->service->update((int) $data['cart_id'], $data));
+	}
 }

@@ -24,15 +24,16 @@ use littler\traits\RewriteTrait;
 /**
  * @property id $int
  * @property name $string 菜单名称
+ * @property title $string 菜单标题
  * @property component $string 组件名称
- * @property mark $string 权限标识
+ * @property permission $string 权限标识
  * @property method $string 请求方式
  * @property api $string api 地址
  * @property type $int 1 菜单 2 按钮
  * @property icon $string 菜单图标
  * @property is_hide $int 是否隐藏 1 显示 0 隐藏
- * @property is_link $int 是否外链
- * @property is_keep_alive $int 1 缓存 0 不存在
+ * @property is_ext $int 是否外链
+ * @property keepalive $int 1 缓存 0 不存在
  * @property is_affix $int 1 固定 0不固定
  * @property is_iframe $string iframe
  * @property sort $int 排序字段
@@ -40,12 +41,12 @@ use littler\traits\RewriteTrait;
  * @property level $string 层级
  * @property path $string 路由
  * @property module $string 模块
- * @property title $string 菜单标题
  * @property redirect $string 跳转地址
  * @property link $string 链接
  * @property create_time $int 创建时间
  * @property update_time $int 更新时间
- * @property is_control $int 权限控制
+ * @property ignore_auth $int 权限控制 1 是
+ * @property status $int 状态
  */
 abstract class AccessAbstract extends Model
 {
@@ -68,15 +69,16 @@ abstract class AccessAbstract extends Model
 	protected $schema = [
 		'id' => 'int',
 		'name' => 'string',
+		'title' => 'string',
 		'component' => 'string',
-		'mark' => 'string',
+		'permission' => 'string',
 		'method' => 'string',
 		'api' => 'string',
 		'type' => 'int',
 		'icon' => 'string',
 		'is_hide' => 'int',
-		'is_link' => 'int',
-		'is_keep_alive' => 'int',
+		'is_ext' => 'int',
+		'keepalive' => 'int',
 		'is_affix' => 'int',
 		'is_iframe' => 'string',
 		'sort' => 'int',
@@ -84,12 +86,12 @@ abstract class AccessAbstract extends Model
 		'level' => 'string',
 		'path' => 'string',
 		'module' => 'string',
-		'title' => 'string',
 		'redirect' => 'string',
 		'link' => 'string',
 		'create_time' => 'int',
 		'update_time' => 'int',
-		'is_control' => 'int',
+		'ignore_auth' => 'int',
+		'status' => 'int',
 	];
 
 	/**
@@ -103,15 +105,16 @@ abstract class AccessAbstract extends Model
 	public $field = [
 		'id',
 		'name',
+		'title',
 		'component',
-		'mark',
+		'permission',
 		'method',
 		'api',
 		'type',
 		'icon',
 		'is_hide',
-		'is_link',
-		'is_keep_alive',
+		'is_ext',
+		'keepalive',
 		'is_affix',
 		'is_iframe',
 		'sort',
@@ -119,11 +122,11 @@ abstract class AccessAbstract extends Model
 		'level',
 		'path',
 		'module',
-		'title',
 		'redirect',
 		'link',
 		'create_time',
 		'update_time',
-		'is_control',
+		'ignore_auth',
+		'status',
 	];
 }
