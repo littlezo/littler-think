@@ -50,6 +50,14 @@ class Access extends AccessAbstract
 				'defaultHidden' => false,
 			],
 			[
+				'title' => '菜单标题',
+				'dataIndex' => 'title',
+				'width' => 180,
+				'fixed' => false,
+				'align' => 'center',
+				'defaultHidden' => false,
+			],
+			[
 				'title' => '组件名称',
 				'dataIndex' => 'component',
 				'width' => 180,
@@ -59,7 +67,7 @@ class Access extends AccessAbstract
 			],
 			[
 				'title' => '权限标识',
-				'dataIndex' => 'mark',
+				'dataIndex' => 'permission',
 				'width' => 180,
 				'fixed' => false,
 				'align' => 'center',
@@ -107,7 +115,7 @@ class Access extends AccessAbstract
 			],
 			[
 				'title' => '是否外链',
-				'dataIndex' => 'is_link',
+				'dataIndex' => 'is_ext',
 				'width' => 100,
 				'fixed' => false,
 				'align' => 'center',
@@ -115,7 +123,7 @@ class Access extends AccessAbstract
 			],
 			[
 				'title' => '1 缓存 0 不存在 ',
-				'dataIndex' => 'is_keep_alive',
+				'dataIndex' => 'keepalive',
 				'width' => 100,
 				'fixed' => false,
 				'align' => 'center',
@@ -178,14 +186,6 @@ class Access extends AccessAbstract
 				'defaultHidden' => false,
 			],
 			[
-				'title' => '菜单标题',
-				'dataIndex' => 'title',
-				'width' => 180,
-				'fixed' => false,
-				'align' => 'center',
-				'defaultHidden' => false,
-			],
-			[
 				'title' => '跳转地址',
 				'dataIndex' => 'redirect',
 				'width' => 180,
@@ -218,8 +218,16 @@ class Access extends AccessAbstract
 				'defaultHidden' => false,
 			],
 			[
-				'title' => '权限控制',
-				'dataIndex' => 'is_control',
+				'title' => '权限控制 1 是',
+				'dataIndex' => 'ignore_auth',
+				'width' => 100,
+				'fixed' => false,
+				'align' => 'center',
+				'defaultHidden' => false,
+			],
+			[
+				'title' => '状态',
+				'dataIndex' => 'status',
 				'width' => 100,
 				'fixed' => false,
 				'align' => 'center',
@@ -269,6 +277,13 @@ class Access extends AccessAbstract
 				'colProps' => ['lg' => 12, 'xl' => 8, 'xxl' => 6],
 			],
 			[
+				'field' => 'title',
+				'label' => '菜单标题',
+				'component' => 'Input',
+				'required' => true,
+				'colProps' => ['lg' => 12, 'xl' => 8, 'xxl' => 6],
+			],
+			[
 				'field' => 'component',
 				'label' => '组件名称',
 				'component' => 'Input',
@@ -276,7 +291,7 @@ class Access extends AccessAbstract
 				'colProps' => ['lg' => 12, 'xl' => 8, 'xxl' => 6],
 			],
 			[
-				'field' => 'mark',
+				'field' => 'permission',
 				'label' => '权限标识',
 				'component' => 'Input',
 				'required' => true,
@@ -318,14 +333,14 @@ class Access extends AccessAbstract
 				'colProps' => ['lg' => 12, 'xl' => 8, 'xxl' => 6],
 			],
 			[
-				'field' => 'is_link',
+				'field' => 'is_ext',
 				'label' => '是否外链',
 				'component' => 'Input',
 				'required' => true,
 				'colProps' => ['lg' => 12, 'xl' => 8, 'xxl' => 6],
 			],
 			[
-				'field' => 'is_keep_alive',
+				'field' => 'keepalive',
 				'label' => '1 缓存 0 不存在 ',
 				'component' => 'Input',
 				'required' => true,
@@ -381,13 +396,6 @@ class Access extends AccessAbstract
 				'colProps' => ['lg' => 12, 'xl' => 8, 'xxl' => 6],
 			],
 			[
-				'field' => 'title',
-				'label' => '菜单标题',
-				'component' => 'Input',
-				'required' => true,
-				'colProps' => ['lg' => 12, 'xl' => 8, 'xxl' => 6],
-			],
-			[
 				'field' => 'redirect',
 				'label' => '跳转地址',
 				'component' => 'Input',
@@ -416,8 +424,15 @@ class Access extends AccessAbstract
 				'colProps' => ['lg' => 12, 'xl' => 8, 'xxl' => 6],
 			],
 			[
-				'field' => 'is_control',
-				'label' => '权限控制',
+				'field' => 'ignore_auth',
+				'label' => '权限控制 1 是',
+				'component' => 'Input',
+				'required' => true,
+				'colProps' => ['lg' => 12, 'xl' => 8, 'xxl' => 6],
+			],
+			[
+				'field' => 'status',
+				'label' => '状态',
 				'component' => 'Input',
 				'required' => true,
 				'colProps' => ['lg' => 12, 'xl' => 8, 'xxl' => 6],
