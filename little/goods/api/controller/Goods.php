@@ -18,23 +18,28 @@ namespace little\goods\api\controller;
 
 use little\goods\repository\api\GoodsTrait;
 use little\goods\service\api\GoodsService;
-use littler\annotation\docs\ApiDocs;
-use littler\annotation\Inject;
-use littler\annotation\Route;
-use littler\annotation\route\Group as RouteGroup;
-use littler\annotation\route\Middleware;
 use littler\BaseController as Controller;
+use littler\JWTAuth\Middleware\Jwt;
 use littler\Request;
 use littler\Response;
+use littler\annotation\Inject;
+use littler\annotation\Route;
+use littler\annotation\docs\ApiDocs;
+use littler\annotation\route\Group as RouteGroup;
+use littler\annotation\route\Middleware;
+use littler\annotation\route\Resource;
+use littler\annotation\route\Validate;
 
 /**
- * Class Goods.
+ * Class Goods
+ * @package little\goods\api\controller
  * @RouteGroup("api/goods")
- * @Middleware({littler\JWTAuth\Middleware\Jwt::class, "member"})
+ * @Middleware({littler\JWTAuth\Middleware\Jwt::class,"member"})
  * @apiDocs({
- *     "title": "商品列表",
+ *     "title": "商品列表管理",
  *     "version": "1.0.0",
  *     "layer": "api",
+ *     "name": "goods",
  *     "module": "goods",
  *     "group": "goods",
  *     "desc": "查询参数详见快速查询 字段含义参加字段映射"
@@ -45,17 +50,21 @@ class Goods extends Controller
 	use GoodsTrait;
 
 	/**
-	 * @Inject
+	 * @Inject()
 	 * @var GoodsService
 	 */
 	protected $service;
 
+
 	/**
 	 * @Route("/goods/list", method="GET", ignore_verify=false)
 	 * @apiDocs({
-	 *     "title": "列表无分页",
+	 *     "title": "商品列表列表",
 	 *     "version": "v1.0.0",
 	 *     "name": "list",
+	 *     "headers": {
+	 *         "Authorization": "Bearer Token"
+	 *     },
 	 *     "desc": "查询参数详见快速查询 字段含义参加字段映射",
 	 *     "success": {
 	 *         "code": 200,
@@ -93,44 +102,5 @@ class Goods extends Controller
 	public function list(Request $request): ?\think\Response
 	{
 		return Response::success($this->service->list($request->get()));
-	}
-
-	/**
-	 * @Route("/goods/info", method="GET", ignore_verify=false)
-	 * @apiDocs({
-	 *     "title": "商品详情",
-	 *     "version": "v1.0.0",
-	 *     "name": "info",
-	 *     "desc": "查询参数详见快速查询 字段含义参加字段映射",
-	 *     "success": {
-	 *         "code": 200,
-	 *         "type": "success",
-	 *         "message": "成功消息||success",
-	 *         "timestamp": 1234567890,
-	 *         "result": {
-	 *             "encryptData": "加密数据自行解密",
-	 *         },
-	 *     },
-	 *     "error": {
-	 *         "code": 500,
-	 *         "message": "错误消息",
-	 *         "type": "error",
-	 *         "result": "",
-	 *         "timestamp": 1234567890
-	 *     },
-	 *     "param": {
-	 *         "id": {
-	 *             "required": false,
-	 *             "desc": "商品ID",
-	 *             "type": "int",
-	 *             "default": "",
-	 *         }
-	 *     }
-	 * })
-	 * @return \think\Response
-	 */
-	public function info(Request $request): ?\think\Response
-	{
-		return Response::success($this->service->info((int) $request->param('id')));
 	}
 }

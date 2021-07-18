@@ -14,6 +14,6 @@
 	"author": "@小小只^v^",
 	"content": "",
 	"version_no": "20210709",
-    "ignore": ["member_address","member_auth","member_bank","member_label","member_level","member_log","member_recharge_card","member_recharge_order","member_account"],
+    "ignore": ["member_auth","member_bank","member_label","member_level","member_log","member_recharge_card","member_recharge_order","member_account"],
     "allow_layer": ["admin","api"]
 }

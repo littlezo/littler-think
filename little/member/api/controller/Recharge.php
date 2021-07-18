@@ -36,9 +36,10 @@ use littler\annotation\route\Validate;
  * @RouteGroup("api/member")
  * @Middleware({littler\JWTAuth\Middleware\Jwt::class,"member"})
  * @apiDocs({
- *     "title": "会员充值套餐",
+ *     "title": "会员充值套餐管理",
  *     "version": "1.0.0",
  *     "layer": "api",
+ *     "name": "recharge",
  *     "module": "member",
  *     "group": "recharge",
  *     "desc": "查询参数详见快速查询 字段含义参加字段映射"
@@ -58,7 +59,7 @@ class Recharge extends Controller
 	/**
 	 * @Route("/recharge/list", method="GET", ignore_verify=false)
 	 * @apiDocs({
-	 *     "title": "列表无分页",
+	 *     "title": "会员充值套餐列表",
 	 *     "version": "v1.0.0",
 	 *     "name": "list",
 	 *     "headers": {

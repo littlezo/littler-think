@@ -80,9 +80,9 @@ class UserService
 	 * @param array $args 待更新的数据
 	 * @return int|bool
 	 */
-	public function update(int $id, array $args)
+	public function update(array $args)
 	{
-		return $this->model->updateBy($id, $args);
+		return $this->model->updateBy($this->request->user->member_id, $args);
 	}
 
 	/**

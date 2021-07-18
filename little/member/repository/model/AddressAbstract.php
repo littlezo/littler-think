@@ -27,15 +27,11 @@ use littler\traits\RewriteTrait;
  * @property name $string 用户姓名
  * @property mobile $string 手机
  * @property telephone $string 联系电话
- * @property province_id $int 省id
- * @property city_id $int 市id
- * @property district_id $int 区县id
- * @property community_id $int 社区id
  * @property address $string 地址信息
  * @property full_address $string 详细地址信息
  * @property longitude $string 经度
  * @property latitude $string 纬度
- * @property is_default $int 是否是默认地址
+ * @property is_default $int 是否是默认地址 0否 1是
  */
 abstract class AddressAbstract extends Model
 {
@@ -61,10 +57,6 @@ abstract class AddressAbstract extends Model
 		'name' => 'string',
 		'mobile' => 'string',
 		'telephone' => 'string',
-		'province_id' => 'int',
-		'city_id' => 'int',
-		'district_id' => 'int',
-		'community_id' => 'int',
 		'address' => 'string',
 		'full_address' => 'string',
 		'longitude' => 'string',
@@ -96,10 +88,6 @@ abstract class AddressAbstract extends Model
 		'name',
 		'mobile',
 		'telephone',
-		'province_id',
-		'city_id',
-		'district_id',
-		'community_id',
 		'address',
 		'full_address',
 		'longitude',

@@ -35,7 +35,7 @@ trait WithdrawTrait
 	/**
 	 * @Route("/withdraw", method="GET", ignore_verify=false)
 	 * @apiDocs({
-	 *     "title": "分页列表",
+	 *     "title": "会员提现分页",
 	 *     "version": "v1.0.0",
 	 *     "name": "index",
 	 *     "headers": {
@@ -84,7 +84,7 @@ trait WithdrawTrait
 	/**
 	 * @Route("/withdraw/:id", method="GET", ignore_verify=false)
 	 * @apiDocs({
-	 *     "title": "详情",
+	 *     "title": "会员提现详情",
 	 *     "version": "v1.0.0",
 	 *     "name": "info",
 	 *     "headers": {
@@ -122,7 +122,7 @@ trait WithdrawTrait
 	/**
 	 * @Route("/withdraw", method="POST", ignore_verify=false)
 	 * @apiDocs({
-	 *     "title": "保存",
+	 *     "title": "添加会员提现",
 	 *     "version": "v1.0.0",
 	 *     "name": "save",
 	 *     "headers": {
@@ -160,7 +160,7 @@ trait WithdrawTrait
 	/**
 	 * @Route("/withdraw/:id", method="PUT", ignore_verify=false)
 	 * @apiDocs({
-	 *     "title": "更新",
+	 *     "title": "修改会员提现",
 	 *     "version": "v1.0.0",
 	 *     "name": "update",
 	 *     "headers": {
@@ -198,7 +198,7 @@ trait WithdrawTrait
 	/**
 	 * @Route("/withdraw/:id", method="DELETE", ignore_verify=false)
 	 * @apiDocs({
-	 *     "title": "删除",
+	 *     "title": "删除会员提现",
 	 *     "version": "v1.0.0",
 	 *     "name": "delete",
 	 *     "headers": {

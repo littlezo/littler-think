@@ -36,15 +36,11 @@ use littler\traits\RewriteTrait;
  * @property member_level $int 用户等级
  * @property member_level_name $string 会员等级名称
  * @property member_label $string 用户标签
- * @property qq $string qq号
- * @property qq_openid $string qq互联id
  * @property wx_openid $string 微信用户openid
+ * @property wx_number $string 微信号
  * @property weapp_openid $string 微信小程序openid
  * @property wx_unionid $string 微信unionid
  * @property ali_openid $string 支付宝账户id
- * @property baidu_openid $string 百度账户id
- * @property toutiao_openid $string 头条账号
- * @property douyin_openid $string 抖音小程序openid
  * @property login_ip $string 当前登录ip
  * @property login_type $string 当前登录的操作终端类型
  * @property login_time $int 当前登录时间
@@ -106,15 +102,11 @@ abstract class UserAbstract extends Model
 		'member_level' => 'int',
 		'member_level_name' => 'string',
 		'member_label' => 'string',
-		'qq' => 'string',
-		'qq_openid' => 'string',
 		'wx_openid' => 'string',
+		'wx_number' => 'string',
 		'weapp_openid' => 'string',
 		'wx_unionid' => 'string',
 		'ali_openid' => 'string',
-		'baidu_openid' => 'string',
-		'toutiao_openid' => 'string',
-		'douyin_openid' => 'string',
 		'login_ip' => 'string',
 		'login_type' => 'string',
 		'login_time' => 'int',
@@ -182,15 +174,11 @@ abstract class UserAbstract extends Model
 		'member_level',
 		'member_level_name',
 		'member_label',
-		'qq',
-		'qq_openid',
 		'wx_openid',
+		'wx_number',
 		'weapp_openid',
 		'wx_unionid',
 		'ali_openid',
-		'baidu_openid',
-		'toutiao_openid',
-		'douyin_openid',
 		'login_ip',
 		'login_type',
 		'login_time',

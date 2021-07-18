@@ -36,9 +36,10 @@ use littler\annotation\route\Validate;
  * @RouteGroup("api/member")
  * @Middleware({littler\JWTAuth\Middleware\Jwt::class,"member"})
  * @apiDocs({
- *     "title": "会员提现",
+ *     "title": "会员提现管理",
  *     "version": "1.0.0",
  *     "layer": "api",
+ *     "name": "withdraw",
  *     "module": "member",
  *     "group": "withdraw",
  *     "desc": "查询参数详见快速查询 字段含义参加字段映射"
@@ -58,7 +59,7 @@ class Withdraw extends Controller
 	/**
 	 * @Route("/withdraw/list", method="GET", ignore_verify=false)
 	 * @apiDocs({
-	 *     "title": "列表无分页",
+	 *     "title": "会员提现列表",
 	 *     "version": "v1.0.0",
 	 *     "name": "list",
 	 *     "headers": {

@@ -16,7 +16,6 @@ declare(strict_types=1);
 
 namespace little\member\api\controller;
 
-use little\member\model\Auth;
 use little\member\repository\api\UserTrait;
 use little\member\service\api\UserService;
 use littler\annotation\docs\ApiDocs;
@@ -33,9 +32,10 @@ use littler\Response;
  * @RouteGroup("api/member")
  * @Middleware({littler\JWTAuth\Middleware\Jwt::class, "member"})
  * @apiDocs({
- *     "title": "会员列表",
+ *     "title": "会员列表管理",
  *     "version": "1.0.0",
  *     "layer": "api",
+ *     "name": "user",
  *     "module": "member",
  *     "group": "user",
  *     "desc": "查询参数详见快速查询 字段含义参加字段映射"
@@ -52,15 +52,9 @@ class User extends Controller
 	protected $service;
 
 	/**
-	 * @Inject
-	 * @var Auth
-	 */
-	private $auth;
-
-	/**
 	 * @Route("/user/list", method="GET", ignore_verify=false)
 	 * @apiDocs({
-	 *     "title": "列表无分页",
+	 *     "title": "会员列表列表",
 	 *     "version": "v1.0.0",
 	 *     "name": "list",
 	 *     "headers": {
@@ -102,72 +96,13 @@ class User extends Controller
 	 */
 	public function list(Request $request): ?\think\Response
 	{
-		service('');
-		$this->auth->where('id', 1)->find();
 		return Response::success($this->service->list($request->get()));
-	}
-
-	/**
-	 * @Route("/user/login", method="POST", ignore_verify=true)
-	 * @apiDocs({
-	 *     "title": "登录",
-	 *     "version": "v1.0.0",
-	 *     "name": "login",
-	 *     "headers": {
-	 *     },
-	 *     "desc": "查询参数详见快速查询 字段含义参加字段映射",
-	 *     "success": {
-	 *         "code": 200,
-	 *         "type": "success",
-	 *         "message": "成功消息||success",
-	 *         "timestamp": 1234567890,
-	 *         "result": "token string",
-	 *     },
-	 *     "error": {
-	 *         "code": 500,
-	 *         "message": "错误消息",
-	 *         "type": "error",
-	 *         "result": "",
-	 *         "timestamp": 1234567890
-	 *     },
-	 *     "param": {
-	 *         "username": {
-	 *             "required": false,
-	 *             "desc": "账号",
-	 *             "type": "int",
-	 *             "default": null,
-	 *         },
-	 * 	      "password": {
-	 *             "required": false,
-	 *             "desc": "账号登录必传",
-	 *             "type": "int",
-	 *             "default": "",
-	 *        },
-	 *        "mobile": {
-	 *             "required": false,
-	 *             "desc": "手机号 用户名 手机号必传一个",
-	 *             "type": "int",
-	 *             "default": "",
-	 *         },
-	 *        "code": {
-	 *             "required": false,
-	 *             "desc": "手机登录必传",
-	 *             "type": "int",
-	 *             "default": "",
-	 *        }
-	 *     }
-	 * })
-	 * @return \think\Response
-	 */
-	public function login(Request $request): ?\think\Response
-	{
-		return Response::success(['token'=>$this->service->login($request->post())]);
 	}
 
 	/**
 	 * @Route("/user/info", method="GET", ignore_verify=false)
 	 * @apiDocs({
-	 *     "title": "详情",
+	 *     "title": "会员列表详情",
 	 *     "version": "v1.0.0",
 	 *     "name": "info",
 	 *     "headers": {
@@ -198,7 +133,84 @@ class User extends Controller
 	 */
 	public function info(Request $request): ?\think\Response
 	{
-		// dd($request);
 		return Response::success($this->service->info($request->user->member_id));
+	}
+
+	/**
+	 * @Route("/user/save", method="PUT", ignore_verify=false)
+	 * @apiDocs({
+	 *     "title": "修改会员信息",
+	 *     "version": "v1.0.0",
+	 *     "name": "update",
+	 *     "headers": {
+	 *         "Authorization": "Bearer Token"
+	 *     },
+	 *     "desc": "查询参数详见快速查询 字段含义参加字段映射",
+	 *     "success": {
+	 *         "code": 200,
+	 *         "type": "success",
+	 *         "message": "成功消息||success",
+	 *         "timestamp": 1234567890,
+	 *         "result": {
+	 *             "encryptData": "加密数据自行解密",
+	 *         },
+	 *     },
+	 *     "error": {
+	 *         "code": 500,
+	 *         "message": "错误消息",
+	 *         "type": "error",
+	 *         "result": "",
+	 *         "timestamp": 1234567890
+	 *     },
+	 *     "param": {
+	 *          "nickname": {
+	 *             "required": true,
+	 *             "desc": "昵称",
+	 *             "type": "string",
+	 *             "default": "",
+	 *         },
+	 *          "mobile": {
+	 *             "required": true,
+	 *             "desc": "电话",
+	 *             "type": "string",
+	 *             "default": "",
+	 *         },
+	 *         "wx_number": {
+	 *             "required": false,
+	 *             "desc": "微信号",
+	 *             "type": "string",
+	 *             "default": "",
+	 *         },
+	 *         "birthday": {
+	 *             "required": false,
+	 *             "desc": "出生日期（时间戳）",
+	 *             "type": "int",
+	 *             "default": "",
+	 *         },
+	 *          "location": {
+	 *             "required": false,
+	 *             "desc": "所在城市",
+	 *             "type": "string",
+	 *             "default": "",
+	 *         },
+	 *        "avatar": {
+	 *             "required": false,
+	 *             "desc": "头像",
+	 *             "type": "string",
+	 *             "default": "",
+	 *         },
+	 *       "password": {
+	 *             "required": false,
+	 *             "desc": "登录密码",
+	 *             "type": "string",
+	 *             "default": "",
+	 *         }
+	 *     }
+	 * })
+	 * @return \think\Response
+	 */
+	public function update(Request $request): ?\think\Response
+	{
+		return Response::success($this->service->update($request->put()));
 	}
 }

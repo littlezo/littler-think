@@ -34,7 +34,7 @@ trait CartTrait
 	/**
 	 * @Route("/cart", method="GET", ignore_verify=false)
 	 * @apiDocs({
-	 *     "title": "分页列表",
+	 *     "title": " 购物车分页",
 	 *     "version": "v1.0.0",
 	 *     "name": "index",
 	 *     "headers": {
@@ -82,7 +82,7 @@ trait CartTrait
 	/**
 	 * @Route("/cart/:id", method="GET", ignore_verify=false)
 	 * @apiDocs({
-	 *     "title": "详情",
+	 *     "title": " 购物车详情",
 	 *     "version": "v1.0.0",
 	 *     "name": "info",
 	 *     "headers": {
@@ -119,7 +119,7 @@ trait CartTrait
 	/**
 	 * @Route("/cart", method="POST", ignore_verify=false)
 	 * @apiDocs({
-	 *     "title": "保存",
+	 *     "title": "添加 购物车",
 	 *     "version": "v1.0.0",
 	 *     "name": "save",
 	 *     "headers": {
@@ -156,7 +156,7 @@ trait CartTrait
 	/**
 	 * @Route("/cart/:id", method="PUT", ignore_verify=false)
 	 * @apiDocs({
-	 *     "title": "更新",
+	 *     "title": "修改 购物车",
 	 *     "version": "v1.0.0",
 	 *     "name": "update",
 	 *     "headers": {
@@ -187,14 +187,13 @@ trait CartTrait
 	 */
 	public function update(Request $request, int $id): ?\think\Response
 	{
-		dd(1);
-		return Response::success($this->service->update($id, $request->post()));
+		return Response::success($this->service->update($id, $request->put()));
 	}
 
 	/**
 	 * @Route("/cart/:id", method="DELETE", ignore_verify=false)
 	 * @apiDocs({
-	 *     "title": "删除",
+	 *     "title": "删除 购物车",
 	 *     "version": "v1.0.0",
 	 *     "name": "delete",
 	 *     "headers": {

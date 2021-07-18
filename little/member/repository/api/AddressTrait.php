@@ -16,25 +16,25 @@ declare(strict_types=1);
 
 namespace little\member\repository\api;
 
-use little\member\service\api\UserService;
+use little\member\service\api\AddressService;
 use littler\Request;
 use littler\Response;
 
 /**
  * desc 禁止在此写业务逻辑，执行生成后将被覆盖.
  */
-trait UserTrait
+trait AddressTrait
 {
 	/**
 	 * @Inject
-	 * @var UserService
+	 * @var AddressService
 	 */
 	protected $service;
 
 	/**
-	 * @Route("/user", method="GET", ignore_verify=false)
+	 * @Route("/address", method="GET", ignore_verify=false)
 	 * @apiDocs({
-	 *     "title": "会员列表分页",
+	 *     "title": "会员地址分页",
 	 *     "version": "v1.0.0",
 	 *     "name": "index",
 	 *     "headers": {
@@ -80,9 +80,9 @@ trait UserTrait
 	}
 
 	/**
-	 * @Route("/user/:id", method="GET", ignore_verify=false)
+	 * @Route("/address/:id", method="GET", ignore_verify=false)
 	 * @apiDocs({
-	 *     "title": "会员列表详情",
+	 *     "title": "会员地址详情",
 	 *     "version": "v1.0.0",
 	 *     "name": "info",
 	 *     "headers": {
@@ -117,9 +117,9 @@ trait UserTrait
 	}
 
 	/**
-	 * @Route("/user", method="POST", ignore_verify=false)
+	 * @Route("/address", method="POST", ignore_verify=false)
 	 * @apiDocs({
-	 *     "title": "添加会员列表",
+	 *     "title": "添加会员地址",
 	 *     "version": "v1.0.0",
 	 *     "name": "save",
 	 *     "headers": {
@@ -154,9 +154,9 @@ trait UserTrait
 	}
 
 	/**
-	 * @Route("/user/:id", method="PUT", ignore_verify=false)
+	 * @Route("/address/:id", method="PUT", ignore_verify=false)
 	 * @apiDocs({
-	 *     "title": "修改会员列表",
+	 *     "title": "修改会员地址",
 	 *     "version": "v1.0.0",
 	 *     "name": "update",
 	 *     "headers": {
@@ -187,13 +187,13 @@ trait UserTrait
 	 */
 	public function update(Request $request, int $id): ?\think\Response
 	{
-		return Response::success($this->service->update($id, $request->post()));
+		return Response::success($this->service->update($id, $request->put()));
 	}
 
 	/**
-	 * @Route("/user/:id", method="DELETE", ignore_verify=false)
+	 * @Route("/address/:id", method="DELETE", ignore_verify=false)
 	 * @apiDocs({
-	 *     "title": "删除会员列表",
+	 *     "title": "删除会员地址",
 	 *     "version": "v1.0.0",
 	 *     "name": "delete",
 	 *     "headers": {

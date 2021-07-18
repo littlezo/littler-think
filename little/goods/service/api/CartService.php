@@ -41,7 +41,7 @@ class CartService
 	 */
 	public function paginate(): ?object
 	{
-		return $this->model->getList();
+		return $this->model->where('member_id', $this->request->user->member_id)->paginate();
 	}
 
 	/**

@@ -14,27 +14,77 @@
 
 declare(strict_types=1);
 
-namespace little\member\repository\api;
+namespace little\member\repository\admin;
 
-use little\member\service\api\UserService;
+use little\member\service\admin\AddressService;
 use littler\Request;
 use littler\Response;
 
 /**
- * desc 禁止在此写业务逻辑，执行生成后将被覆盖.
+ * desc 禁止在此写业务逻辑，执行生成后将被覆盖
  */
-trait UserTrait
+trait AddressTrait
 {
 	/**
-	 * @Inject
-	 * @var UserService
+	 * @Inject()
+	 * @var AddressService
 	 */
 	protected $service;
 
+
 	/**
-	 * @Route("/user", method="GET", ignore_verify=false)
+	 * @Route("/address/layout", method="GET", ignore_verify=false)
 	 * @apiDocs({
-	 *     "title": "会员列表分页",
+	 *     "title": "会员地址布局",
+	 *     "version": "v1.0.0",
+	 *     "name": "layout",
+	 *     "headers": {
+	 *         "Authorization": "Bearer Token"
+	 *     },
+	 *     "desc": "查询参数详见快速查询 字段含义参加字段映射",
+	 *     "success": {
+	 *         "code": 200,
+	 *         "type": "success",
+	 *         "message": "成功消息||success",
+	 *         "timestamp": 1234567890,
+	 *         "result": {
+	 *             "encryptData": "加密数据自行解密",
+	 *         },
+	 *     },
+	 *     "error": {
+	 *         "code": 500,
+	 *         "message": "错误消息",
+	 *         "type": "error",
+	 *         "result": "",
+	 *         "timestamp": 1234567890
+	 *     },
+	 *     "param": {
+	 *         "page": {
+	 *             "required": false,
+	 *             "desc": "页数",
+	 *             "type": "int",
+	 *             "default": 1,
+	 *         },
+	 *         "size": {
+	 *             "required": false,
+	 *             "desc": "单页数量",
+	 *             "type": "int",
+	 *             "default": 10,
+	 *         }
+	 *     }
+	 * })
+	 * @return \think\Response
+	 */
+	public function layout(Request $request): ?\think\Response
+	{
+		return Response::success($this->service->layout($request->param("type")));
+	}
+
+
+	/**
+	 * @Route("/address", method="GET", ignore_verify=false)
+	 * @apiDocs({
+	 *     "title": "会员地址分页",
 	 *     "version": "v1.0.0",
 	 *     "name": "index",
 	 *     "headers": {
@@ -79,10 +129,11 @@ trait UserTrait
 		return Response::paginate($this->service->paginate($request->get()));
 	}
 
+
 	/**
-	 * @Route("/user/:id", method="GET", ignore_verify=false)
+	 * @Route("/address/:id", method="GET", ignore_verify=false)
 	 * @apiDocs({
-	 *     "title": "会员列表详情",
+	 *     "title": "会员地址详情",
 	 *     "version": "v1.0.0",
 	 *     "name": "info",
 	 *     "headers": {
@@ -116,10 +167,11 @@ trait UserTrait
 		return Response::success($this->service->info($id));
 	}
 
+
 	/**
-	 * @Route("/user", method="POST", ignore_verify=false)
+	 * @Route("/address", method="POST", ignore_verify=false)
 	 * @apiDocs({
-	 *     "title": "添加会员列表",
+	 *     "title": "添加会员地址",
 	 *     "version": "v1.0.0",
 	 *     "name": "save",
 	 *     "headers": {
@@ -153,10 +205,11 @@ trait UserTrait
 		return Response::success($this->service->save($request->post()));
 	}
 
+
 	/**
-	 * @Route("/user/:id", method="PUT", ignore_verify=false)
+	 * @Route("/address/:id", method="PUT", ignore_verify=false)
 	 * @apiDocs({
-	 *     "title": "修改会员列表",
+	 *     "title": "修改会员地址",
 	 *     "version": "v1.0.0",
 	 *     "name": "update",
 	 *     "headers": {
@@ -187,13 +240,14 @@ trait UserTrait
 	 */
 	public function update(Request $request, int $id): ?\think\Response
 	{
-		return Response::success($this->service->update($id, $request->post()));
+		return Response::success($this->service->update($id,$request->post()));
 	}
 
+
 	/**
-	 * @Route("/user/:id", method="DELETE", ignore_verify=false)
+	 * @Route("/address/:id", method="DELETE", ignore_verify=false)
 	 * @apiDocs({
-	 *     "title": "删除会员列表",
+	 *     "title": "删除会员地址",
 	 *     "version": "v1.0.0",
 	 *     "name": "delete",
 	 *     "headers": {

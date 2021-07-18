@@ -14,52 +14,47 @@
 
 declare(strict_types=1);
 
-namespace little\goods\api\controller;
+namespace little\member\api\controller;
 
-use little\goods\repository\api\CategoryTrait;
-use little\goods\service\api\CategoryService;
-use littler\BaseController as Controller;
-use littler\JWTAuth\Middleware\Jwt;
-use littler\Request;
-use littler\Response;
+use little\member\repository\api\AddressTrait;
+use little\member\service\api\AddressService;
+use littler\annotation\docs\ApiDocs;
 use littler\annotation\Inject;
 use littler\annotation\Route;
-use littler\annotation\docs\ApiDocs;
 use littler\annotation\route\Group as RouteGroup;
 use littler\annotation\route\Middleware;
-use littler\annotation\route\Resource;
-use littler\annotation\route\Validate;
+use littler\BaseController as Controller;
+use littler\Request;
+use littler\Response;
 
 /**
- * Class Category
- * @package little\goods\api\controller
- * @RouteGroup("api/goods")
- * @Middleware({littler\JWTAuth\Middleware\Jwt::class,"member"})
+ * Class Address.
+ * @RouteGroup("api/member")
+ * @Middleware({littler\JWTAuth\Middleware\Jwt::class, "member"})
  * @apiDocs({
- *     "title": " 商品分类管理",
+ *     "title": "会员地址管理",
  *     "version": "1.0.0",
  *     "layer": "api",
- *     "name": "category",
- *     "module": "goods",
- *     "group": "category",
+ *     "name": "address",
+ *     "module": "member",
+ *     "group": "address",
  *     "desc": "查询参数详见快速查询 字段含义参加字段映射"
  * })
  */
-class Category extends Controller
+class Address extends Controller
 {
-	use CategoryTrait;
+	use AddressTrait;
 
 	/**
-	 * @Inject()
-	 * @var CategoryService
+	 * @Inject
+	 * @var AddressService
 	 */
 	protected $service;
 
-
 	/**
-	 * @Route("/category/list", method="GET", ignore_verify=false)
+	 * @Route("/address/list", method="GET", ignore_verify=false)
 	 * @apiDocs({
-	 *     "title": " 商品分类列表",
+	 *     "title": "会员地址列表",
 	 *     "version": "v1.0.0",
 	 *     "name": "list",
 	 *     "headers": {
