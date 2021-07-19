@@ -1,0 +1,19 @@
+{
+  "name": "exchange",
+	"title": "积分",
+	"description": "积分",
+	"version": "1.0.0",
+	"keywords": "积分",
+	"order": 100,
+	"services": ["\\little\\exchange\\Service"],
+	"aliases": {},
+	"files": [],
+	"requires": [],
+	"enable": true,
+	"dev_mode": true,
+	"author": "@小小只^v^",
+	"content": "",
+	"version_no": "20210719",
+    "ignore": ["exchange_order"],
+    "allow_layer": ["admin"]
+}

@@ -35,7 +35,7 @@ trait RolesTrait
 	/**
 	 * @Route("/roles/layout", method="GET", ignore_verify=false)
 	 * @apiDocs({
-	 *     "title": "角色管理布局",
+	 *     "title": "用户角色布局",
 	 *     "version": "v1.0.0",
 	 *     "name": "layout",
 	 *     "headers": {
@@ -84,7 +84,7 @@ trait RolesTrait
 	/**
 	 * @Route("/roles", method="GET", ignore_verify=false)
 	 * @apiDocs({
-	 *     "title": "角色管理分页",
+	 *     "title": "用户角色分页",
 	 *     "version": "v1.0.0",
 	 *     "name": "index",
 	 *     "headers": {
@@ -133,7 +133,7 @@ trait RolesTrait
 	/**
 	 * @Route("/roles/:id", method="GET", ignore_verify=false)
 	 * @apiDocs({
-	 *     "title": "角色管理详情",
+	 *     "title": "用户角色详情",
 	 *     "version": "v1.0.0",
 	 *     "name": "info",
 	 *     "headers": {
@@ -171,7 +171,7 @@ trait RolesTrait
 	/**
 	 * @Route("/roles", method="POST", ignore_verify=false)
 	 * @apiDocs({
-	 *     "title": "添加角色管理",
+	 *     "title": "添加用户角色",
 	 *     "version": "v1.0.0",
 	 *     "name": "save",
 	 *     "headers": {
@@ -209,7 +209,7 @@ trait RolesTrait
 	/**
 	 * @Route("/roles/:id", method="PUT", ignore_verify=false)
 	 * @apiDocs({
-	 *     "title": "修改角色管理",
+	 *     "title": "修改用户角色",
 	 *     "version": "v1.0.0",
 	 *     "name": "update",
 	 *     "headers": {
@@ -247,7 +247,7 @@ trait RolesTrait
 	/**
 	 * @Route("/roles/:id", method="DELETE", ignore_verify=false)
 	 * @apiDocs({
-	 *     "title": "删除角色管理",
+	 *     "title": "删除用户角色",
 	 *     "version": "v1.0.0",
 	 *     "name": "delete",
 	 *     "headers": {

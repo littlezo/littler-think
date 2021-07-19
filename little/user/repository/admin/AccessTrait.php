@@ -35,7 +35,7 @@ trait AccessTrait
 	/**
 	 * @Route("/access/layout", method="GET", ignore_verify=false)
 	 * @apiDocs({
-	 *     "title": "权限菜单布局",
+	 *     "title": "用户权限菜单布局",
 	 *     "version": "v1.0.0",
 	 *     "name": "layout",
 	 *     "headers": {
@@ -84,7 +84,7 @@ trait AccessTrait
 	/**
 	 * @Route("/access", method="GET", ignore_verify=false)
 	 * @apiDocs({
-	 *     "title": "权限菜单分页",
+	 *     "title": "用户权限菜单分页",
 	 *     "version": "v1.0.0",
 	 *     "name": "index",
 	 *     "headers": {
@@ -133,7 +133,7 @@ trait AccessTrait
 	/**
 	 * @Route("/access/:id", method="GET", ignore_verify=false)
 	 * @apiDocs({
-	 *     "title": "权限菜单详情",
+	 *     "title": "用户权限菜单详情",
 	 *     "version": "v1.0.0",
 	 *     "name": "info",
 	 *     "headers": {
@@ -171,7 +171,7 @@ trait AccessTrait
 	/**
 	 * @Route("/access", method="POST", ignore_verify=false)
 	 * @apiDocs({
-	 *     "title": "添加权限菜单",
+	 *     "title": "添加用户权限菜单",
 	 *     "version": "v1.0.0",
 	 *     "name": "save",
 	 *     "headers": {
@@ -209,7 +209,7 @@ trait AccessTrait
 	/**
 	 * @Route("/access/:id", method="PUT", ignore_verify=false)
 	 * @apiDocs({
-	 *     "title": "修改权限菜单",
+	 *     "title": "修改用户权限菜单",
 	 *     "version": "v1.0.0",
 	 *     "name": "update",
 	 *     "headers": {
@@ -247,7 +247,7 @@ trait AccessTrait
 	/**
 	 * @Route("/access/:id", method="DELETE", ignore_verify=false)
 	 * @apiDocs({
-	 *     "title": "删除权限菜单",
+	 *     "title": "删除用户权限菜单",
 	 *     "version": "v1.0.0",
 	 *     "name": "delete",
 	 *     "headers": {

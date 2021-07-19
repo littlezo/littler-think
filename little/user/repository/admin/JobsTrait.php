@@ -35,7 +35,7 @@ trait JobsTrait
 	/**
 	 * @Route("/jobs/layout", method="GET", ignore_verify=false)
 	 * @apiDocs({
-	 *     "title": "职位管理布局",
+	 *     "title": "用户职位布局",
 	 *     "version": "v1.0.0",
 	 *     "name": "layout",
 	 *     "headers": {
@@ -84,7 +84,7 @@ trait JobsTrait
 	/**
 	 * @Route("/jobs", method="GET", ignore_verify=false)
 	 * @apiDocs({
-	 *     "title": "职位管理分页",
+	 *     "title": "用户职位分页",
 	 *     "version": "v1.0.0",
 	 *     "name": "index",
 	 *     "headers": {
@@ -133,7 +133,7 @@ trait JobsTrait
 	/**
 	 * @Route("/jobs/:id", method="GET", ignore_verify=false)
 	 * @apiDocs({
-	 *     "title": "职位管理详情",
+	 *     "title": "用户职位详情",
 	 *     "version": "v1.0.0",
 	 *     "name": "info",
 	 *     "headers": {
@@ -171,7 +171,7 @@ trait JobsTrait
 	/**
 	 * @Route("/jobs", method="POST", ignore_verify=false)
 	 * @apiDocs({
-	 *     "title": "添加职位管理",
+	 *     "title": "添加用户职位",
 	 *     "version": "v1.0.0",
 	 *     "name": "save",
 	 *     "headers": {
@@ -209,7 +209,7 @@ trait JobsTrait
 	/**
 	 * @Route("/jobs/:id", method="PUT", ignore_verify=false)
 	 * @apiDocs({
-	 *     "title": "修改职位管理",
+	 *     "title": "修改用户职位",
 	 *     "version": "v1.0.0",
 	 *     "name": "update",
 	 *     "headers": {
@@ -247,7 +247,7 @@ trait JobsTrait
 	/**
 	 * @Route("/jobs/:id", method="DELETE", ignore_verify=false)
 	 * @apiDocs({
-	 *     "title": "删除职位管理",
+	 *     "title": "删除用户职位",
 	 *     "version": "v1.0.0",
 	 *     "name": "delete",
 	 *     "headers": {

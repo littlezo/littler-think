@@ -19,7 +19,7 @@ namespace little\user\model;
 use little\user\repository\model\JobsAbstract;
 
 /**
- * 职位管理 模型
+ * 用户职位 模型
  */
 class Jobs extends JobsAbstract
 {

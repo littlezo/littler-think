@@ -1,0 +1,19 @@
+{
+  "name": "help",
+	"title": "帮助",
+	"description": "帮助",
+	"version": "1.0.0",
+	"keywords": "帮助",
+	"order": 100,
+	"services": ["\\little\\help\\Service"],
+	"aliases": {},
+	"files": [],
+	"requires": [],
+	"enable": true,
+	"dev_mode": true,
+	"author": "@小小只^v^",
+	"content": "",
+	"version_no": "20210719",
+    "ignore": ["help_docs"],
+    "allow_layer": ["admin"]
+}

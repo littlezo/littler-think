@@ -36,7 +36,7 @@ use littler\annotation\route\Validate;
  * @RouteGroup("admin/user")
  * @Middleware({littler\JWTAuth\Middleware\Jwt::class,"admin"})
  * @apiDocs({
- *     "title": "用户操作日志管理",
+ *     "title": "用户操作日志",
  *     "version": "1.0.0",
  *     "layer": "admin",
  *     "name": "logs",

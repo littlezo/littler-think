@@ -19,7 +19,7 @@ namespace little\user\model;
 use little\user\repository\model\AccessAbstract;
 
 /**
- * 权限菜单 模型
+ * 用户权限菜单 模型
  */
 class Access extends AccessAbstract
 {

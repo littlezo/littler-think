@@ -35,7 +35,7 @@ trait DeptTrait
 	/**
 	 * @Route("/dept/layout", method="GET", ignore_verify=false)
 	 * @apiDocs({
-	 *     "title": "部门管理布局",
+	 *     "title": "用户部门布局",
 	 *     "version": "v1.0.0",
 	 *     "name": "layout",
 	 *     "headers": {
@@ -84,7 +84,7 @@ trait DeptTrait
 	/**
 	 * @Route("/dept", method="GET", ignore_verify=false)
 	 * @apiDocs({
-	 *     "title": "部门管理分页",
+	 *     "title": "用户部门分页",
 	 *     "version": "v1.0.0",
 	 *     "name": "index",
 	 *     "headers": {
@@ -133,7 +133,7 @@ trait DeptTrait
 	/**
 	 * @Route("/dept/:id", method="GET", ignore_verify=false)
 	 * @apiDocs({
-	 *     "title": "部门管理详情",
+	 *     "title": "用户部门详情",
 	 *     "version": "v1.0.0",
 	 *     "name": "info",
 	 *     "headers": {
@@ -171,7 +171,7 @@ trait DeptTrait
 	/**
 	 * @Route("/dept", method="POST", ignore_verify=false)
 	 * @apiDocs({
-	 *     "title": "添加部门管理",
+	 *     "title": "添加用户部门",
 	 *     "version": "v1.0.0",
 	 *     "name": "save",
 	 *     "headers": {
@@ -209,7 +209,7 @@ trait DeptTrait
 	/**
 	 * @Route("/dept/:id", method="PUT", ignore_verify=false)
 	 * @apiDocs({
-	 *     "title": "修改部门管理",
+	 *     "title": "修改用户部门",
 	 *     "version": "v1.0.0",
 	 *     "name": "update",
 	 *     "headers": {
@@ -247,7 +247,7 @@ trait DeptTrait
 	/**
 	 * @Route("/dept/:id", method="DELETE", ignore_verify=false)
 	 * @apiDocs({
-	 *     "title": "删除部门管理",
+	 *     "title": "删除用户部门",
 	 *     "version": "v1.0.0",
 	 *     "name": "delete",
 	 *     "headers": {

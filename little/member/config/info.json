@@ -1,0 +1,19 @@
+{
+  "name": "member",
+	"title": "会员",
+	"description": "会员",
+	"version": "1.0.0",
+	"keywords": "会员",
+	"order": 100,
+	"services": ["\\little\\member\\Service"],
+	"aliases": {},
+	"files": [],
+	"requires": [],
+	"enable": true,
+	"dev_mode": true,
+	"author": "@小小只^v^",
+	"content": "",
+	"version_no": "20210719",
+    "ignore": ["member_auth","member_bank","member_level","member_oauth","member_withdraw"],
+    "allow_layer": ["admin","api"]
+}

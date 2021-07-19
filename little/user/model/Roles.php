@@ -19,7 +19,7 @@ namespace little\user\model;
 use little\user\repository\model\RolesAbstract;
 
 /**
- * 角色管理 模型
+ * 用户角色 模型
  */
 class Roles extends RolesAbstract
 {

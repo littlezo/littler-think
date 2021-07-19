@@ -19,7 +19,7 @@ namespace little\user\model;
 use little\user\repository\model\DeptAbstract;
 
 /**
- * 部门管理 模型
+ * 用户部门 模型
  */
 class Dept extends DeptAbstract
 {
