@@ -13,7 +13,7 @@
 	"dev_mode": true,
 	"author": "@小小只^v^",
 	"content": "",
-	"version_no": "20210719",
-    "ignore": ["system_document","system_express"],
+	"version_no": "20210721",
+    "ignore": ["system_document","system_express","system_help_class","system_help_docs","system_version"],
     "allow_layer": ["admin"]
 }

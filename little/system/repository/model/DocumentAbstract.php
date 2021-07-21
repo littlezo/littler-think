@@ -24,7 +24,6 @@ use littler\traits\RewriteTrait;
 /**
  * @property id $int 主键
  * @property site_id $int 站点id（店铺，分站）,总平台端为0
- * @property app_module $string 应用模块
  * @property document_key $string 关键字
  * @property title $string 文本关键字
  * @property content $string 文本内容
@@ -52,7 +51,6 @@ abstract class DocumentAbstract extends Model
 	protected $schema = [
 		'id' => 'int',
 		'site_id' => 'int',
-		'app_module' => 'string',
 		'document_key' => 'string',
 		'title' => 'string',
 		'content' => 'string',
@@ -68,5 +66,5 @@ abstract class DocumentAbstract extends Model
 	/**
 	 * @var array $field 允许写入字段
 	 */
-	public $field = ['id', 'site_id', 'app_module', 'document_key', 'title', 'content', 'create_time', 'update_time'];
+	public $field = ['id', 'site_id', 'document_key', 'title', 'content', 'create_time', 'update_time'];
 }

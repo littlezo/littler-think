@@ -58,8 +58,8 @@ class Level extends LevelAbstract
 				'defaultHidden' => false,
 			],
 			[
-				'title' => '所需成长值',
-				'dataIndex' => 'growth',
+				'title' => '升级金额',
+				'dataIndex' => 'level_money',
 				'width' => 100,
 				'fixed' => false,
 				'align' => 'center',
@@ -137,8 +137,8 @@ class Level extends LevelAbstract
 				'colProps' => ['lg' => 12, 'xl' => 8, 'xxl' => 6],
 			],
 			[
-				'field' => 'growth',
-				'label' => '所需成长值',
+				'field' => 'level_money',
+				'label' => '升级金额',
 				'component' => 'Input',
 				'required' => true,
 				'colProps' => ['lg' => 12, 'xl' => 8, 'xxl' => 6],

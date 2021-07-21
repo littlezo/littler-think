@@ -27,18 +27,13 @@ use littler\traits\RewriteTrait;
  * @property site_id $int 店铺id
  * @property member_id $int 申请会员id
  * @property member_name $string 会员名称 取昵称字段
- * @property website_id $int 分站id
  * @property cert_id $int 认证信息
  * @property shop_name $string 申请店铺名称
  * @property apply_state $int 申请状态 1. 待审核 2. 财务凭据审核中  3. 开店通过 -1.审核失败 -2 财务审核拒绝
  * @property apply_message $string 管理员审核信息
  * @property apply_year $int 开店时长(年)
- * @property category_name $string 店铺分类名称
  * @property category_id $int 店铺分类id
- * @property group_name $string 店铺分组名称
- * @property group_id $int  店铺分组ID
  * @property level_id $int 申请店铺等级
- * @property level_name $string 申请店铺等级名称
  * @property paying_money_certificate $string 付款凭证
  * @property paying_money_certificate_explain $string 付款凭证说明
  * @property paying_deposit $float 保证金
@@ -47,7 +42,6 @@ use littler\traits\RewriteTrait;
  * @property create_time $int 创建时间
  * @property audit_time $int 审核通过时间
  * @property finish_time $int 创建成功时间
- * @property uid $int 用户ID
  * @property username $string 账号
  */
 abstract class ApplyAbstract extends Model
@@ -74,18 +68,13 @@ abstract class ApplyAbstract extends Model
 		'site_id' => 'int',
 		'member_id' => 'int',
 		'member_name' => 'string',
-		'website_id' => 'int',
 		'cert_id' => 'int',
 		'shop_name' => 'string',
 		'apply_state' => 'int',
 		'apply_message' => 'string',
 		'apply_year' => 'int',
-		'category_name' => 'string',
 		'category_id' => 'int',
-		'group_name' => 'string',
-		'group_id' => 'int',
 		'level_id' => 'int',
-		'level_name' => 'string',
 		'paying_money_certificate' => 'string',
 		'paying_money_certificate_explain' => 'string',
 		'paying_deposit' => 'float',
@@ -94,7 +83,6 @@ abstract class ApplyAbstract extends Model
 		'create_time' => 'int',
 		'audit_time' => 'int',
 		'finish_time' => 'int',
-		'uid' => 'int',
 		'username' => 'string',
 	];
 
@@ -117,18 +105,13 @@ abstract class ApplyAbstract extends Model
 		'site_id',
 		'member_id',
 		'member_name',
-		'website_id',
 		'cert_id',
 		'shop_name',
 		'apply_state',
 		'apply_message',
 		'apply_year',
-		'category_name',
 		'category_id',
-		'group_name',
-		'group_id',
 		'level_id',
-		'level_name',
 		'paying_money_certificate',
 		'paying_money_certificate_explain',
 		'paying_deposit',
@@ -137,7 +120,6 @@ abstract class ApplyAbstract extends Model
 		'create_time',
 		'audit_time',
 		'finish_time',
-		'uid',
 		'username',
 	];
 }

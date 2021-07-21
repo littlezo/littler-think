@@ -26,9 +26,9 @@ use littler\traits\RewriteTrait;
  * @property member_id $int 会员id
  * @property realname $string 真实姓名
  * @property mobile $string 手机号
- * @property withdraw_type $string 账户类型 alipay-支付宝  bank银行卡 wechatpay 微信
- * @property branch_bank_name $string 银行名称
- * @property bank_account $string 银行账号
+ * @property account_type $int 账户类型 1-支付宝  2-银行卡3-微信
+ * @property account_name $string 银行名称
+ * @property account_number $string 银行账号
  * @property is_default $int 是否默认账号
  * @property create_time $int 创建日期
  * @property update_time $int 修改日期
@@ -56,9 +56,9 @@ abstract class BankAbstract extends Model
 		'member_id' => 'int',
 		'realname' => 'string',
 		'mobile' => 'string',
-		'withdraw_type' => 'string',
-		'branch_bank_name' => 'string',
-		'bank_account' => 'string',
+		'account_type' => 'int',
+		'account_name' => 'string',
+		'account_number' => 'string',
 		'is_default' => 'int',
 		'create_time' => 'int',
 		'update_time' => 'int',
@@ -77,9 +77,9 @@ abstract class BankAbstract extends Model
 		'member_id',
 		'realname',
 		'mobile',
-		'withdraw_type',
-		'branch_bank_name',
-		'bank_account',
+		'account_type',
+		'account_name',
+		'account_number',
 		'is_default',
 		'create_time',
 		'update_time',

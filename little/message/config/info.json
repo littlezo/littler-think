@@ -13,7 +13,7 @@
 	"dev_mode": true,
 	"author": "@小小只^v^",
 	"content": "",
-	"version_no": "20210719",
+	"version_no": "20210721",
     "ignore": ["message_notice_read","message_send","message_send_records","message_sms_records"],
     "allow_layer": ["admin"]
 }

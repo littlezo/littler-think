@@ -50,14 +50,6 @@ class Config extends ConfigAbstract
 				'defaultHidden' => false,
 			],
 			[
-				'title' => '应用端口关键字',
-				'dataIndex' => 'module',
-				'width' => 180,
-				'fixed' => false,
-				'align' => 'center',
-				'defaultHidden' => false,
-			],
-			[
 				'title' => '配置项关键字',
 				'dataIndex' => 'config_key',
 				'width' => 180,
@@ -144,13 +136,6 @@ class Config extends ConfigAbstract
 			[
 				'field' => 'site_id',
 				'label' => '站点id（店铺，分站）,总平台端为0',
-				'component' => 'Input',
-				'required' => true,
-				'colProps' => ['lg' => 12, 'xl' => 8, 'xxl' => 6],
-			],
-			[
-				'field' => 'module',
-				'label' => '应用端口关键字',
 				'component' => 'Input',
 				'required' => true,
 				'colProps' => ['lg' => 12, 'xl' => 8, 'xxl' => 6],

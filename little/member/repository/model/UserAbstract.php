@@ -20,24 +20,21 @@ use littler\BaseModel as Model;
 use littler\annotation\Inject;
 use littler\traits\BaseOptionsTrait;
 use littler\traits\RewriteTrait;
+use think\model\concern\SoftDelete;
 
 /**
- * @property member_id $int 主键
- * @property source_member $int 推荐人
- * @property fenxiao_id $int 分销商（分销有效）
- * @property is_fenxiao $int 是否是分销商
+ * @property id $int 主键
+ * @property parent $int 推荐人
  * @property username $string 用户名
  * @property nickname $string 用户昵称
  * @property mobile $string 手机号
  * @property email $string 邮箱
  * @property password $string 用户密码（MD5）
- * @property status $int 用户状态  用户状态默认为1
+ * @property status $int 用户状态
  * @property avatar $string 用户头像
- * @property member_level $int 用户等级
- * @property member_level_name $string 会员等级名称
- * @property member_label $string 用户标签
+ * @property level_id $int 用户等级
  * @property wx_openid $string 微信用户openid
- * @property wx_number $string 微信号
+ * @property wx_account $string 微信号
  * @property weapp_openid $string 微信小程序openid
  * @property wx_unionid $string 微信unionid
  * @property ali_openid $string 支付宝账户id
@@ -52,27 +49,25 @@ use littler\traits\RewriteTrait;
  * @property sex $int 性别 0保密 1男 2女
  * @property location $string 地址
  * @property birthday $int 出生日期
- * @property reg_time $int 注册时间
  * @property point $float 积分
- * @property balance $float 余额
- * @property growth $float 成长值
- * @property balance_money $float 现金余额(可提现)
- * @property account5 $float 账户5
- * @property is_auth $int 是否认证
- * @property sign_time $int 最后一次签到时间
- * @property sign_days_series $int 持续签到天数
- * @property pay_password $string 交易密码
- * @property order_money $float 付款后-消费金额
- * @property order_complete_money $float 订单完成-消费金额
- * @property order_num $int 付款后-消费次数
- * @property order_complete_num $int 订单完成-消费次数
- * @property balance_withdraw_apply $float 提现中余额
+ * @property growth $float 贡献值
+ * @property balance_money $float 现金余额
+ * @property balance_cash $float 现金卷余额
+ * @property balance_deduct $float 抵扣券余额
  * @property balance_withdraw $float 已提现余额
+ * @property balance_withdraw_apply $float 提现中余额
+ * @property is_auth $int 是否认证
+ * @property pay_password $string 交易密码
+ * @property Invite_code $string 邀请码
+ * @property create_time $int 注册时间
+ * @property update_time $int 更新时间
+ * @property delete_time $int 删除时间
  */
 abstract class UserAbstract extends Model
 {
 	use BaseOptionsTrait;
 	use RewriteTrait;
+	use SoftDelete;
 
 	/**
 	 * @var string $name 表名
@@ -82,16 +77,14 @@ abstract class UserAbstract extends Model
 	/**
 	 * @var string $pk 主键
 	 */
-	public $pk = 'member_id';
+	public $pk = 'id';
 
 	/**
 	 * @var array $schema 字段信息
 	 */
 	protected $schema = [
-		'member_id' => 'int',
-		'source_member' => 'int',
-		'fenxiao_id' => 'int',
-		'is_fenxiao' => 'int',
+		'id' => 'int',
+		'parent' => 'int',
 		'username' => 'string',
 		'nickname' => 'string',
 		'mobile' => 'string',
@@ -99,11 +92,9 @@ abstract class UserAbstract extends Model
 		'password' => 'string',
 		'status' => 'int',
 		'avatar' => 'string',
-		'member_level' => 'int',
-		'member_level_name' => 'string',
-		'member_label' => 'string',
+		'level_id' => 'int',
 		'wx_openid' => 'string',
-		'wx_number' => 'string',
+		'wx_account' => 'string',
 		'weapp_openid' => 'string',
 		'wx_unionid' => 'string',
 		'ali_openid' => 'string',
@@ -118,52 +109,32 @@ abstract class UserAbstract extends Model
 		'sex' => 'int',
 		'location' => 'string',
 		'birthday' => 'int',
-		'reg_time' => 'int',
 		'point' => 'float',
-		'balance' => 'float',
 		'growth' => 'float',
 		'balance_money' => 'float',
-		'account5' => 'float',
-		'is_auth' => 'int',
-		'sign_time' => 'int',
-		'sign_days_series' => 'int',
-		'pay_password' => 'string',
-		'order_money' => 'float',
-		'order_complete_money' => 'float',
-		'order_num' => 'int',
-		'order_complete_num' => 'int',
-		'balance_withdraw_apply' => 'float',
+		'balance_cash' => 'float',
+		'balance_deduct' => 'float',
 		'balance_withdraw' => 'float',
+		'balance_withdraw_apply' => 'float',
+		'is_auth' => 'int',
+		'pay_password' => 'string',
+		'Invite_code' => 'string',
+		'create_time' => 'int',
+		'update_time' => 'int',
+		'delete_time' => 'int',
 	];
 
 	/**
 	 * @var array $json JSON类型字段
 	 */
-	protected $json = ['member_label'];
-
-	/**
-	 * @var array $json JSON字段自动转数组
-	 */
-	protected $jsonAssoc = true;
-
-	/**
-	 * @var array $createTime 关闭创建时间自动写入
-	 */
-	protected $createTime = false;
-
-	/**
-	 * @var array $updateTime 关闭更新时间自动写入
-	 */
-	protected $updateTime = false;
+	protected $json = [];
 
 	/**
 	 * @var array $field 允许写入字段
 	 */
 	public $field = [
-		'member_id',
-		'source_member',
-		'fenxiao_id',
-		'is_fenxiao',
+		'id',
+		'parent',
 		'username',
 		'nickname',
 		'mobile',
@@ -171,11 +142,9 @@ abstract class UserAbstract extends Model
 		'password',
 		'status',
 		'avatar',
-		'member_level',
-		'member_level_name',
-		'member_label',
+		'level_id',
 		'wx_openid',
-		'wx_number',
+		'wx_account',
 		'weapp_openid',
 		'wx_unionid',
 		'ali_openid',
@@ -190,21 +159,18 @@ abstract class UserAbstract extends Model
 		'sex',
 		'location',
 		'birthday',
-		'reg_time',
 		'point',
-		'balance',
 		'growth',
 		'balance_money',
-		'account5',
-		'is_auth',
-		'sign_time',
-		'sign_days_series',
-		'pay_password',
-		'order_money',
-		'order_complete_money',
-		'order_num',
-		'order_complete_num',
-		'balance_withdraw_apply',
+		'balance_cash',
+		'balance_deduct',
 		'balance_withdraw',
+		'balance_withdraw_apply',
+		'is_auth',
+		'pay_password',
+		'Invite_code',
+		'create_time',
+		'update_time',
+		'delete_time',
 	];
 }

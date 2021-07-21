@@ -25,7 +25,7 @@ use littler\traits\RewriteTrait;
  * @property level_id $int 会员等级
  * @property level_name $string 等级名称
  * @property sort $int 等级排序列
- * @property growth $float 所需成长值
+ * @property level_money $float 升级金额
  * @property remark $string 备注
  * @property is_default $int 是否默认，0：否，1：是
  */
@@ -51,7 +51,7 @@ abstract class LevelAbstract extends Model
 		'level_id' => 'int',
 		'level_name' => 'string',
 		'sort' => 'int',
-		'growth' => 'float',
+		'level_money' => 'float',
 		'remark' => 'string',
 		'is_default' => 'int',
 	];
@@ -74,5 +74,5 @@ abstract class LevelAbstract extends Model
 	/**
 	 * @var array $field 允许写入字段
 	 */
-	public $field = ['level_id', 'level_name', 'sort', 'growth', 'remark', 'is_default'];
+	public $field = ['level_id', 'level_name', 'sort', 'level_money', 'remark', 'is_default'];
 }

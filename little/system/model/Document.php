@@ -50,14 +50,6 @@ class Document extends DocumentAbstract
 				'defaultHidden' => false,
 			],
 			[
-				'title' => '应用模块',
-				'dataIndex' => 'app_module',
-				'width' => 180,
-				'fixed' => false,
-				'align' => 'center',
-				'defaultHidden' => false,
-			],
-			[
 				'title' => '关键字',
 				'dataIndex' => 'document_key',
 				'width' => 180,
@@ -136,13 +128,6 @@ class Document extends DocumentAbstract
 			[
 				'field' => 'site_id',
 				'label' => '站点id（店铺，分站）,总平台端为0',
-				'component' => 'Input',
-				'required' => true,
-				'colProps' => ['lg' => 12, 'xl' => 8, 'xxl' => 6],
-			],
-			[
-				'field' => 'app_module',
-				'label' => '应用模块',
 				'component' => 'Input',
 				'required' => true,
 				'colProps' => ['lg' => 12, 'xl' => 8, 'xxl' => 6],

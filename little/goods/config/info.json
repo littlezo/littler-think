@@ -13,7 +13,7 @@
 	"dev_mode": true,
 	"author": "@小小只^v^",
 	"content": "",
-	"version_no": "20210719",
-    "ignore": ["goods_attr_has","goods_cart","goods_collect","goods_sku"],
+	"version_no": "20210721",
+    "ignore": ["goods_attr_has","goods_attribute","goods_attribute_value","goods_cart","goods_category","goods_collect","goods_evaluate","goods_goods","goods_sku"],
     "allow_layer": ["admin"]
 }

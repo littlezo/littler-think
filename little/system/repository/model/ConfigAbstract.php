@@ -24,7 +24,6 @@ use littler\traits\RewriteTrait;
 /**
  * @property id $int 主键
  * @property site_id $int 站点id（店铺，分站）,总平台端为0
- * @property module $string 应用端口关键字
  * @property config_key $string 配置项关键字
  * @property value $string 配置值json
  * @property config_desc $string 描述
@@ -53,7 +52,6 @@ abstract class ConfigAbstract extends Model
 	protected $schema = [
 		'id' => 'int',
 		'site_id' => 'int',
-		'module' => 'string',
 		'config_key' => 'string',
 		'value' => 'string',
 		'config_desc' => 'string',
@@ -70,15 +68,5 @@ abstract class ConfigAbstract extends Model
 	/**
 	 * @var array $field 允许写入字段
 	 */
-	public $field = [
-		'id',
-		'site_id',
-		'module',
-		'config_key',
-		'value',
-		'config_desc',
-		'is_use',
-		'create_time',
-		'update_time',
-	];
+	public $field = ['id', 'site_id', 'config_key', 'value', 'config_desc', 'is_use', 'create_time', 'update_time'];
 }
