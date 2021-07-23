@@ -82,7 +82,7 @@ class Logs extends LogsAbstract
 				'defaultHidden' => false,
 			],
 			[
-				'title' => 'ActionWay',
+				'title' => '操作内容',
 				'dataIndex' => 'action_way',
 				'width' => 100,
 				'fixed' => false,
@@ -106,9 +106,9 @@ class Logs extends LogsAbstract
 				'defaultHidden' => false,
 			],
 			[
-				'title' => '操作端口  shop 店铺  admin 平台  member 会员',
-				'dataIndex' => 'module',
-				'width' => 180,
+				'title' => '操作端口  1 店铺  2 平台  3 会员',
+				'dataIndex' => 'action_type',
+				'width' => 100,
 				'fixed' => false,
 				'align' => 'center',
 				'defaultHidden' => false,
@@ -186,7 +186,7 @@ class Logs extends LogsAbstract
 			],
 			[
 				'field' => 'action_way',
-				'label' => 'ActionWay',
+				'label' => '操作内容',
 				'component' => 'Input',
 				'required' => true,
 				'colProps' => ['lg' => 12, 'xl' => 8, 'xxl' => 6],
@@ -206,8 +206,8 @@ class Logs extends LogsAbstract
 				'colProps' => ['lg' => 12, 'xl' => 8, 'xxl' => 6],
 			],
 			[
-				'field' => 'module',
-				'label' => '操作端口  shop 店铺  admin 平台  member 会员',
+				'field' => 'action_type',
+				'label' => '操作端口  1 店铺  2 平台  3 会员',
 				'component' => 'Input',
 				'required' => true,
 				'colProps' => ['lg' => 12, 'xl' => 8, 'xxl' => 6],

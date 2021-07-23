@@ -23,13 +23,17 @@ use littler\traits\RewriteTrait;
 
 /**
  * @property id $int
- * @property order_goods_id $int 订单项id
- * @property refund_status $int 退款状态
- * @property refund_status_name $string 退款状态名称
+ * @property order_id $int 订单商品
+ * @property refund_no $string 退款订单号
+ * @property refund_money $float 退款金额
+ * @property refund_shop_money $float 退款商户金额
+ * @property refund_platform_money $float 退款平台金额
+ * @property refund_real_money $float 实际退款金额
+ * @property refund_type $int 退款方式 1 原路退款 2线下退款
+ * @property refund_status $int 退款状态 1退款中 2已退款
  * @property action $string 操作内容
  * @property action_way $int 操作类型1买家2卖家
  * @property action_userid $int 操作人id
- * @property username $string 操作人名称
  * @property action_time $int 操作时间
  */
 abstract class RefundAbstract extends Model
@@ -52,13 +56,17 @@ abstract class RefundAbstract extends Model
 	 */
 	protected $schema = [
 		'id' => 'int',
-		'order_goods_id' => 'int',
+		'order_id' => 'int',
+		'refund_no' => 'string',
+		'refund_money' => 'float',
+		'refund_shop_money' => 'float',
+		'refund_platform_money' => 'float',
+		'refund_real_money' => 'float',
+		'refund_type' => 'int',
 		'refund_status' => 'int',
-		'refund_status_name' => 'string',
 		'action' => 'string',
 		'action_way' => 'int',
 		'action_userid' => 'int',
-		'username' => 'string',
 		'action_time' => 'int',
 	];
 
@@ -82,13 +90,17 @@ abstract class RefundAbstract extends Model
 	 */
 	public $field = [
 		'id',
-		'order_goods_id',
+		'order_id',
+		'refund_no',
+		'refund_money',
+		'refund_shop_money',
+		'refund_platform_money',
+		'refund_real_money',
+		'refund_type',
 		'refund_status',
-		'refund_status_name',
 		'action',
 		'action_way',
 		'action_userid',
-		'username',
 		'action_time',
 	];
 }

@@ -84,18 +84,18 @@ class Pay extends PayAbstract
 			[
 				'title' => '支付主体',
 				'dataIndex' => 'pay_body',
-				'width' => 180,
+				'width' => 80,
 				'fixed' => false,
 				'align' => 'center',
-				'defaultHidden' => false,
+				'defaultHidden' => true,
 			],
 			[
 				'title' => '支付详情',
 				'dataIndex' => 'pay_detail',
-				'width' => 180,
+				'width' => 80,
 				'fixed' => false,
 				'align' => 'center',
-				'defaultHidden' => false,
+				'defaultHidden' => true,
 			],
 			[
 				'title' => '支付金额',
@@ -106,20 +106,12 @@ class Pay extends PayAbstract
 				'defaultHidden' => false,
 			],
 			[
-				'title' => '支付插件',
-				'dataIndex' => 'pay_addon',
-				'width' => 180,
-				'fixed' => false,
-				'align' => 'center',
-				'defaultHidden' => false,
-			],
-			[
 				'title' => '支付票据',
 				'dataIndex' => 'pay_voucher',
-				'width' => 180,
+				'width' => 80,
 				'fixed' => false,
 				'align' => 'center',
-				'defaultHidden' => false,
+				'defaultHidden' => true,
 			],
 			[
 				'title' => '支付状态（0.待支付 1. 支付中 2. 已支付 -1已取消）',
@@ -148,10 +140,10 @@ class Pay extends PayAbstract
 			[
 				'title' => '商户信息',
 				'dataIndex' => 'mch_info',
-				'width' => 180,
+				'width' => 80,
 				'fixed' => false,
 				'align' => 'center',
-				'defaultHidden' => false,
+				'defaultHidden' => true,
 			],
 			[
 				'title' => '创建时间',
@@ -244,14 +236,14 @@ class Pay extends PayAbstract
 				'field' => 'pay_body',
 				'label' => '支付主体',
 				'component' => 'Input',
-				'required' => true,
+				'required' => false,
 				'colProps' => ['lg' => 12, 'xl' => 8, 'xxl' => 6],
 			],
 			[
 				'field' => 'pay_detail',
 				'label' => '支付详情',
 				'component' => 'Input',
-				'required' => true,
+				'required' => false,
 				'colProps' => ['lg' => 12, 'xl' => 8, 'xxl' => 6],
 			],
 			[
@@ -262,17 +254,10 @@ class Pay extends PayAbstract
 				'colProps' => ['lg' => 12, 'xl' => 8, 'xxl' => 6],
 			],
 			[
-				'field' => 'pay_addon',
-				'label' => '支付插件',
-				'component' => 'Input',
-				'required' => true,
-				'colProps' => ['lg' => 12, 'xl' => 8, 'xxl' => 6],
-			],
-			[
 				'field' => 'pay_voucher',
 				'label' => '支付票据',
 				'component' => 'Input',
-				'required' => true,
+				'required' => false,
 				'colProps' => ['lg' => 12, 'xl' => 8, 'xxl' => 6],
 			],
 			[
@@ -300,7 +285,7 @@ class Pay extends PayAbstract
 				'field' => 'mch_info',
 				'label' => '商户信息',
 				'component' => 'Input',
-				'required' => true,
+				'required' => false,
 				'colProps' => ['lg' => 12, 'xl' => 8, 'xxl' => 6],
 			],
 			[

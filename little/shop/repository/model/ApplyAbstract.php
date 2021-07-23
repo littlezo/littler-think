@@ -24,25 +24,21 @@ use littler\traits\RewriteTrait;
 /**
  * @property apply_id $int
  * @property apply_no $string 申请编号
- * @property site_id $int 店铺id
- * @property member_id $int 申请会员id
- * @property member_name $string 会员名称 取昵称字段
+ * @property site_id $int 店铺
+ * @property member_id $int 申请会员
  * @property cert_id $int 认证信息
+ * @property username $string 账号
  * @property shop_name $string 申请店铺名称
- * @property apply_state $int 申请状态 1. 待审核 2. 财务凭据审核中  3. 开店通过 -1.审核失败 -2 财务审核拒绝
- * @property apply_message $string 管理员审核信息
- * @property apply_year $int 开店时长(年)
- * @property category_id $int 店铺分类id
- * @property level_id $int 申请店铺等级
- * @property paying_money_certificate $string 付款凭证
- * @property paying_money_certificate_explain $string 付款凭证说明
- * @property paying_deposit $float 保证金
- * @property paying_apply $float 开店费用
- * @property paying_amount $float 付款金额
+ * @property apply_status $string 申请状态 1. 待审核 2. 财务凭据审核中  3. 开店通过 -1.审核失败 -2 财务审核拒绝
+ * @property apply_remark $string 管理员审核信息
+ * @property category_id $int 店铺分类
+ * @property pay_certificate $string 付款凭证
+ * @property pay_certificate_remark $string 付款凭证说明
+ * @property security_deposit $float 保证金
+ * @property pay_money $float 付款金额
  * @property create_time $int 创建时间
  * @property audit_time $int 审核通过时间
  * @property finish_time $int 创建成功时间
- * @property username $string 账号
  */
 abstract class ApplyAbstract extends Model
 {
@@ -67,23 +63,19 @@ abstract class ApplyAbstract extends Model
 		'apply_no' => 'string',
 		'site_id' => 'int',
 		'member_id' => 'int',
-		'member_name' => 'string',
 		'cert_id' => 'int',
+		'username' => 'string',
 		'shop_name' => 'string',
-		'apply_state' => 'int',
-		'apply_message' => 'string',
-		'apply_year' => 'int',
+		'apply_status' => 'string',
+		'apply_remark' => 'string',
 		'category_id' => 'int',
-		'level_id' => 'int',
-		'paying_money_certificate' => 'string',
-		'paying_money_certificate_explain' => 'string',
-		'paying_deposit' => 'float',
-		'paying_apply' => 'float',
-		'paying_amount' => 'float',
+		'pay_certificate' => 'string',
+		'pay_certificate_remark' => 'string',
+		'security_deposit' => 'float',
+		'pay_money' => 'float',
 		'create_time' => 'int',
 		'audit_time' => 'int',
 		'finish_time' => 'int',
-		'username' => 'string',
 	];
 
 	/**
@@ -104,22 +96,18 @@ abstract class ApplyAbstract extends Model
 		'apply_no',
 		'site_id',
 		'member_id',
-		'member_name',
 		'cert_id',
+		'username',
 		'shop_name',
-		'apply_state',
-		'apply_message',
-		'apply_year',
+		'apply_status',
+		'apply_remark',
 		'category_id',
-		'level_id',
-		'paying_money_certificate',
-		'paying_money_certificate_explain',
-		'paying_deposit',
-		'paying_apply',
-		'paying_amount',
+		'pay_certificate',
+		'pay_certificate_remark',
+		'security_deposit',
+		'pay_money',
 		'create_time',
 		'audit_time',
 		'finish_time',
-		'username',
 	];
 }

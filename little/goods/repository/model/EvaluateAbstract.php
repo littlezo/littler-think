@@ -24,26 +24,19 @@ use littler\traits\RewriteTrait;
 /**
  * @property evaluate_id $int 评价ID
  * @property site_id $int 站点id
- * @property website_id $int 分站id
  * @property order_id $int 订单ID
  * @property order_no $int 订单编号
- * @property order_goods_id $int 订单项ID
+ * @property order_goods_id $int 订单商品ID
  * @property goods_id $int 商品ID
  * @property sku_id $int 商品skuid
- * @property sku_name $string 商品名称
- * @property sku_price $float 商品价格
- * @property sku_image $string 商品图片
  * @property content $string 评价内容
  * @property images $string 评价图片
- * @property explain_first $string 解释内容
  * @property member_id $int 评价人id
  * @property member_name $string 评价人名称
- * @property member_headimg $string 评价人头像
  * @property is_anonymous $int 0表示不是 1表示是匿名评价
  * @property scores $int 1-5分
  * @property again_content $string 追加评价内容
  * @property again_images $string 追评评价图片
- * @property again_explain $string 追加解释内容
  * @property explain_type $int 1好评2中评3差评
  * @property is_show $int 1显示 0隐藏
  * @property create_time $int 评价时间
@@ -73,26 +66,19 @@ abstract class EvaluateAbstract extends Model
 	protected $schema = [
 		'evaluate_id' => 'int',
 		'site_id' => 'int',
-		'website_id' => 'int',
 		'order_id' => 'int',
 		'order_no' => 'int',
 		'order_goods_id' => 'int',
 		'goods_id' => 'int',
 		'sku_id' => 'int',
-		'sku_name' => 'string',
-		'sku_price' => 'float',
-		'sku_image' => 'string',
 		'content' => 'string',
 		'images' => 'string',
-		'explain_first' => 'string',
 		'member_id' => 'int',
 		'member_name' => 'string',
-		'member_headimg' => 'string',
 		'is_anonymous' => 'int',
 		'scores' => 'int',
 		'again_content' => 'string',
 		'again_images' => 'string',
-		'again_explain' => 'string',
 		'explain_type' => 'int',
 		'is_show' => 'int',
 		'create_time' => 'int',
@@ -118,26 +104,19 @@ abstract class EvaluateAbstract extends Model
 	public $field = [
 		'evaluate_id',
 		'site_id',
-		'website_id',
 		'order_id',
 		'order_no',
 		'order_goods_id',
 		'goods_id',
 		'sku_id',
-		'sku_name',
-		'sku_price',
-		'sku_image',
 		'content',
 		'images',
-		'explain_first',
 		'member_id',
 		'member_name',
-		'member_headimg',
 		'is_anonymous',
 		'scores',
 		'again_content',
 		'again_images',
-		'again_explain',
 		'explain_type',
 		'is_show',
 		'create_time',

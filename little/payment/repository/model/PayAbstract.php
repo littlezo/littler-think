@@ -31,7 +31,6 @@ use littler\traits\RewriteTrait;
  * @property pay_body $string 支付主体
  * @property pay_detail $string 支付详情
  * @property pay_money $float 支付金额
- * @property pay_addon $string 支付插件
  * @property pay_voucher $string 支付票据
  * @property pay_status $int 支付状态（0.待支付 1. 支付中 2. 已支付 -1已取消）
  * @property return_url $string 同步回调网址
@@ -68,7 +67,6 @@ abstract class PayAbstract extends Model
 		'pay_body' => 'string',
 		'pay_detail' => 'string',
 		'pay_money' => 'float',
-		'pay_addon' => 'string',
 		'pay_voucher' => 'string',
 		'pay_status' => 'int',
 		'return_url' => 'string',
@@ -81,7 +79,12 @@ abstract class PayAbstract extends Model
 	/**
 	 * @var array $json JSON类型字段
 	 */
-	protected $json = [];
+	protected $json = ['pay_body', 'pay_detail', 'pay_voucher', 'mch_info'];
+
+	/**
+	 * @var array $json JSON字段自动转数组
+	 */
+	protected $jsonAssoc = true;
 
 	/**
 	 * @var array $updateTime 关闭更新时间自动写入
@@ -101,7 +104,6 @@ abstract class PayAbstract extends Model
 		'pay_body',
 		'pay_detail',
 		'pay_money',
-		'pay_addon',
 		'pay_voucher',
 		'pay_status',
 		'return_url',

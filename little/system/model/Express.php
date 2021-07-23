@@ -83,14 +83,6 @@ class Express extends ExpressAbstract
 			],
 			[
 				'title' => '快递100编码',
-				'dataIndex' => 'express_no_kd100_free',
-				'width' => 180,
-				'fixed' => false,
-				'align' => 'center',
-				'defaultHidden' => false,
-			],
-			[
-				'title' => '快递100编码',
 				'dataIndex' => 'express_no_kd100',
 				'width' => 180,
 				'fixed' => false,
@@ -265,13 +257,6 @@ class Express extends ExpressAbstract
 			[
 				'field' => 'express_no_kdniao',
 				'label' => '快递鸟编码',
-				'component' => 'Input',
-				'required' => true,
-				'colProps' => ['lg' => 12, 'xl' => 8, 'xxl' => 6],
-			],
-			[
-				'field' => 'express_no_kd100_free',
-				'label' => '快递100编码',
 				'component' => 'Input',
 				'required' => true,
 				'colProps' => ['lg' => 12, 'xl' => 8, 'xxl' => 6],

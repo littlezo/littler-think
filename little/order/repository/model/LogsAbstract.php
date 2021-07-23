@@ -28,10 +28,10 @@ use littler\traits\RewriteTrait;
  * @property uid $int 操作人id
  * @property nick_name $string 操作元
  * @property order_status $int 订单状态
- * @property action_way $int
+ * @property action_way $int 操作内容
  * @property order_status_name $string 订单状态名称
  * @property action_time $int 操作时间
- * @property module $string 操作端口  shop 店铺  admin 平台  member 会员
+ * @property action_type $int 操作端口  1 店铺  2 平台  3 会员
  */
 abstract class LogsAbstract extends Model
 {
@@ -61,7 +61,7 @@ abstract class LogsAbstract extends Model
 		'action_way' => 'int',
 		'order_status_name' => 'string',
 		'action_time' => 'int',
-		'module' => 'string',
+		'action_type' => 'int',
 	];
 
 	/**
@@ -92,6 +92,6 @@ abstract class LogsAbstract extends Model
 		'action_way',
 		'order_status_name',
 		'action_time',
-		'module',
+		'action_type',
 	];
 }

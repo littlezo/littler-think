@@ -51,7 +51,7 @@ class Category extends CategoryAbstract
 			],
 			[
 				'title' => '保证金',
-				'dataIndex' => 'baozheng_money',
+				'dataIndex' => 'security_deposit',
 				'width' => 100,
 				'fixed' => false,
 				'align' => 'center',
@@ -114,7 +114,7 @@ class Category extends CategoryAbstract
 				'colProps' => ['lg' => 12, 'xl' => 8, 'xxl' => 6],
 			],
 			[
-				'field' => 'baozheng_money',
+				'field' => 'security_deposit',
 				'label' => '保证金',
 				'component' => 'Input',
 				'required' => true,

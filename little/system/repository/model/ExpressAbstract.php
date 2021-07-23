@@ -28,7 +28,6 @@ use littler\traits\RewriteTrait;
  * @property url $string 物流公司网址
  * @property sort $int 排序
  * @property express_no_kdniao $string 快递鸟编码
- * @property express_no_kd100_free $string 快递100编码
  * @property express_no_kd100 $string 快递100编码
  * @property express_no_cainiao $string 菜鸟物流接口编码
  * @property express_no_ext $string 快递查询接口编码
@@ -68,7 +67,6 @@ abstract class ExpressAbstract extends Model
 		'url' => 'string',
 		'sort' => 'int',
 		'express_no_kdniao' => 'string',
-		'express_no_kd100_free' => 'string',
 		'express_no_kd100' => 'string',
 		'express_no_cainiao' => 'string',
 		'express_no_ext' => 'string',
@@ -99,7 +97,6 @@ abstract class ExpressAbstract extends Model
 		'url',
 		'sort',
 		'express_no_kdniao',
-		'express_no_kd100_free',
 		'express_no_kd100',
 		'express_no_cainiao',
 		'express_no_ext',

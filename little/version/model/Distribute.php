@@ -7,7 +7,7 @@
  * @version 1.0.0
  * @author @小小只^v^ <littlezov@qq.com>  littlezov@qq.com
  * @contact  littlezov@qq.com
- * @link     https://github.com/littlezo
+ * @see     https://github.com/littlezo
  * @document https://github.com/littlezo/wiki
  * @license  https://github.com/littlezo/MozillaPublicLicense/blob/main/LICENSE
  */
@@ -17,9 +17,10 @@ declare(strict_types=1);
 namespace little\version\model;
 
 use little\version\repository\model\DistributeAbstract;
+use think\facade\Request as FacadeRequest;
 
 /**
- * 版本分发 模型
+ * 版本分发 模型.
  */
 class Distribute extends DistributeAbstract
 {
@@ -264,4 +265,11 @@ class Distribute extends DistributeAbstract
 	 * @var array 排除展示字段
 	 */
 	public $without = ['password', 'passwd', 'pay_passwd', 'pay_password'];
+
+	public function getUrlAttr($value)
+	{
+		// return 'http://' . FacadeRequest::host() . '/' . $value;
+		// dd($value);
+		return $value;
+	}
 }

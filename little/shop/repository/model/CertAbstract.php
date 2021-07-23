@@ -34,22 +34,17 @@ use littler\traits\RewriteTrait;
  * @property contacts_name $string 联系人姓名
  * @property contacts_mobile $string 联系人手机
  * @property contacts_card_no $string 联系人身份证
- * @property contacts_card_electronic_1 $string 申请人手持身份证电子版
- * @property contacts_card_electronic_2 $string 申请人身份证正面
- * @property contacts_card_electronic_3 $string 申请人身份证反面
+ * @property contacts_card_hand $string 申请人手持身份证电子版
+ * @property contacts_card_positive $string 申请人身份证正面
+ * @property contacts_card_back $string 申请人身份证反面
  * @property business_licence_number $string 统一社会信用码
  * @property business_licence_number_electronic $string 营业执照电子版
  * @property business_sphere $string 法定经营范围
- * @property taxpayer_id $string 纳税人识别号
- * @property general_taxpayer $string 一般纳税人证明
- * @property tax_registration_certificate $string 税务登记证号
- * @property tax_registration_certificate_electronic $string 税务登记证号电子版
  * @property bank_account_name $string 银行开户名
  * @property bank_account_number $string 公司银行账号
  * @property bank_name $string 开户银行支行名称
  * @property bank_address $string 开户银行所在地
- * @property bank_code $string 支行联行号
- * @property bank_type $int 结算账户类型  1银行卡 2 支付宝
+ * @property bank_type $int 结算账户类型  1微信 2 支付宝 3银行卡
  * @property settlement_bank_account_name $string 结算银行开户名
  * @property settlement_bank_account_number $string 结算公司银行账号
  * @property settlement_bank_name $string 结算开户银行支行名称
@@ -86,21 +81,16 @@ abstract class CertAbstract extends Model
 		'contacts_name' => 'string',
 		'contacts_mobile' => 'string',
 		'contacts_card_no' => 'string',
-		'contacts_card_electronic_1' => 'string',
-		'contacts_card_electronic_2' => 'string',
-		'contacts_card_electronic_3' => 'string',
+		'contacts_card_hand' => 'string',
+		'contacts_card_positive' => 'string',
+		'contacts_card_back' => 'string',
 		'business_licence_number' => 'string',
 		'business_licence_number_electronic' => 'string',
 		'business_sphere' => 'string',
-		'taxpayer_id' => 'string',
-		'general_taxpayer' => 'string',
-		'tax_registration_certificate' => 'string',
-		'tax_registration_certificate_electronic' => 'string',
 		'bank_account_name' => 'string',
 		'bank_account_number' => 'string',
 		'bank_name' => 'string',
 		'bank_address' => 'string',
-		'bank_code' => 'string',
 		'bank_type' => 'int',
 		'settlement_bank_account_name' => 'string',
 		'settlement_bank_account_number' => 'string',
@@ -139,21 +129,16 @@ abstract class CertAbstract extends Model
 		'contacts_name',
 		'contacts_mobile',
 		'contacts_card_no',
-		'contacts_card_electronic_1',
-		'contacts_card_electronic_2',
-		'contacts_card_electronic_3',
+		'contacts_card_hand',
+		'contacts_card_positive',
+		'contacts_card_back',
 		'business_licence_number',
 		'business_licence_number_electronic',
 		'business_sphere',
-		'taxpayer_id',
-		'general_taxpayer',
-		'tax_registration_certificate',
-		'tax_registration_certificate_electronic',
 		'bank_account_name',
 		'bank_account_number',
 		'bank_name',
 		'bank_address',
-		'bank_code',
 		'bank_type',
 		'settlement_bank_account_name',
 		'settlement_bank_account_number',

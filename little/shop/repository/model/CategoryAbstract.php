@@ -24,7 +24,7 @@ use littler\traits\RewriteTrait;
 /**
  * @property category_id $int
  * @property category_name $string 分类名称
- * @property baozheng_money $float 保证金
+ * @property security_deposit $float 保证金
  * @property sort $int 排序
  */
 abstract class CategoryAbstract extends Model
@@ -45,7 +45,12 @@ abstract class CategoryAbstract extends Model
 	/**
 	 * @var array $schema 字段信息
 	 */
-	protected $schema = ['category_id' => 'int', 'category_name' => 'string', 'baozheng_money' => 'float', 'sort' => 'int'];
+	protected $schema = [
+		'category_id' => 'int',
+		'category_name' => 'string',
+		'security_deposit' => 'float',
+		'sort' => 'int',
+	];
 
 	/**
 	 * @var array $json JSON类型字段
@@ -65,5 +70,5 @@ abstract class CategoryAbstract extends Model
 	/**
 	 * @var array $field 允许写入字段
 	 */
-	public $field = ['category_id', 'category_name', 'baozheng_money', 'sort'];
+	public $field = ['category_id', 'category_name', 'security_deposit', 'sort'];
 }

@@ -13,7 +13,7 @@
 	"dev_mode": true,
 	"author": "@小小只^v^",
 	"content": "",
-	"version_no": "20210721",
+	"version_no": "20210723",
     "ignore": ["member_auth","member_balance","member_bank","member_level","member_user"],
     "allow_layer": ["admin"]
 }

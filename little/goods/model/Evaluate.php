@@ -50,14 +50,6 @@ class Evaluate extends EvaluateAbstract
 				'defaultHidden' => false,
 			],
 			[
-				'title' => '分站id',
-				'dataIndex' => 'website_id',
-				'width' => 100,
-				'fixed' => false,
-				'align' => 'center',
-				'defaultHidden' => false,
-			],
-			[
 				'title' => '订单ID',
 				'dataIndex' => 'order_id',
 				'width' => 100,
@@ -74,7 +66,7 @@ class Evaluate extends EvaluateAbstract
 				'defaultHidden' => false,
 			],
 			[
-				'title' => '订单项ID',
+				'title' => '订单商品ID',
 				'dataIndex' => 'order_goods_id',
 				'width' => 100,
 				'fixed' => false,
@@ -98,30 +90,6 @@ class Evaluate extends EvaluateAbstract
 				'defaultHidden' => false,
 			],
 			[
-				'title' => '商品名称',
-				'dataIndex' => 'sku_name',
-				'width' => 180,
-				'fixed' => false,
-				'align' => 'center',
-				'defaultHidden' => false,
-			],
-			[
-				'title' => '商品价格',
-				'dataIndex' => 'sku_price',
-				'width' => 100,
-				'fixed' => false,
-				'align' => 'center',
-				'defaultHidden' => false,
-			],
-			[
-				'title' => '商品图片',
-				'dataIndex' => 'sku_image',
-				'width' => 180,
-				'fixed' => false,
-				'align' => 'center',
-				'defaultHidden' => false,
-			],
-			[
 				'title' => '评价内容',
 				'dataIndex' => 'content',
 				'width' => 180,
@@ -132,14 +100,6 @@ class Evaluate extends EvaluateAbstract
 			[
 				'title' => '评价图片',
 				'dataIndex' => 'images',
-				'width' => 180,
-				'fixed' => false,
-				'align' => 'center',
-				'defaultHidden' => false,
-			],
-			[
-				'title' => '解释内容',
-				'dataIndex' => 'explain_first',
 				'width' => 180,
 				'fixed' => false,
 				'align' => 'center',
@@ -160,15 +120,6 @@ class Evaluate extends EvaluateAbstract
 				'fixed' => false,
 				'align' => 'center',
 				'defaultHidden' => false,
-			],
-			[
-				'title' => '评价人头像',
-				'dataIndex' => 'member_headimg',
-				'width' => 180,
-				'fixed' => false,
-				'align' => 'center',
-				'defaultHidden' => false,
-				'slots' => ['customRender' => 'img'],
 			],
 			[
 				'title' => '0表示不是 1表示是匿名评价',
@@ -197,14 +148,6 @@ class Evaluate extends EvaluateAbstract
 			[
 				'title' => '追评评价图片',
 				'dataIndex' => 'again_images',
-				'width' => 180,
-				'fixed' => false,
-				'align' => 'center',
-				'defaultHidden' => false,
-			],
-			[
-				'title' => '追加解释内容',
-				'dataIndex' => 'again_explain',
 				'width' => 180,
 				'fixed' => false,
 				'align' => 'center',
@@ -315,13 +258,6 @@ class Evaluate extends EvaluateAbstract
 				'colProps' => ['lg' => 12, 'xl' => 8, 'xxl' => 6],
 			],
 			[
-				'field' => 'website_id',
-				'label' => '分站id',
-				'component' => 'Input',
-				'required' => true,
-				'colProps' => ['lg' => 12, 'xl' => 8, 'xxl' => 6],
-			],
-			[
 				'field' => 'order_id',
 				'label' => '订单ID',
 				'component' => 'Input',
@@ -337,7 +273,7 @@ class Evaluate extends EvaluateAbstract
 			],
 			[
 				'field' => 'order_goods_id',
-				'label' => '订单项ID',
+				'label' => '订单商品ID',
 				'component' => 'Input',
 				'required' => true,
 				'colProps' => ['lg' => 12, 'xl' => 8, 'xxl' => 6],
@@ -357,27 +293,6 @@ class Evaluate extends EvaluateAbstract
 				'colProps' => ['lg' => 12, 'xl' => 8, 'xxl' => 6],
 			],
 			[
-				'field' => 'sku_name',
-				'label' => '商品名称',
-				'component' => 'Input',
-				'required' => true,
-				'colProps' => ['lg' => 12, 'xl' => 8, 'xxl' => 6],
-			],
-			[
-				'field' => 'sku_price',
-				'label' => '商品价格',
-				'component' => 'Input',
-				'required' => true,
-				'colProps' => ['lg' => 12, 'xl' => 8, 'xxl' => 6],
-			],
-			[
-				'field' => 'sku_image',
-				'label' => '商品图片',
-				'component' => 'Input',
-				'required' => true,
-				'colProps' => ['lg' => 12, 'xl' => 8, 'xxl' => 6],
-			],
-			[
 				'field' => 'content',
 				'label' => '评价内容',
 				'component' => 'Input',
@@ -392,13 +307,6 @@ class Evaluate extends EvaluateAbstract
 				'colProps' => ['lg' => 12, 'xl' => 8, 'xxl' => 6],
 			],
 			[
-				'field' => 'explain_first',
-				'label' => '解释内容',
-				'component' => 'Input',
-				'required' => true,
-				'colProps' => ['lg' => 12, 'xl' => 8, 'xxl' => 6],
-			],
-			[
 				'field' => 'member_id',
 				'label' => '评价人id',
 				'component' => 'Input',
@@ -408,13 +316,6 @@ class Evaluate extends EvaluateAbstract
 			[
 				'field' => 'member_name',
 				'label' => '评价人名称',
-				'component' => 'Input',
-				'required' => true,
-				'colProps' => ['lg' => 12, 'xl' => 8, 'xxl' => 6],
-			],
-			[
-				'field' => 'member_headimg',
-				'label' => '评价人头像',
 				'component' => 'Input',
 				'required' => true,
 				'colProps' => ['lg' => 12, 'xl' => 8, 'xxl' => 6],
@@ -443,13 +344,6 @@ class Evaluate extends EvaluateAbstract
 			[
 				'field' => 'again_images',
 				'label' => '追评评价图片',
-				'component' => 'Input',
-				'required' => true,
-				'colProps' => ['lg' => 12, 'xl' => 8, 'xxl' => 6],
-			],
-			[
-				'field' => 'again_explain',
-				'label' => '追加解释内容',
 				'component' => 'Input',
 				'required' => true,
 				'colProps' => ['lg' => 12, 'xl' => 8, 'xxl' => 6],
