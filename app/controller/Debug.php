@@ -33,7 +33,7 @@ use think\facade\Cache;
 /**
  * #title Debug
  * Class Debug.
- * @Group("debug")
+ * @Group("admin/debug")
  * @Middleware(littler\JWTAuth\Middleware\Jwt::class, "admin")
  * @ApiDocs({
  *     "title": "Debug",
@@ -57,7 +57,7 @@ class Debug extends Request
 
 	/**
 	 * #title 调试类.
-	 * @Route("/", method="GET", ignore_verify=true)
+	 * @Route("/", method="*", ignore_verify=true)
 	 * @return \think\Response
 	 *
 	 * @ApiDocs({
@@ -89,12 +89,14 @@ class Debug extends Request
 	 *      },
 	 *  })
 	 */
-	public function index()
+	public function index(Request $request)
 	{
-		// dd(Cache::get('menu'));
+		return Response::fail($request->param());
+		dd($request->param());
 		dd(Cache::get('apiDocs'));
 		dd(app()->enabledModules->get());
 		dd($this);
+		$flysystem = 'a';
 		try {
 			// return debug_backtrace(model('member.User')->getList());
 			return Response::success(model('member.User')->findBy(4));

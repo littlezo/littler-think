@@ -7,7 +7,7 @@
  * @version 1.0.0
  * @author @小小只^v^ <littlezov@qq.com>  littlezov@qq.com
  * @contact  littlezov@qq.com
- * @link     https://github.com/littlezo
+ * @see     https://github.com/littlezo
  * @document https://github.com/littlezo/wiki
  * @license  https://github.com/littlezo/MozillaPublicLicense/blob/main/LICENSE
  */
@@ -19,7 +19,7 @@ namespace little\member\model;
 use little\member\repository\model\UserAbstract;
 
 /**
- * 会员列表 模型
+ * 会员列表 模型.
  */
 class User extends UserAbstract
 {
@@ -82,7 +82,7 @@ class User extends UserAbstract
 				'defaultHidden' => false,
 			],
 			[
-				'title' => '用户密码（MD5）',
+				'title' => '用户密码',
 				'dataIndex' => 'password',
 				'width' => 180,
 				'fixed' => false,
@@ -100,11 +100,15 @@ class User extends UserAbstract
 			[
 				'title' => '用户头像',
 				'dataIndex' => 'avatar',
-				'width' => 150,
+				'width' => 180,
 				'fixed' => false,
 				'align' => 'center',
 				'defaultHidden' => false,
-				'slots' => ['customRender' => 'avatar'],
+				'customRender' => "({ record }) => {
+					console.log(record.avatar);
+					console.log(getImg(record.avatar));
+                    return h(ant('Avatar'), {size:60 ,src: getImg(record.avatar) });
+                }",
 			],
 			[
 				'title' => '用户等级',
@@ -155,62 +159,6 @@ class User extends UserAbstract
 				'defaultHidden' => true,
 			],
 			[
-				'title' => '当前登录ip',
-				'dataIndex' => 'login_ip',
-				'width' => 180,
-				'fixed' => false,
-				'align' => 'center',
-				'defaultHidden' => false,
-			],
-			[
-				'title' => '当前登录的操作终端类型',
-				'dataIndex' => 'login_type',
-				'width' => 180,
-				'fixed' => false,
-				'align' => 'center',
-				'defaultHidden' => false,
-			],
-			[
-				'title' => '当前登录时间',
-				'dataIndex' => 'login_time',
-				'width' => 120,
-				'fixed' => false,
-				'align' => 'center',
-				'defaultHidden' => false,
-			],
-			[
-				'title' => '上次登录ip',
-				'dataIndex' => 'last_login_ip',
-				'width' => 180,
-				'fixed' => false,
-				'align' => 'center',
-				'defaultHidden' => false,
-			],
-			[
-				'title' => '上次登录的操作终端类型',
-				'dataIndex' => 'last_login_type',
-				'width' => 160,
-				'fixed' => false,
-				'align' => 'center',
-				'defaultHidden' => false,
-			],
-			[
-				'title' => '上次登录时间',
-				'dataIndex' => 'last_login_time',
-				'width' => 120,
-				'fixed' => false,
-				'align' => 'center',
-				'defaultHidden' => false,
-			],
-			[
-				'title' => '登录次数',
-				'dataIndex' => 'login_num',
-				'width' => 100,
-				'fixed' => false,
-				'align' => 'center',
-				'defaultHidden' => false,
-			],
-			[
 				'title' => '真实姓名',
 				'dataIndex' => 'realname',
 				'width' => 180,
@@ -237,14 +185,6 @@ class User extends UserAbstract
 			[
 				'title' => '出生日期',
 				'dataIndex' => 'birthday',
-				'width' => 100,
-				'fixed' => false,
-				'align' => 'center',
-				'defaultHidden' => false,
-			],
-			[
-				'title' => '积分',
-				'dataIndex' => 'point',
 				'width' => 100,
 				'fixed' => false,
 				'align' => 'center',
@@ -330,14 +270,6 @@ class User extends UserAbstract
 				'align' => 'center',
 				'defaultHidden' => false,
 			],
-			[
-				'title' => '删除时间',
-				'dataIndex' => 'delete_time',
-				'width' => 120,
-				'fixed' => false,
-				'align' => 'center',
-				'defaultHidden' => false,
-			],
 		],
 		'formConfig' => [],
 		'pagination' => true,
@@ -377,9 +309,16 @@ class User extends UserAbstract
 			[
 				'field' => 'parent',
 				'label' => '推荐人',
-				'component' => 'Input',
+				'component' => 'ApiSelect',
 				'required' => true,
 				'colProps' => ['lg' => 12, 'xl' => 8, 'xxl' => 6],
+				'componentProps' => '() => {
+                    return {
+                        labelField: "nickname",
+                        valueField: "id",
+                        api: (argv) => api("get", "/member/user/list", argv),
+                    };
+                }',
 			],
 			[
 				'field' => 'username',
@@ -403,17 +342,17 @@ class User extends UserAbstract
 				'colProps' => ['lg' => 12, 'xl' => 8, 'xxl' => 6],
 			],
 			[
-				'field' => 'email',
-				'label' => '邮箱',
+				'field' => 'password',
+				'label' => '用户密码',
 				'component' => 'Input',
-				'required' => true,
+				'required' => false,
 				'colProps' => ['lg' => 12, 'xl' => 8, 'xxl' => 6],
 			],
 			[
-				'field' => 'password',
-				'label' => '用户密码（MD5）',
+				'field' => 'pay_password',
+				'label' => '交易密码',
 				'component' => 'Input',
-				'required' => true,
+				'required' => false,
 				'colProps' => ['lg' => 12, 'xl' => 8, 'xxl' => 6],
 			],
 			[
@@ -429,6 +368,37 @@ class User extends UserAbstract
 				'component' => 'Input',
 				'required' => true,
 				'colProps' => ['lg' => 12, 'xl' => 8, 'xxl' => 6],
+				'render' =>    '({ model, field }) => {
+                    return h(LzCropperAvatar,{
+                    uploadApi: (argv)=>uploadApi(argv),
+                    value: getImg(model[field]),
+                    onChange: (e) => {
+						console.log(model[field]);
+                        console.log(e.id,model,field);
+                        // console.log(e, model, field);
+                        model[field] = e.id;
+                    },
+                })}',
+				// 'render' => "({ model, field }) => {
+				//     return h(LzCropperAvatar, {
+				//         uploadApi: (argv)=>uploadApi(argv),
+				//         value: 'url',
+				//         onChange: (e: ChangeEvent) => {
+				//             console.log(e, model, field);
+				//             // model[field] = e.target.value;
+				//         },
+				//     });
+				// }",
+				// 'componentProps'=> [
+				// 	'api'=> '(argv)=>uploadApi(argv)',
+				// 	'uploadParams'=>[
+				// 		'group_id'=>0,
+				// 	],
+				// 	'multiple'=>false,
+				// 	'maxSize'=>10,
+				// 	'maxNumber'=>1,
+				// 	'showPreview'=>true,
+				// ],
 			],
 			[
 				'field' => 'level_id',
@@ -440,55 +410,6 @@ class User extends UserAbstract
 			[
 				'field' => 'wx_account',
 				'label' => '微信号',
-				'component' => 'Input',
-				'required' => true,
-				'colProps' => ['lg' => 12, 'xl' => 8, 'xxl' => 6],
-			],
-			[
-				'field' => 'login_ip',
-				'label' => '当前登录ip',
-				'component' => 'Input',
-				'required' => true,
-				'colProps' => ['lg' => 12, 'xl' => 8, 'xxl' => 6],
-			],
-			[
-				'field' => 'login_type',
-				'label' => '当前登录的操作终端类型',
-				'component' => 'Input',
-				'required' => true,
-				'colProps' => ['lg' => 12, 'xl' => 8, 'xxl' => 6],
-			],
-			[
-				'field' => 'login_time',
-				'label' => '当前登录时间',
-				'component' => 'Input',
-				'required' => true,
-				'colProps' => ['lg' => 12, 'xl' => 8, 'xxl' => 6],
-			],
-			[
-				'field' => 'last_login_ip',
-				'label' => '上次登录ip',
-				'component' => 'Input',
-				'required' => true,
-				'colProps' => ['lg' => 12, 'xl' => 8, 'xxl' => 6],
-			],
-			[
-				'field' => 'last_login_type',
-				'label' => '上次登录的操作终端类型',
-				'component' => 'Input',
-				'required' => true,
-				'colProps' => ['lg' => 12, 'xl' => 8, 'xxl' => 6],
-			],
-			[
-				'field' => 'last_login_time',
-				'label' => '上次登录时间',
-				'component' => 'Input',
-				'required' => true,
-				'colProps' => ['lg' => 12, 'xl' => 8, 'xxl' => 6],
-			],
-			[
-				'field' => 'login_num',
-				'label' => '登录次数',
 				'component' => 'Input',
 				'required' => true,
 				'colProps' => ['lg' => 12, 'xl' => 8, 'xxl' => 6],
@@ -508,106 +429,8 @@ class User extends UserAbstract
 				'colProps' => ['lg' => 12, 'xl' => 8, 'xxl' => 6],
 			],
 			[
-				'field' => 'location',
-				'label' => '地址',
-				'component' => 'Input',
-				'required' => true,
-				'colProps' => ['lg' => 12, 'xl' => 8, 'xxl' => 6],
-			],
-			[
 				'field' => 'birthday',
 				'label' => '出生日期',
-				'component' => 'Input',
-				'required' => true,
-				'colProps' => ['lg' => 12, 'xl' => 8, 'xxl' => 6],
-			],
-			[
-				'field' => 'point',
-				'label' => '积分',
-				'component' => 'Input',
-				'required' => true,
-				'colProps' => ['lg' => 12, 'xl' => 8, 'xxl' => 6],
-			],
-			[
-				'field' => 'growth',
-				'label' => '贡献值',
-				'component' => 'Input',
-				'required' => true,
-				'colProps' => ['lg' => 12, 'xl' => 8, 'xxl' => 6],
-			],
-			[
-				'field' => 'balance_money',
-				'label' => '现金余额',
-				'component' => 'Input',
-				'required' => true,
-				'colProps' => ['lg' => 12, 'xl' => 8, 'xxl' => 6],
-			],
-			[
-				'field' => 'balance_cash',
-				'label' => '现金卷余额',
-				'component' => 'Input',
-				'required' => true,
-				'colProps' => ['lg' => 12, 'xl' => 8, 'xxl' => 6],
-			],
-			[
-				'field' => 'balance_deduct',
-				'label' => '抵扣券余额',
-				'component' => 'Input',
-				'required' => true,
-				'colProps' => ['lg' => 12, 'xl' => 8, 'xxl' => 6],
-			],
-			[
-				'field' => 'balance_withdraw',
-				'label' => '已提现余额',
-				'component' => 'Input',
-				'required' => true,
-				'colProps' => ['lg' => 12, 'xl' => 8, 'xxl' => 6],
-			],
-			[
-				'field' => 'balance_withdraw_apply',
-				'label' => '提现中余额',
-				'component' => 'Input',
-				'required' => true,
-				'colProps' => ['lg' => 12, 'xl' => 8, 'xxl' => 6],
-			],
-			[
-				'field' => 'is_auth',
-				'label' => '是否认证',
-				'component' => 'Input',
-				'required' => true,
-				'colProps' => ['lg' => 12, 'xl' => 8, 'xxl' => 6],
-			],
-			[
-				'field' => 'pay_password',
-				'label' => '交易密码',
-				'component' => 'Input',
-				'required' => true,
-				'colProps' => ['lg' => 12, 'xl' => 8, 'xxl' => 6],
-			],
-			[
-				'field' => 'Invite_code',
-				'label' => '邀请码',
-				'component' => 'Input',
-				'required' => true,
-				'colProps' => ['lg' => 12, 'xl' => 8, 'xxl' => 6],
-			],
-			[
-				'field' => 'create_time',
-				'label' => '注册时间',
-				'component' => 'Input',
-				'required' => true,
-				'colProps' => ['lg' => 12, 'xl' => 8, 'xxl' => 6],
-			],
-			[
-				'field' => 'update_time',
-				'label' => '更新时间',
-				'component' => 'Input',
-				'required' => true,
-				'colProps' => ['lg' => 12, 'xl' => 8, 'xxl' => 6],
-			],
-			[
-				'field' => 'delete_time',
-				'label' => '删除时间',
 				'component' => 'Input',
 				'required' => true,
 				'colProps' => ['lg' => 12, 'xl' => 8, 'xxl' => 6],

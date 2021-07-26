@@ -2,7 +2,6 @@
 
 return [
 	'model.goods.AttrClass' => 'little\goods\model\AttrClass',
-	'model.goods.AttrHas' => 'little\goods\model\AttrHas',
 	'model.goods.Attribute' => 'little\goods\model\Attribute',
 	'model.goods.AttributeValue' => 'little\goods\model\AttributeValue',
 	'model.goods.Cart' => 'little\goods\model\Cart',

@@ -18,7 +18,7 @@ use think\facade\Env;
 
 return [
 	// 默认磁盘
-	'default' => Env::get('filesystem.driver', 'local'),
+	'default' => Env::get('filesystem.driver', 'public'),
 	// 磁盘列表
 	'disks' => [
 		'local' => [

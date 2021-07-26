@@ -7,21 +7,22 @@
  * @version 1.0.0
  * @author @小小只^v^ <littlezov@qq.com>  littlezov@qq.com
  * @contact  littlezov@qq.com
- * @link     https://github.com/littlezo
+ * @see     https://github.com/littlezo
  * @document https://github.com/littlezo/wiki
  * @license  https://github.com/littlezo/MozillaPublicLicense/blob/main/LICENSE
  */
 
 declare(strict_types=1);
 
-namespace little\goods\model;
+namespace little\storage\model;
 
-use little\goods\repository\model\CategoryAbstract;
+use little\storage\repository\model\FilesAbstract;
+use think\facade\Request;
 
 /**
- * 商品分类 模型
+ * 文件 模型.
  */
-class Category extends CategoryAbstract
+class Files extends FilesAbstract
 {
 	/**
 	 * @var array 关联预载
@@ -35,96 +36,64 @@ class Category extends CategoryAbstract
 		'columns' => [
 			[
 				'title' => 'ID',
-				'dataIndex' => 'category_id',
+				'dataIndex' => 'file_id',
 				'width' => 80,
 				'fixed' => 'left',
 				'align' => 'center',
 				'defaultHidden' => false,
 			],
 			[
-				'title' => '分类名称',
-				'dataIndex' => 'category_name',
-				'width' => 180,
-				'fixed' => false,
-				'align' => 'center',
-				'defaultHidden' => false,
-			],
-			[
-				'title' => '简称',
-				'dataIndex' => 'short_name',
-				'width' => 180,
-				'fixed' => false,
-				'align' => 'center',
-				'defaultHidden' => false,
-			],
-			[
-				'title' => '分类上级',
-				'dataIndex' => 'parent',
+				'title' => '文件组',
+				'dataIndex' => 'group_id',
 				'width' => 100,
 				'fixed' => false,
 				'align' => 'center',
 				'defaultHidden' => false,
 			],
 			[
-				'title' => '是否显示',
-				'dataIndex' => 'is_show',
-				'width' => 100,
-				'fixed' => false,
-				'align' => 'center',
-				'defaultHidden' => false,
-			],
-			[
-				'title' => '排序',
-				'dataIndex' => 'sort',
-				'width' => 100,
-				'fixed' => false,
-				'align' => 'center',
-				'defaultHidden' => false,
-			],
-			[
-				'title' => '分类图片',
-				'dataIndex' => 'image',
+				'title' => '文件名称',
+				'dataIndex' => 'file_name',
 				'width' => 180,
 				'fixed' => false,
 				'align' => 'center',
 				'defaultHidden' => false,
 			],
 			[
-				'title' => '分类页面关键字',
-				'dataIndex' => 'keywords',
+				'title' => '文件路径',
+				'dataIndex' => 'file_path',
 				'width' => 180,
 				'fixed' => false,
 				'align' => 'center',
 				'defaultHidden' => false,
 			],
 			[
-				'title' => '分类介绍',
-				'dataIndex' => 'description',
+				'title' => '文件has',
+				'dataIndex' => 'file_sha1',
 				'width' => 180,
 				'fixed' => false,
 				'align' => 'center',
 				'defaultHidden' => false,
 			],
 			[
-				'title' => '关联商品类型id',
-				'dataIndex' => 'attr_class_id',
+				'title' => '文件md5',
+				'dataIndex' => 'file_md5',
+				'width' => 180,
+				'fixed' => false,
+				'align' => 'center',
+				'defaultHidden' => false,
+			],
+			[
+				'title' => '站点',
+				'dataIndex' => 'site_id',
 				'width' => 100,
 				'fixed' => false,
 				'align' => 'center',
 				'defaultHidden' => false,
 			],
 			[
-				'title' => '分类广告图',
-				'dataIndex' => 'image_adv',
-				'width' => 180,
-				'fixed' => false,
-				'align' => 'center',
-				'defaultHidden' => false,
-			],
-			[
-				'title' => '服务费',
-				'dataIndex' => 'service_rate',
-				'width' => 100,
+				'title' => '更新时间',
+				'dataIndex' => 'update_time',
+				'width' => 120,
 				'fixed' => false,
 				'align' => 'center',
 				'defaultHidden' => false,
@@ -138,7 +107,7 @@ class Category extends CategoryAbstract
 		'bordered' => true,
 		'showIndexColumn' => false,
 		'canResize' => true,
-		'rowKey' => 'category_id',
+		'rowKey' => 'file_id',
 		'searchInfo' => ['order' => 'asc'],
 		'actionColumn' => [
 			'width' => 100,
@@ -156,7 +125,7 @@ class Category extends CategoryAbstract
 		'labelWidth' => 100,
 		'schemas' => [
 			[
-				'field' => 'category_id',
+				'field' => 'file_id',
 				'label' => 'ID',
 				'component' => 'Input',
 				'colProps' => ['lg' => 12, 'xl' => 8, 'xxl' => 6],
@@ -171,78 +140,50 @@ class Category extends CategoryAbstract
 		'labelWidth' => 120,
 		'schemas' => [
 			[
-				'field' => 'category_name',
-				'label' => '分类名称',
+				'field' => 'group_id',
+				'label' => '文件组',
 				'component' => 'Input',
 				'required' => true,
 				'colProps' => ['lg' => 12, 'xl' => 8, 'xxl' => 6],
 			],
 			[
-				'field' => 'short_name',
-				'label' => '简称',
+				'field' => 'file_name',
+				'label' => '文件名称',
 				'component' => 'Input',
 				'required' => true,
 				'colProps' => ['lg' => 12, 'xl' => 8, 'xxl' => 6],
 			],
 			[
-				'field' => 'parent',
-				'label' => '分类上级',
+				'field' => 'file_path',
+				'label' => '文件路径',
 				'component' => 'Input',
 				'required' => true,
 				'colProps' => ['lg' => 12, 'xl' => 8, 'xxl' => 6],
 			],
 			[
-				'field' => 'is_show',
-				'label' => '是否显示',
+				'field' => 'file_sha1',
+				'label' => '文件has',
 				'component' => 'Input',
 				'required' => true,
 				'colProps' => ['lg' => 12, 'xl' => 8, 'xxl' => 6],
 			],
 			[
-				'field' => 'sort',
-				'label' => '排序',
+				'field' => 'file_md5',
+				'label' => '文件md5',
 				'component' => 'Input',
 				'required' => true,
 				'colProps' => ['lg' => 12, 'xl' => 8, 'xxl' => 6],
 			],
 			[
-				'field' => 'image',
-				'label' => '分类图片',
+				'field' => 'site_id',
+				'label' => '站点',
 				'component' => 'Input',
 				'required' => true,
 				'colProps' => ['lg' => 12, 'xl' => 8, 'xxl' => 6],
 			],
 			[
-				'field' => 'keywords',
-				'label' => '分类页面关键字',
-				'component' => 'Input',
-				'required' => true,
-				'colProps' => ['lg' => 12, 'xl' => 8, 'xxl' => 6],
-			],
-			[
-				'field' => 'description',
-				'label' => '分类介绍',
-				'component' => 'Input',
-				'required' => true,
-				'colProps' => ['lg' => 12, 'xl' => 8, 'xxl' => 6],
-			],
-			[
-				'field' => 'attr_class_id',
-				'label' => '关联商品类型id',
-				'component' => 'Input',
-				'required' => true,
-				'colProps' => ['lg' => 12, 'xl' => 8, 'xxl' => 6],
-			],
-			[
-				'field' => 'image_adv',
-				'label' => '分类广告图',
-				'component' => 'Input',
-				'required' => true,
-				'colProps' => ['lg' => 12, 'xl' => 8, 'xxl' => 6],
-			],
-			[
-				'field' => 'service_rate',
-				'label' => '服务费',
+				'field' => 'update_time',
+				'label' => '更新时间',
 				'component' => 'Input',
 				'required' => true,
 				'colProps' => ['lg' => 12, 'xl' => 8, 'xxl' => 6],
@@ -254,4 +195,10 @@ class Category extends CategoryAbstract
 	 * @var array 排除展示字段
 	 */
 	public $without = ['password', 'passwd', 'pay_passwd', 'pay_password'];
+
+	public function getUrlAttr($value, $data)
+	{
+		// dd($data);
+		return Request::domain() . '/storage/' . $data['path'];
+	}
 }

@@ -29,7 +29,8 @@ use think\model\concern\SoftDelete;
  * @property nickname $string 用户昵称
  * @property mobile $string 手机号
  * @property email $string 邮箱
- * @property password $string 用户密码（MD5）
+ * @property password $string 用户密码
+ * @property pay_password $string 交易密码
  * @property status $int 用户状态
  * @property avatar $string 用户头像
  * @property level_id $int 用户等级
@@ -38,18 +39,10 @@ use think\model\concern\SoftDelete;
  * @property weapp_openid $string 微信小程序openid
  * @property wx_unionid $string 微信unionid
  * @property ali_openid $string 支付宝账户id
- * @property login_ip $string 当前登录ip
- * @property login_type $string 当前登录的操作终端类型
- * @property login_time $int 当前登录时间
- * @property last_login_ip $string 上次登录ip
- * @property last_login_type $string 上次登录的操作终端类型
- * @property last_login_time $int 上次登录时间
- * @property login_num $int 登录次数
  * @property realname $string 真实姓名
  * @property sex $int 性别 0保密 1男 2女
  * @property location $string 地址
  * @property birthday $int 出生日期
- * @property point $float 积分
  * @property growth $float 贡献值
  * @property balance_money $float 现金余额
  * @property balance_cash $float 现金卷余额
@@ -57,7 +50,6 @@ use think\model\concern\SoftDelete;
  * @property balance_withdraw $float 已提现余额
  * @property balance_withdraw_apply $float 提现中余额
  * @property is_auth $int 是否认证
- * @property pay_password $string 交易密码
  * @property Invite_code $string 邀请码
  * @property create_time $int 注册时间
  * @property update_time $int 更新时间
@@ -90,6 +82,7 @@ abstract class UserAbstract extends Model
 		'mobile' => 'string',
 		'email' => 'string',
 		'password' => 'string',
+		'pay_password' => 'string',
 		'status' => 'int',
 		'avatar' => 'string',
 		'level_id' => 'int',
@@ -98,18 +91,10 @@ abstract class UserAbstract extends Model
 		'weapp_openid' => 'string',
 		'wx_unionid' => 'string',
 		'ali_openid' => 'string',
-		'login_ip' => 'string',
-		'login_type' => 'string',
-		'login_time' => 'int',
-		'last_login_ip' => 'string',
-		'last_login_type' => 'string',
-		'last_login_time' => 'int',
-		'login_num' => 'int',
 		'realname' => 'string',
 		'sex' => 'int',
 		'location' => 'string',
 		'birthday' => 'int',
-		'point' => 'float',
 		'growth' => 'float',
 		'balance_money' => 'float',
 		'balance_cash' => 'float',
@@ -117,7 +102,6 @@ abstract class UserAbstract extends Model
 		'balance_withdraw' => 'float',
 		'balance_withdraw_apply' => 'float',
 		'is_auth' => 'int',
-		'pay_password' => 'string',
 		'Invite_code' => 'string',
 		'create_time' => 'int',
 		'update_time' => 'int',
@@ -140,6 +124,7 @@ abstract class UserAbstract extends Model
 		'mobile',
 		'email',
 		'password',
+		'pay_password',
 		'status',
 		'avatar',
 		'level_id',
@@ -148,18 +133,10 @@ abstract class UserAbstract extends Model
 		'weapp_openid',
 		'wx_unionid',
 		'ali_openid',
-		'login_ip',
-		'login_type',
-		'login_time',
-		'last_login_ip',
-		'last_login_type',
-		'last_login_time',
-		'login_num',
 		'realname',
 		'sex',
 		'location',
 		'birthday',
-		'point',
 		'growth',
 		'balance_money',
 		'balance_cash',
@@ -167,7 +144,6 @@ abstract class UserAbstract extends Model
 		'balance_withdraw',
 		'balance_withdraw_apply',
 		'is_auth',
-		'pay_password',
 		'Invite_code',
 		'create_time',
 		'update_time',

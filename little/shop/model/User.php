@@ -148,11 +148,10 @@ class User extends UserAbstract
 			[
 				'title' => '店铺头像（大图）',
 				'dataIndex' => 'avatar',
-				'width' => 150,
+				'width' => 180,
 				'fixed' => false,
 				'align' => 'center',
 				'defaultHidden' => false,
-				'slots' => ['customRender' => 'avatar'],
 			],
 			[
 				'title' => '店铺条幅',

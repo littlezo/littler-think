@@ -2,7 +2,6 @@
 
 return [
 	'service.admin.goods.AttrClassService' => 'little\goods\service\admin\AttrClassService',
-	'service.admin.goods.AttrHasService' => 'little\goods\service\admin\AttrHasService',
 	'service.admin.goods.AttributeService' => 'little\goods\service\admin\AttributeService',
 	'service.admin.goods.AttributeValueService' => 'little\goods\service\admin\AttributeValueService',
 	'service.admin.goods.CartService' => 'little\goods\service\admin\CartService',

@@ -112,7 +112,6 @@ class PintuanOrder extends PintuanOrderAbstract
 				'fixed' => false,
 				'align' => 'center',
 				'defaultHidden' => false,
-				'slots' => ['customRender' => 'img'],
 			],
 			[
 				'title' => '会员昵称',

@@ -160,7 +160,6 @@ class PintuanGroup extends PintuanGroupAbstract
 				'fixed' => false,
 				'align' => 'center',
 				'defaultHidden' => false,
-				'slots' => ['customRender' => 'img'],
 			],
 			[
 				'title' => '组长会员昵称',

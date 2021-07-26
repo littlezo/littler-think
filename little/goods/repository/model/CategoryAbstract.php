@@ -33,6 +33,7 @@ use littler\traits\RewriteTrait;
  * @property description $string 分类介绍
  * @property attr_class_id $int 关联商品类型id
  * @property image_adv $string 分类广告图
+ * @property service_rate $float 服务费
  */
 abstract class CategoryAbstract extends Model
 {
@@ -64,6 +65,7 @@ abstract class CategoryAbstract extends Model
 		'description' => 'string',
 		'attr_class_id' => 'int',
 		'image_adv' => 'string',
+		'service_rate' => 'float',
 	];
 
 	/**
@@ -96,5 +98,6 @@ abstract class CategoryAbstract extends Model
 		'description',
 		'attr_class_id',
 		'image_adv',
+		'service_rate',
 	];
 }
