@@ -10,7 +10,7 @@
 	"files": [],
 	"requires": [],
 	"enable": true,
-	"dev_mode": true,
+	"dev_mode": false,
 	"author": "@小小只^v^",
 	"content": "",
 	"version_no": "20210724",
