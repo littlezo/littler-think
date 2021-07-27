@@ -17,16 +17,18 @@ declare(strict_types=1);
 namespace little\member\model;
 
 use little\member\repository\model\UserAbstract;
+use littler\annotation\model\relation\HasOne;
 
 /**
  * 会员列表 模型.
+ * @HasOne("referrer", model="User", foreignKey="parent", localKey="id")
  */
 class User extends UserAbstract
 {
 	/**
 	 * @var array 关联预载
 	 */
-	public $with = [];
+	public $with = ['referrer'];
 
 	/**
 	 * @var array 列表字段映射
@@ -82,20 +84,19 @@ class User extends UserAbstract
 				'defaultHidden' => false,
 			],
 			[
-				'title' => '用户密码',
-				'dataIndex' => 'password',
-				'width' => 180,
-				'fixed' => false,
-				'align' => 'center',
-				'defaultHidden' => false,
-			],
-			[
 				'title' => '用户状态 ',
 				'dataIndex' => 'status',
 				'width' => 100,
 				'fixed' => false,
 				'align' => 'center',
 				'defaultHidden' => false,
+				'customRender' => "({ record }) => {
+                    const value = record.status;
+                    const enable = ~~value === 1;
+                    const color = enable ? 'green' : 'red';
+                    const text = enable ? '正常' : '停用';
+                    return h(ant('Tag'), { color: color }, () => text);
+                }",
 			],
 			[
 				'title' => '用户头像',
@@ -105,8 +106,6 @@ class User extends UserAbstract
 				'align' => 'center',
 				'defaultHidden' => false,
 				'customRender' => "({ record }) => {
-					console.log(record.avatar);
-					console.log(getImg(record.avatar));
                     return h(ant('Avatar'), {size:60 ,src: getImg(record.avatar) });
                 }",
 			],
@@ -173,6 +172,14 @@ class User extends UserAbstract
 				'fixed' => false,
 				'align' => 'center',
 				'defaultHidden' => false,
+				'customRender' => "({ record }) => {
+                    const textMap = {0:'女',1:'男',2:'未知'};
+                    const colorMap = {0:'red',1:'blue',2:'green'};
+                    const value = record.sex;
+                    const color = colorMap[value];
+                    const text = textMap[value];
+                    return h(ant('Tag'), { color: color }, () => text);
+                }",
 			],
 			[
 				'title' => '地址',
@@ -245,6 +252,13 @@ class User extends UserAbstract
 				'fixed' => false,
 				'align' => 'center',
 				'defaultHidden' => false,
+				'customRender' => "({ record }) => {
+                    const value = record.status;
+                    const enable = ~~value === 1;
+                    const color = enable ? 'green' : 'red';
+                    const text = enable ? '是' : '否';
+                    return h(ant('Tag'), { color: color }, () => text);
+                }",
 			],
 			[
 				'title' => '邀请码',
@@ -358,9 +372,14 @@ class User extends UserAbstract
 			[
 				'field' => 'status',
 				'label' => '用户状态 ',
-				'component' => 'Input',
+				'component' => 'Switch',
 				'required' => true,
 				'colProps' => ['lg' => 12, 'xl' => 8, 'xxl' => 6],
+				'defaultValue'=>1,
+				'componentProps'=>[
+					'checkedValue'=>1,
+					'unCheckedValue'=>0,
+				],
 			],
 			[
 				'field' => 'avatar',
@@ -373,39 +392,23 @@ class User extends UserAbstract
                     uploadApi: (argv)=>uploadApi(argv),
                     value: getImg(model[field]),
                     onChange: (e) => {
-						console.log(model[field]);
-                        console.log(e.id,model,field);
-                        // console.log(e, model, field);
                         model[field] = e.id;
                     },
                 })}',
-				// 'render' => "({ model, field }) => {
-				//     return h(LzCropperAvatar, {
-				//         uploadApi: (argv)=>uploadApi(argv),
-				//         value: 'url',
-				//         onChange: (e: ChangeEvent) => {
-				//             console.log(e, model, field);
-				//             // model[field] = e.target.value;
-				//         },
-				//     });
-				// }",
-				// 'componentProps'=> [
-				// 	'api'=> '(argv)=>uploadApi(argv)',
-				// 	'uploadParams'=>[
-				// 		'group_id'=>0,
-				// 	],
-				// 	'multiple'=>false,
-				// 	'maxSize'=>10,
-				// 	'maxNumber'=>1,
-				// 	'showPreview'=>true,
-				// ],
 			],
 			[
 				'field' => 'level_id',
 				'label' => '用户等级',
-				'component' => 'Input',
+				'component' => 'ApiSelect',
 				'required' => true,
 				'colProps' => ['lg' => 12, 'xl' => 8, 'xxl' => 6],
+				'componentProps' => '() => {
+                    return {
+                        labelField: "level_name",
+                        valueField: "level_id",
+                        api: (argv) => api("get", "/member/level/list", argv),
+                    };
+                }',
 			],
 			[
 				'field' => 'wx_account',
