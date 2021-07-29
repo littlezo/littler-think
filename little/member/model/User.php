@@ -17,18 +17,21 @@ declare(strict_types=1);
 namespace little\member\model;
 
 use little\member\repository\model\UserAbstract;
+use littler\annotation\model\relation\HasMany;
 use littler\annotation\model\relation\HasOne;
 
 /**
  * 会员列表 模型.
- * @HasOne("referrer", model="User", foreignKey="parent", localKey="id")
+ * @HasOne("sup", model="user", foreignKey="id", localKey="parent")
+ * @HasMany("children", model="user", foreignKey="parent", localKey="id")
+ * @HasOne("level", model="Level", foreignKey="level_id", localKey="level_id")
  */
 class User extends UserAbstract
 {
 	/**
 	 * @var array 关联预载
 	 */
-	public $with = ['referrer'];
+	public $with = ['sup', 'level'];
 
 	/**
 	 * @var array 列表字段映射
@@ -45,7 +48,7 @@ class User extends UserAbstract
 			],
 			[
 				'title' => '推荐人',
-				'dataIndex' => 'parent',
+				'dataIndex' => 'sup.nickname',
 				'width' => 100,
 				'fixed' => false,
 				'align' => 'center',
@@ -84,13 +87,30 @@ class User extends UserAbstract
 				'defaultHidden' => false,
 			],
 			[
-				'title' => '用户状态 ',
+				'title' => '用户状态',
 				'dataIndex' => 'status',
 				'width' => 100,
 				'fixed' => false,
 				'align' => 'center',
 				'defaultHidden' => false,
 				'customRender' => "({ record }) => {
+                    return h(ant('Switch'), {
+                        checked: record.status === 1,
+                        checkedChildren: '正常',
+                        unCheckedChildren: '禁用',
+                        onChange(checked) {
+                        const newStatus = checked ? 1 : 0;
+                        const member_id = record.id;
+                        api('put','/member/user/'+member_id, {status:newStatus})
+                            .then(() => {
+                                record.status = newStatus;
+                                createMessage.success(`已成功用户状态 `);
+                            })
+                            .catch(() => {
+                              createMessage.error('修改用户状态失败');
+                            })
+                        },
+                    });
                     const value = record.status;
                     const enable = ~~value === 1;
                     const color = enable ? 'green' : 'red';
@@ -106,12 +126,13 @@ class User extends UserAbstract
 				'align' => 'center',
 				'defaultHidden' => false,
 				'customRender' => "({ record }) => {
-                    return h(ant('Avatar'), {size:60 ,src: getImg(record.avatar) });
-                }",
+					// console.log(h);
+			        return h(ant('Avatar'), {size:60 ,src: getImg(record.avatar) });
+			    }",
 			],
 			[
 				'title' => '用户等级',
-				'dataIndex' => 'level_id',
+				'dataIndex' => 'level.level_name',
 				'width' => 100,
 				'fixed' => false,
 				'align' => 'center',
@@ -166,7 +187,7 @@ class User extends UserAbstract
 				'defaultHidden' => false,
 			],
 			[
-				'title' => '性别 0保密 1男 2女',
+				'title' => '性别',
 				'dataIndex' => 'sex',
 				'width' => 100,
 				'fixed' => false,
@@ -302,6 +323,66 @@ class User extends UserAbstract
 			'slots' => ['customRender' => 'action'],
 			'fixed' => 'right',
 		],
+		'actions' =>"[
+          {
+            icon: 'clarity:note-edit-line',
+            label: '修改',
+            auth: 'member:user:update',
+            onClick: handleEdit.bind(null, record),
+          },
+          {
+            label: '删除',
+            icon: 'ant-design:delete-outlined',
+            color: 'error',
+            auth: 'member:user:delete',
+            popConfirm: {
+                title: '是否确认删除',
+                confirm: handleDelete.bind(null, record),
+            },
+          },
+          {
+            icon: 'clarity:note-edit-line',
+            label: '余额操作',
+            auth: 'member:user:money',
+            onClick: handleRowPart.bind(null, record, {
+                schemas:[
+                {
+                    field: 'type',
+                    label: '类型',
+                    component: 'RadioButtonGroup',
+                    defaultValue: 0,
+                    componentProps: {
+                    options: [
+                        { label: '扣除', value: 0 },
+                        { label: '增加', value: 1 },
+                    ],
+                    },
+                },
+                {
+                    field: 'money',
+                    label: '金额',
+                    required: true,
+                    component: 'Input',
+                },
+                {
+                    label: '备注',
+                    field: 'remark',
+                    component: 'InputTextArea',
+                }],
+                api:{
+                    method:'put',
+                    api:'/member/user/money',
+                },
+                title:'余额操作'
+            }),
+          },
+          {
+              label: '查看详情',
+              icon: 'ant-design:profile-outlined',
+              auth: 'member:user:info',
+              onClick: handleDetail.bind(null, record),
+          }
+        ]",
 	];
 
 	/**
@@ -311,6 +392,8 @@ class User extends UserAbstract
 		'labelWidth' => 100,
 		'schemas' => [
 			['field' => 'id', 'label' => 'ID', 'component' => 'Input', 'colProps' => ['lg' => 12, 'xl' => 8, 'xxl' => 6]],
+			['field' => 'left_like_mobile', 'label' => '手机号', 'component' => 'Input', 'colProps' => ['lg' => 12, 'xl' => 8, 'xxl' => 6]],
+			['field' => 'left_like_nickname', 'label' => '昵称', 'component' => 'Input', 'colProps' => ['lg' => 12, 'xl' => 8, 'xxl' => 6]],
 		],
 	];
 
@@ -330,7 +413,7 @@ class User extends UserAbstract
                     return {
                         labelField: "nickname",
                         valueField: "id",
-                        api: (argv) => api("get", "/member/user/list", argv),
+                        api: (argv) => api("get", "/member/user/list", {...argv},),
                     };
                 }',
 			],
@@ -375,10 +458,10 @@ class User extends UserAbstract
 				'component' => 'Switch',
 				'required' => true,
 				'colProps' => ['lg' => 12, 'xl' => 8, 'xxl' => 6],
-				'defaultValue'=>1,
-				'componentProps'=>[
-					'checkedValue'=>1,
-					'unCheckedValue'=>0,
+				'defaultValue' => 1,
+				'componentProps' => [
+					'checkedValue' => 1,
+					'unCheckedValue' => 0,
 				],
 			],
 			[
@@ -426,17 +509,38 @@ class User extends UserAbstract
 			],
 			[
 				'field' => 'sex',
-				'label' => '性别 0保密 1男 2女',
-				'component' => 'Input',
+				'label' => '性别',
+				'component' => 'Select',
 				'required' => true,
 				'colProps' => ['lg' => 12, 'xl' => 8, 'xxl' => 6],
+				'defaultValue' => 2,
+				'componentProps' => [
+					'options' => [
+						[
+							'label' => '女',
+							'value' => 0,
+						],
+						[
+							'label' => '男',
+							'value' => 1,
+						],
+						[
+							'label' => '未知',
+							'value' => 2,
+						],
+					],
+				],
 			],
 			[
 				'field' => 'birthday',
 				'label' => '出生日期',
-				'component' => 'Input',
+				'component' => 'DatePicker',
 				'required' => true,
 				'colProps' => ['lg' => 12, 'xl' => 8, 'xxl' => 6],
+				// 'defaultPickerValue'=>0,
+				// 'componentProps'=>[
+				// 	'valueFormat'=>'X',
+				// ],
 			],
 		],
 	];
@@ -445,4 +549,14 @@ class User extends UserAbstract
 	 * @var array 排除展示字段
 	 */
 	public $without = ['password', 'passwd', 'pay_passwd', 'pay_password'];
+
+	public function setBirthdayAttr($value)
+	{
+		return strtotime($value);
+	}
+
+	public function getBirthdayAttr($value)
+	{
+		return date('Y-m-d', $value);
+	}
 }

@@ -16,7 +16,6 @@ declare(strict_types=1);
 
 namespace little\storage\api\controller;
 
-use little\storage\repository\api\FilesTrait;
 use little\storage\service\api\FilesService;
 use littler\annotation\docs\ApiDocs;
 use littler\annotation\Inject;
@@ -43,8 +42,6 @@ use littler\Response;
  */
 class Files extends Controller
 {
-	// use FilesTrait;
-
 	/**
 	 * @Inject
 	 * @var FilesService

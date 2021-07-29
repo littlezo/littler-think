@@ -80,7 +80,12 @@ class AccountService
 	 */
 	public function info(int $id): ?object
 	{
-		return $this->model->findBy($id);
+		$info = $this->model->findBy($id);
+		// dd(app());
+		$info->authCode  =service('admin.user.Access')->authCode($info?->roles?->access_ids) ?: [];
+		// dd($info);
+		// $info->roles = service('admin.Access')->authCode();
+		return $info;
 	}
 
 	/**

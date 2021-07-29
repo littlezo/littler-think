@@ -16,7 +16,6 @@ declare(strict_types=1);
 
 namespace little\storage\admin\controller;
 
-use little\storage\repository\admin\FilesTrait;
 use little\storage\service\admin\FilesService;
 use littler\annotation\docs\ApiDocs;
 use littler\annotation\Inject;
@@ -26,6 +25,7 @@ use littler\annotation\route\Middleware;
 use littler\BaseController as Controller;
 use littler\Request;
 use littler\Response;
+use littler\traits\ListTrait;
 
 /**
  * Class Files.
@@ -43,7 +43,7 @@ use littler\Response;
  */
 class Files extends Controller
 {
-	use FilesTrait;
+	use ListTrait;
 
 	/**
 	 * @Inject
@@ -52,11 +52,11 @@ class Files extends Controller
 	protected $service;
 
 	/**
-	 * @Route("/files/list", method="GET", ignore_verify=false)
+	 * @Route("^/api/find/:id", method="GET", ignore_verify=true)
 	 * @apiDocs({
-	 *     "title": "文件列表",
+	 *     "title": "文件读取",
 	 *     "version": "v1.0.0",
-	 *     "name": "list",
+	 *     "name": "find",
 	 *     "headers": {
 	 *         "Authorization": "Bearer Token"
 	 *     },
@@ -67,7 +67,17 @@ class Files extends Controller
 	 *         "message": "成功消息||success",
 	 *         "timestamp": 1234567890,
 	 *         "result": {
-	 *             "encryptData": "加密数据自行解密",
+	 *             "ext": "文件后缀",
+	 *             "group_id": "文件组",
+	 *             "hash": "文件sha1",
+	 *             "id": "文件ID",
+	 *             "md5": "文件md5",
+	 *             "mime_type": "文件类型",
+	 *             "name": "文件名称",
+	 *             "site_id": "商家",
+	 *             "size": "文件大小 bis",
+	 *             "url": "文件完整url",
+	 *             "update_time": "更新时间",
 	 *         },
 	 *     },
 	 *     "error": {
@@ -78,25 +88,23 @@ class Files extends Controller
 	 *         "timestamp": 1234567890
 	 *     },
 	 *     "param": {
-	 *         "page": {
+	 *         "id": {
 	 *             "required": false,
-	 *             "desc": "页数",
+	 *             "desc": "文件ID",
 	 *             "type": "int",
-	 *             "default": 1,
+	 *             "default": 0,
 	 *         },
-	 *         "size": {
-	 *             "required": false,
-	 *             "desc": "单页数量",
-	 *             "type": "int",
-	 *             "default": 10,
-	 *         }
 	 *     }
 	 * })
-	 * @return \think\Response
 	 */
-	public function list(Request $request): ?\think\Response
+	public function find(Request $request, int $id): \think\Response
 	{
-		return Response::success($this->service->list($request->get()));
+		$info = $this->service->info($id);
+		if ($info) {
+			$file_path = public_path() . '/storage/' . $info->path;
+			return Response::file($file_path, $info->name);
+		}
+		return Response::fail('file not exists');
 	}
 
 	/**

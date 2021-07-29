@@ -14,35 +14,39 @@
 
 declare(strict_types=1);
 
-namespace little\user\admin\controller;
+namespace little\member\admin\controller;
 
-use little\user\service\admin\JobsService;
+use little\member\service\admin\LevelService;
 use littler\annotation\docs\ApiDocs;
 use littler\annotation\Inject;
 use littler\annotation\route\Group as RouteGroup;
 use littler\annotation\route\Middleware;
 use littler\BaseController as Controller;
 use littler\traits\DeleteTrait;
+use littler\traits\LayoutTrait;
 use littler\traits\ListTrait;
+use littler\traits\PageTrait;
 use littler\traits\SaveTrait;
 use littler\traits\UpdateTrait;
 
 /**
- * Class Jobs.
- * @RouteGroup("admin/user/jobs")
+ * Class Level.
+ * @RouteGroup("admin/member/level")
  * @Middleware({littler\JWTAuth\Middleware\Jwt::class, "admin"})
  * @apiDocs({
- *     "title": "用户职位",
+ *     "title": "会员等级",
  *     "version": "1.0.0",
  *     "layer": "admin",
- *     "name": "jobs",
- *     "module": "user",
- *     "group": "jobs",
+ *     "name": "level",
+ *     "module": "member",
+ *     "group": "level",
  *     "desc": "查询参数详见快速查询 字段含义参加字段映射"
  * })
  */
-class Jobs extends Controller
+class Level extends Controller
 {
+	use LayoutTrait;
+	use PageTrait;
 	use ListTrait;
 	use UpdateTrait;
 	use DeleteTrait;
@@ -50,7 +54,7 @@ class Jobs extends Controller
 
 	/**
 	 * @Inject
-	 * @var JobsService
+	 * @var LevelService
 	 */
 	protected $service;
 }

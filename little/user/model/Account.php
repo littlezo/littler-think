@@ -17,15 +17,23 @@ declare(strict_types=1);
 namespace little\user\model;
 
 use little\user\repository\model\AccountAbstract;
+use littler\annotation\model\relation\HasOne;
 use littler\user\AuthorizeInterface;
 use littler\user\Traits\User;
 
 /**
  * 用户管理 模型.
+ * @HasOne("roles", model="Roles", foreignKey="id", localKey="roles_ids")
+ * @HasOne("dept", model="Dept", foreignKey="id", localKey="dept_ids")
  */
 class Account extends AccountAbstract implements AuthorizeInterface
 {
 	use User;
+
+	/**
+	 * @var array 关联预载
+	 */
+	public $with = ['roles', 'dept'];
 
 	/**
 	 * @var array 排除展示字段

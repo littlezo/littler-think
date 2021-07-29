@@ -7,7 +7,7 @@
  * @version 1.0.0
  * @author @小小只^v^ <littlezov@qq.com>  littlezov@qq.com
  * @contact  littlezov@qq.com
- * @link     https://github.com/littlezo
+ * @see     https://github.com/littlezo
  * @document https://github.com/littlezo/wiki
  * @license  https://github.com/littlezo/MozillaPublicLicense/blob/main/LICENSE
  */
@@ -19,7 +19,7 @@ namespace little\member\model;
 use little\member\repository\model\LevelAbstract;
 
 /**
- * 会员等级 模型
+ * 会员等级 模型.
  */
 class Level extends LevelAbstract
 {
@@ -74,12 +74,19 @@ class Level extends LevelAbstract
 				'defaultHidden' => false,
 			],
 			[
-				'title' => '是否默认，0：否，1：是',
+				'title' => '是否默认',
 				'dataIndex' => 'is_default',
 				'width' => 100,
 				'fixed' => false,
 				'align' => 'center',
 				'defaultHidden' => false,
+				'customRender' => "({ record }) => {
+                    const value = record.is_default;
+                    const enable = ~~value === 1;
+                    const color = enable ? 'green' : 'red';
+                    const text = enable ? '是' : '否';
+                    return h(ant('Tag'), { color: color }, () => text);
+                }",
 			],
 		],
 		'formConfig' => [],
@@ -147,15 +154,21 @@ class Level extends LevelAbstract
 				'field' => 'remark',
 				'label' => '备注',
 				'component' => 'Input',
-				'required' => true,
+				'required' => false,
 				'colProps' => ['lg' => 12, 'xl' => 8, 'xxl' => 6],
 			],
 			[
 				'field' => 'is_default',
-				'label' => '是否默认，0：否，1：是',
+				'label' => '是否默认',
 				'component' => 'Input',
+				'component' => 'Switch',
 				'required' => true,
 				'colProps' => ['lg' => 12, 'xl' => 8, 'xxl' => 6],
+				'defaultValue' => 1,
+				'componentProps' => [
+					'checkedValue' => 1,
+					'unCheckedValue' => 0,
+				],
 			],
 		],
 	];

@@ -16,25 +16,21 @@ declare(strict_types=1);
 
 namespace little\user\admin\controller;
 
-use little\user\repository\admin\RolesTrait;
 use little\user\service\admin\RolesService;
-use littler\BaseController as Controller;
-use littler\JWTAuth\Middleware\Jwt;
-use littler\Request;
-use littler\Response;
-use littler\annotation\Inject;
-use littler\annotation\Route;
 use littler\annotation\docs\ApiDocs;
+use littler\annotation\Inject;
 use littler\annotation\route\Group as RouteGroup;
 use littler\annotation\route\Middleware;
-use littler\annotation\route\Resource;
-use littler\annotation\route\Validate;
+use littler\BaseController as Controller;
+use littler\traits\DeleteTrait;
+use littler\traits\PageTrait;
+use littler\traits\SaveTrait;
+use littler\traits\UpdateTrait;
 
 /**
- * Class Roles
- * @package little\user\admin\controller
- * @RouteGroup("admin/user")
- * @Middleware({littler\JWTAuth\Middleware\Jwt::class,"admin"})
+ * Class Roles.
+ * @RouteGroup("admin/user/roles")
+ * @Middleware({littler\JWTAuth\Middleware\Jwt::class, "admin"})
  * @apiDocs({
  *     "title": "用户角色",
  *     "version": "1.0.0",
@@ -47,60 +43,14 @@ use littler\annotation\route\Validate;
  */
 class Roles extends Controller
 {
-	use RolesTrait;
+	use PageTrait;
+	use UpdateTrait;
+	use DeleteTrait;
+	use SaveTrait;
 
 	/**
-	 * @Inject()
+	 * @Inject
 	 * @var RolesService
 	 */
 	protected $service;
-
-
-	/**
-	 * @Route("/roles/list", method="GET", ignore_verify=false)
-	 * @apiDocs({
-	 *     "title": "用户角色列表",
-	 *     "version": "v1.0.0",
-	 *     "name": "list",
-	 *     "headers": {
-	 *         "Authorization": "Bearer Token"
-	 *     },
-	 *     "desc": "查询参数详见快速查询 字段含义参加字段映射",
-	 *     "success": {
-	 *         "code": 200,
-	 *         "type": "success",
-	 *         "message": "成功消息||success",
-	 *         "timestamp": 1234567890,
-	 *         "result": {
-	 *             "encryptData": "加密数据自行解密",
-	 *         },
-	 *     },
-	 *     "error": {
-	 *         "code": 500,
-	 *         "message": "错误消息",
-	 *         "type": "error",
-	 *         "result": "",
-	 *         "timestamp": 1234567890
-	 *     },
-	 *     "param": {
-	 *         "page": {
-	 *             "required": false,
-	 *             "desc": "页数",
-	 *             "type": "int",
-	 *             "default": 1,
-	 *         },
-	 *         "size": {
-	 *             "required": false,
-	 *             "desc": "单页数量",
-	 *             "type": "int",
-	 *             "default": 10,
-	 *         }
-	 *     }
-	 * })
-	 * @return \think\Response
-	 */
-	public function list(Request $request): ?\think\Response
-	{
-		return Response::success($this->service->list($request->get()));
-	}
 }

@@ -139,7 +139,7 @@ class AccessService
 	 * #title 列表.
 	 * @return Access
 	 */
-	public function list(): ?array
+	public function list($argv): ?array
 	{
 		$list = $this->model->getList(false, true);
 		$buttonList = [];
@@ -150,8 +150,8 @@ class AccessService
 				$buttonList[$item['parent']][] = $item->toArray();
 			});
 		return $list->each(
-			function (&$item) use ($buttonList) {
-				$item['action'] = $buttonList[$item['id']] ?? [];
+			function (&$item) use ($buttonList, $argv) {
+				$item[$argv['children']??'action'] = $buttonList[$item['id']] ?? [];
 			}
 		)->toTree();
 		// return $this->model->getList(false)->toTree();
@@ -161,33 +161,31 @@ class AccessService
 	 * #title 授权路由列表.
 	 * @return Access
 	 */
-	public function auth(): ?array
+	public function auth($args): ?array
 	{
-		// $list = $this->model->getList(false, true);
-		return $this->model->where([['type', '<>', 2], ['status', '=', 1]])
-			->select()->each(function (&$item) {
-				unset($item->permission);
+		// getAllChildrenIds
+		// dd();
+		if (! $args['access_ids']) {
+			return [];
+		}
+		$ids=array_merge($args['access_ids'], $this->model->select()->getAllChildrenIds($args['access_ids'], 'id', 'parent'));
+		return $this->model->where([['id', 'in', $ids], ['type', '<>', 2], ['status', '=', 1]])
+			->field(['*', 'permission as auth'])->select()->each(function (&$item) use ($ids) {
 				$new_item = $item->toArray();
-				$new_item['action'] = $this->model->where('parent', $item->id)->where('type', 2)->select()->toArray();
+				$new_item['action'] = $this->model->whereIn('id', $ids)->where('parent', $item->id)->where('type', 2)->field(['*', 'permission as auth'])->select()->toArray();
 				$item['meta'] = $new_item;
-				// $item['isLink'] = $item['is_link'];
-				// unset($item['title'], $item['module'], $item['method'],$item['api'],$item['type'],
-				// $item['is_hide'],$item['is_link'],$item['is_keep_alive'],$item['is_affix'],
-				// $item['is_iframe']);
 			})->toTree();
-		// $buttonList = [];
-		// $this->model
-		// 	->whereIn('parent', array_unique($list->column('id')))
-		// 	->where('type', 2)
-		// 	->select()->each(function ($item) use (&$buttonList) {
-		// 		$buttonList[$item['parent']][] = $item->toArray();
-		// 	});
-		// return $list->each(
-		// 	function (&$item) use ($buttonList) {
-		// 		$item['action'] = $buttonList[$item['id']] ?? [];
-		// 	}
-		// )->toTree();
-		// return $this->model->getList(false)->toTree();
+	}
+
+	/**
+	 * #title 授权路由列表.
+	 * @return Access
+	 */
+	public function authCode(array $ids = [0]): ?array
+	{
+		$ids=array_merge($ids, $this->model->select()->getAllChildrenIds($ids, 'id', 'parent'));
+		return $this->model->where([['id', 'in', $ids], ['status', '=', 1]])
+			->column('permission');
 	}
 
 	/**

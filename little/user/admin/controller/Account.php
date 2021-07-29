@@ -16,7 +16,6 @@ declare(strict_types=1);
 
 namespace little\user\admin\controller;
 
-use little\user\repository\admin\AccountTrait;
 use little\user\service\admin\AccountService;
 use littler\annotation\docs\ApiDocs;
 use littler\annotation\Inject;
@@ -26,10 +25,14 @@ use littler\annotation\route\Middleware;
 use littler\BaseController as Controller;
 use littler\Request;
 use littler\Response;
+use littler\traits\DeleteTrait;
+use littler\traits\PageTrait;
+use littler\traits\SaveTrait;
+use littler\traits\UpdateTrait;
 
 /**
  * Class Account.
- * @RouteGroup("admin/user")
+ * @RouteGroup("admin/user/account")
  * @Middleware({littler\JWTAuth\Middleware\Jwt::class, "admin"})
  * @apiDocs({
  *     "title": "用户管理",
@@ -42,7 +45,10 @@ use littler\Response;
  */
 class Account extends Controller
 {
-	use AccountTrait;
+	use PageTrait;
+	use UpdateTrait;
+	use DeleteTrait;
+	use SaveTrait;
 
 	/**
 	 * @Inject
@@ -51,55 +57,7 @@ class Account extends Controller
 	protected $service;
 
 	/**
-	 * @Route("/account/list", method="GET", ignore_verify=false)
-	 * @apiDocs({
-	 *     "title": "列表无分页",
-	 *     "version": "v1.0.0",
-	 *     "name": "list",
-	 *     "headers": {
-	 *         "Authorization": "Bearer Token"
-	 *     },
-	 *     "desc": "查询参数详见快速查询 字段含义参加字段映射",
-	 *     "success": {
-	 *         "code": 200,
-	 *         "type": "success",
-	 *         "message": "成功消息||success",
-	 *         "timestamp": 1234567890,
-	 *         "result": {
-	 *             "encryptData": "加密数据自行解密",
-	 *         },
-	 *     },
-	 *     "error": {
-	 *         "code": 500,
-	 *         "message": "错误消息",
-	 *         "type": "error",
-	 *         "result": "",
-	 *         "timestamp": 1234567890
-	 *     },
-	 *     "param": {
-	 *         "page": {
-	 *             "required": false,
-	 *             "desc": "页数",
-	 *             "type": "int",
-	 *             "default": 1,
-	 *         },
-	 *         "size": {
-	 *             "required": false,
-	 *             "desc": "单页数量",
-	 *             "type": "int",
-	 *             "default": 10,
-	 *         }
-	 *     }
-	 * })
-	 * @return \think\Response
-	 */
-	public function list(Request $request): ?\think\Response
-	{
-		return Response::success($this->service->list($request->get()));
-	}
-
-	/**
-	 * @Route("/account/info", method="GET", ignore_verify=false)
+	 * @Route("/info", method="GET", ignore_verify=false)
 	 * @apiDocs({
 	 *     "title": "个人详情",
 	 *     "version": "v1.0.0",
@@ -136,7 +94,7 @@ class Account extends Controller
 	}
 
 	/**
-	 * @Route("/account/login", method="POST", ignore_verify=true)
+	 * @Route("/login", method="POST", ignore_verify=true)
 	 * @apiDocs({
 	 *     "title": "登陆",
 	 *     "version": "v1.0.0",
@@ -182,9 +140,9 @@ class Account extends Controller
 	}
 
 	/**
-	 * @Route("/account/logout", method="DELETE", ignore_verify=true)
+	 * @Route("/logout", method="DELETE", ignore_verify=true)
 	 * @apiDocs({
-	 *     "title": "退出登陆",
+	 *     "title": "退出",
 	 *     "version": "v1.0.0",
 	 *     "name": "logout",
 	 *     "headers": {
