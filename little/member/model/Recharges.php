@@ -150,6 +150,24 @@ class Recharges extends RechargesAbstract
 			'slots' => ['customRender' => 'action'],
 			'fixed' => 'right',
 		],
+		'actions' => "[
+            {
+                icon: 'clarity:note-edit-line',
+                label: '修改',
+                auth: 'member:recharges:update',
+                onClick: handleEdit.bind(null, record),
+            },
+            {
+                label: '删除',
+                icon: 'ant-design:delete-outlined',
+                color: 'error',
+                auth: 'member:recharges:delete',
+                popConfirm: {
+                    title: '是否确认删除',
+                    confirm: handleDelete.bind(null, record),
+                },
+            },
+        ]",
 	];
 
 	/**
@@ -175,27 +193,27 @@ class Recharges extends RechargesAbstract
 				'required' => true,
 				'colProps' => ['lg' => 12, 'xl' => 8, 'xxl' => 6],
 			],
-			[
-				'field' => 'cover_img',
-				'label' => '封面',
-				'component' => 'Upload',
-				'required' => true,
-				'colProps' => ['lg' => 12, 'xl' => 8, 'xxl' => 6],
-				'rules'=> [
-					 ['required'=> true, 'message'=> '请选择上传文件'],
-				],
-				'componentProps'=> [
-					'maxSize'=>1024,
-					'multiple'=>false,
-					// 'accept'=>['jpg', 'jpeg', 'png'],
-					// 'maxNumber'=>1,
-					'api'=> '(argv)=>uploadApi(argv)',
-					'check'=> '(argv)=>checkUploadApi(argv)',
-					'handleChange'=> '(list) => {
-                        console.log(list);
-                    }',
-				],
-			],
+			// [
+			// 	'field' => 'cover_img',
+			// 	'label' => '封面',
+			// 	'component' => 'Upload',
+			// 	'required' => true,
+			// 	'colProps' => ['lg' => 12, 'xl' => 8, 'xxl' => 6],
+			// 	'rules' => [
+			// 		['required' => true, 'message' => '请选择上传文件'],
+			// 	],
+			// 	'componentProps' => [
+			// 		'maxSize' => 10,
+			// 		'multiple' => false,
+			// 		'accept'=>['jpg', 'jpeg', 'png'],
+			// 		'maxNumber'=>1,
+			// 		'api' => '(argv)=>uploadApi(argv)',
+			// 		'check' => '(argv)=>checkUploadApi(argv)',
+			// 		'handleChange' => '(list) => {
+			//             console.log(list);
+			//         }',
+			// 	],
+			// ],
 			[
 				'field' => 'face_value',
 				'label' => '面值',
@@ -217,20 +235,34 @@ class Recharges extends RechargesAbstract
 				'required' => true,
 				'colProps' => ['lg' => 12, 'xl' => 8, 'xxl' => 6],
 			],
-			[
-				'field' => 'desc',
-				'label' => '描述',
-				'component' => 'Input',
-				'required' => true,
-				'colProps' => ['lg' => 12, 'xl' => 8, 'xxl' => 6],
-			],
+
 			[
 				'field' => 'sort',
 				'label' => '排序',
-				'component' => 'InputTextArea',
+				'component' => 'InputNumber',
 				'required' => true,
 				'colProps' => ['lg' => 12, 'xl' => 8, 'xxl' => 6],
 			],
+			// [
+			// 	'field' => 'type',
+			// 	'label' => '套餐类型 ',
+			// 	'component' => 'RadioGroup',
+			// 	'required' => true,
+			// 	'colProps' => ['lg' => 12, 'xl' => 8, 'xxl' => 6],
+			// 	'defaultValue' => 1,
+			// 	'componentProps' => [
+			// 		'options' => [
+			// 			[
+			// 				'label' => '现金劵',
+			// 				'value' => 1,
+			// 			],
+			// 			[
+			// 				'label' => '抵扣卷',
+			// 				'value' => 2,
+			// 			],
+			// 		],
+			// 	],
+			// ],
 			[
 				'field' => 'status',
 				'label' => '状态',
@@ -238,11 +270,18 @@ class Recharges extends RechargesAbstract
 				'required' => true,
 				'colProps' => ['lg' => 12, 'xl' => 8, 'xxl' => 6],
 				'componentProps' => [
-					'checkedChildren'=>'正常',
-					'unCheckedChildren'=>'禁用',
+					'checkedChildren' => '正常',
+					'unCheckedChildren' => '禁用',
 					'checkedValue' => 1,
 					'unCheckedValue' => 0,
 				],
+			],
+			[
+				'field' => 'desc',
+				'label' => '描述',
+				'component' => 'InputTextArea',
+				'required' => true,
+				'colProps' => ['lg' => 12, 'xl' => 8, 'xxl' => 6],
 			],
 		],
 	];
