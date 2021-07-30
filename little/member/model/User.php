@@ -445,14 +445,14 @@ class User extends UserAbstract implements AuthorizeInterface
 			[
 				'field' => 'password',
 				'label' => '用户密码',
-				'component' => 'Input',
+				'component' => 'InputPassword',
 				'required' => false,
 				'colProps' => ['lg' => 12, 'xl' => 8, 'xxl' => 6],
 			],
 			[
 				'field' => 'pay_password',
 				'label' => '交易密码',
-				'component' => 'Input',
+				'component' => 'InputPassword',
 				'required' => false,
 				'colProps' => ['lg' => 12, 'xl' => 8, 'xxl' => 6],
 			],

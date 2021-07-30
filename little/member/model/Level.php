@@ -171,7 +171,7 @@ class Level extends LevelAbstract
 			[
 				'field' => 'remark',
 				'label' => '备注',
-				'component' => 'Input',
+				'component' => 'InputTextArea',
 				'required' => false,
 				'colProps' => ['lg' => 12, 'xl' => 8, 'xxl' => 6],
 			],
