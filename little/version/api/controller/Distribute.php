@@ -69,7 +69,7 @@ class Distribute extends Controller
 	 *         "message": "错误消息",
 	 *         "type": "error",
 	 *         "result": "",
-	 *         "timestamp": 1234567890
+	 *         "timestamp": 1234567890,
 	 *     },
 	 *     "param": {
 	 *         "platform": {
@@ -123,7 +123,7 @@ class Distribute extends Controller
 	 *         "message": "错误消息",
 	 *         "type": "error",
 	 *         "result": "",
-	 *         "timestamp": 1234567890
+	 *         "timestamp": 1234567890,
 	 *     },
 	 *     "param": {
 	 *         "platform": {

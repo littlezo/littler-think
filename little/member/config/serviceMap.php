@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 return [
 	'service.admin.member.AddressService' => 'little\member\service\admin\AddressService',
 	'service.admin.member.AuthService' => 'little\member\service\admin\AuthService',

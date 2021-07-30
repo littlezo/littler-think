@@ -106,6 +106,24 @@ class Level extends LevelAbstract
 			'slots' => ['customRender' => 'action'],
 			'fixed' => 'right',
 		],
+		'actions' => "[
+            {
+                icon: 'clarity:note-edit-line',
+                label: '修改',
+                auth: 'member:level:update',
+                onClick: handleEdit.bind(null, record),
+            },
+            {
+                label: '删除',
+                icon: 'ant-design:delete-outlined',
+                color: 'error',
+                auth: 'member:level:delete',
+                popConfirm: {
+                    title: '是否确认删除',
+                    confirm: handleDelete.bind(null, record),
+                },
+            },
+        ]",
 	];
 
 	/**
@@ -139,7 +157,7 @@ class Level extends LevelAbstract
 			[
 				'field' => 'sort',
 				'label' => '等级排序列',
-				'component' => 'Input',
+				'component' => 'InputNumber',
 				'required' => true,
 				'colProps' => ['lg' => 12, 'xl' => 8, 'xxl' => 6],
 			],

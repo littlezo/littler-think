@@ -15,5 +15,5 @@
 	"content": "",
 	"version_no": "20210720",
     "ignore": [],
-    "allow_layer": ["admin","api"]
+    "allow_layer": ["admin"]
 }

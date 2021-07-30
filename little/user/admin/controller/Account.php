@@ -63,7 +63,7 @@ class Account extends Controller
 	 *     "version": "v1.0.0",
 	 *     "name": "info",
 	 *     "headers": {
-	 *         "Authorization": "Bearer Token"
+	 *         "Authorization": "Bearer Token",
 	 *     },
 	 *     "desc": "查询参数详见快速查询 字段含义参加字段映射",
 	 *     "success": {
@@ -80,7 +80,7 @@ class Account extends Controller
 	 *         "message": "错误消息",
 	 *         "type": "error",
 	 *         "result": "",
-	 *         "timestamp": 1234567890
+	 *         "timestamp": 1234567890,
 	 *     },
 	 *     "param": {
 	 *
@@ -115,7 +115,7 @@ class Account extends Controller
 	 *         "message": "错误消息",
 	 *         "type": "error",
 	 *         "result": "",
-	 *         "timestamp": 1234567890
+	 *         "timestamp": 1234567890,
 	 *     },
 	 *     "param": {
 	 *         "username": {
@@ -146,7 +146,7 @@ class Account extends Controller
 	 *     "version": "v1.0.0",
 	 *     "name": "logout",
 	 *     "headers": {
-	 *         "Authorization": "Bearer Token"
+	 *         "Authorization": "Bearer Token",
 	 *     },
 	 *     "desc": "查询参数详见快速查询 字段含义参加字段映射",
 	 *     "success": {
@@ -161,7 +161,7 @@ class Account extends Controller
 	 *         "message": "错误消息",
 	 *         "type": "error",
 	 *         "result": "",
-	 *         "timestamp": 1234567890
+	 *         "timestamp": 1234567890,
 	 *     },
 	 *     "param": {}
 	 * })

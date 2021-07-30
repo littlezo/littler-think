@@ -19,6 +19,8 @@ namespace little\member\model;
 use little\member\repository\model\UserAbstract;
 use littler\annotation\model\relation\HasMany;
 use littler\annotation\model\relation\HasOne;
+use littler\user\AuthorizeInterface;
+use littler\user\Traits\User as TraitsUser;
 
 /**
  * 会员列表 模型.
@@ -26,8 +28,10 @@ use littler\annotation\model\relation\HasOne;
  * @HasMany("children", model="user", foreignKey="parent", localKey="id")
  * @HasOne("level", model="Level", foreignKey="level_id", localKey="level_id")
  */
-class User extends UserAbstract
+class User extends UserAbstract implements AuthorizeInterface
 {
+	use TraitsUser;
+
 	/**
 	 * @var array 关联预载
 	 */

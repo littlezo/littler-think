@@ -9,7 +9,7 @@ return [
 	'jwt' => [
 		'stores' => [
 			'admin' => [
-				'sso' => ['enable' => true],
+				'sso' => ['enable' => false],
 				'token' => [
 					'signer_key' => 'j9jrwT$GYYW&wDihmHZP&zjycU4OU6tIF5whlP%uvrAJMiCiiGn~8G#nHJiZUMso',
 					'public_key' => 'file://path/public.key',

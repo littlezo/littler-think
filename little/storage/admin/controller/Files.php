@@ -58,7 +58,7 @@ class Files extends Controller
 	 *     "version": "v1.0.0",
 	 *     "name": "find",
 	 *     "headers": {
-	 *         "Authorization": "Bearer Token"
+	 *         "Authorization": "Bearer Token",
 	 *     },
 	 *     "desc": "查询参数详见快速查询 字段含义参加字段映射",
 	 *     "success": {
@@ -85,7 +85,7 @@ class Files extends Controller
 	 *         "message": "错误消息",
 	 *         "type": "error",
 	 *         "result": "",
-	 *         "timestamp": 1234567890
+	 *         "timestamp": 1234567890,
 	 *     },
 	 *     "param": {
 	 *         "id": {
@@ -114,7 +114,7 @@ class Files extends Controller
 	 *     "version": "v1.0.0",
 	 *     "name": "info",
 	 *     "headers": {
-	 *         "Authorization": "Bearer Token"
+	 *         "Authorization": "Bearer Token",
 	 *     },
 	 *     "desc": "查询参数详见快速查询 字段含义参加字段映射",
 	 *     "success": {
@@ -141,7 +141,7 @@ class Files extends Controller
 	 *         "message": "错误消息",
 	 *         "type": "error",
 	 *         "result": "",
-	 *         "timestamp": 1234567890
+	 *         "timestamp": 1234567890,
 	 *     },
 	 *     "param": {
 	 *         "id": {
@@ -166,7 +166,7 @@ class Files extends Controller
 	 *     "version": "v1.0.0",
 	 *     "name": "list",
 	 *     "headers": {
-	 *         "Authorization": "Bearer Token"
+	 *         "Authorization": "Bearer Token",
 	 *     },
 	 *     "desc": "查询参数详见快速查询 字段含义参加字段映射",
 	 *     "success": {

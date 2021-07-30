@@ -49,13 +49,13 @@ class Files extends Controller
 	protected $service;
 
 	/**
-	 * @Route("/files/:id", method="GET", ignore_verify=true)
+	 * @Route("^/api/file/:id", method="GET", ignore_verify=true)
 	 * @apiDocs({
 	 *     "title": "文件详情",
 	 *     "version": "v1.0.0",
-	 *     "name": "info",
+	 *     "name": "file",
 	 *     "headers": {
-	 *         "Authorization": "Bearer Token"
+	 *         "Authorization": "Bearer Token",
 	 *     },
 	 *     "desc": "查询参数详见快速查询 字段含义参加字段映射",
 	 *     "success": {
@@ -82,7 +82,7 @@ class Files extends Controller
 	 *         "message": "错误消息",
 	 *         "type": "error",
 	 *         "result": "",
-	 *         "timestamp": 1234567890
+	 *         "timestamp": 1234567890,
 	 *     },
 	 *     "param": {
 	 *         "id": {
@@ -95,19 +95,24 @@ class Files extends Controller
 	 * })
 	 * @return \think\Response
 	 */
-	public function info(Request $request): ?\think\Response
+	public function info(Request $request, int $id): ?\think\Response
 	{
-		return Response::success($this->service->info($request->get()));
+		$info = $this->service->info($id);
+		if ($info) {
+			$file_path = public_path() . '/storage/' . $info->path;
+			return Response::file($file_path, $info->name);
+		}
+		return Response::fail('file not exists');
 	}
 
 	/**
-	 * @Route("/files", method="POST", ignore_verify=false)
+	 * @Route("^/api/upload", method="POST", ignore_verify=true)
 	 * @apiDocs({
 	 *     "title": "文件上传",
 	 *     "version": "v1.0.0",
-	 *     "name": "list",
+	 *     "name": "upload",
 	 *     "headers": {
-	 *         "Authorization": "Bearer Token"
+	 *         "Authorization": "Bearer Token",
 	 *     },
 	 *     "desc": "查询参数详见快速查询 字段含义参加字段映射",
 	 *     "success": {
@@ -134,7 +139,7 @@ class Files extends Controller
 	 *         "message": "错误消息",
 	 *         "type": "error",
 	 *         "result": "",
-	 *         "timestamp": 1234567890
+	 *         "timestamp": 1234567890,
 	 *     },
 	 *     "param": {
 	 *         "group_id": {

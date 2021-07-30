@@ -7,7 +7,7 @@
  * @version 1.0.0
  * @author @小小只^v^ <littlezov@qq.com>  littlezov@qq.com
  * @contact  littlezov@qq.com
- * @link     https://github.com/littlezo
+ * @see     https://github.com/littlezo
  * @document https://github.com/littlezo/wiki
  * @license  https://github.com/littlezo/MozillaPublicLicense/blob/main/LICENSE
  */
@@ -19,7 +19,7 @@ namespace little\goods\model;
 use little\goods\repository\model\DetailAbstract;
 
 /**
- * 商品列表 模型
+ * 商品列表 模型.
  */
 class Detail extends DetailAbstract
 {
@@ -379,6 +379,24 @@ class Detail extends DetailAbstract
 			'slots' => ['customRender' => 'action'],
 			'fixed' => 'right',
 		],
+		'actions' =>"[
+          {
+            icon: 'clarity:note-edit-line',
+            label: '修改',
+            auth: 'goods:detail:update',
+            onClick: handleEdit.bind(null, record),
+          },
+          {
+            label: '删除',
+            icon: 'ant-design:delete-outlined',
+            color: 'error',
+            auth: 'goods:detail:delete',
+            popConfirm: {
+                title: '是否确认删除',
+                confirm: handleDelete.bind(null, record),
+            },
+          },
+        ]",
 	];
 
 	/**
