@@ -196,9 +196,14 @@ class Files extends FilesAbstract
 	 */
 	public $without = ['password', 'passwd', 'pay_passwd', 'pay_password'];
 
+	public function getPathAttr($value, )
+	{
+		return;
+	}
+
 	public function getUrlAttr($value, $data)
 	{
 		// dd($data);
-		return Request::domain() . '/storage/' . $data['path'];
+		return Request::domain() . '/api/file/' . $data['id'];
 	}
 }

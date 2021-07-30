@@ -91,7 +91,7 @@ class FilesService
 	public function info(int $id): ?object
 	{
 		$file_info = $this->model->findBy($id);
-		$file_info['url']= $this->request->domain() . '/storage/' . $file_info['path'];
+		$file_info['url'] = $this->request->domain() . '/storage/' . $file_info['path'];
 		$file_list[] = $file_info;
 		return $file_info;
 	}
@@ -103,6 +103,18 @@ class FilesService
 	 */
 	public function save(array $argv, $files)
 	{
+		//  妙传
+		if (isset($argv['md5'])&&! $files) {
+			$file_info = $this->model->where([['md5', '=', $argv['md5']]])->find();
+			if ($file_info) {
+				$file_info['url'] = $this->request->domain() . '/storage/' . $file_info['path'];
+				return $file_info;
+			}
+			return [];
+		}
+		if (! $files) {
+			throw new Exception('文件合法性无法验证，禁止上传！', 980406, );
+		}
 		$file_list = [];
 		foreach ($files as $file) {
 			if ($file instanceof UploadedFile) {
@@ -119,14 +131,14 @@ class FilesService
 						]
 					);
 					if ($file_info = $this->model->where([['md5', '=', $item['md5']], ['hash', '=', $item['hash']]])->find()) {
-						$file_info['url']= $this->request->domain() . '/storage/' . $file_info['path'];
+						$file_info['url'] = $this->request->domain() . '/storage/' . $file_info['path'];
 						$file_list[] = $file_info;
 					} else {
 						$file_dir = $file->getOriginalMime() ?: 'default';
 						$file_name = $file->hash() . '.' . $file->extension();
 						$item['path'] = Filesystem::putFileAs($file_dir, $file, $file_name);
 						$item['id'] = $this->model->storeBy($item);
-						$item['url']=$this->request->domain() . '/storage/' . $item['path'];
+						$item['url'] = $this->request->domain() . '/api/file/' . $item['id'];
 						$file_list[] = $item;
 					}
 				} catch (\Throwable $e) {
@@ -136,7 +148,10 @@ class FilesService
 				throw new Exception('上传失败！', 980405);
 			}
 		}
-		if (count($file_list)===1) {
+		if (! $file_list) {
+			throw new Exception('上传失败', 980407, );
+		}
+		if (count($file_list) === 1) {
 			return $file_list[0];
 		}
 		return $file_list;
@@ -151,7 +166,7 @@ class FilesService
 	public function update(int $id, array $args)
 	{
 		if (isset($args['name'])) {
-			return $this->model->updateBy($id, ['name'=>$args['name']]);
+			return $this->model->updateBy($id, ['name' => $args['name']]);
 		}
 		return false;
 	}

@@ -99,7 +99,7 @@ class Files extends Controller
 	{
 		$info = $this->service->info($id);
 		if ($info) {
-			$file_path = public_path() . '/storage/' . $info->path;
+			$file_path = public_path() . '/storage/' . $info->getOrigin()['path'];
 			return Response::file($file_path, $info->name);
 		}
 		return Response::fail('file not exists');
