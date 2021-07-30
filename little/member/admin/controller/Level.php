@@ -46,11 +46,11 @@ use littler\traits\UpdateTrait;
 class Level extends Controller
 {
 	use LayoutTrait;
-	use PageTrait;
 	use ListTrait;
+	use PageTrait;
+	use SaveTrait;
 	use UpdateTrait;
 	use DeleteTrait;
-	use SaveTrait;
 
 	/**
 	 * @Inject

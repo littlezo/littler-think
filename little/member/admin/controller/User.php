@@ -49,10 +49,10 @@ class User extends Controller
 	use LayoutTrait;
 	use ListTrait;
 	use PageTrait;
-	use UpdateTrait;
-	use DeleteTrait;
 	use InfoTrait;
 	use SaveTrait;
+	use UpdateTrait;
+	use DeleteTrait;
 
 	/**
 	 * @Inject
