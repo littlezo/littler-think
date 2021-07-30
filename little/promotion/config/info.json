@@ -1,0 +1,19 @@
+{
+  "name": "promotion",
+	"title": "营销",
+	"description": "营销",
+	"version": "1.0.0",
+	"keywords": "营销",
+	"order": 100,
+	"services": ["\\little\\promotion\\Service"],
+	"aliases": {},
+	"files": [],
+	"requires": [],
+	"enable": true,
+	"dev_mode": true,
+	"author": "@小小只^v^",
+	"content": "",
+	"version_no": "20210730",
+    "ignore": ["promotion_pintuan_goods","promotion_pintuan_group","promotion_pintuan_order","promotion_seckill","promotion_seckill_goods"],
+    "allow_layer": ["admin"]
+}
