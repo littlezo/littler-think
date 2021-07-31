@@ -97,7 +97,7 @@ class AccessService
 							'module' => trim_all($iterable['module']),
 							'sort' => 100,
 							'method' =>  trim_all(Str::lower($method['method'])),
-							'api' => trim_all('/' . $iterable['module'] . str_replace(':id', '', $method['path'])),
+							'api' => trim_all(str_replace(':id', '', $method['path'])),
 							'permission' => trim_all($iterable['module'] . ':' . $iterable['group'] . ':' . $method['name']),
 							'key' => trim_all($item['name'] . '_' . $iterable['group'] . '_' . $method['name']),
 							'isLeaf' => true,
