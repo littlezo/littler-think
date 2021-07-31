@@ -921,7 +921,7 @@
             "dist": {
                 "type": "path",
                 "url": "./package/littler/annotation",
-                "reference": "32df58bda7c70e8d5bc11232f218d38045841052"
+                "reference": "d0e6076ddf69ff0e4e518b9c8ed4d0ef66eb3245"
             },
             "require": {
                 "doctrine/annotations": "^1.0",
@@ -969,7 +969,7 @@
             "dist": {
                 "type": "path",
                 "url": "./package/littler/jwt-auth",
-                "reference": "2bb5205b0f3d5601af2cf1abd40b94213f5db648"
+                "reference": "b909f4453b7c47384d8abff5dad80bf06ab4c682"
             },
             "require": {
                 "ext-json": "*",
@@ -1032,7 +1032,7 @@
             "dist": {
                 "type": "path",
                 "url": "./package/littler/think",
-                "reference": "53c3c2f018c0df2accb6124e00873ce68274fed4"
+                "reference": "85b733a3af836465df0df841bba4234f1eaa714c"
             },
             "require": {
                 "dragonmantank/cron-expression": "^3.1",
@@ -1095,7 +1095,7 @@
             "dist": {
                 "type": "path",
                 "url": "./package/littler/user",
-                "reference": "df3b708862844b28d1c3cc6abe8810a41a7ee20f"
+                "reference": "b9955a4dd05e318cf8b89b09c452943c62b1c674"
             },
             "require": {
                 "topthink/framework": "^6.0"
