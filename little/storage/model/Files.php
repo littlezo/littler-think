@@ -204,6 +204,6 @@ class Files extends FilesAbstract
 	public function getUrlAttr($value, $data)
 	{
 		// dd($data);
-		return Request::domain() . '/api/file/' . $data['id'];
+		return Request::domain() . '/file/view/' . $data['id'];
 	}
 }

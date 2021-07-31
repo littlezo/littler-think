@@ -138,7 +138,7 @@ class FilesService
 						$file_name = $file->hash() . '.' . $file->extension();
 						$item['path'] = Filesystem::putFileAs($file_dir, $file, $file_name);
 						$item['id'] = $this->model->storeBy($item);
-						$item['url'] = $this->request->domain() . '/api/file/' . $item['id'];
+						$item['url'] = $this->request->domain() . '/file/view/' . $item['id'];
 						$file_list[] = $item;
 					}
 				} catch (\Throwable $e) {

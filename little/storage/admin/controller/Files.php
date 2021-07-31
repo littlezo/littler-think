@@ -52,11 +52,11 @@ class Files extends Controller
 	protected $service;
 
 	/**
-	 * @Route("^/api/find/:id", method="GET", ignore_verify=true)
+	 * @Route("^/file/view/:id", method="GET", ignore_verify=true)
 	 * @apiDocs({
 	 *     "title": "文件读取",
 	 *     "version": "v1.0.0",
-	 *     "name": "find",
+	 *     "name": "file",
 	 *     "headers": {
 	 *         "Authorization": "Bearer Token",
 	 *     },
@@ -97,7 +97,7 @@ class Files extends Controller
 	 *     }
 	 * })
 	 */
-	public function find(Request $request, int $id): \think\Response
+	public function file(Request $request, int $id): \think\Response
 	{
 		$info = $this->service->info($id);
 		if ($info) {
@@ -108,7 +108,7 @@ class Files extends Controller
 	}
 
 	/**
-	 * @Route("/files/:id", method="GET", ignore_verify=true)
+	 * @Route("^/file/info/:id", method="GET", ignore_verify=true)
 	 * @apiDocs({
 	 *     "title": "文件详情",
 	 *     "version": "v1.0.0",
@@ -160,7 +160,7 @@ class Files extends Controller
 	}
 
 	/**
-	 * @Route("/files", method="POST", ignore_verify=true)
+	 * @Route("^/file/upload", method="POST", ignore_verify=true)
 	 * @apiDocs({
 	 *     "title": "文件上传",
 	 *     "version": "v1.0.0",
