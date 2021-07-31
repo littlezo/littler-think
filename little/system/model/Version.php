@@ -7,7 +7,7 @@
  * @version 1.0.0
  * @author @小小只^v^ <littlezov@qq.com>  littlezov@qq.com
  * @contact  littlezov@qq.com
- * @link     https://github.com/littlezo
+ * @see     https://github.com/littlezo
  * @document https://github.com/littlezo/wiki
  * @license  https://github.com/littlezo/MozillaPublicLicense/blob/main/LICENSE
  */
@@ -19,7 +19,7 @@ namespace little\system\model;
 use little\system\repository\model\VersionAbstract;
 
 /**
- * 版本分发 模型
+ * 版本分发 模型.
  */
 class Version extends VersionAbstract
 {
@@ -63,7 +63,7 @@ class Version extends VersionAbstract
 				'width' => 80,
 				'fixed' => false,
 				'align' => 'center',
-				'defaultHidden' => true,
+				'defaultHidden' => false,
 			],
 			[
 				'title' => '版本',
@@ -88,22 +88,13 @@ class Version extends VersionAbstract
 				'fixed' => false,
 				'align' => 'center',
 				'defaultHidden' => false,
-			],
-			[
-				'title' => '文件名',
-				'dataIndex' => 'name',
-				'width' => 180,
-				'fixed' => false,
-				'align' => 'center',
-				'defaultHidden' => false,
-			],
-			[
-				'title' => '下载地址',
-				'dataIndex' => 'url',
-				'width' => 180,
-				'fixed' => false,
-				'align' => 'center',
-				'defaultHidden' => false,
+				'customRender' => "({ record }) => {
+                    const value = record.type;
+                    const enable = ~~value === 1;
+                    const color = enable ? 'green' : 'red';
+                    const text = enable ? '整包' : '补丁';
+                    return h(ant('Tag'), { color: color }, () => text);
+                }",
 			],
 			[
 				'title' => '是否强制更新',
@@ -112,6 +103,13 @@ class Version extends VersionAbstract
 				'fixed' => false,
 				'align' => 'center',
 				'defaultHidden' => false,
+				'customRender' => "({ record }) => {
+                    const value = record.is_force;
+                    const enable = ~~value === 1;
+                    const color = !enable ? 'green' : 'red';
+                    const text = enable ? '是' : '否';
+                    return h(ant('Tag'), { color: color }, () => text);
+                }",
 			],
 			[
 				'title' => '发布时间',
@@ -124,14 +122,6 @@ class Version extends VersionAbstract
 			[
 				'title' => '更新时间',
 				'dataIndex' => 'update_time',
-				'width' => 120,
-				'fixed' => false,
-				'align' => 'center',
-				'defaultHidden' => false,
-			],
-			[
-				'title' => '删除时间',
-				'dataIndex' => 'delete_time',
 				'width' => 120,
 				'fixed' => false,
 				'align' => 'center',
@@ -155,6 +145,30 @@ class Version extends VersionAbstract
 			'slots' => ['customRender' => 'action'],
 			'fixed' => 'right',
 		],
+		'actions' =>"[
+          {
+            icon: 'clarity:note-edit-line',
+            label: '修改',
+            auth: 'system:version:update',
+            onClick: handleEdit.bind(null, record),
+          },
+          {
+            label: '删除',
+            icon: 'ant-design:delete-outlined',
+            color: 'error',
+            auth: 'system:version:delete',
+            popConfirm: {
+                title: '是否确认删除',
+                confirm: handleDelete.bind(null, record),
+            },
+          },
+          {
+              label: '查看详情',
+              icon: 'ant-design:profile-outlined',
+              auth: 'system:version:info',
+              onClick: handleDetail.bind(null, record),
+          }
+        ]",
 	];
 
 	/**
@@ -183,17 +197,24 @@ class Version extends VersionAbstract
 			[
 				'field' => 'platform',
 				'label' => '平台',
-				'component' => 'Input',
+				'component' => 'RadioGroup',
 				'required' => true,
 				'colProps' => ['lg' => 12, 'xl' => 8, 'xxl' => 6],
+				'defaultValue'=>'android',
+				'componentProps' => [
+					'options' => [
+						[
+							'label' => 'Android',
+							'value' => 'android',
+						],
+						[
+							'label' => 'iOS',
+							'value' => 'ios',
+						],
+					],
+				],
 			],
-			[
-				'field' => 'content',
-				'label' => '更新内容',
-				'component' => 'Input',
-				'required' => false,
-				'colProps' => ['lg' => 12, 'xl' => 8, 'xxl' => 6],
-			],
+
 			[
 				'field' => 'version',
 				'label' => '版本',
@@ -211,50 +232,75 @@ class Version extends VersionAbstract
 			[
 				'field' => 'type',
 				'label' => '版本类型 ',
-				'component' => 'Input',
+				'component' => 'RadioGroup',
 				'required' => true,
 				'colProps' => ['lg' => 12, 'xl' => 8, 'xxl' => 6],
+				'defaultValue'=>1,
+				'componentProps' => [
+					'options' => [
+						[
+							'label' => '整包',
+							'value' => 1,
+						],
+						[
+							'label' => '补丁',
+							'value' => 2,
+						],
+					],
+				],
 			],
+			// [
+			// 	'field' => 'name',
+			// 	'label' => '文件名',
+			// 	'component' => 'Input',
+			// 	'required' => true,
+			// 	'colProps' => ['lg' => 12, 'xl' => 8, 'xxl' => 6],
+			// ],
+			// [showUploadList
+			// 	'field' => 'url',
+			// 	'label' => '下载地址',
+			// 	'component' => 'Input',
+			// 	'required' => true,
+			// 	'colProps' => ['lg' => 12, 'xl' => 8, 'xxl' => 6],
+			// ],showUploadList
 			[
-				'field' => 'name',
-				'label' => '文件名',
-				'component' => 'Input',
+				'field' => 'path',
+				'label' => '下载路径',
+				'component' => 'Upload',
 				'required' => true,
 				'colProps' => ['lg' => 12, 'xl' => 8, 'xxl' => 6],
-			],
-			[
-				'field' => 'url',
-				'label' => '下载地址',
-				'component' => 'Input',
-				'required' => true,
-				'colProps' => ['lg' => 12, 'xl' => 8, 'xxl' => 6],
+				'componentProps' => [
+					'maxSize' => 256,
+					'multiple' => false,
+					'accept'=>['apk', 'ipa', 'wgt'],
+					'maxNumber'=>1,
+					'api' => '(argv)=>uploadApi(argv)',
+					'check' => '(argv)=>checkUploadApi(argv)',
+					'showUploadList'=>false,
+					'value' => '(list) => {
+			            console.log(list);
+			        }',
+				],
 			],
 			[
 				'field' => 'is_force',
 				'label' => '是否强制更新',
-				'component' => 'Input',
+				'component' => 'Switch',
 				'required' => true,
 				'colProps' => ['lg' => 12, 'xl' => 8, 'xxl' => 6],
+				'defaultValue'=>0,
+				'componentProps' => [
+					'checkedChildren' => '是',
+					'unCheckedChildren' => '否',
+					'checkedValue' => 1,
+					'unCheckedValue' => 0,
+				],
 			],
 			[
-				'field' => 'create_time',
-				'label' => '发布时间',
-				'component' => 'Input',
-				'required' => true,
-				'colProps' => ['lg' => 12, 'xl' => 8, 'xxl' => 6],
-			],
-			[
-				'field' => 'update_time',
-				'label' => '更新时间',
-				'component' => 'Input',
-				'required' => true,
-				'colProps' => ['lg' => 12, 'xl' => 8, 'xxl' => 6],
-			],
-			[
-				'field' => 'delete_time',
-				'label' => '删除时间',
-				'component' => 'Input',
-				'required' => true,
+				'field' => 'content',
+				'label' => '更新内容',
+				'component' => 'InputTextArea',
+				'required' => false,
 				'colProps' => ['lg' => 12, 'xl' => 8, 'xxl' => 6],
 			],
 		],

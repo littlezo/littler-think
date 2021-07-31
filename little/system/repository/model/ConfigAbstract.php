@@ -24,10 +24,12 @@ use littler\traits\RewriteTrait;
 /**
  * @property id $int 主键
  * @property site_id $int 站点id（店铺，分站）,总平台端为0
- * @property config_key $string 配置项关键字
  * @property value $string 配置值json
+ * @property config_key $string 配置项关键字
+ * @property config_label $string 配置字段描述
  * @property config_desc $string 描述
  * @property is_use $int 是否启用 1启用 0不启用
+ * @property location $int 0 前端 1后台
  * @property create_time $int 创建时间
  * @property update_time $int 修改时间
  */
@@ -52,10 +54,12 @@ abstract class ConfigAbstract extends Model
 	protected $schema = [
 		'id' => 'int',
 		'site_id' => 'int',
-		'config_key' => 'string',
 		'value' => 'string',
+		'config_key' => 'string',
+		'config_label' => 'string',
 		'config_desc' => 'string',
 		'is_use' => 'int',
+		'location' => 'int',
 		'create_time' => 'int',
 		'update_time' => 'int',
 	];
@@ -63,10 +67,26 @@ abstract class ConfigAbstract extends Model
 	/**
 	 * @var array $json JSON类型字段
 	 */
-	protected $json = [];
+	protected $json = ['value', 'config_label'];
+
+	/**
+	 * @var array $json JSON字段自动转数组
+	 */
+	protected $jsonAssoc = true;
 
 	/**
 	 * @var array $field 允许写入字段
 	 */
-	public $field = ['id', 'site_id', 'config_key', 'value', 'config_desc', 'is_use', 'create_time', 'update_time'];
+	public $field = [
+		'id',
+		'site_id',
+		'value',
+		'config_key',
+		'config_label',
+		'config_desc',
+		'is_use',
+		'location',
+		'create_time',
+		'update_time',
+	];
 }

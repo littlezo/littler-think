@@ -7,7 +7,7 @@
  * @version 1.0.0
  * @author @小小只^v^ <littlezov@qq.com>  littlezov@qq.com
  * @contact  littlezov@qq.com
- * @link     https://github.com/littlezo
+ * @see     https://github.com/littlezo
  * @document https://github.com/littlezo/wiki
  * @license  https://github.com/littlezo/MozillaPublicLicense/blob/main/LICENSE
  */
@@ -19,7 +19,7 @@ namespace little\system\model;
 use little\system\repository\model\ConfigAbstract;
 
 /**
- * 系统配置 模型
+ * 系统配置 模型.
  */
 class Config extends ConfigAbstract
 {
@@ -42,24 +42,8 @@ class Config extends ConfigAbstract
 				'defaultHidden' => false,
 			],
 			[
-				'title' => '站点id（店铺，分站）,总平台端为0',
-				'dataIndex' => 'site_id',
-				'width' => 100,
-				'fixed' => false,
-				'align' => 'center',
-				'defaultHidden' => false,
-			],
-			[
 				'title' => '配置项关键字',
 				'dataIndex' => 'config_key',
-				'width' => 180,
-				'fixed' => false,
-				'align' => 'center',
-				'defaultHidden' => false,
-			],
-			[
-				'title' => '配置值json',
-				'dataIndex' => 'value',
 				'width' => 180,
 				'fixed' => false,
 				'align' => 'center',
@@ -74,20 +58,27 @@ class Config extends ConfigAbstract
 				'defaultHidden' => false,
 			],
 			[
-				'title' => '是否启用 1启用 0不启用',
+				'title' => '是否启用',
 				'dataIndex' => 'is_use',
 				'width' => 100,
 				'fixed' => false,
 				'align' => 'center',
 				'defaultHidden' => false,
-			],
-			[
-				'title' => '创建时间',
-				'dataIndex' => 'create_time',
-				'width' => 120,
-				'fixed' => false,
-				'align' => 'center',
-				'defaultHidden' => false,
+				'customRender' => "({ record }) => {
+                    return h(ant('Switch'), {
+                        checked: record.is_use === 1,
+                        checkedChildren: '正常',
+                        unCheckedChildren: '禁用',
+                        onChange(checked) {
+                        const newStatus = checked ? 1 : 0;
+                        const row_id = record.id;
+                        api('put','/system/config/'+row_id, {is_use:newStatus})
+                            .then(() => {
+                                record.is_use = newStatus;
+                            })
+                        },
+                    });
+                }",
 			],
 			[
 				'title' => '修改时间',
@@ -115,6 +106,51 @@ class Config extends ConfigAbstract
 			'slots' => ['customRender' => 'action'],
 			'fixed' => 'right',
 		],
+		'actions' =>"[
+          {
+            icon: 'clarity:note-edit-line',
+            label: '修改',
+            auth: 'member:user:update',
+            onClick: handleEdit.bind(null, record),
+          },
+          {
+            label: '删除',
+            icon: 'ant-design:delete-outlined',
+            color: 'error',
+            auth: 'member:user:delete',
+            popConfirm: {
+                title: '是否确认删除',
+                confirm: handleDelete.bind(null, record),
+            },
+          },
+          {
+            icon: 'clarity:note-edit-line',
+            label: '字段管理',
+            auth: 'member:user:update',
+            onClick: handleRowPart.bind(null, record, {
+                columns:[
+                    {
+                        title: '字段',
+                        dataIndex: 'field',
+                        editRow: true,
+                        editComponent:'Upload',
+                    },
+                    {
+                        title: '描述',
+                        dataIndex: 'label',
+                        editRow: true,
+                    }
+                ],
+                field:'config_label',
+                record,
+                api:{
+                    method:'put',
+                    api:'/system/config',
+                },
+                title:'余额操作'
+            }),
+          },
+        ]",
 	];
 
 	/**
@@ -134,22 +170,8 @@ class Config extends ConfigAbstract
 		'labelWidth' => 120,
 		'schemas' => [
 			[
-				'field' => 'site_id',
-				'label' => '站点id（店铺，分站）,总平台端为0',
-				'component' => 'Input',
-				'required' => true,
-				'colProps' => ['lg' => 12, 'xl' => 8, 'xxl' => 6],
-			],
-			[
 				'field' => 'config_key',
 				'label' => '配置项关键字',
-				'component' => 'Input',
-				'required' => true,
-				'colProps' => ['lg' => 12, 'xl' => 8, 'xxl' => 6],
-			],
-			[
-				'field' => 'value',
-				'label' => '配置值json',
 				'component' => 'Input',
 				'required' => true,
 				'colProps' => ['lg' => 12, 'xl' => 8, 'xxl' => 6],
@@ -163,24 +185,16 @@ class Config extends ConfigAbstract
 			],
 			[
 				'field' => 'is_use',
-				'label' => '是否启用 1启用 0不启用',
-				'component' => 'Input',
+				'label' => '是否启用',
+				'component' => 'Switch',
 				'required' => true,
 				'colProps' => ['lg' => 12, 'xl' => 8, 'xxl' => 6],
-			],
-			[
-				'field' => 'create_time',
-				'label' => '创建时间',
-				'component' => 'Input',
-				'required' => true,
-				'colProps' => ['lg' => 12, 'xl' => 8, 'xxl' => 6],
-			],
-			[
-				'field' => 'update_time',
-				'label' => '修改时间',
-				'component' => 'Input',
-				'required' => true,
-				'colProps' => ['lg' => 12, 'xl' => 8, 'xxl' => 6],
+				'componentProps' => [
+					'checkedChildren' => '启用',
+					'unCheckedChildren' => '禁用',
+					'checkedValue' => 1,
+					'unCheckedValue' => 0,
+				],
 			],
 		],
 	];

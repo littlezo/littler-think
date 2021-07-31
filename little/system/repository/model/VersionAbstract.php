@@ -30,6 +30,7 @@ use think\model\concern\SoftDelete;
  * @property version $string 版本
  * @property version_code $int 版本号
  * @property type $int 版本类型
+ * @property path $int 文件路径
  * @property name $string 文件名
  * @property url $string 下载地址
  * @property is_force $int 是否强制更新
@@ -64,6 +65,7 @@ abstract class VersionAbstract extends Model
 		'version' => 'string',
 		'version_code' => 'int',
 		'type' => 'int',
+		'path' => 'int',
 		'name' => 'string',
 		'url' => 'string',
 		'is_force' => 'int',
@@ -88,6 +90,7 @@ abstract class VersionAbstract extends Model
 		'version',
 		'version_code',
 		'type',
+		'path',
 		'name',
 		'url',
 		'is_force',

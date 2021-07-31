@@ -14,6 +14,6 @@
 	"author": "@小小只^v^",
 	"content": "",
 	"version_no": "20210730",
-    "ignore": ["system_document","system_express","system_help_class","system_help_docs","system_version"],
+    "ignore": ["system_document","system_express","system_help_class","system_help_docs"],
     "allow_layer": ["admin"]
 }
