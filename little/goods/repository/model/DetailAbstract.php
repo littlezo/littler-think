@@ -30,7 +30,6 @@ use littler\traits\RewriteTrait;
  * @property category_id $string 分类id
  * @property goods_image $string 商品主图路径
  * @property goods_content $string 商品详情
- * @property is_own $int 是否自营
  * @property goods_state $int 商品状态（1.正常0下架）
  * @property verify_state $int 审核状态（1 已审核 0 待审核 10 违规下架 -1 审核中 -2 审核失败）
  * @property verify_state_remark $string 商品违规或审核失败说明
@@ -45,7 +44,6 @@ use littler\traits\RewriteTrait;
  * @property is_delete $int 是否已经删除
  * @property introduction $string 促销语
  * @property keywords $string 关键词
- * @property unit $string 单位
  * @property sort $int 排序
  * @property create_time $int 创建时间
  * @property update_time $int 修改时间
@@ -54,12 +52,6 @@ use littler\traits\RewriteTrait;
  * @property pintuan_id $int 拼团id
  * @property sale_num $int 销量
  * @property evaluate $int 评价数
- * @property evaluate_shaitu $int 评价晒图数
- * @property evaluate_shipin $int 评价视频数
- * @property evaluate_zhuiping $int 评价追评数
- * @property evaluate_haoping $int 评价好评数
- * @property evaluate_zhongping $int 评价中评数
- * @property evaluate_chaping $int 评价差评数
  * @property goods_bv $int 商品BV
  * @property sku_id $int 第一个商品sku_id
  * @property max_buy $int 限购
@@ -92,7 +84,6 @@ abstract class DetailAbstract extends Model
 		'category_id' => 'string',
 		'goods_image' => 'string',
 		'goods_content' => 'string',
-		'is_own' => 'int',
 		'goods_state' => 'int',
 		'verify_state' => 'int',
 		'verify_state_remark' => 'string',
@@ -107,7 +98,6 @@ abstract class DetailAbstract extends Model
 		'is_delete' => 'int',
 		'introduction' => 'string',
 		'keywords' => 'string',
-		'unit' => 'string',
 		'sort' => 'int',
 		'create_time' => 'int',
 		'update_time' => 'int',
@@ -116,12 +106,6 @@ abstract class DetailAbstract extends Model
 		'pintuan_id' => 'int',
 		'sale_num' => 'int',
 		'evaluate' => 'int',
-		'evaluate_shaitu' => 'int',
-		'evaluate_shipin' => 'int',
-		'evaluate_zhuiping' => 'int',
-		'evaluate_haoping' => 'int',
-		'evaluate_zhongping' => 'int',
-		'evaluate_chaping' => 'int',
 		'goods_bv' => 'int',
 		'sku_id' => 'int',
 		'max_buy' => 'int',
@@ -150,7 +134,6 @@ abstract class DetailAbstract extends Model
 		'category_id',
 		'goods_image',
 		'goods_content',
-		'is_own',
 		'goods_state',
 		'verify_state',
 		'verify_state_remark',
@@ -165,7 +148,6 @@ abstract class DetailAbstract extends Model
 		'is_delete',
 		'introduction',
 		'keywords',
-		'unit',
 		'sort',
 		'create_time',
 		'update_time',
@@ -174,12 +156,6 @@ abstract class DetailAbstract extends Model
 		'pintuan_id',
 		'sale_num',
 		'evaluate',
-		'evaluate_shaitu',
-		'evaluate_shipin',
-		'evaluate_zhuiping',
-		'evaluate_haoping',
-		'evaluate_zhongping',
-		'evaluate_chaping',
 		'goods_bv',
 		'sku_id',
 		'max_buy',

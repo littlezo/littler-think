@@ -42,7 +42,7 @@ use think\model\concern\SoftDelete;
  * @property realname $string 真实姓名
  * @property sex $int 性别 0保密 1男 2女
  * @property location $string 地址
- * @property birthday $int 出生日期
+ * @property birthday $string 出生日期
  * @property growth $float 贡献值
  * @property balance_money $float 现金余额
  * @property balance_cash $float 现金卷余额
@@ -94,7 +94,7 @@ abstract class UserAbstract extends Model
 		'realname' => 'string',
 		'sex' => 'int',
 		'location' => 'string',
-		'birthday' => 'int',
+		'birthday' => 'string',
 		'growth' => 'float',
 		'balance_money' => 'float',
 		'balance_cash' => 'float',

@@ -34,8 +34,6 @@ use littler\traits\RewriteTrait;
  * @property start_time $int 活动开始时间
  * @property end_time $int 活动结束时间
  * @property stock $int 商品sku库存
- * @property weight $float 重量（单位g）
- * @property volume $float 体积（单位立方米）
  * @property click_num $int 点击量
  * @property sale_num $int 销量
  * @property collect_num $int 收藏量
@@ -51,8 +49,6 @@ use littler\traits\RewriteTrait;
  * @property site_name $string 所属店铺名称
  * @property website_id $int 所属分站id
  * @property category_id $int 分类id
- * @property brand_id $int 品牌id
- * @property brand_name $string 所属品牌名称
  * @property goods_content $string 商品详情
  * @property is_own $int 是否自营
  * @property goods_state $int 商品状态（1.正常0下架）
@@ -73,22 +69,12 @@ use littler\traits\RewriteTrait;
  * @property create_time $int 创建时间
  * @property update_time $int 修改时间
  * @property commission_rate $float 佣金比率（按照分类）
- * @property video_url $string 视频
  * @property discount_id $int 限时折扣id
  * @property seckill_id $int 秒杀id
  * @property topic_id $int 专题活动id
  * @property pintuan_id $int 拼团id
- * @property bargain_id $int 砍价id
  * @property goods_shop_category_ids $string 店内分类id,逗号隔开
  * @property evaluate $int 评价数
- * @property evaluate_shaitu $int 晒图评价数
- * @property evaluate_shipin $int 视频评价数
- * @property evaluate_zhuiping $int 追评数
- * @property spec_name $string 规格名称
- * @property evaluate_haoping $int 好评数
- * @property evaluate_zhongping $int 中评数
- * @property evaluate_chaping $int 差评数
- * @property supplier_id $int 供应商id
  * @property max_buy $int 限购
  * @property min_buy $int 起购
  */
@@ -123,8 +109,6 @@ abstract class SkuAbstract extends Model
 		'start_time' => 'int',
 		'end_time' => 'int',
 		'stock' => 'int',
-		'weight' => 'float',
-		'volume' => 'float',
 		'click_num' => 'int',
 		'sale_num' => 'int',
 		'collect_num' => 'int',
@@ -140,8 +124,6 @@ abstract class SkuAbstract extends Model
 		'site_name' => 'string',
 		'website_id' => 'int',
 		'category_id' => 'int',
-		'brand_id' => 'int',
-		'brand_name' => 'string',
 		'goods_content' => 'string',
 		'is_own' => 'int',
 		'goods_state' => 'int',
@@ -162,22 +144,12 @@ abstract class SkuAbstract extends Model
 		'create_time' => 'int',
 		'update_time' => 'int',
 		'commission_rate' => 'float',
-		'video_url' => 'string',
 		'discount_id' => 'int',
 		'seckill_id' => 'int',
 		'topic_id' => 'int',
 		'pintuan_id' => 'int',
-		'bargain_id' => 'int',
 		'goods_shop_category_ids' => 'string',
 		'evaluate' => 'int',
-		'evaluate_shaitu' => 'int',
-		'evaluate_shipin' => 'int',
-		'evaluate_zhuiping' => 'int',
-		'spec_name' => 'string',
-		'evaluate_haoping' => 'int',
-		'evaluate_zhongping' => 'int',
-		'evaluate_chaping' => 'int',
-		'supplier_id' => 'int',
 		'max_buy' => 'int',
 		'min_buy' => 'int',
 	];
@@ -203,8 +175,6 @@ abstract class SkuAbstract extends Model
 		'start_time',
 		'end_time',
 		'stock',
-		'weight',
-		'volume',
 		'click_num',
 		'sale_num',
 		'collect_num',
@@ -220,8 +190,6 @@ abstract class SkuAbstract extends Model
 		'site_name',
 		'website_id',
 		'category_id',
-		'brand_id',
-		'brand_name',
 		'goods_content',
 		'is_own',
 		'goods_state',
@@ -242,22 +210,12 @@ abstract class SkuAbstract extends Model
 		'create_time',
 		'update_time',
 		'commission_rate',
-		'video_url',
 		'discount_id',
 		'seckill_id',
 		'topic_id',
 		'pintuan_id',
-		'bargain_id',
 		'goods_shop_category_ids',
 		'evaluate',
-		'evaluate_shaitu',
-		'evaluate_shipin',
-		'evaluate_zhuiping',
-		'spec_name',
-		'evaluate_haoping',
-		'evaluate_zhongping',
-		'evaluate_chaping',
-		'supplier_id',
 		'max_buy',
 		'min_buy',
 	];
