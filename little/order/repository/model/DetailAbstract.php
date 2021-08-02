@@ -28,7 +28,7 @@ use think\model\concern\SoftDelete;
  * @property site_id $int 商家id
  * @property order_name $string 订单内容
  * @property order_from $string 订单来源
- * @property order_type $int 订单类型 1. 线上订单  2. 线下订单  3. 抵扣卷订单
+ * @property order_type $int 订单类型 1. 线上订单  2. 线下订单  3. 抵扣卷订单  4余额订单
  * @property out_trade_no $string 支付流水号
  * @property out_trade_no_2 $string 支付流水号（多次支付）
  * @property delivery_code $string 整体提货编码
