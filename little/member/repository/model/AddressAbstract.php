@@ -26,7 +26,6 @@ use littler\traits\RewriteTrait;
  * @property member_id $int 会员id
  * @property name $string 用户姓名
  * @property mobile $string 手机
- * @property telephone $string 联系电话
  * @property address $string 地址信息
  * @property full_address $string 详细地址信息
  * @property province_id $int 省id
@@ -36,6 +35,7 @@ use littler\traits\RewriteTrait;
  * @property longitude $string 经度
  * @property latitude $string 纬度
  * @property is_default $int 是否是默认地址 0否 1是
+ * @property create_time $int
  */
 abstract class AddressAbstract extends Model
 {
@@ -60,7 +60,6 @@ abstract class AddressAbstract extends Model
 		'member_id' => 'int',
 		'name' => 'string',
 		'mobile' => 'string',
-		'telephone' => 'string',
 		'address' => 'string',
 		'full_address' => 'string',
 		'province_id' => 'int',
@@ -70,17 +69,13 @@ abstract class AddressAbstract extends Model
 		'longitude' => 'string',
 		'latitude' => 'string',
 		'is_default' => 'int',
+		'create_time' => 'int',
 	];
 
 	/**
 	 * @var array $json JSON类型字段
 	 */
 	protected $json = [];
-
-	/**
-	 * @var array $createTime 关闭创建时间自动写入
-	 */
-	protected $createTime = false;
 
 	/**
 	 * @var array $updateTime 关闭更新时间自动写入
@@ -95,7 +90,6 @@ abstract class AddressAbstract extends Model
 		'member_id',
 		'name',
 		'mobile',
-		'telephone',
 		'address',
 		'full_address',
 		'province_id',
@@ -105,5 +99,6 @@ abstract class AddressAbstract extends Model
 		'longitude',
 		'latitude',
 		'is_default',
+		'create_time',
 	];
 }

@@ -16,7 +16,7 @@ declare(strict_types=1);
 
 namespace little\member\admin\controller;
 
-use little\member\service\admin\RechargesService;
+use little\member\service\admin\AgentService;
 use littler\annotation\docs\ApiDocs;
 use littler\annotation\Inject;
 use littler\annotation\route\Group as RouteGroup;
@@ -30,20 +30,20 @@ use littler\traits\SaveTrait;
 use littler\traits\UpdateTrait;
 
 /**
- * Class Recharges.
- * @RouteGroup("admin/member/recharges")
+ * Class Agent.
+ * @RouteGroup("admin/member/agent")
  * @Middleware({littler\JWTAuth\Middleware\Jwt::class, "admin"})
  * @apiDocs({
- *     "title": "会员套餐",
+ *     "title": "代理等级",
  *     "version": "1.0.0",
  *     "layer": "admin",
- *     "name": "recharges",
+ *     "name": "agent",
  *     "module": "member",
- *     "group": "recharges",
+ *     "group": "agent",
  *     "desc": "查询参数详见快速查询 字段含义参加字段映射"
  * })
  */
-class Recharges extends Controller
+class Agent extends Controller
 {
 	use LayoutTrait;
 	use ListTrait;
@@ -54,7 +54,7 @@ class Recharges extends Controller
 
 	/**
 	 * @Inject
-	 * @var RechargesService
+	 * @var AgentService
 	 */
 	protected $service;
 }

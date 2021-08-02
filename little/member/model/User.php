@@ -347,7 +347,7 @@ class User extends UserAbstract implements AuthorizeInterface
           {
             icon: 'clarity:note-edit-line',
             label: '余额操作',
-            auth: 'member:user:money',
+            auth: 'member:user:update',
             onClick: handleRowPart.bind(null, record, {
                 schemas:[
                 {

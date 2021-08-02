@@ -25,7 +25,7 @@ use littler\traits\RewriteTrait;
  * @property id $int
  * @property trade_no $string 提现交易号
  * @property member_id $int 会员id
- * @property trade_type $int 交易类型: 1充值，2提现，3转账，4购物，5销售利润，6代理收益，7货款结算
+ * @property trade_type $int 交易类型: 1充值，2提现，3转账，4购物，5销售利润，6代理收益，7货款结算  8商家保证金
  * @property to_member_id $int 目标用户
  * @property realname $string 真实姓名
  * @property to_realname $string 目标真实姓名
@@ -37,6 +37,9 @@ use littler\traits\RewriteTrait;
  * @property transfer_type_name $string 转账方式名称
  * @property account_type $string 账号类型 1支付宝，2微信，3银行卡，4会员账户
  * @property account_number $string 收付款账号
+ * @property before $float 变更前金额
+ * @property after $float 变更后金额
+ * @property prev_id $int 最新一次变更记录id
  * @property money $float 金额
  * @property fact_money $float 到账金额
  * @property rate $float 手续费率
@@ -48,6 +51,8 @@ use littler\traits\RewriteTrait;
  * @property audit_time $int 审核时间
  * @property payment_time $int 转账时间
  * @property update_time $int 更新时间
+ * @property type $int 0余额  1现金券 2 抵扣券
+ * @property pay_status $int 支付状态 0支出  1收入
  */
 abstract class BalanceAbstract extends Model
 {
@@ -83,6 +88,9 @@ abstract class BalanceAbstract extends Model
 		'transfer_type_name' => 'string',
 		'account_type' => 'string',
 		'account_number' => 'string',
+		'before' => 'float',
+		'after' => 'float',
+		'prev_id' => 'int',
 		'money' => 'float',
 		'fact_money' => 'float',
 		'rate' => 'float',
@@ -94,6 +102,8 @@ abstract class BalanceAbstract extends Model
 		'audit_time' => 'int',
 		'payment_time' => 'int',
 		'update_time' => 'int',
+		'type' => 'int',
+		'pay_status' => 'int',
 	];
 
 	/**
@@ -120,6 +130,9 @@ abstract class BalanceAbstract extends Model
 		'transfer_type_name',
 		'account_type',
 		'account_number',
+		'before',
+		'after',
+		'prev_id',
 		'money',
 		'fact_money',
 		'rate',
@@ -131,5 +144,7 @@ abstract class BalanceAbstract extends Model
 		'audit_time',
 		'payment_time',
 		'update_time',
+		'type',
+		'pay_status',
 	];
 }

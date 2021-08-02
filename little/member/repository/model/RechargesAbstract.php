@@ -31,6 +31,7 @@ use think\model\concern\SoftDelete;
  * @property growth $int 贡献值
  * @property desc $string 描述
  * @property is_new $int 是否新用户
+ * @property is_home $int 是否首页推荐
  * @property sort $int 排序
  * @property status $int 状态（1正常 0关闭）
  * @property create_time $int 创建时间
@@ -65,6 +66,7 @@ abstract class RechargesAbstract extends Model
 		'growth' => 'int',
 		'desc' => 'string',
 		'is_new' => 'int',
+		'is_home' => 'int',
 		'sort' => 'int',
 		'status' => 'int',
 		'create_time' => 'int',
@@ -89,6 +91,7 @@ abstract class RechargesAbstract extends Model
 		'growth',
 		'desc',
 		'is_new',
+		'is_home',
 		'sort',
 		'status',
 		'create_time',

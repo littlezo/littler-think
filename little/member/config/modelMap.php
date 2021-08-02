@@ -8,4 +8,5 @@ return [
 	'model.member.Level' => 'little\member\model\Level',
 	'model.member.User' => 'little\member\model\User',
 	'model.member.Recharges' => 'little\member\model\Recharges',
+	'model.member.Agent' => 'little\member\model\Agent',
 ];

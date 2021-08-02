@@ -8,4 +8,5 @@ return [
 	'service.admin.member.LevelService' => 'little\member\service\admin\LevelService',
 	'service.admin.member.UserService' => 'little\member\service\admin\UserService',
 	'service.admin.member.RechargesService' => 'little\member\service\admin\RechargesService',
+	'service.admin.member.AgentService' => 'little\member\service\admin\AgentService',
 ];

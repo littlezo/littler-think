@@ -80,19 +80,164 @@ class Level extends LevelAbstract
 				'fixed' => false,
 				'align' => 'center',
 				'defaultHidden' => false,
+			],
+			[
+				'title' => '是否级差升级',
+				'dataIndex' => 'is_diff',
+				'width' => 100,
+				'fixed' => false,
+				'align' => 'center',
+				'defaultHidden' => false,
 				'customRender' => "({ record }) => {
-                    const value = record.is_default;
-                    const enable = ~~value === 1;
-                    const color = enable ? 'green' : 'red';
-                    const text = enable ? '是' : '否';
+                    const textMap = {0:'否',1:'是',2:''};
+                    const colorMap = {0:'red',1:'blue',2:'green'};
+                    const value = record.is_diff;
+                    const color = colorMap[value];
+                    const text = textMap[value];
+                    return h(ant('Tag'), { color: color }, () => text);
+                }",
+			],
+			[
+				'title' => '邀请奖励',
+				'dataIndex' => 'invite_reward',
+				'width' => 100,
+				'fixed' => false,
+				'align' => 'center',
+				'defaultHidden' => false,
+			],
+			[
+				'title' => '兑换比例',
+				'dataIndex' => 'buy_ratio',
+				'width' => 100,
+				'fixed' => false,
+				'align' => 'center',
+				'defaultHidden' => false,
+			],
+			[
+				'title' => '是否允许申请区域代理',
+				'dataIndex' => 'is_region',
+				'width' => 100,
+				'fixed' => false,
+				'align' => 'center',
+				'defaultHidden' => false,
+				'customRender' => "({ record }) => {
+                    const textMap = {0:'否',1:'是',2:''};
+                    const colorMap = {0:'red',1:'blue',2:'green'};
+                    const value = record.is_region;
+                    const color = colorMap[value];
+                    const text = textMap[value];
+                    return h(ant('Tag'), { color: color }, () => text);
+                }",
+			],
+			[
+				'title' => '开启代理佣金',
+				'dataIndex' => 'is_region_settle',
+				'width' => 100,
+				'fixed' => false,
+				'align' => 'center',
+				'defaultHidden' => false,
+				'customRender' => "({ record }) => {
+                    const textMap = {0:'否',1:'是',2:''};
+                    const colorMap = {0:'red',1:'blue',2:'green'};
+                    const value = record.is_region_settle;
+                    const color = colorMap[value];
+                    const text = textMap[value];
+                    return h(ant('Tag'), { color: color }, () => text);
+                }",
+			],
+			[
+				'title' => '是否允许申请商家',
+				'dataIndex' => 'is_shop',
+				'width' => 100,
+				'fixed' => false,
+				'align' => 'center',
+				'defaultHidden' => false,
+				'customRender' => "({ record }) => {
+                    const textMap = {0:'否',1:'是',2:''};
+                    const colorMap = {0:'red',1:'blue',2:'green'};
+                    const value = record.is_shop;
+                    const color = colorMap[value];
+                    const text = textMap[value];
+                    return h(ant('Tag'), { color: color }, () => text);
+                }",
+			],
+			[
+				'title' => ' 开启商家佣金',
+				'dataIndex' => 'is_shop_settle',
+				'width' => 100,
+				'fixed' => false,
+				'align' => 'center',
+				'defaultHidden' => false,
+				'customRender' => "({ record }) => {
+                    const textMap = {0:'否',1:'是',2:''};
+                    const colorMap = {0:'red',1:'blue',2:'green'};
+                    const value = record.is_shop_settle;
+                    const color = colorMap[value];
+                    const text = textMap[value];
+                    return h(ant('Tag'), { color: color }, () => text);
+                }",
+			],
+			[
+				'title' => '是否出券',
+				'dataIndex' => 'is_seller',
+				'width' => 100,
+				'fixed' => false,
+				'align' => 'center',
+				'defaultHidden' => false,
+				'customRender' => "({ record }) => {
+                    const textMap = {0:'否',1:'是',2:''};
+                    const colorMap = {0:'red',1:'blue',2:'green'};
+                    const value = record.is_seller;
+                    const color = colorMap[value];
+                    const text = textMap[value];
+                    return h(ant('Tag'), { color: color }, () => text);
+                }",
+			],
+			[
+				'title' => '是否立即结算',
+				'dataIndex' => 'is_hand',
+				'width' => 100,
+				'fixed' => false,
+				'align' => 'center',
+				'defaultHidden' => false,
+				'customRender' => "({ record }) => {
+                    const textMap = {0:'否',1:'是',2:''};
+                    const colorMap = {0:'red',1:'blue',2:'green'};
+                    const value = record.is_hand;
+                    const color = colorMap[value];
+                    const text = textMap[value];
+                    return h(ant('Tag'), { color: color }, () => text);
+                }",
+			],
+			[
+				'title' => '分佣比例',
+				'dataIndex' => 'settle_ratio',
+				'width' => 100,
+				'fixed' => false,
+				'align' => 'center',
+				'defaultHidden' => false,
+			],
+			[
+				'title' => '状态',
+				'dataIndex' => 'status',
+				'width' => 100,
+				'fixed' => false,
+				'align' => 'center',
+				'defaultHidden' => false,
+				'customRender' => "({ record }) => {
+                    const textMap = {0:'禁用',1:'正常'};
+                    const colorMap = {0:'red',1:'green'};
+                    const value = record.status;
+                    const color = colorMap[value];
+                    const text = textMap[value];
                     return h(ant('Tag'), { color: color }, () => text);
                 }",
 			],
 		],
 		'formConfig' => [],
-		'pagination' => true,
+		'pagination' => false,
 		'striped' => true,
-		'useSearchForm' => true,
+		'useSearchForm' => false,
 		'showTableSetting' => true,
 		'bordered' => true,
 		'showIndexColumn' => false,
@@ -106,23 +251,23 @@ class Level extends LevelAbstract
 			'slots' => ['customRender' => 'action'],
 			'fixed' => 'right',
 		],
-		'actions' => "[
-            {
-                icon: 'clarity:note-edit-line',
-                label: '修改',
-                auth: 'member:level:update',
-                onClick: handleEdit.bind(null, record),
+		'actions' =>"[
+          {
+            icon: 'clarity:note-edit-line',
+            label: '修改',
+            auth: 'member:level:update',
+            onClick: handleEdit.bind(null, record),
+          },
+          {
+            label: '删除',
+            icon: 'ant-design:delete-outlined',
+            color: 'error',
+            auth: 'member:level:delete',
+            popConfirm: {
+                title: '是否确认删除',
+                confirm: handleDelete.bind(null, record),
             },
-            {
-                label: '删除',
-                icon: 'ant-design:delete-outlined',
-                color: 'error',
-                auth: 'member:level:delete',
-                popConfirm: {
-                    title: '是否确认删除',
-                    confirm: handleDelete.bind(null, record),
-                },
-            },
+          }
         ]",
 	];
 
@@ -145,7 +290,7 @@ class Level extends LevelAbstract
 	 * @var array 增加表单字段映射
 	 */
 	public $form_schema = [
-		'labelWidth' => 120,
+		'labelWidth' => 160,
 		'schemas' => [
 			[
 				'field' => 'level_name',
@@ -164,29 +309,207 @@ class Level extends LevelAbstract
 			[
 				'field' => 'level_money',
 				'label' => '升级金额',
-				'component' => 'Input',
+				'component' => 'InputNumber',
 				'required' => true,
-				'colProps' => ['lg' => 12, 'xl' => 8, 'xxl' => 6],
-			],
-			[
-				'field' => 'remark',
-				'label' => '备注',
-				'component' => 'InputTextArea',
-				'required' => false,
 				'colProps' => ['lg' => 12, 'xl' => 8, 'xxl' => 6],
 			],
 			[
 				'field' => 'is_default',
 				'label' => '是否默认',
-				'component' => 'Input',
-				'component' => 'Switch',
+				'component' => 'RadioButtonGroup',
 				'required' => true,
 				'colProps' => ['lg' => 12, 'xl' => 8, 'xxl' => 6],
-				'defaultValue' => 1,
 				'componentProps' => [
-					'checkedValue' => 1,
-					'unCheckedValue' => 0,
+					'options' => [
+						[
+							'label' => '是',
+							'value' => 1,
+						],
+						[
+							'label' => '否',
+							'value' => 0,
+						],
+					],
 				],
+			],
+			[
+				'field' => 'is_diff',
+				'label' => '是否不差升级',
+				'component' => 'RadioButtonGroup',
+				'required' => true,
+				'colProps' => ['lg' => 12, 'xl' => 8, 'xxl' => 6],
+				'componentProps' => [
+					'options' => [
+						[
+							'label' => '是',
+							'value' => 1,
+						],
+						[
+							'label' => '否',
+							'value' => 0,
+						],
+					],
+				],
+			],
+			[
+				'field' => 'invite_reward',
+				'label' => '邀请奖励',
+				'component' => 'InputNumber',
+				'required' => true,
+				'colProps' => ['lg' => 12, 'xl' => 8, 'xxl' => 6],
+			],
+			[
+				'field' => 'buy_ratio',
+				'label' => '兑换比例',
+				'component' => 'InputNumber',
+				'required' => true,
+				'colProps' => ['lg' => 12, 'xl' => 8, 'xxl' => 6],
+			],
+			[
+				'field' => 'is_region',
+				'label' => '是否允许申请区域代理',
+				'component' => 'RadioButtonGroup',
+				'required' => true,
+				'colProps' => ['lg' => 12, 'xl' => 8, 'xxl' => 6],
+				'componentProps' => [
+					'options' => [
+						[
+							'label' => '是',
+							'value' => 1,
+						],
+						[
+							'label' => '否',
+							'value' => 0,
+						],
+					],
+				],
+			],
+			[
+				'field' => 'is_region_settle',
+				'label' => '开启代理佣金',
+				'component' => 'RadioButtonGroup',
+				'required' => true,
+				'colProps' => ['lg' => 12, 'xl' => 8, 'xxl' => 6],
+				'componentProps' => [
+					'options' => [
+						[
+							'label' => '是',
+							'value' => 1,
+						],
+						[
+							'label' => '否',
+							'value' => 0,
+						],
+					],
+				],
+			],
+			[
+				'field' => 'is_shop',
+				'label' => '是否允许申请商家',
+				'component' => 'RadioButtonGroup',
+				'required' => true,
+				'colProps' => ['lg' => 12, 'xl' => 8, 'xxl' => 6],
+				'componentProps' => [
+					'options' => [
+						[
+							'label' => '是',
+							'value' => 1,
+						],
+						[
+							'label' => '否',
+							'value' => 0,
+						],
+					],
+				],
+			],
+			[
+				'field' => 'is_shop_settle',
+				'label' => ' 开启商家佣金',
+				'component' => 'RadioButtonGroup',
+				'required' => true,
+				'colProps' => ['lg' => 12, 'xl' => 8, 'xxl' => 6],
+				'componentProps' => [
+					'options' => [
+						[
+							'label' => '是',
+							'value' => 1,
+						],
+						[
+							'label' => '否',
+							'value' => 0,
+						],
+					],
+				],
+			],
+			[
+				'field' => 'is_seller',
+				'label' => '是否出券',
+				'component' => 'RadioButtonGroup',
+				'required' => true,
+				'colProps' => ['lg' => 12, 'xl' => 8, 'xxl' => 6],
+				'componentProps' => [
+					'options' => [
+						[
+							'label' => '是',
+							'value' => 1,
+						],
+						[
+							'label' => '否',
+							'value' => 0,
+						],
+					],
+				],
+			],
+			[
+				'field' => 'is_hand',
+				'label' => '是否立即结算',
+				'component' => 'RadioButtonGroup',
+				'required' => true,
+				'colProps' => ['lg' => 12, 'xl' => 8, 'xxl' => 6],
+				'componentProps' => [
+					'options' => [
+						[
+							'label' => '是',
+							'value' => 1,
+						],
+						[
+							'label' => '否',
+							'value' => 0,
+						],
+					],
+				],
+			],
+			[
+				'field' => 'settle_ratio',
+				'label' => '分佣比例',
+				'component' => 'Input',
+				'required' => true,
+				'colProps' => ['lg' => 12, 'xl' => 8, 'xxl' => 6],
+			],
+			[
+				'field' => 'status',
+				'label' => '状态',
+				'component' => 'RadioButtonGroup',
+				'required' => true,
+				'colProps' => ['lg' => 12, 'xl' => 8, 'xxl' => 6],
+				'componentProps' => [
+					'options' => [
+						[
+							'label' => '启用',
+							'value' => 1,
+						],
+						[
+							'label' => '禁用',
+							'value' => 0,
+						],
+					],
+				],
+			],
+			[
+				'field' => 'remark',
+				'label' => '备注',
+				'component' => 'InputTextArea',
+				'colProps' => ['lg' => 12, 'xl' => 8, 'xxl' => 6],
 			],
 		],
 	];

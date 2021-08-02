@@ -49,17 +49,17 @@ class Recharges extends RechargesAbstract
 				'align' => 'center',
 				'defaultHidden' => false,
 			],
-			[
-				'title' => '封面',
-				'dataIndex' => 'cover_img',
-				'width' => 180,
-				'fixed' => false,
-				'align' => 'center',
-				'defaultHidden' => false,
-				// 'customRender' => "({ record }) => {
-				//     return h(ant('Avatar'), {size:60 ,src: getImg(record.cover_img) });
-				// }",
-			],
+			// [
+			// 	'title' => '封面',
+			// 	'dataIndex' => 'cover_img',
+			// 	'width' => 180,
+			// 	'fixed' => false,
+			// 	'align' => 'center',
+			// 	'defaultHidden' => false,
+			// 	// 'customRender' => "({ record }) => {
+			// 	//     return h(ant('Avatar'), {size:60 ,src: getImg(record.cover_img) });
+			// 	// }",
+			// ],
 			[
 				'title' => '面值',
 				'dataIndex' => 'face_value',
@@ -93,6 +93,38 @@ class Recharges extends RechargesAbstract
 				'defaultHidden' => false,
 			],
 			[
+				'title' => '是否新用户',
+				'dataIndex' => 'is_new',
+				'width' => 100,
+				'fixed' => false,
+				'align' => 'center',
+				'defaultHidden' => false,
+				'customRender' => "({ record }) => {
+                    const textMap = {0:'否',1:'是',2:''};
+                    const colorMap = {0:'red',1:'blue',2:'green'};
+                    const value = record.is_new;
+                    const color = colorMap[value];
+                    const text = textMap[value];
+                    return h(ant('Tag'), { color: color }, () => text);
+                }",
+			],
+			[
+				'title' => '是否首页',
+				'dataIndex' => 'is_home',
+				'width' => 100,
+				'fixed' => false,
+				'align' => 'center',
+				'defaultHidden' => false,
+				'customRender' => "({ record }) => {
+                    const textMap = {0:'否',1:'是',2:''};
+                    const colorMap = {0:'red',1:'blue',2:'green'};
+                    const value = record.is_home;
+                    const color = colorMap[value];
+                    const text = textMap[value];
+                    return h(ant('Tag'), { color: color }, () => text);
+                }",
+			],
+			[
 				'title' => '排序',
 				'dataIndex' => 'sort',
 				'width' => 100,
@@ -116,27 +148,11 @@ class Recharges extends RechargesAbstract
                     return h(ant('Tag'), { color: color }, () => text);
                 }",
 			],
-			[
-				'title' => '创建时间',
-				'dataIndex' => 'create_time',
-				'width' => 120,
-				'fixed' => false,
-				'align' => 'center',
-				'defaultHidden' => false,
-			],
-			[
-				'title' => '修改时间',
-				'dataIndex' => 'update_time',
-				'width' => 120,
-				'fixed' => false,
-				'align' => 'center',
-				'defaultHidden' => false,
-			],
 		],
 		'formConfig' => [],
-		'pagination' => true,
+		'pagination' => false,
 		'striped' => true,
-		'useSearchForm' => true,
+		'useSearchForm' => false,
 		'showTableSetting' => true,
 		'bordered' => true,
 		'showIndexColumn' => false,
@@ -242,6 +258,46 @@ class Recharges extends RechargesAbstract
 				'component' => 'InputNumber',
 				'required' => true,
 				'colProps' => ['lg' => 12, 'xl' => 8, 'xxl' => 6],
+			],
+			[
+				'field' => 'is_new',
+				'label' => '是否新用户专享',
+				'component' => 'RadioButtonGroup',
+				'required' => true,
+				'colProps' => ['lg' => 12, 'xl' => 8, 'xxl' => 6],
+				'defaultValue'=>1,
+				'componentProps' => [
+					'options' => [
+						[
+							'label' => '是',
+							'value' => 1,
+						],
+						[
+							'label' => '否',
+							'value' => 0,
+						],
+					],
+				],
+			],
+			[
+				'field' => 'is_home',
+				'label' => '是否首页推荐',
+				'component' => 'RadioButtonGroup',
+				'required' => true,
+				'colProps' => ['lg' => 12, 'xl' => 8, 'xxl' => 6],
+				'defaultValue'=>1,
+				'componentProps' => [
+					'options' => [
+						[
+							'label' => '是',
+							'value' => 1,
+						],
+						[
+							'label' => '否',
+							'value' => 0,
+						],
+					],
+				],
 			],
 			// [
 			// 	'field' => 'type',
