@@ -350,16 +350,29 @@ class User extends UserAbstract implements AuthorizeInterface
             auth: 'member:user:update',
             onClick: handleRowPart.bind(null, record, {
                 schemas:[
+                    {
+                    field: 'field',
+                    label: '操作类型',
+                    component: 'RadioButtonGroup',
+                    defaultValue: 1,
+                    componentProps: {
+                        options: [
+                            { label: '余额', value: 1 },
+                            { label: '现金劵', value: 2 },
+                            { label: '抵扣券', value: 3 },
+                        ],
+                    },
+                },
                 {
                     field: 'type',
                     label: '类型',
                     component: 'RadioButtonGroup',
                     defaultValue: 0,
                     componentProps: {
-                    options: [
-                        { label: '扣除', value: 0 },
-                        { label: '增加', value: 1 },
-                    ],
+                        options: [
+                            { label: '扣除', value: 0 },
+                            { label: '增加', value: 1 },
+                        ],
                     },
                 },
                 {
@@ -371,6 +384,7 @@ class User extends UserAbstract implements AuthorizeInterface
                 {
                     label: '备注',
                     field: 'remark',
+                    required: true,
                     component: 'InputTextArea',
                 }],
                 api:{
@@ -410,30 +424,17 @@ class User extends UserAbstract implements AuthorizeInterface
 			[
 				'field' => 'parent',
 				'label' => '推荐人',
-				'component' => 'ApiSelect',
+				'component' => 'Select',
 				'required' => true,
 				'colProps' => ['lg' => 12, 'xl' => 8, 'xxl' => 6],
 				'componentProps' => '() => {
                     return {
                         labelField: "nickname",
                         valueField: "id",
+                        showSearch:true,
                         api: (argv) => api("get", "/member/user/list", {...argv},),
                     };
                 }',
-			],
-			[
-				'field' => 'username',
-				'label' => '用户名',
-				'component' => 'Input',
-				'required' => true,
-				'colProps' => ['lg' => 12, 'xl' => 8, 'xxl' => 6],
-			],
-			[
-				'field' => 'nickname',
-				'label' => '用户昵称',
-				'component' => 'Input',
-				'required' => true,
-				'colProps' => ['lg' => 12, 'xl' => 8, 'xxl' => 6],
 			],
 			[
 				'field' => 'mobile',
@@ -445,13 +446,6 @@ class User extends UserAbstract implements AuthorizeInterface
 			[
 				'field' => 'password',
 				'label' => '用户密码',
-				'component' => 'InputPassword',
-				'required' => false,
-				'colProps' => ['lg' => 12, 'xl' => 8, 'xxl' => 6],
-			],
-			[
-				'field' => 'pay_password',
-				'label' => '交易密码',
 				'component' => 'InputPassword',
 				'required' => false,
 				'colProps' => ['lg' => 12, 'xl' => 8, 'xxl' => 6],
@@ -469,21 +463,6 @@ class User extends UserAbstract implements AuthorizeInterface
 				],
 			],
 			[
-				'field' => 'avatar',
-				'label' => '用户头像',
-				'component' => 'Input',
-				'required' => true,
-				'colProps' => ['lg' => 12, 'xl' => 8, 'xxl' => 6],
-				'render' =>    '({ model, field }) => {
-                    return h(LzCropperAvatar,{
-                    uploadApi: (argv)=>uploadApi(argv),
-                    value: getImg(model[field]),
-                    onChange: (e) => {
-                        model[field] = e.id;
-                    },
-                })}',
-			],
-			[
 				'field' => 'level_id',
 				'label' => '用户等级',
 				'component' => 'ApiSelect',
@@ -496,55 +475,6 @@ class User extends UserAbstract implements AuthorizeInterface
                         api: (argv) => api("get", "/member/level/list", argv),
                     };
                 }',
-			],
-			[
-				'field' => 'wx_account',
-				'label' => '微信号',
-				'component' => 'Input',
-				'required' => true,
-				'colProps' => ['lg' => 12, 'xl' => 8, 'xxl' => 6],
-			],
-			[
-				'field' => 'realname',
-				'label' => '真实姓名',
-				'component' => 'Input',
-				'required' => true,
-				'colProps' => ['lg' => 12, 'xl' => 8, 'xxl' => 6],
-			],
-			[
-				'field' => 'sex',
-				'label' => '性别',
-				'component' => 'Select',
-				'required' => true,
-				'colProps' => ['lg' => 12, 'xl' => 8, 'xxl' => 6],
-				'defaultValue' => 2,
-				'componentProps' => [
-					'options' => [
-						[
-							'label' => '女',
-							'value' => 0,
-						],
-						[
-							'label' => '男',
-							'value' => 1,
-						],
-						[
-							'label' => '未知',
-							'value' => 2,
-						],
-					],
-				],
-			],
-			[
-				'field' => 'birthday',
-				'label' => '出生日期',
-				'component' => 'DatePicker',
-				'required' => true,
-				'colProps' => ['lg' => 12, 'xl' => 8, 'xxl' => 6],
-				// 'defaultPickerValue'=>0,
-				// 'componentProps'=>[
-				// 	'valueFormat'=>'X',
-				// ],
 			],
 		],
 	];
