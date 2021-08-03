@@ -203,6 +203,8 @@ class Express extends ExpressAbstract
 			'slots' => ['customRender' => 'action'],
 			'fixed' => 'right',
 		],
+		'dropActions' => "[\n                {\n                    icon: 'clarity:note-edit-line',\n                    label: '\xe4\xbf\xae\xe6\x94\xb9',\n                    auth: `system:express:update`,\n                    onClick: handleEdit.bind(null, record),\n                },\n                {\n                    label: '\xe5\x88\xa0\xe9\x99\xa4',\n                    icon: 'ant-design:delete-outlined',\n                    color: 'error',\n                    auth: `system:express:delete`,\n                    popConfirm: {\n                        title: '\xe6\x98\xaf\xe5\x90\xa6\xe7\xa1\xae\xe8\xae\xa4\xe5\x88\xa0\xe9\x99\xa4',\n                        confirm: handleDelete.bind(null, record),\n                    },\n                }\n           ]",
+		'actions' => '[]',
 	];
 
 	/**
@@ -210,14 +212,8 @@ class Express extends ExpressAbstract
 	 */
 	public $search_schema = [
 		'labelWidth' => 100,
-		'schemas' => [
-			[
-				'field' => 'company_id',
-				'label' => 'ID',
-				'component' => 'Input',
-
-			],
-		],
+		'baseColProps' => ['xxl' => 6, 'xl' => 8, 'lg' => 12, 'md' => 34],
+		'schemas' => [['field' => 'company_id', 'label' => 'ID', 'component' => 'Input']],
 	];
 
 	/**
@@ -225,133 +221,46 @@ class Express extends ExpressAbstract
 	 */
 	public $form_schema = [
 		'labelWidth' => 120,
+		'baseColProps' => ['xxl' => 6, 'xl' => 8, 'lg' => 12, 'md' => 34],
 		'schemas' => [
-			[
-				'field' => 'company_name',
-				'label' => '物流公司名称',
-				'component' => 'Input',
-				'required' => true,
-
-			],
-			[
-				'field' => 'logo',
-				'label' => '物流公司logo',
-				'component' => 'Input',
-				'required' => true,
-
-			],
-			[
-				'field' => 'url',
-				'label' => '物流公司网址',
-				'component' => 'Input',
-				'required' => true,
-
-			],
-			[
-				'field' => 'sort',
-				'label' => '排序',
-				'component' => 'Input',
-				'required' => true,
-
-			],
-			[
-				'field' => 'express_no_kdniao',
-				'label' => '快递鸟编码',
-				'component' => 'Input',
-				'required' => true,
-
-			],
-			[
-				'field' => 'express_no_kd100',
-				'label' => '快递100编码',
-				'component' => 'Input',
-				'required' => true,
-
-			],
+			['field' => 'company_name', 'label' => '物流公司名称', 'component' => 'Input', 'required' => true],
+			['field' => 'logo', 'label' => '物流公司logo', 'component' => 'Input', 'required' => true],
+			['field' => 'url', 'label' => '物流公司网址', 'component' => 'Input', 'required' => true],
+			['field' => 'sort', 'label' => '排序', 'component' => 'Input', 'required' => true],
+			['field' => 'express_no_kdniao', 'label' => '快递鸟编码', 'component' => 'Input', 'required' => true],
+			['field' => 'express_no_kd100', 'label' => '快递100编码', 'component' => 'Input', 'required' => true],
 			[
 				'field' => 'express_no_cainiao',
 				'label' => '菜鸟物流接口编码',
 				'component' => 'Input',
 				'required' => true,
-
 			],
 			[
 				'field' => 'express_no_ext',
 				'label' => '快递查询接口编码',
 				'component' => 'Input',
 				'required' => true,
-
 			],
-			[
-				'field' => 'content_json',
-				'label' => '打印内容',
-				'component' => 'Input',
-				'required' => false,
-
-			],
-			[
-				'field' => 'background_image',
-				'label' => '背景图',
-				'component' => 'Input',
-				'required' => true,
-
-			],
-			[
-				'field' => 'font_size',
-				'label' => '打印字体',
-				'component' => 'Input',
-				'required' => true,
-
-			],
-			[
-				'field' => 'width',
-				'label' => '宽度',
-				'component' => 'Input',
-				'required' => true,
-
-			],
-			[
-				'field' => 'height',
-				'label' => '高度',
-				'component' => 'Input',
-				'required' => true,
-
-			],
+			['field' => 'content_json', 'label' => '打印内容', 'component' => 'Input', 'required' => false],
+			['field' => 'background_image', 'label' => '背景图', 'component' => 'Input', 'required' => true],
+			['field' => 'font_size', 'label' => '打印字体', 'component' => 'Input', 'required' => true],
+			['field' => 'width', 'label' => '宽度', 'component' => 'Input', 'required' => true],
+			['field' => 'height', 'label' => '高度', 'component' => 'Input', 'required' => true],
 			[
 				'field' => 'scale',
 				'label' => '真实尺寸（mm）与显示尺寸（px）的比例',
 				'component' => 'Input',
 				'required' => true,
-
 			],
-			[
-				'field' => 'create_time',
-				'label' => '创建时间',
-				'component' => 'Input',
-				'required' => true,
-
-			],
-			[
-				'field' => 'update_time',
-				'label' => '修改时间',
-				'component' => 'Input',
-				'required' => true,
-
-			],
+			['field' => 'create_time', 'label' => '创建时间', 'component' => 'Input', 'required' => true],
+			['field' => 'update_time', 'label' => '修改时间', 'component' => 'Input', 'required' => true],
 			[
 				'field' => 'is_electronicsheet',
 				'label' => '是否支持电子面单（0不支持  1支持）',
 				'component' => 'Input',
 				'required' => true,
-
 			],
-			[
-				'field' => 'print_style',
-				'label' => '电子面单打印风格',
-				'component' => 'Input',
-				'required' => true,
-
-			],
+			['field' => 'print_style', 'label' => '电子面单打印风格', 'component' => 'Input', 'required' => true],
 		],
 	];
 

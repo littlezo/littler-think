@@ -50,36 +50,12 @@ class HelpDocs extends HelpDocsAbstract
 				'defaultHidden' => false,
 			],
 			[
-				'title' => '链接地址',
-				'dataIndex' => 'link_address',
-				'width' => 180,
-				'fixed' => false,
-				'align' => 'center',
-				'defaultHidden' => false,
-			],
-			[
 				'title' => '帮助内容',
 				'dataIndex' => 'content',
 				'width' => 80,
 				'fixed' => false,
 				'align' => 'center',
 				'defaultHidden' => true,
-			],
-			[
-				'title' => '帮助类型id',
-				'dataIndex' => 'class_id',
-				'width' => 100,
-				'fixed' => false,
-				'align' => 'center',
-				'defaultHidden' => false,
-			],
-			[
-				'title' => '帮助类型名称',
-				'dataIndex' => 'class_name',
-				'width' => 180,
-				'fixed' => false,
-				'align' => 'center',
-				'defaultHidden' => false,
 			],
 			[
 				'title' => '排序号',
@@ -123,6 +99,8 @@ class HelpDocs extends HelpDocsAbstract
 			'slots' => ['customRender' => 'action'],
 			'fixed' => 'right',
 		],
+		'dropActions' => "[\n                {\n                    icon: 'clarity:note-edit-line',\n                    label: '\xe4\xbf\xae\xe6\x94\xb9',\n                    auth: `system:help_docs:update`,\n                    onClick: handleEdit.bind(null, record),\n                },\n                {\n                    label: '\xe5\x88\xa0\xe9\x99\xa4',\n                    icon: 'ant-design:delete-outlined',\n                    color: 'error',\n                    auth: `system:help_docs:delete`,\n                    popConfirm: {\n                        title: '\xe6\x98\xaf\xe5\x90\xa6\xe7\xa1\xae\xe8\xae\xa4\xe5\x88\xa0\xe9\x99\xa4',\n                        confirm: handleDelete.bind(null, record),\n                    },\n                }\n           ]",
+		'actions' => '[]',
 	];
 
 	/**
@@ -130,9 +108,8 @@ class HelpDocs extends HelpDocsAbstract
 	 */
 	public $search_schema = [
 		'labelWidth' => 100,
-		'schemas' => [
-			['field' => 'id', 'label' => 'ID', 'component' => 'Input', 'colProps' => ['lg' => 12, 'xl' => 8, 'xxl' => 6]],
-		],
+		'baseColProps' => ['xxl' => 6, 'xl' => 8, 'lg' => 12, 'md' => 34],
+		'schemas' => [['field' => 'id', 'label' => 'ID', 'component' => 'Input']],
 	];
 
 	/**
@@ -140,63 +117,13 @@ class HelpDocs extends HelpDocsAbstract
 	 */
 	public $form_schema = [
 		'labelWidth' => 120,
+		'baseColProps' => ['xxl' => 6, 'xl' => 8, 'lg' => 12, 'md' => 34],
 		'schemas' => [
-			[
-				'field' => 'title',
-				'label' => '帮助主题',
-				'component' => 'Input',
-				'required' => true,
-
-			],
-			[
-				'field' => 'link_address',
-				'label' => '链接地址',
-				'component' => 'Input',
-				'required' => true,
-
-			],
-			[
-				'field' => 'content',
-				'label' => '帮助内容',
-				'component' => 'Input',
-				'required' => false,
-
-			],
-			[
-				'field' => 'class_id',
-				'label' => '帮助类型id',
-				'component' => 'Input',
-				'required' => true,
-
-			],
-			[
-				'field' => 'class_name',
-				'label' => '帮助类型名称',
-				'component' => 'Input',
-				'required' => true,
-
-			],
-			[
-				'field' => 'sort',
-				'label' => '排序号',
-				'component' => 'Input',
-				'required' => true,
-
-			],
-			[
-				'field' => 'create_time',
-				'label' => '创建时间',
-				'component' => 'Input',
-				'required' => true,
-
-			],
-			[
-				'field' => 'update_time',
-				'label' => '修改时间',
-				'component' => 'Input',
-				'required' => true,
-
-			],
+			['field' => 'title', 'label' => '帮助主题', 'component' => 'Input', 'required' => true],
+			['field' => 'content', 'label' => '帮助内容', 'component' => 'Input', 'required' => false],
+			['field' => 'sort', 'label' => '排序号', 'component' => 'Input', 'required' => true],
+			['field' => 'create_time', 'label' => '创建时间', 'component' => 'Input', 'required' => true],
+			['field' => 'update_time', 'label' => '修改时间', 'component' => 'Input', 'required' => true],
 		],
 	];
 

@@ -24,10 +24,7 @@ use littler\traits\RewriteTrait;
 /**
  * @property id $int 主键id
  * @property title $string 帮助主题
- * @property link_address $string 链接地址
  * @property content $string 帮助内容
- * @property class_id $int 帮助类型id
- * @property class_name $string 帮助类型名称
  * @property sort $int 排序号
  * @property create_time $int 创建时间
  * @property update_time $int 修改时间
@@ -53,10 +50,7 @@ abstract class HelpDocsAbstract extends Model
 	protected $schema = [
 		'id' => 'int',
 		'title' => 'string',
-		'link_address' => 'string',
 		'content' => 'string',
-		'class_id' => 'int',
-		'class_name' => 'string',
 		'sort' => 'int',
 		'create_time' => 'int',
 		'update_time' => 'int',
@@ -70,15 +64,5 @@ abstract class HelpDocsAbstract extends Model
 	/**
 	 * @var array $field 允许写入字段
 	 */
-	public $field = [
-		'id',
-		'title',
-		'link_address',
-		'content',
-		'class_id',
-		'class_name',
-		'sort',
-		'create_time',
-		'update_time',
-	];
+	public $field = ['id', 'title', 'content', 'sort', 'create_time', 'update_time'];
 }
