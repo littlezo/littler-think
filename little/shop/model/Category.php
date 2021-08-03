@@ -7,7 +7,7 @@
  * @version 1.0.0
  * @author @小小只^v^ <littlezov@qq.com>  littlezov@qq.com
  * @contact  littlezov@qq.com
- * @link     https://github.com/littlezo
+ * @see     https://github.com/littlezo
  * @document https://github.com/littlezo/wiki
  * @license  https://github.com/littlezo/MozillaPublicLicense/blob/main/LICENSE
  */
@@ -19,7 +19,7 @@ namespace little\shop\model;
 use little\shop\repository\model\CategoryAbstract;
 
 /**
- * 商家分类 模型
+ * 商家分类 模型.
  */
 class Category extends CategoryAbstract
 {
@@ -58,6 +58,22 @@ class Category extends CategoryAbstract
 				'defaultHidden' => false,
 			],
 			[
+				'title' => '分类类型',
+				'dataIndex' => 'type',
+				'width' => 100,
+				'fixed' => false,
+				'align' => 'center',
+				'defaultHidden' => false,
+				'customRender' => "({ record }) => {
+                    const textMap = {0:'通用',1:'线上',2:'线下'};
+                    const colorMap = {0:'red',1:'blue',2:'green'};
+                    const value = record.type;
+                    const color = colorMap[value];
+                    const text = textMap[value];
+                    return h(ant('Tag'), { color: color }, () => text);
+                }",
+			],
+			[
 				'title' => '排序',
 				'dataIndex' => 'sort',
 				'width' => 100,
@@ -67,9 +83,9 @@ class Category extends CategoryAbstract
 			],
 		],
 		'formConfig' => [],
-		'pagination' => true,
+		'pagination' => false,
 		'striped' => true,
-		'useSearchForm' => true,
+		'useSearchForm' => false,
 		'showTableSetting' => true,
 		'bordered' => true,
 		'showIndexColumn' => false,
@@ -83,6 +99,24 @@ class Category extends CategoryAbstract
 			'slots' => ['customRender' => 'action'],
 			'fixed' => 'right',
 		],
+		'actions' => "[
+            {
+                icon: 'clarity:note-edit-line',
+                label: '修改',
+                auth: 'shop:category:update',
+                onClick: handleEdit.bind(null, record),
+            },
+            {
+                label: '删除',
+                icon: 'ant-design:delete-outlined',
+                color: 'error',
+                auth: 'shop:category:delete',
+                popConfirm: {
+                    title: '是否确认删除',
+                    confirm: handleDelete.bind(null, record),
+                },
+            },
+        ]",
 	];
 
 	/**
@@ -116,14 +150,38 @@ class Category extends CategoryAbstract
 			[
 				'field' => 'security_deposit',
 				'label' => '保证金',
-				'component' => 'Input',
+				'component' => 'InputNumber',
 				'required' => true,
 				'colProps' => ['lg' => 12, 'xl' => 8, 'xxl' => 6],
 			],
 			[
+				'field' => 'type',
+				'label' => '分类类型',
+				'component' => 'RadioButtonGroup',
+				'required' => true,
+				'colProps' => ['lg' => 12, 'xl' => 8, 'xxl' => 6],
+				'defaultValue'=>0,
+				'componentProps' => [
+					'options' => [
+						[
+							'label' => '通用',
+							'value' => 0,
+						],
+						[
+							'label' => '线上',
+							'value' => 1,
+						],
+						[
+							'label' => '线下',
+							'value' => 2,
+						],
+					],
+				],
+			],
+			[
 				'field' => 'sort',
 				'label' => '排序',
-				'component' => 'Input',
+				'component' => 'InputNumber',
 				'required' => true,
 				'colProps' => ['lg' => 12, 'xl' => 8, 'xxl' => 6],
 			],

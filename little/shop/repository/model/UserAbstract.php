@@ -25,6 +25,7 @@ use littler\traits\RewriteTrait;
  * @property site_id $int
  * @property site_name $string 店铺名称
  * @property username $string 用户名
+ * @property phone $string 联系电话
  * @property cert_id $int 认证信息
  * @property is_own $int 是否自营
  * @property level_id $int 店铺等级
@@ -97,6 +98,7 @@ abstract class UserAbstract extends Model
 		'site_id' => 'int',
 		'site_name' => 'string',
 		'username' => 'string',
+		'phone' => 'string',
 		'cert_id' => 'int',
 		'is_own' => 'int',
 		'level_id' => 'int',
@@ -151,7 +153,7 @@ abstract class UserAbstract extends Model
 	/**
 	 * @var array $json JSON类型字段
 	 */
-	protected $json = ['delivery_time'];
+	protected $json = ['banner', 'delivery_time'];
 
 	/**
 	 * @var array $json JSON字段自动转数组
@@ -170,6 +172,7 @@ abstract class UserAbstract extends Model
 		'site_id',
 		'site_name',
 		'username',
+		'phone',
 		'cert_id',
 		'is_own',
 		'level_id',

@@ -7,7 +7,7 @@
  * @version 1.0.0
  * @author @小小只^v^ <littlezov@qq.com>  littlezov@qq.com
  * @contact  littlezov@qq.com
- * @link     https://github.com/littlezo
+ * @see     https://github.com/littlezo
  * @document https://github.com/littlezo/wiki
  * @license  https://github.com/littlezo/MozillaPublicLicense/blob/main/LICENSE
  */
@@ -17,16 +17,20 @@ declare(strict_types=1);
 namespace little\shop\model;
 
 use little\shop\repository\model\UserAbstract;
+use littler\annotation\model\relation\HasOne;
 
 /**
- * 商家店铺 模型
+ * 商家店铺 模型.
+ * @HasOne("cert", model="Cert", foreignKey="site_id", localKey="site_id")
+ * @HasOne("category", model="Category", foreignKey="category_id", localKey="category_id")
+ * @HasOne("member", model="little\member\model\User", foreignKey="id", localKey="member_id")
  */
 class User extends UserAbstract
 {
 	/**
 	 * @var array 关联预载
 	 */
-	public $with = [];
+	public $with = ['cert', 'category', 'member'];
 
 	/**
 	 * @var array 列表字段映射
@@ -57,30 +61,30 @@ class User extends UserAbstract
 				'align' => 'center',
 				'defaultHidden' => false,
 			],
-			[
-				'title' => '认证信息',
-				'dataIndex' => 'cert_id',
-				'width' => 100,
-				'fixed' => false,
-				'align' => 'center',
-				'defaultHidden' => false,
-			],
-			[
-				'title' => '是否自营',
-				'dataIndex' => 'is_own',
-				'width' => 100,
-				'fixed' => false,
-				'align' => 'center',
-				'defaultHidden' => false,
-			],
-			[
-				'title' => '店铺等级',
-				'dataIndex' => 'level_id',
-				'width' => 100,
-				'fixed' => false,
-				'align' => 'center',
-				'defaultHidden' => false,
-			],
+			// [
+			// 	'title' => '认证信息',
+			// 	'dataIndex' => 'cert_id',
+			// 	'width' => 100,
+			// 	'fixed' => false,
+			// 	'align' => 'center',
+			// 	'defaultHidden' => false,
+			// ],
+			// [
+			// 	'title' => '是否自营',
+			// 	'dataIndex' => 'is_own',
+			// 	'width' => 100,
+			// 	'fixed' => false,
+			// 	'align' => 'center',
+			// 	'defaultHidden' => false,
+			// ],
+			// [
+			// 	'title' => '店铺等级',
+			// 	'dataIndex' => 'level_id',
+			// 	'width' => 100,
+			// 	'fixed' => false,
+			// 	'align' => 'center',
+			// 	'defaultHidden' => false,
+			// ],
 			[
 				'title' => '店铺类别',
 				'dataIndex' => 'category_id',
@@ -96,14 +100,26 @@ class User extends UserAbstract
 				'fixed' => false,
 				'align' => 'center',
 				'defaultHidden' => false,
+				'customRender' => '({ record }) => {
+                    const text = record?.member?.nickname;
+                    return  text;
+                }',
 			],
 			[
-				'title' => '店铺经营状态（0.关闭，1正常 2. 审核中）',
+				'title' => '店铺经营状态',
 				'dataIndex' => 'shop_status',
 				'width' => 100,
 				'fixed' => false,
 				'align' => 'center',
 				'defaultHidden' => false,
+				'customRender' => "({ record }) => {
+                    const textMap = {0:'关闭',1:'正常',2:'审核中'};
+                    const colorMap = {0:'red',1:'blue',2:'green'};
+                    const value = record.shop_status;
+                    const color = colorMap[value];
+                    const text = textMap[value];
+                    return h(ant('Tag'), { color: color }, () => text);
+                }",
 			],
 			[
 				'title' => '店铺关闭原因',
@@ -113,30 +129,30 @@ class User extends UserAbstract
 				'align' => 'center',
 				'defaultHidden' => false,
 			],
-			[
-				'title' => '排序号',
-				'dataIndex' => 'sort',
-				'width' => 100,
-				'fixed' => false,
-				'align' => 'center',
-				'defaultHidden' => false,
-			],
-			[
-				'title' => '经营时间',
-				'dataIndex' => 'start_time',
-				'width' => 120,
-				'fixed' => false,
-				'align' => 'center',
-				'defaultHidden' => false,
-			],
-			[
-				'title' => '关闭时间',
-				'dataIndex' => 'end_time',
-				'width' => 120,
-				'fixed' => false,
-				'align' => 'center',
-				'defaultHidden' => false,
-			],
+			// [
+			// 	'title' => '排序号',
+			// 	'dataIndex' => 'sort',
+			// 	'width' => 100,
+			// 	'fixed' => false,
+			// 	'align' => 'center',
+			// 	'defaultHidden' => false,
+			// ],
+			// [
+			// 	'title' => '经营时间',
+			// 	'dataIndex' => 'start_time',
+			// 	'width' => 120,
+			// 	'fixed' => false,
+			// 	'align' => 'center',
+			// 	'defaultHidden' => false,
+			// ],
+			// [
+			// 	'title' => '关闭时间',
+			// 	'dataIndex' => 'end_time',
+			// 	'width' => 120,
+			// 	'fixed' => false,
+			// 	'align' => 'center',
+			// 	'defaultHidden' => false,
+			// ],
 			[
 				'title' => '店铺logo',
 				'dataIndex' => 'logo',
@@ -144,15 +160,19 @@ class User extends UserAbstract
 				'fixed' => false,
 				'align' => 'center',
 				'defaultHidden' => false,
+				'customRender' => "({ text }) => {
+                    // console.log(text)
+			        return h(ant('Avatar'), {size:60 ,src: getImg(text) });
+			    }",
 			],
-			[
-				'title' => '店铺头像（大图）',
-				'dataIndex' => 'avatar',
-				'width' => 180,
-				'fixed' => false,
-				'align' => 'center',
-				'defaultHidden' => false,
-			],
+			// [
+			// 	'title' => '店铺头像（大图）',
+			// 	'dataIndex' => 'avatar',
+			// 	'width' => 180,
+			// 	'fixed' => false,
+			// 	'align' => 'center',
+			// 	'defaultHidden' => false,
+			// ],
 			[
 				'title' => '店铺条幅',
 				'dataIndex' => 'banner',
@@ -160,23 +180,26 @@ class User extends UserAbstract
 				'fixed' => false,
 				'align' => 'center',
 				'defaultHidden' => false,
+				'customRender' => '({ text}) => {
+			        return h(Image, {size:60 ,imgList: text, srcPrefix: srcPrefix });
+			    }',
 			],
-			[
-				'title' => '店铺关键字',
-				'dataIndex' => 'keywords',
-				'width' => 180,
-				'fixed' => false,
-				'align' => 'center',
-				'defaultHidden' => false,
-			],
-			[
-				'title' => '店铺简介',
-				'dataIndex' => 'description',
-				'width' => 180,
-				'fixed' => false,
-				'align' => 'center',
-				'defaultHidden' => false,
-			],
+			// [
+			// 	'title' => '店铺关键字',
+			// 	'dataIndex' => 'keywords',
+			// 	'width' => 180,
+			// 	'fixed' => false,
+			// 	'align' => 'center',
+			// 	'defaultHidden' => false,
+			// ],
+			// [
+			// 	'title' => '店铺简介',
+			// 	'dataIndex' => 'description',
+			// 	'width' => 180,
+			// 	'fixed' => false,
+			// 	'align' => 'center',
+			// 	'defaultHidden' => false,
+			// ],
 			[
 				'title' => '联系人姓名',
 				'dataIndex' => 'name',
@@ -225,62 +248,62 @@ class User extends UserAbstract
 				'align' => 'center',
 				'defaultHidden' => false,
 			],
-			[
-				'title' => '是否推荐',
-				'dataIndex' => 'is_recommend',
-				'width' => 100,
-				'fixed' => false,
-				'align' => 'center',
-				'defaultHidden' => false,
-			],
-			[
-				'title' => '描述分值',
-				'dataIndex' => 'desccredit',
-				'width' => 100,
-				'fixed' => false,
-				'align' => 'center',
-				'defaultHidden' => false,
-			],
-			[
-				'title' => '服务分值',
-				'dataIndex' => 'servicecredit',
-				'width' => 100,
-				'fixed' => false,
-				'align' => 'center',
-				'defaultHidden' => false,
-			],
-			[
-				'title' => '发货速度分值',
-				'dataIndex' => 'deliverycredit',
-				'width' => 100,
-				'fixed' => false,
-				'align' => 'center',
-				'defaultHidden' => false,
-			],
-			[
-				'title' => '工作时间',
-				'dataIndex' => 'workingtime',
-				'width' => 120,
-				'fixed' => false,
-				'align' => 'center',
-				'defaultHidden' => false,
-			],
-			[
-				'title' => '商家配送时间',
-				'dataIndex' => 'delivery_time',
-				'width' => 80,
-				'fixed' => false,
-				'align' => 'center',
-				'defaultHidden' => true,
-			],
-			[
-				'title' => '店铺销量',
-				'dataIndex' => 'sales_volume',
-				'width' => 100,
-				'fixed' => false,
-				'align' => 'center',
-				'defaultHidden' => false,
-			],
+			// [
+			// 	'title' => '是否推荐',
+			// 	'dataIndex' => 'is_recommend',
+			// 	'width' => 100,
+			// 	'fixed' => false,
+			// 	'align' => 'center',
+			// 	'defaultHidden' => false,
+			// ],
+			// [
+			// 	'title' => '描述分值',
+			// 	'dataIndex' => 'desccredit',
+			// 	'width' => 100,
+			// 	'fixed' => false,
+			// 	'align' => 'center',
+			// 	'defaultHidden' => false,
+			// ],
+			// [
+			// 	'title' => '服务分值',
+			// 	'dataIndex' => 'servicecredit',
+			// 	'width' => 100,
+			// 	'fixed' => false,
+			// 	'align' => 'center',
+			// 	'defaultHidden' => false,
+			// ],
+			// [
+			// 	'title' => '发货速度分值',
+			// 	'dataIndex' => 'deliverycredit',
+			// 	'width' => 100,
+			// 	'fixed' => false,
+			// 	'align' => 'center',
+			// 	'defaultHidden' => false,
+			// ],
+			// [
+			// 	'title' => '工作时间',
+			// 	'dataIndex' => 'workingtime',
+			// 	'width' => 120,
+			// 	'fixed' => false,
+			// 	'align' => 'center',
+			// 	'defaultHidden' => false,
+			// ],
+			// [
+			// 	'title' => '商家配送时间',
+			// 	'dataIndex' => 'delivery_time',
+			// 	'width' => 80,
+			// 	'fixed' => false,
+			// 	'align' => 'center',
+			// 	'defaultHidden' => true,
+			// ],
+			// [
+			// 	'title' => '店铺销量',
+			// 	'dataIndex' => 'sales_volume',
+			// 	'width' => 100,
+			// 	'fixed' => false,
+			// 	'align' => 'center',
+			// 	'defaultHidden' => false,
+			// ],
 			[
 				'title' => '账户实际余额',
 				'dataIndex' => 'balance_money',
@@ -305,90 +328,90 @@ class User extends UserAbstract
 				'align' => 'center',
 				'defaultHidden' => false,
 			],
+			// [
+			// 	'title' => '工作日',
+			// 	'dataIndex' => 'work_week',
+			// 	'width' => 180,
+			// 	'fixed' => false,
+			// 	'align' => 'center',
+			// 	'defaultHidden' => false,
+			// ],
+			// [
+			// 	'title' => '省id',
+			// 	'dataIndex' => 'province',
+			// 	'width' => 100,
+			// 	'fixed' => false,
+			// 	'align' => 'center',
+			// 	'defaultHidden' => false,
+			// ],
+			// [
+			// 	'title' => '省名称',
+			// 	'dataIndex' => 'province_name',
+			// 	'width' => 180,
+			// 	'fixed' => false,
+			// 	'align' => 'center',
+			// 	'defaultHidden' => false,
+			// ],
+			// [
+			// 	'title' => '城市id',
+			// 	'dataIndex' => 'city',
+			// 	'width' => 100,
+			// 	'fixed' => false,
+			// 	'align' => 'center',
+			// 	'defaultHidden' => false,
+			// ],
+			// [
+			// 	'title' => '城市名称',
+			// 	'dataIndex' => 'city_name',
+			// 	'width' => 180,
+			// 	'fixed' => false,
+			// 	'align' => 'center',
+			// 	'defaultHidden' => false,
+			// ],
+			// [
+			// 	'title' => '区县id',
+			// 	'dataIndex' => 'district',
+			// 	'width' => 100,
+			// 	'fixed' => false,
+			// 	'align' => 'center',
+			// 	'defaultHidden' => false,
+			// ],
+			// [
+			// 	'title' => '区县地址',
+			// 	'dataIndex' => 'district_name',
+			// 	'width' => 180,
+			// 	'fixed' => false,
+			// 	'align' => 'center',
+			// 	'defaultHidden' => false,
+			// ],
+			// [
+			// 	'title' => '乡镇地址id',
+			// 	'dataIndex' => 'community',
+			// 	'width' => 100,
+			// 	'fixed' => false,
+			// 	'align' => 'center',
+			// 	'defaultHidden' => false,
+			// ],
+			// [
+			// 	'title' => '乡镇地址名称',
+			// 	'dataIndex' => 'community_name',
+			// 	'width' => 180,
+			// 	'fixed' => false,
+			// 	'align' => 'center',
+			// 	'defaultHidden' => false,
+			// ],
+			// [
+			// 	'title' => '详细地址',
+			// 	'dataIndex' => 'address',
+			// 	'width' => 180,
+			// 	'fixed' => false,
+			// 	'align' => 'center',
+			// 	'defaultHidden' => false,
+			// ],
 			[
-				'title' => '工作日',
-				'dataIndex' => 'work_week',
-				'width' => 180,
-				'fixed' => false,
-				'align' => 'center',
-				'defaultHidden' => false,
-			],
-			[
-				'title' => '省id',
-				'dataIndex' => 'province',
-				'width' => 100,
-				'fixed' => false,
-				'align' => 'center',
-				'defaultHidden' => false,
-			],
-			[
-				'title' => '省名称',
-				'dataIndex' => 'province_name',
-				'width' => 180,
-				'fixed' => false,
-				'align' => 'center',
-				'defaultHidden' => false,
-			],
-			[
-				'title' => '城市id',
-				'dataIndex' => 'city',
-				'width' => 100,
-				'fixed' => false,
-				'align' => 'center',
-				'defaultHidden' => false,
-			],
-			[
-				'title' => '城市名称',
-				'dataIndex' => 'city_name',
-				'width' => 180,
-				'fixed' => false,
-				'align' => 'center',
-				'defaultHidden' => false,
-			],
-			[
-				'title' => '区县id',
-				'dataIndex' => 'district',
-				'width' => 100,
-				'fixed' => false,
-				'align' => 'center',
-				'defaultHidden' => false,
-			],
-			[
-				'title' => '区县地址',
-				'dataIndex' => 'district_name',
-				'width' => 180,
-				'fixed' => false,
-				'align' => 'center',
-				'defaultHidden' => false,
-			],
-			[
-				'title' => '乡镇地址id',
-				'dataIndex' => 'community',
-				'width' => 100,
-				'fixed' => false,
-				'align' => 'center',
-				'defaultHidden' => false,
-			],
-			[
-				'title' => '乡镇地址名称',
-				'dataIndex' => 'community_name',
-				'width' => 180,
-				'fixed' => false,
-				'align' => 'center',
-				'defaultHidden' => false,
-			],
-			[
-				'title' => '详细地址',
-				'dataIndex' => 'address',
-				'width' => 180,
-				'fixed' => false,
-				'align' => 'center',
-				'defaultHidden' => false,
-			],
-			[
-				'title' => '完整地址',
+				'title' => '商家地址',
 				'dataIndex' => 'full_address',
-				'width' => 180,
+				'width' => 300,
 				'fixed' => false,
 				'align' => 'center',
 				'defaultHidden' => false,
@@ -412,26 +435,34 @@ class User extends UserAbstract
 			[
 				'title' => '开店时间',
 				'dataIndex' => 'create_time',
-				'width' => 120,
+				'width' => 180,
 				'fixed' => false,
 				'align' => 'center',
 				'defaultHidden' => false,
 			],
+			// [
+			// 	'title' => '到期时间（0表示无限期）',
+			// 	'dataIndex' => 'expire_time',
+			// 	'width' => 120,
+			// 	'fixed' => false,
+			// 	'align' => 'center',
+			// 	'defaultHidden' => false,
+			// ],
 			[
-				'title' => '到期时间（0表示无限期）',
-				'dataIndex' => 'expire_time',
-				'width' => 120,
-				'fixed' => false,
-				'align' => 'center',
-				'defaultHidden' => false,
-			],
-			[
-				'title' => '店铺类型 1 线上 2 线下',
+				'title' => '店铺类型',
 				'dataIndex' => 'shop_type',
 				'width' => 100,
 				'fixed' => false,
 				'align' => 'center',
 				'defaultHidden' => false,
+				'customRender' => "({ record }) => {
+                    const textMap = {0:'未知',1:'线上',2:'线下'};
+                    const colorMap = {0:'red',1:'blue',2:'green'};
+                    const value = record.shop_type;
+                    const color = colorMap[value];
+                    const text = textMap[value];
+                    return h(ant('Tag'), { color: color }, () => text);
+                }",
 			],
 			[
 				'title' => '是否支持一件代发',
@@ -440,6 +471,14 @@ class User extends UserAbstract
 				'fixed' => false,
 				'align' => 'center',
 				'defaultHidden' => false,
+				'customRender' => "({ record }) => {
+                    const textMap = {0:'否',1:'是',2:''};
+                    const colorMap = {0:'red',1:'blue',2:'green'};
+                    const value = record.is_one_delivery;
+                    const color = colorMap[value];
+                    const text = textMap[value];
+                    return h(ant('Tag'), { color: color }, () => text);
+                }",
 			],
 			[
 				'title' => '是否支持售后',
@@ -448,6 +487,14 @@ class User extends UserAbstract
 				'fixed' => false,
 				'align' => 'center',
 				'defaultHidden' => false,
+				'customRender' => "({ record }) => {
+                    const textMap = {0:'否',1:'是',2:''};
+                    const colorMap = {0:'red',1:'blue',2:'green'};
+                    const value = record.is_after_sales;
+                    const color = colorMap[value];
+                    const text = textMap[value];
+                    return h(ant('Tag'), { color: color }, () => text);
+                }",
 			],
 		],
 		'formConfig' => [],
