@@ -127,7 +127,7 @@ class Seckill extends SeckillAbstract
 				'field' => 'seckill_id',
 				'label' => 'ID',
 				'component' => 'Input',
-				'colProps' => ['lg' => 12, 'xl' => 8, 'xxl' => 6],
+
 			],
 		],
 	];
@@ -143,49 +143,49 @@ class Seckill extends SeckillAbstract
 				'label' => '秒杀主题',
 				'component' => 'Input',
 				'required' => true,
-				'colProps' => ['lg' => 12, 'xl' => 8, 'xxl' => 6],
+
 			],
 			[
 				'field' => 'seckill_time',
 				'label' => '秒杀时间4位（时+分（两位））',
 				'component' => 'Input',
 				'required' => true,
-				'colProps' => ['lg' => 12, 'xl' => 8, 'xxl' => 6],
+
 			],
 			[
 				'field' => 'seckill_end_time',
 				'label' => '结束时间点',
 				'component' => 'Input',
 				'required' => true,
-				'colProps' => ['lg' => 12, 'xl' => 8, 'xxl' => 6],
+
 			],
 			[
 				'field' => 'config_json',
 				'label' => '配置信息',
 				'component' => 'Input',
 				'required' => true,
-				'colProps' => ['lg' => 12, 'xl' => 8, 'xxl' => 6],
+
 			],
 			[
 				'field' => 'create_time',
 				'label' => '创建时间',
 				'component' => 'Input',
 				'required' => true,
-				'colProps' => ['lg' => 12, 'xl' => 8, 'xxl' => 6],
+
 			],
 			[
 				'field' => 'update_time',
 				'label' => '修改时间',
 				'component' => 'Input',
 				'required' => true,
-				'colProps' => ['lg' => 12, 'xl' => 8, 'xxl' => 6],
+
 			],
 			[
 				'field' => 'seckill_start_time',
 				'label' => '开始时间点',
 				'component' => 'Input',
 				'required' => true,
-				'colProps' => ['lg' => 12, 'xl' => 8, 'xxl' => 6],
+
 			],
 		],
 	];

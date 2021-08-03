@@ -122,35 +122,35 @@ class SeckillGoods extends SeckillGoodsAbstract
 				'label' => '主键',
 				'component' => 'Input',
 				'required' => true,
-				'colProps' => ['lg' => 12, 'xl' => 8, 'xxl' => 6],
+
 			],
 			[
 				'field' => 'seckill_time',
 				'label' => '秒杀时间段',
 				'component' => 'Input',
 				'required' => true,
-				'colProps' => ['lg' => 12, 'xl' => 8, 'xxl' => 6],
+
 			],
 			[
 				'field' => 'sku_id',
 				'label' => '商品id',
 				'component' => 'Input',
 				'required' => true,
-				'colProps' => ['lg' => 12, 'xl' => 8, 'xxl' => 6],
+
 			],
 			[
 				'field' => 'seckill_price',
 				'label' => '秒杀',
 				'component' => 'Input',
 				'required' => true,
-				'colProps' => ['lg' => 12, 'xl' => 8, 'xxl' => 6],
+
 			],
 			[
 				'field' => 'site_id',
 				'label' => '站点ID',
 				'component' => 'Input',
 				'required' => true,
-				'colProps' => ['lg' => 12, 'xl' => 8, 'xxl' => 6],
+
 			],
 		],
 	];

@@ -146,56 +146,56 @@ class Refund extends RefundAbstract
 				'label' => '退款编号',
 				'component' => 'Input',
 				'required' => true,
-				'colProps' => ['lg' => 12, 'xl' => 8, 'xxl' => 6],
+
 			],
 			[
 				'field' => 'out_trade_no',
 				'label' => '对应支付流水号',
 				'component' => 'Input',
 				'required' => true,
-				'colProps' => ['lg' => 12, 'xl' => 8, 'xxl' => 6],
+
 			],
 			[
 				'field' => 'site_id',
 				'label' => '站点id',
 				'component' => 'Input',
 				'required' => true,
-				'colProps' => ['lg' => 12, 'xl' => 8, 'xxl' => 6],
+
 			],
 			[
 				'field' => 'refund_detail',
 				'label' => '退款详情',
 				'component' => 'Input',
 				'required' => true,
-				'colProps' => ['lg' => 12, 'xl' => 8, 'xxl' => 6],
+
 			],
 			[
 				'field' => 'refund_type',
 				'label' => '退款类型',
 				'component' => 'Input',
 				'required' => true,
-				'colProps' => ['lg' => 12, 'xl' => 8, 'xxl' => 6],
+
 			],
 			[
 				'field' => 'refund_fee',
 				'label' => '退款金额',
 				'component' => 'Input',
 				'required' => true,
-				'colProps' => ['lg' => 12, 'xl' => 8, 'xxl' => 6],
+
 			],
 			[
 				'field' => 'total_money',
 				'label' => '实际支付金额',
 				'component' => 'Input',
 				'required' => true,
-				'colProps' => ['lg' => 12, 'xl' => 8, 'xxl' => 6],
+
 			],
 			[
 				'field' => 'create_time',
 				'label' => '创建时间',
 				'component' => 'Input',
 				'required' => true,
-				'colProps' => ['lg' => 12, 'xl' => 8, 'xxl' => 6],
+
 			],
 		],
 	];

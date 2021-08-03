@@ -202,105 +202,105 @@ class Pay extends PayAbstract
 				'label' => '站点id',
 				'component' => 'Input',
 				'required' => true,
-				'colProps' => ['lg' => 12, 'xl' => 8, 'xxl' => 6],
+
 			],
 			[
 				'field' => 'out_trade_no',
 				'label' => '支付流水号',
 				'component' => 'Input',
 				'required' => true,
-				'colProps' => ['lg' => 12, 'xl' => 8, 'xxl' => 6],
+
 			],
 			[
 				'field' => 'pay_type',
 				'label' => '支付方式',
 				'component' => 'Input',
 				'required' => true,
-				'colProps' => ['lg' => 12, 'xl' => 8, 'xxl' => 6],
+
 			],
 			[
 				'field' => 'trade_no',
 				'label' => '交易单号',
 				'component' => 'Input',
 				'required' => true,
-				'colProps' => ['lg' => 12, 'xl' => 8, 'xxl' => 6],
+
 			],
 			[
 				'field' => 'pay_no',
 				'label' => '支付账号',
 				'component' => 'Input',
 				'required' => true,
-				'colProps' => ['lg' => 12, 'xl' => 8, 'xxl' => 6],
+
 			],
 			[
 				'field' => 'pay_body',
 				'label' => '支付主体',
 				'component' => 'Input',
 				'required' => false,
-				'colProps' => ['lg' => 12, 'xl' => 8, 'xxl' => 6],
+
 			],
 			[
 				'field' => 'pay_detail',
 				'label' => '支付详情',
 				'component' => 'Input',
 				'required' => false,
-				'colProps' => ['lg' => 12, 'xl' => 8, 'xxl' => 6],
+
 			],
 			[
 				'field' => 'pay_money',
 				'label' => '支付金额',
 				'component' => 'Input',
 				'required' => true,
-				'colProps' => ['lg' => 12, 'xl' => 8, 'xxl' => 6],
+
 			],
 			[
 				'field' => 'pay_voucher',
 				'label' => '支付票据',
 				'component' => 'Input',
 				'required' => false,
-				'colProps' => ['lg' => 12, 'xl' => 8, 'xxl' => 6],
+
 			],
 			[
 				'field' => 'pay_status',
 				'label' => '支付状态（0.待支付 1. 支付中 2. 已支付 -1已取消）',
 				'component' => 'Input',
 				'required' => true,
-				'colProps' => ['lg' => 12, 'xl' => 8, 'xxl' => 6],
+
 			],
 			[
 				'field' => 'return_url',
 				'label' => '同步回调网址',
 				'component' => 'Input',
 				'required' => true,
-				'colProps' => ['lg' => 12, 'xl' => 8, 'xxl' => 6],
+
 			],
 			[
 				'field' => 'event',
 				'label' => '支付成功后事件(事件，网址)',
 				'component' => 'Input',
 				'required' => true,
-				'colProps' => ['lg' => 12, 'xl' => 8, 'xxl' => 6],
+
 			],
 			[
 				'field' => 'mch_info',
 				'label' => '商户信息',
 				'component' => 'Input',
 				'required' => false,
-				'colProps' => ['lg' => 12, 'xl' => 8, 'xxl' => 6],
+
 			],
 			[
 				'field' => 'create_time',
 				'label' => '创建时间',
 				'component' => 'Input',
 				'required' => true,
-				'colProps' => ['lg' => 12, 'xl' => 8, 'xxl' => 6],
+
 			],
 			[
 				'field' => 'pay_time',
 				'label' => '支付时间',
 				'component' => 'Input',
 				'required' => true,
-				'colProps' => ['lg' => 12, 'xl' => 8, 'xxl' => 6],
+
 			],
 		],
 	];

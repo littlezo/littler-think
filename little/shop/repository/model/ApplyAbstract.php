@@ -27,18 +27,16 @@ use littler\traits\RewriteTrait;
  * @property site_id $int 店铺
  * @property member_id $int 申请会员
  * @property cert_id $int 认证信息
- * @property username $string 账号
  * @property shop_name $string 申请店铺名称
- * @property apply_status $string 申请状态 1. 待审核 2. 财务凭据审核中  3. 开店通过 -1.审核失败 -2 财务审核拒绝
+ * @property apply_status $string 申请状态  -1.审核失败 0.等待付款  1. 待审核 2.  开店通过
  * @property apply_remark $string 管理员审核信息
  * @property category_id $int 店铺分类
- * @property pay_certificate $string 付款凭证
- * @property pay_certificate_remark $string 付款凭证说明
  * @property security_deposit $float 保证金
  * @property pay_money $float 付款金额
  * @property create_time $int 创建时间
  * @property audit_time $int 审核通过时间
  * @property finish_time $int 创建成功时间
+ * @property pay_time $int 支付时间
  */
 abstract class ApplyAbstract extends Model
 {
@@ -64,18 +62,16 @@ abstract class ApplyAbstract extends Model
 		'site_id' => 'int',
 		'member_id' => 'int',
 		'cert_id' => 'int',
-		'username' => 'string',
 		'shop_name' => 'string',
 		'apply_status' => 'string',
 		'apply_remark' => 'string',
 		'category_id' => 'int',
-		'pay_certificate' => 'string',
-		'pay_certificate_remark' => 'string',
 		'security_deposit' => 'float',
 		'pay_money' => 'float',
 		'create_time' => 'int',
 		'audit_time' => 'int',
 		'finish_time' => 'int',
+		'pay_time' => 'int',
 	];
 
 	/**
@@ -97,17 +93,15 @@ abstract class ApplyAbstract extends Model
 		'site_id',
 		'member_id',
 		'cert_id',
-		'username',
 		'shop_name',
 		'apply_status',
 		'apply_remark',
 		'category_id',
-		'pay_certificate',
-		'pay_certificate_remark',
 		'security_deposit',
 		'pay_money',
 		'create_time',
 		'audit_time',
 		'finish_time',
+		'pay_time',
 	];
 }

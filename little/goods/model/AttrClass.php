@@ -95,7 +95,7 @@ class AttrClass extends AttrClassAbstract
 				'field' => 'class_id',
 				'label' => 'ID',
 				'component' => 'Input',
-				'colProps' => ['lg' => 12, 'xl' => 8, 'xxl' => 6],
+
 			],
 		],
 	];
@@ -111,21 +111,21 @@ class AttrClass extends AttrClassAbstract
 				'label' => '类型名称',
 				'component' => 'Input',
 				'required' => true,
-				'colProps' => ['lg' => 12, 'xl' => 8, 'xxl' => 6],
+
 			],
 			[
 				'field' => 'site_id',
 				'label' => '所属店铺id',
 				'component' => 'Input',
 				'required' => true,
-				'colProps' => ['lg' => 12, 'xl' => 8, 'xxl' => 6],
+
 			],
 			[
 				'field' => 'sort',
 				'label' => '排序号',
 				'component' => 'Input',
 				'required' => true,
-				'colProps' => ['lg' => 12, 'xl' => 8, 'xxl' => 6],
+
 			],
 		],
 	];

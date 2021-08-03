@@ -79,7 +79,7 @@ class NoticeRead extends NoticeReadAbstract
 				'field' => 'member_id',
 				'label' => 'ID',
 				'component' => 'Input',
-				'colProps' => ['lg' => 12, 'xl' => 8, 'xxl' => 6],
+
 			],
 		],
 	];
@@ -95,7 +95,7 @@ class NoticeRead extends NoticeReadAbstract
 				'label' => '文章ID',
 				'component' => 'Input',
 				'required' => true,
-				'colProps' => ['lg' => 12, 'xl' => 8, 'xxl' => 6],
+
 			],
 		],
 	];

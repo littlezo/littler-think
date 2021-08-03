@@ -281,7 +281,7 @@ class Level extends LevelAbstract
 				'field' => 'level_id',
 				'label' => 'ID',
 				'component' => 'Input',
-				'colProps' => ['lg' => 12, 'xl' => 8, 'xxl' => 6],
+
 			],
 		],
 	];
@@ -297,28 +297,28 @@ class Level extends LevelAbstract
 				'label' => '等级名称',
 				'component' => 'Input',
 				'required' => true,
-				'colProps' => ['lg' => 12, 'xl' => 8, 'xxl' => 6],
+
 			],
 			[
 				'field' => 'sort',
 				'label' => '等级排序列',
 				'component' => 'InputNumber',
 				'required' => true,
-				'colProps' => ['lg' => 12, 'xl' => 8, 'xxl' => 6],
+
 			],
 			[
 				'field' => 'level_money',
 				'label' => '升级金额',
 				'component' => 'InputNumber',
 				'required' => true,
-				'colProps' => ['lg' => 12, 'xl' => 8, 'xxl' => 6],
+
 			],
 			[
 				'field' => 'is_default',
 				'label' => '是否默认',
 				'component' => 'RadioButtonGroup',
 				'required' => true,
-				'colProps' => ['lg' => 12, 'xl' => 8, 'xxl' => 6],
+
 				'componentProps' => [
 					'options' => [
 						[
@@ -337,7 +337,7 @@ class Level extends LevelAbstract
 				'label' => '是否不差升级',
 				'component' => 'RadioButtonGroup',
 				'required' => true,
-				'colProps' => ['lg' => 12, 'xl' => 8, 'xxl' => 6],
+
 				'componentProps' => [
 					'options' => [
 						[
@@ -356,21 +356,21 @@ class Level extends LevelAbstract
 				'label' => '邀请奖励',
 				'component' => 'InputNumber',
 				'required' => true,
-				'colProps' => ['lg' => 12, 'xl' => 8, 'xxl' => 6],
+
 			],
 			[
 				'field' => 'buy_ratio',
 				'label' => '兑换比例',
 				'component' => 'InputNumber',
 				'required' => true,
-				'colProps' => ['lg' => 12, 'xl' => 8, 'xxl' => 6],
+
 			],
 			[
 				'field' => 'is_region',
 				'label' => '是否允许申请区域代理',
 				'component' => 'RadioButtonGroup',
 				'required' => true,
-				'colProps' => ['lg' => 12, 'xl' => 8, 'xxl' => 6],
+
 				'componentProps' => [
 					'options' => [
 						[
@@ -389,7 +389,7 @@ class Level extends LevelAbstract
 				'label' => '开启代理佣金',
 				'component' => 'RadioButtonGroup',
 				'required' => true,
-				'colProps' => ['lg' => 12, 'xl' => 8, 'xxl' => 6],
+
 				'componentProps' => [
 					'options' => [
 						[
@@ -408,7 +408,7 @@ class Level extends LevelAbstract
 				'label' => '是否允许申请商家',
 				'component' => 'RadioButtonGroup',
 				'required' => true,
-				'colProps' => ['lg' => 12, 'xl' => 8, 'xxl' => 6],
+
 				'componentProps' => [
 					'options' => [
 						[
@@ -427,7 +427,7 @@ class Level extends LevelAbstract
 				'label' => ' 开启商家佣金',
 				'component' => 'RadioButtonGroup',
 				'required' => true,
-				'colProps' => ['lg' => 12, 'xl' => 8, 'xxl' => 6],
+
 				'componentProps' => [
 					'options' => [
 						[
@@ -446,7 +446,7 @@ class Level extends LevelAbstract
 				'label' => '是否出券',
 				'component' => 'RadioButtonGroup',
 				'required' => true,
-				'colProps' => ['lg' => 12, 'xl' => 8, 'xxl' => 6],
+
 				'componentProps' => [
 					'options' => [
 						[
@@ -465,7 +465,7 @@ class Level extends LevelAbstract
 				'label' => '是否立即结算',
 				'component' => 'RadioButtonGroup',
 				'required' => true,
-				'colProps' => ['lg' => 12, 'xl' => 8, 'xxl' => 6],
+
 				'componentProps' => [
 					'options' => [
 						[
@@ -484,14 +484,14 @@ class Level extends LevelAbstract
 				'label' => '分佣比例',
 				'component' => 'Input',
 				'required' => true,
-				'colProps' => ['lg' => 12, 'xl' => 8, 'xxl' => 6],
+
 			],
 			[
 				'field' => 'status',
 				'label' => '状态',
 				'component' => 'RadioButtonGroup',
 				'required' => true,
-				'colProps' => ['lg' => 12, 'xl' => 8, 'xxl' => 6],
+
 				'componentProps' => [
 					'options' => [
 						[
@@ -509,7 +509,7 @@ class Level extends LevelAbstract
 				'field' => 'remark',
 				'label' => '备注',
 				'component' => 'InputTextArea',
-				'colProps' => ['lg' => 12, 'xl' => 8, 'xxl' => 6],
+
 			],
 		],
 	];

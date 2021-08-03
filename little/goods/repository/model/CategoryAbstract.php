@@ -26,7 +26,7 @@ use littler\traits\RewriteTrait;
  * @property category_name $string 分类名称
  * @property short_name $string 简称
  * @property parent $int 分类上级
- * @property is_show $int 是否显示
+ * @property is_show $int 是否显示 0是 1否
  * @property sort $int 排序
  * @property image $string 分类图片
  * @property keywords $string 分类页面关键字
@@ -34,6 +34,7 @@ use littler\traits\RewriteTrait;
  * @property attr_class_id $int 关联商品类型id
  * @property image_adv $string 分类广告图
  * @property service_rate $float 服务费
+ * @property path $string 跳转路径
  */
 abstract class CategoryAbstract extends Model
 {
@@ -66,6 +67,7 @@ abstract class CategoryAbstract extends Model
 		'attr_class_id' => 'int',
 		'image_adv' => 'string',
 		'service_rate' => 'float',
+		'path' => 'string',
 	];
 
 	/**
@@ -99,5 +101,6 @@ abstract class CategoryAbstract extends Model
 		'attr_class_id',
 		'image_adv',
 		'service_rate',
+		'path',
 	];
 }

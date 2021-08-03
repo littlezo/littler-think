@@ -27,15 +27,11 @@ use littler\traits\RewriteTrait;
  * @property member_id $int 会员id
  * @property trade_type $int 交易类型: 1充值，2提现，3转账，4购物，5销售利润，6代理收益，7货款结算  8商家保证金
  * @property to_member_id $int 目标用户
- * @property realname $string 真实姓名
- * @property to_realname $string 目标真实姓名
- * @property mobile $string 手机号
- * @property to_mobile $string 目标手机号
  * @property status $int 状态0待审核1.待到账2已到账 -1已拒绝
  * @property remarks $string 备注
  * @property audit_remark $string 审核备注
- * @property transfer_type_name $string 转账方式名称
  * @property account_type $string 账号类型 1支付宝，2微信，3银行卡，4会员账户
+ * @property account_name $string 收付款人
  * @property account_number $string 收付款账号
  * @property before $float 变更前金额
  * @property after $float 变更后金额
@@ -44,7 +40,6 @@ use littler\traits\RewriteTrait;
  * @property fact_money $float 到账金额
  * @property rate $float 手续费率
  * @property service_money $float 手续费
- * @property account_name $string 账号
  * @property certificate $string 凭证
  * @property certificate_remark $string 凭证备注
  * @property create_time $int 申请时间
@@ -78,15 +73,11 @@ abstract class BalanceAbstract extends Model
 		'member_id' => 'int',
 		'trade_type' => 'int',
 		'to_member_id' => 'int',
-		'realname' => 'string',
-		'to_realname' => 'string',
-		'mobile' => 'string',
-		'to_mobile' => 'string',
 		'status' => 'int',
 		'remarks' => 'string',
 		'audit_remark' => 'string',
-		'transfer_type_name' => 'string',
 		'account_type' => 'string',
+		'account_name' => 'string',
 		'account_number' => 'string',
 		'before' => 'float',
 		'after' => 'float',
@@ -95,7 +86,6 @@ abstract class BalanceAbstract extends Model
 		'fact_money' => 'float',
 		'rate' => 'float',
 		'service_money' => 'float',
-		'account_name' => 'string',
 		'certificate' => 'string',
 		'certificate_remark' => 'string',
 		'create_time' => 'int',
@@ -120,15 +110,11 @@ abstract class BalanceAbstract extends Model
 		'member_id',
 		'trade_type',
 		'to_member_id',
-		'realname',
-		'to_realname',
-		'mobile',
-		'to_mobile',
 		'status',
 		'remarks',
 		'audit_remark',
-		'transfer_type_name',
 		'account_type',
+		'account_name',
 		'account_number',
 		'before',
 		'after',
@@ -137,7 +123,6 @@ abstract class BalanceAbstract extends Model
 		'fact_money',
 		'rate',
 		'service_money',
-		'account_name',
 		'certificate',
 		'certificate_remark',
 		'create_time',

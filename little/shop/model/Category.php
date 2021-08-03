@@ -129,7 +129,7 @@ class Category extends CategoryAbstract
 				'field' => 'category_id',
 				'label' => 'ID',
 				'component' => 'Input',
-				'colProps' => ['lg' => 12, 'xl' => 8, 'xxl' => 6],
+
 			],
 		],
 	];
@@ -145,21 +145,21 @@ class Category extends CategoryAbstract
 				'label' => '分类名称',
 				'component' => 'Input',
 				'required' => true,
-				'colProps' => ['lg' => 12, 'xl' => 8, 'xxl' => 6],
+
 			],
 			[
 				'field' => 'security_deposit',
 				'label' => '保证金',
 				'component' => 'InputNumber',
 				'required' => true,
-				'colProps' => ['lg' => 12, 'xl' => 8, 'xxl' => 6],
+
 			],
 			[
 				'field' => 'type',
 				'label' => '分类类型',
 				'component' => 'RadioButtonGroup',
 				'required' => true,
-				'colProps' => ['lg' => 12, 'xl' => 8, 'xxl' => 6],
+
 				'defaultValue'=>0,
 				'componentProps' => [
 					'options' => [
@@ -183,7 +183,7 @@ class Category extends CategoryAbstract
 				'label' => '排序',
 				'component' => 'InputNumber',
 				'required' => true,
-				'colProps' => ['lg' => 12, 'xl' => 8, 'xxl' => 6],
+
 			],
 		],
 	];

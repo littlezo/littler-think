@@ -27,15 +27,11 @@ use littler\traits\RewriteTrait;
  * @property username $string 用户名
  * @property phone $string 联系电话
  * @property cert_id $int 认证信息
- * @property is_own $int 是否自营
- * @property level_id $int 店铺等级
  * @property category_id $int 店铺类别
  * @property member_id $int 创建会员id
  * @property shop_status $int 店铺经营状态（0.关闭，1正常 2. 审核中）
  * @property close_info $string 店铺关闭原因
  * @property sort $int 排序号
- * @property start_time $int 经营时间
- * @property end_time $int 关闭时间
  * @property logo $string 店铺logo
  * @property avatar $string 店铺头像（大图）
  * @property banner $string 店铺条幅
@@ -48,16 +44,9 @@ use littler\traits\RewriteTrait;
  * @property business_affairs_name $string 商务联系人姓名
  * @property business_affairs_mobile $string 商务联系人电话
  * @property is_recommend $int 是否推荐
- * @property desccredit $float 描述分值
- * @property servicecredit $float 服务分值
- * @property deliverycredit $float 发货速度分值
- * @property workingtime $int 工作时间
- * @property delivery_time $string 商家配送时间
- * @property sales_volume $int 店铺销量
  * @property balance_money $float 账户实际余额
  * @property balance_withdraw $float 已提现金额
  * @property balance_withdraw_apply $float 申请提现中金额
- * @property work_week $string 工作日
  * @property province $int 省id
  * @property province_name $string 省名称
  * @property city $int 城市id
@@ -100,15 +89,11 @@ abstract class UserAbstract extends Model
 		'username' => 'string',
 		'phone' => 'string',
 		'cert_id' => 'int',
-		'is_own' => 'int',
-		'level_id' => 'int',
 		'category_id' => 'int',
 		'member_id' => 'int',
 		'shop_status' => 'int',
 		'close_info' => 'string',
 		'sort' => 'int',
-		'start_time' => 'int',
-		'end_time' => 'int',
 		'logo' => 'string',
 		'avatar' => 'string',
 		'banner' => 'string',
@@ -121,16 +106,9 @@ abstract class UserAbstract extends Model
 		'business_affairs_name' => 'string',
 		'business_affairs_mobile' => 'string',
 		'is_recommend' => 'int',
-		'desccredit' => 'float',
-		'servicecredit' => 'float',
-		'deliverycredit' => 'float',
-		'workingtime' => 'int',
-		'delivery_time' => 'string',
-		'sales_volume' => 'int',
 		'balance_money' => 'float',
 		'balance_withdraw' => 'float',
 		'balance_withdraw_apply' => 'float',
-		'work_week' => 'string',
 		'province' => 'int',
 		'province_name' => 'string',
 		'city' => 'int',
@@ -153,7 +131,7 @@ abstract class UserAbstract extends Model
 	/**
 	 * @var array $json JSON类型字段
 	 */
-	protected $json = ['banner', 'delivery_time'];
+	protected $json = ['banner'];
 
 	/**
 	 * @var array $json JSON字段自动转数组
@@ -174,15 +152,11 @@ abstract class UserAbstract extends Model
 		'username',
 		'phone',
 		'cert_id',
-		'is_own',
-		'level_id',
 		'category_id',
 		'member_id',
 		'shop_status',
 		'close_info',
 		'sort',
-		'start_time',
-		'end_time',
 		'logo',
 		'avatar',
 		'banner',
@@ -195,16 +169,9 @@ abstract class UserAbstract extends Model
 		'business_affairs_name',
 		'business_affairs_mobile',
 		'is_recommend',
-		'desccredit',
-		'servicecredit',
-		'deliverycredit',
-		'workingtime',
-		'delivery_time',
-		'sales_volume',
 		'balance_money',
 		'balance_withdraw',
 		'balance_withdraw_apply',
-		'work_week',
 		'province',
 		'province_name',
 		'city',

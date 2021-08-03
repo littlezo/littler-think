@@ -425,7 +425,7 @@ class User extends UserAbstract implements AuthorizeInterface
 				'label' => '推荐人',
 				'component' => 'Select',
 				'required' => true,
-				'colProps' => ['lg' => 12, 'xl' => 8, 'xxl' => 6],
+
 				'componentProps' => '() => {
                     return {
                         labelField: "nickname",
@@ -440,21 +440,21 @@ class User extends UserAbstract implements AuthorizeInterface
 				'label' => '手机号',
 				'component' => 'Input',
 				'required' => true,
-				'colProps' => ['lg' => 12, 'xl' => 8, 'xxl' => 6],
+
 			],
 			[
 				'field' => 'password',
 				'label' => '用户密码',
 				'component' => 'InputPassword',
 				'required' => false,
-				'colProps' => ['lg' => 12, 'xl' => 8, 'xxl' => 6],
+
 			],
 			[
 				'field' => 'status',
 				'label' => '用户状态 ',
 				'component' => 'Switch',
 				'required' => true,
-				'colProps' => ['lg' => 12, 'xl' => 8, 'xxl' => 6],
+
 				'defaultValue' => 1,
 				'componentProps' => [
 					'checkedValue' => 1,
@@ -466,7 +466,7 @@ class User extends UserAbstract implements AuthorizeInterface
 				'label' => '用户等级',
 				'component' => 'ApiSelect',
 				'required' => true,
-				'colProps' => ['lg' => 12, 'xl' => 8, 'xxl' => 6],
+
 				'componentProps' => '() => {
                     return {
                         labelField: "level_name",

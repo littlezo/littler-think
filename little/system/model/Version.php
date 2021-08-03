@@ -192,14 +192,14 @@ class Version extends VersionAbstract
 				'label' => '标题',
 				'component' => 'Input',
 				'required' => true,
-				'colProps' => ['lg' => 12, 'xl' => 8, 'xxl' => 6],
+
 			],
 			[
 				'field' => 'platform',
 				'label' => '平台',
 				'component' => 'RadioGroup',
 				'required' => true,
-				'colProps' => ['lg' => 12, 'xl' => 8, 'xxl' => 6],
+
 				'defaultValue'=>'android',
 				'componentProps' => [
 					'options' => [
@@ -220,21 +220,21 @@ class Version extends VersionAbstract
 				'label' => '版本',
 				'component' => 'Input',
 				'required' => true,
-				'colProps' => ['lg' => 12, 'xl' => 8, 'xxl' => 6],
+
 			],
 			[
 				'field' => 'version_code',
 				'label' => '版本号',
 				'component' => 'Input',
 				'required' => true,
-				'colProps' => ['lg' => 12, 'xl' => 8, 'xxl' => 6],
+
 			],
 			[
 				'field' => 'type',
 				'label' => '版本类型 ',
 				'component' => 'RadioGroup',
 				'required' => true,
-				'colProps' => ['lg' => 12, 'xl' => 8, 'xxl' => 6],
+
 				'defaultValue'=>1,
 				'componentProps' => [
 					'options' => [
@@ -254,21 +254,21 @@ class Version extends VersionAbstract
 			// 	'label' => '文件名',
 			// 	'component' => 'Input',
 			// 	'required' => true,
-			// 	'colProps' => ['lg' => 12, 'xl' => 8, 'xxl' => 6],
+			//
 			// ],
 			// [showUploadList
 			// 	'field' => 'url',
 			// 	'label' => '下载地址',
 			// 	'component' => 'Input',
 			// 	'required' => true,
-			// 	'colProps' => ['lg' => 12, 'xl' => 8, 'xxl' => 6],
+			//
 			// ],showUploadList
 			[
 				'field' => 'path',
 				'label' => '下载路径',
 				'component' => 'Upload',
 				'required' => true,
-				'colProps' => ['lg' => 12, 'xl' => 8, 'xxl' => 6],
+
 				'componentProps' => [
 					'maxSize' => 256,
 					'multiple' => false,
@@ -287,7 +287,7 @@ class Version extends VersionAbstract
 				'label' => '是否强制更新',
 				'component' => 'Switch',
 				'required' => true,
-				'colProps' => ['lg' => 12, 'xl' => 8, 'xxl' => 6],
+
 				'defaultValue'=>0,
 				'componentProps' => [
 					'checkedChildren' => '是',
@@ -301,7 +301,7 @@ class Version extends VersionAbstract
 				'label' => '更新内容',
 				'component' => 'InputTextArea',
 				'required' => false,
-				'colProps' => ['lg' => 12, 'xl' => 8, 'xxl' => 6],
+
 			],
 		],
 	];

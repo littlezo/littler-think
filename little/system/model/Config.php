@@ -189,21 +189,21 @@ class Config extends ConfigAbstract
 				'label' => '配置项关键字',
 				'component' => 'Input',
 				'required' => true,
-				'colProps' => ['lg' => 12, 'xl' => 8, 'xxl' => 6],
+
 			],
 			[
 				'field' => 'config_desc',
 				'label' => '描述',
 				'component' => 'Input',
 				'required' => true,
-				'colProps' => ['lg' => 12, 'xl' => 8, 'xxl' => 6],
+
 			],
 			[
 				'field' => 'is_use',
 				'label' => '是否启用',
 				'component' => 'Switch',
 				'required' => true,
-				'colProps' => ['lg' => 12, 'xl' => 8, 'xxl' => 6],
+
 				'componentProps' => [
 					'checkedChildren' => '启用',
 					'unCheckedChildren' => '禁用',

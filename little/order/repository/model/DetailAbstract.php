@@ -62,7 +62,7 @@ use think\model\concern\SoftDelete;
  * @property pay_money $float 实付金额
  * @property create_time $int 创建时间
  * @property order_status $int 订单状态
- * @property pay_status $int 支付状态
+ * @property pay_status $int 支付状态 1已支付
  * @property pay_time $int 订单支付时间
  * @property delivery_time $int 订单配送时间
  * @property sign_time $int 订单签收时间

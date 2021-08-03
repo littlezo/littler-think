@@ -196,28 +196,28 @@ class Recharges extends RechargesAbstract
 				'label' => '套餐名称',
 				'component' => 'Input',
 				'required' => true,
-				'colProps' => ['lg' => 12, 'xl' => 8, 'xxl' => 6],
+
 			],
 			[
 				'field' => 'face_value',
 				'label' => '面值',
 				'component' => 'Input',
 				'required' => true,
-				'colProps' => ['lg' => 12, 'xl' => 8, 'xxl' => 6],
+
 			],
 			[
 				'field' => 'buy_money',
 				'label' => '购买金额',
 				'component' => 'Input',
 				'required' => true,
-				'colProps' => ['lg' => 12, 'xl' => 8, 'xxl' => 6],
+
 			],
 			[
 				'field' => 'growth',
 				'label' => '贡献值',
 				'component' => 'Input',
 				'required' => true,
-				'colProps' => ['lg' => 12, 'xl' => 8, 'xxl' => 6],
+
 			],
 
 			[
@@ -225,14 +225,14 @@ class Recharges extends RechargesAbstract
 				'label' => '排序',
 				'component' => 'InputNumber',
 				'required' => true,
-				'colProps' => ['lg' => 12, 'xl' => 8, 'xxl' => 6],
+
 			],
 			[
 				'field' => 'is_new',
 				'label' => '是否新用户专享',
 				'component' => 'RadioButtonGroup',
 				'required' => true,
-				'colProps' => ['lg' => 12, 'xl' => 8, 'xxl' => 6],
+
 				'defaultValue'=>1,
 				'componentProps' => [
 					'options' => [
@@ -252,7 +252,7 @@ class Recharges extends RechargesAbstract
 				'label' => '是否首页推荐',
 				'component' => 'RadioButtonGroup',
 				'required' => true,
-				'colProps' => ['lg' => 12, 'xl' => 8, 'xxl' => 6],
+
 				'defaultValue'=>1,
 				'componentProps' => [
 					'options' => [
@@ -272,7 +272,7 @@ class Recharges extends RechargesAbstract
 				'label' => '状态',
 				'component' => 'Switch',
 				'required' => true,
-				'colProps' => ['lg' => 12, 'xl' => 8, 'xxl' => 6],
+
 				'componentProps' => [
 					'checkedChildren' => '正常',
 					'unCheckedChildren' => '禁用',
@@ -285,7 +285,7 @@ class Recharges extends RechargesAbstract
 				'label' => '描述',
 				'component' => 'InputTextArea',
 				'required' => true,
-				'colProps' => ['lg' => 12, 'xl' => 8, 'xxl' => 6],
+
 			],
 		],
 	];

@@ -147,7 +147,7 @@ class Agent extends AgentAbstract
 				'label' => '代理类型',
 				'component' => 'RadioButtonGroup',
 				'required' => true,
-				'colProps' => ['lg' => 12, 'xl' => 8, 'xxl' => 6],
+
 				'defaultValue'=>1,
 				'componentProps' => [
 					'options' => [
@@ -171,28 +171,28 @@ class Agent extends AgentAbstract
 				'label' => '代理费',
 				'component' => 'InputNumber',
 				'required' => true,
-				'colProps' => ['lg' => 12, 'xl' => 8, 'xxl' => 6],
+
 			],
 			[
 				'field' => 'agent_ratio',
 				'label' => '代理分润',
 				'component' => 'InputNumber',
 				'required' => true,
-				'colProps' => ['lg' => 12, 'xl' => 8, 'xxl' => 6],
+
 			],
 			[
 				'field' => 'invite_ratio',
 				'label' => '推荐分佣',
 				'component' => 'InputNumber',
 				'required' => true,
-				'colProps' => ['lg' => 12, 'xl' => 8, 'xxl' => 6],
+
 			],
 			[
 				'field' => 'status',
 				'label' => '状态',
 				'component' => 'RadioButtonGroup',
 				'required' => true,
-				'colProps' => ['lg' => 12, 'xl' => 8, 'xxl' => 6],
+
 				'defaultValue'=>1,
 				'componentProps' => [
 					'options' => [

@@ -44,6 +44,7 @@ use littler\traits\RewriteTrait;
  * @property is_delete $int 是否已经删除
  * @property introduction $string 促销语
  * @property keywords $string 关键词
+ * @property label $string 商品标签
  * @property sort $int 排序
  * @property create_time $int 创建时间
  * @property update_time $int 修改时间
@@ -52,8 +53,12 @@ use littler\traits\RewriteTrait;
  * @property pintuan_id $int 拼团id
  * @property sale_num $int 销量
  * @property evaluate $int 评价数
- * @property goods_bv $int 商品BV
+ * @property goods_service_rate $float 商品服务费
  * @property sku_id $int 第一个商品sku_id
+ * @property is_selected $int 0 否 1是   是否精选
+ * @property is_benefits $int 0 否  1是  是否实惠
+ * @property is_new $int 0 否  1是   新品
+ * @property is_recommend $int 0 否  1是  是否推荐
  * @property max_buy $int 限购
  * @property min_buy $int 起购
  */
@@ -98,6 +103,7 @@ abstract class DetailAbstract extends Model
 		'is_delete' => 'int',
 		'introduction' => 'string',
 		'keywords' => 'string',
+		'label' => 'string',
 		'sort' => 'int',
 		'create_time' => 'int',
 		'update_time' => 'int',
@@ -106,8 +112,12 @@ abstract class DetailAbstract extends Model
 		'pintuan_id' => 'int',
 		'sale_num' => 'int',
 		'evaluate' => 'int',
-		'goods_bv' => 'int',
+		'goods_service_rate' => 'float',
 		'sku_id' => 'int',
+		'is_selected' => 'int',
+		'is_benefits' => 'int',
+		'is_new' => 'int',
+		'is_recommend' => 'int',
 		'max_buy' => 'int',
 		'min_buy' => 'int',
 	];
@@ -148,6 +158,7 @@ abstract class DetailAbstract extends Model
 		'is_delete',
 		'introduction',
 		'keywords',
+		'label',
 		'sort',
 		'create_time',
 		'update_time',
@@ -156,8 +167,12 @@ abstract class DetailAbstract extends Model
 		'pintuan_id',
 		'sale_num',
 		'evaluate',
-		'goods_bv',
+		'goods_service_rate',
 		'sku_id',
+		'is_selected',
+		'is_benefits',
+		'is_new',
+		'is_recommend',
 		'max_buy',
 		'min_buy',
 	];
