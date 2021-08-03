@@ -164,7 +164,7 @@ class Files extends Controller
 	 * @apiDocs({
 	 *     "title": "文件上传",
 	 *     "version": "v1.0.0",
-	 *     "name": "list",
+	 *     "name": "upload",
 	 *     "headers": {
 	 *         "Authorization": "Bearer Token",
 	 *     },
