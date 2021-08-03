@@ -133,12 +133,27 @@ class Config extends ConfigAbstract
                         title: '字段',
                         dataIndex: 'field',
                         editRow: true,
-                        editComponent:'Upload',
                     },
                     {
                         title: '描述',
                         dataIndex: 'label',
                         editRow: true,
+                    },
+                    {
+                        title: '组件',
+                        dataIndex: 'component',
+                        editRow: true,
+                    },
+                    {
+                        title: '组件参数',
+                        dataIndex: 'props',
+                        editRow: true,
+                    },{
+                        title: '自定义组件',
+                        dataIndex: 'render',
+                        editRow: true,
+                        defaultValue:'{}',
+						editComponent:'CodeEditor',
                     }
                 ],
                 field:'config_label',
@@ -147,7 +162,7 @@ class Config extends ConfigAbstract
                     method:'put',
                     api:'/system/config',
                 },
-                title:'余额操作'
+                title:'配置字段参数'
             }),
           },
         ]",
