@@ -61,6 +61,14 @@ class User extends UserAbstract
 				'align' => 'center',
 				'defaultHidden' => false,
 			],
+			[
+				'title' => '联系电话',
+				'dataIndex' => 'phone',
+				'width' => 160,
+				'fixed' => false,
+				'align' => 'center',
+				'defaultHidden' => false,
+			],
 			// [
 			// 	'title' => '认证信息',
 			// 	'dataIndex' => 'cert_id',
@@ -69,32 +77,16 @@ class User extends UserAbstract
 			// 	'align' => 'center',
 			// 	'defaultHidden' => false,
 			// ],
-			// [
-			// 	'title' => '是否自营',
-			// 	'dataIndex' => 'is_own',
-			// 	'width' => 100,
-			// 	'fixed' => false,
-			// 	'align' => 'center',
-			// 	'defaultHidden' => false,
-			// ],
-			// [
-			// 	'title' => '店铺等级',
-			// 	'dataIndex' => 'level_id',
-			// 	'width' => 100,
-			// 	'fixed' => false,
-			// 	'align' => 'center',
-			// 	'defaultHidden' => false,
-			// ],
 			[
 				'title' => '店铺类别',
-				'dataIndex' => 'category_id',
+				'dataIndex' => 'category.category_name',
 				'width' => 100,
 				'fixed' => false,
 				'align' => 'center',
 				'defaultHidden' => false,
 			],
 			[
-				'title' => '创建会员id',
+				'title' => '创建会员',
 				'dataIndex' => 'member_id',
 				'width' => 100,
 				'fixed' => false,
@@ -129,30 +121,38 @@ class User extends UserAbstract
 				'align' => 'center',
 				'defaultHidden' => false,
 			],
-			// [
-			// 	'title' => '排序号',
-			// 	'dataIndex' => 'sort',
-			// 	'width' => 100,
-			// 	'fixed' => false,
-			// 	'align' => 'center',
-			// 	'defaultHidden' => false,
-			// ],
-			// [
-			// 	'title' => '经营时间',
-			// 	'dataIndex' => 'start_time',
-			// 	'width' => 120,
-			// 	'fixed' => false,
-			// 	'align' => 'center',
-			// 	'defaultHidden' => false,
-			// ],
-			// [
-			// 	'title' => '关闭时间',
-			// 	'dataIndex' => 'end_time',
-			// 	'width' => 120,
-			// 	'fixed' => false,
-			// 	'align' => 'center',
-			// 	'defaultHidden' => false,
-			// ],
+			[
+				'title' => '保证金',
+				'dataIndex' => 'security_deposit',
+				'width' => 100,
+				'fixed' => false,
+				'align' => 'center',
+				'defaultHidden' => false,
+			],
+			[
+				'title' => '保证金状态',
+				'dataIndex' => 'deposit_status',
+				'width' => 100,
+				'fixed' => false,
+				'align' => 'center',
+				'defaultHidden' => false,
+				'customRender' => "({ record }) => {
+                    const textMap = {0:'等待支付',1:'已支付',2:'已退还'};
+                    const colorMap = {0:'blue',1:'green',2:'red'};
+                    const value = record.deposit_status;
+                    const color = colorMap[value];
+                    const text = textMap[value];
+                    return h(ant('Tag'), { color: color }, () => text);
+                }",
+			],
+			[
+				'title' => '排序号',
+				'dataIndex' => 'sort',
+				'width' => 100,
+				'fixed' => false,
+				'align' => 'center',
+				'defaultHidden' => false,
+			],
 			[
 				'title' => '店铺logo',
 				'dataIndex' => 'logo',
@@ -161,18 +161,9 @@ class User extends UserAbstract
 				'align' => 'center',
 				'defaultHidden' => false,
 				'customRender' => "({ text }) => {
-                    // console.log(text)
 			        return h(ant('Avatar'), {size:60 ,src: getImg(text) });
 			    }",
 			],
-			// [
-			// 	'title' => '店铺头像（大图）',
-			// 	'dataIndex' => 'avatar',
-			// 	'width' => 180,
-			// 	'fixed' => false,
-			// 	'align' => 'center',
-			// 	'defaultHidden' => false,
-			// ],
 			[
 				'title' => '店铺条幅',
 				'dataIndex' => 'banner',
@@ -192,14 +183,14 @@ class User extends UserAbstract
 			// 	'align' => 'center',
 			// 	'defaultHidden' => false,
 			// ],
-			// [
-			// 	'title' => '店铺简介',
-			// 	'dataIndex' => 'description',
-			// 	'width' => 180,
-			// 	'fixed' => false,
-			// 	'align' => 'center',
-			// 	'defaultHidden' => false,
-			// ],
+			[
+				'title' => '店铺简介',
+				'dataIndex' => 'description',
+				'width' => 180,
+				'fixed' => false,
+				'align' => 'center',
+				'defaultHidden' => false,
+			],
 			[
 				'title' => '联系人姓名',
 				'dataIndex' => 'name',
@@ -256,54 +247,6 @@ class User extends UserAbstract
 			// 	'align' => 'center',
 			// 	'defaultHidden' => false,
 			// ],
-			// [
-			// 	'title' => '描述分值',
-			// 	'dataIndex' => 'desccredit',
-			// 	'width' => 100,
-			// 	'fixed' => false,
-			// 	'align' => 'center',
-			// 	'defaultHidden' => false,
-			// ],
-			// [
-			// 	'title' => '服务分值',
-			// 	'dataIndex' => 'servicecredit',
-			// 	'width' => 100,
-			// 	'fixed' => false,
-			// 	'align' => 'center',
-			// 	'defaultHidden' => false,
-			// ],
-			// [
-			// 	'title' => '发货速度分值',
-			// 	'dataIndex' => 'deliverycredit',
-			// 	'width' => 100,
-			// 	'fixed' => false,
-			// 	'align' => 'center',
-			// 	'defaultHidden' => false,
-			// ],
-			// [
-			// 	'title' => '工作时间',
-			// 	'dataIndex' => 'workingtime',
-			// 	'width' => 120,
-			// 	'fixed' => false,
-			// 	'align' => 'center',
-			// 	'defaultHidden' => false,
-			// ],
-			// [
-			// 	'title' => '商家配送时间',
-			// 	'dataIndex' => 'delivery_time',
-			// 	'width' => 80,
-			// 	'fixed' => false,
-			// 	'align' => 'center',
-			// 	'defaultHidden' => true,
-			// ],
-			// [
-			// 	'title' => '店铺销量',
-			// 	'dataIndex' => 'sales_volume',
-			// 	'width' => 100,
-			// 	'fixed' => false,
-			// 	'align' => 'center',
-			// 	'defaultHidden' => false,
-			// ],
 			[
 				'title' => '账户实际余额',
 				'dataIndex' => 'balance_money',
@@ -329,14 +272,6 @@ class User extends UserAbstract
 				'defaultHidden' => false,
 			],
 			// [
-			// 	'title' => '工作日',
-			// 	'dataIndex' => 'work_week',
-			// 	'width' => 180,
-			// 	'fixed' => false,
-			// 	'align' => 'center',
-			// 	'defaultHidden' => false,
-			// ],
-			// [
 			// 	'title' => '省id',
 			// 	'dataIndex' => 'province',
 			// 	'width' => 100,
@@ -344,14 +279,14 @@ class User extends UserAbstract
 			// 	'align' => 'center',
 			// 	'defaultHidden' => false,
 			// ],
-			// [
-			// 	'title' => '省名称',
-			// 	'dataIndex' => 'province_name',
-			// 	'width' => 180,
-			// 	'fixed' => false,
-			// 	'align' => 'center',
-			// 	'defaultHidden' => false,
-			// ],
+			[
+				'title' => '省',
+				'dataIndex' => 'province_name',
+				'width' => 180,
+				'fixed' => false,
+				'align' => 'center',
+				'defaultHidden' => false,
+			],
 			// [
 			// 	'title' => '城市id',
 			// 	'dataIndex' => 'city',
@@ -360,14 +295,14 @@ class User extends UserAbstract
 			// 	'align' => 'center',
 			// 	'defaultHidden' => false,
 			// ],
-			// [
-			// 	'title' => '城市名称',
-			// 	'dataIndex' => 'city_name',
-			// 	'width' => 180,
-			// 	'fixed' => false,
-			// 	'align' => 'center',
-			// 	'defaultHidden' => false,
-			// ],
+			[
+				'title' => '市',
+				'dataIndex' => 'city_name',
+				'width' => 180,
+				'fixed' => false,
+				'align' => 'center',
+				'defaultHidden' => false,
+			],
 			// [
 			// 	'title' => '区县id',
 			// 	'dataIndex' => 'district',
@@ -376,14 +311,14 @@ class User extends UserAbstract
 			// 	'align' => 'center',
 			// 	'defaultHidden' => false,
 			// ],
-			// [
-			// 	'title' => '区县地址',
-			// 	'dataIndex' => 'district_name',
-			// 	'width' => 180,
-			// 	'fixed' => false,
-			// 	'align' => 'center',
-			// 	'defaultHidden' => false,
-			// ],
+			[
+				'title' => '区县',
+				'dataIndex' => 'district_name',
+				'width' => 180,
+				'fixed' => false,
+				'align' => 'center',
+				'defaultHidden' => false,
+			],
 			// [
 			// 	'title' => '乡镇地址id',
 			// 	'dataIndex' => 'community',
@@ -400,22 +335,22 @@ class User extends UserAbstract
 			// 	'align' => 'center',
 			// 	'defaultHidden' => false,
 			// ],
+			[
+				'title' => '详细地址',
+				'dataIndex' => 'address',
+				'width' => 180,
+				'fixed' => false,
+				'align' => 'center',
+				'defaultHidden' => false,
+			],
 			// [
-			// 	'title' => '详细地址',
-			// 	'dataIndex' => 'address',
+			// 	'title' => '完整地址',
+			// 	'dataIndex' => 'full_address',
 			// 	'width' => 180,
 			// 	'fixed' => false,
 			// 	'align' => 'center',
 			// 	'defaultHidden' => false,
 			// ],
-			[
-				'title' => '商家地址',
-				'dataIndex' => 'full_address',
-				'width' => 300,
-				'fixed' => false,
-				'align' => 'center',
-				'defaultHidden' => false,
-			],
 			[
 				'title' => '经度',
 				'dataIndex' => 'longitude',
@@ -440,14 +375,6 @@ class User extends UserAbstract
 				'align' => 'center',
 				'defaultHidden' => false,
 			],
-			// [
-			// 	'title' => '到期时间（0表示无限期）',
-			// 	'dataIndex' => 'expire_time',
-			// 	'width' => 120,
-			// 	'fixed' => false,
-			// 	'align' => 'center',
-			// 	'defaultHidden' => false,
-			// ],
 			[
 				'title' => '店铺类型',
 				'dataIndex' => 'shop_type',
@@ -496,6 +423,22 @@ class User extends UserAbstract
                     return h(ant('Tag'), { color: color }, () => text);
                 }",
 			],
+			[
+				'title' => '审核时间',
+				'dataIndex' => 'audit_time',
+				'width' => 180,
+				'fixed' => false,
+				'align' => 'center',
+				'defaultHidden' => false,
+			],
+			[
+				'title' => '审核备注',
+				'dataIndex' => 'apply_remark',
+				'width' => 120,
+				'fixed' => false,
+				'align' => 'center',
+				'defaultHidden' => false,
+			],
 		],
 		'formConfig' => [],
 		'pagination' => true,
@@ -514,6 +457,14 @@ class User extends UserAbstract
 			'slots' => ['customRender' => 'action'],
 			'fixed' => 'right',
 		],
+		'actions' => "[
+			{
+                icon: 'clarity:note-edit-line',
+				label : '修改',
+				auth : 'shop:user:update',
+				onClick : handleEdit.bind(null, record)
+            }
+		]",
 	];
 
 	/**
@@ -521,12 +472,36 @@ class User extends UserAbstract
 	 */
 	public $search_schema = [
 		'labelWidth' => 100,
+		'baseColProps' => ['xxl' => 6, 'xl' => 8, 'lg' => 12, 'md' => 34],
 		'schemas' => [
 			[
 				'field' => 'site_id',
 				'label' => 'ID',
 				'component' => 'Input',
-
+			],
+			[
+				'field' => 'shop_status',
+				'label' => '商家状态',
+				'component' => 'Select',
+				'componentProps' => [
+					'options' => [
+						[
+							'label' => '关闭',
+							'value' => -1,
+							'key' => -1,
+						],
+						[
+							'label' => '正常',
+							'value' => 1,
+							'key' => 1,
+						],
+						[
+							'label' => '等待审核',
+							'value' => 2,
+							'key' => 2,
+						],
+					],
+				],
 			],
 		],
 	];
@@ -536,364 +511,73 @@ class User extends UserAbstract
 	 */
 	public $form_schema = [
 		'labelWidth' => 120,
+		'baseColProps' => ['xxl' => 6, 'xl' => 8, 'lg' => 12, 'md' => 34],
 		'schemas' => [
 			[
 				'field' => 'site_name',
 				'label' => '店铺名称',
 				'component' => 'Input',
-				'required' => true,
-
+				'disabled' => true,
 			],
-			[
-				'field' => 'username',
-				'label' => '用户名',
-				'component' => 'Input',
-				'required' => true,
-
-			],
-			[
-				'field' => 'cert_id',
-				'label' => '认证信息',
-				'component' => 'Input',
-				'required' => true,
-
-			],
-			[
-				'field' => 'is_own',
-				'label' => '是否自营',
-				'component' => 'Input',
-				'required' => true,
-
-			],
-			[
-				'field' => 'level_id',
-				'label' => '店铺等级',
-				'component' => 'Input',
-				'required' => true,
-
-			],
-			[
-				'field' => 'category_id',
-				'label' => '店铺类别',
-				'component' => 'Input',
-				'required' => true,
-
-			],
-			[
-				'field' => 'member_id',
-				'label' => '创建会员id',
-				'component' => 'Input',
-				'required' => true,
-
-			],
+			['field' => 'cert.contacts_name', 'label' => '法人代表', 'component' => 'Input', 'disabled' => true],
+			['field' => 'phone', 'label' => '联系电话', 'component' => 'Input', 'disabled' => true],
+			// ['field' => 'cert_id', 'label' => '认证信息', 'component' => 'Input', 'required' => true],
+			['field' => 'category.category_name', 'label' => '店铺类别', 'component' => 'Input', 'required' => true],
+			['field' => 'member_id', 'label' => '创建会员id', 'component' => 'Input', 'required' => true],
 			[
 				'field' => 'shop_status',
 				'label' => '店铺经营状态（0.关闭，1正常 2. 审核中）',
 				'component' => 'Input',
 				'required' => true,
-
 			],
+			['field' => 'security_deposit', 'label' => '保证金', 'component' => 'Input', 'required' => true],
 			[
-				'field' => 'close_info',
-				'label' => '店铺关闭原因',
+				'field' => 'deposit_status',
+				'label' => '保证金状态 0等待支付 1已支付 2已退还',
 				'component' => 'Input',
 				'required' => true,
-
 			],
-			[
-				'field' => 'sort',
-				'label' => '排序号',
-				'component' => 'Input',
-				'required' => true,
-
-			],
-			[
-				'field' => 'start_time',
-				'label' => '经营时间',
-				'component' => 'Input',
-				'required' => true,
-
-			],
-			[
-				'field' => 'end_time',
-				'label' => '关闭时间',
-				'component' => 'Input',
-				'required' => true,
-
-			],
-			[
-				'field' => 'logo',
-				'label' => '店铺logo',
-				'component' => 'Input',
-				'required' => true,
-
-			],
-			[
-				'field' => 'avatar',
-				'label' => '店铺头像（大图）',
-				'component' => 'Input',
-				'required' => true,
-
-			],
-			[
-				'field' => 'banner',
-				'label' => '店铺条幅',
-				'component' => 'Input',
-				'required' => true,
-
-			],
-			[
-				'field' => 'keywords',
-				'label' => '店铺关键字',
-				'component' => 'Input',
-				'required' => true,
-
-			],
-			[
-				'field' => 'description',
-				'label' => '店铺简介',
-				'component' => 'Input',
-				'required' => true,
-
-			],
-			[
-				'field' => 'name',
-				'label' => '联系人姓名',
-				'component' => 'Input',
-				'required' => true,
-
-			],
-			[
-				'field' => 'mobile',
-				'label' => '联系手机号',
-				'component' => 'Input',
-				'required' => true,
-
-			],
-			[
-				'field' => 'profession_name',
-				'label' => '业务联系人姓名',
-				'component' => 'Input',
-				'required' => true,
-
-			],
+			['field' => 'sort', 'label' => '排序号', 'component' => 'Input', 'required' => true],
+			['field' => 'logo', 'label' => '店铺logo', 'component' => 'Input', 'required' => true],
+			['field' => 'banner', 'label' => '店铺条幅', 'component' => 'Input', 'required' => false],
+			['field' => 'name', 'label' => '联系人姓名', 'component' => 'Input', 'required' => true],
+			['field' => 'mobile', 'label' => '联系手机号', 'component' => 'Input', 'required' => true],
+			['field' => 'profession_name', 'label' => '业务联系人姓名', 'component' => 'Input', 'required' => true],
 			[
 				'field' => 'profession_mobile',
 				'label' => '业务联系人电话',
 				'component' => 'Input',
 				'required' => true,
-
 			],
 			[
 				'field' => 'business_affairs_name',
 				'label' => '商务联系人姓名',
 				'component' => 'Input',
 				'required' => true,
-
 			],
 			[
 				'field' => 'business_affairs_mobile',
 				'label' => '商务联系人电话',
 				'component' => 'Input',
 				'required' => true,
-
 			],
-			[
-				'field' => 'is_recommend',
-				'label' => '是否推荐',
-				'component' => 'Input',
-				'required' => true,
-
-			],
-			[
-				'field' => 'desccredit',
-				'label' => '描述分值',
-				'component' => 'Input',
-				'required' => true,
-
-			],
-			[
-				'field' => 'servicecredit',
-				'label' => '服务分值',
-				'component' => 'Input',
-				'required' => true,
-
-			],
-			[
-				'field' => 'deliverycredit',
-				'label' => '发货速度分值',
-				'component' => 'Input',
-				'required' => true,
-
-			],
-			[
-				'field' => 'workingtime',
-				'label' => '工作时间',
-				'component' => 'Input',
-				'required' => true,
-
-			],
-			[
-				'field' => 'delivery_time',
-				'label' => '商家配送时间',
-				'component' => 'Input',
-				'required' => true,
-
-			],
-			[
-				'field' => 'sales_volume',
-				'label' => '店铺销量',
-				'component' => 'Input',
-				'required' => true,
-
-			],
-			[
-				'field' => 'balance_money',
-				'label' => '账户实际余额',
-				'component' => 'Input',
-				'required' => true,
-
-			],
-			[
-				'field' => 'balance_withdraw',
-				'label' => '已提现金额',
-				'component' => 'Input',
-				'required' => true,
-
-			],
-			[
-				'field' => 'balance_withdraw_apply',
-				'label' => '申请提现中金额',
-				'component' => 'Input',
-				'required' => true,
-
-			],
-			[
-				'field' => 'work_week',
-				'label' => '工作日',
-				'component' => 'Input',
-				'required' => true,
-
-			],
-			[
-				'field' => 'province',
-				'label' => '省id',
-				'component' => 'Input',
-				'required' => true,
-
-			],
-			[
-				'field' => 'province_name',
-				'label' => '省名称',
-				'component' => 'Input',
-				'required' => true,
-
-			],
-			[
-				'field' => 'city',
-				'label' => '城市id',
-				'component' => 'Input',
-				'required' => true,
-
-			],
-			[
-				'field' => 'city_name',
-				'label' => '城市名称',
-				'component' => 'Input',
-				'required' => true,
-
-			],
-			[
-				'field' => 'district',
-				'label' => '区县id',
-				'component' => 'Input',
-				'required' => true,
-
-			],
-			[
-				'field' => 'district_name',
-				'label' => '区县地址',
-				'component' => 'Input',
-				'required' => true,
-
-			],
-			[
-				'field' => 'community',
-				'label' => '乡镇地址id',
-				'component' => 'Input',
-				'required' => true,
-
-			],
-			[
-				'field' => 'community_name',
-				'label' => '乡镇地址名称',
-				'component' => 'Input',
-				'required' => true,
-
-			],
-			[
-				'field' => 'address',
-				'label' => '详细地址',
-				'component' => 'Input',
-				'required' => true,
-
-			],
-			[
-				'field' => 'full_address',
-				'label' => '完整地址',
-				'component' => 'Input',
-				'required' => true,
-
-			],
-			[
-				'field' => 'longitude',
-				'label' => '经度',
-				'component' => 'Input',
-				'required' => true,
-
-			],
-			[
-				'field' => 'latitude',
-				'label' => '纬度',
-				'component' => 'Input',
-				'required' => true,
-
-			],
-			[
-				'field' => 'create_time',
-				'label' => '开店时间',
-				'component' => 'Input',
-				'required' => true,
-
-			],
-			[
-				'field' => 'expire_time',
-				'label' => '到期时间（0表示无限期）',
-				'component' => 'Input',
-				'required' => true,
-
-			],
+			['field' => 'full_address', 'label' => '地址地址', 'component' => 'Input', 'required' => true],
+			['field' => 'create_time', 'label' => '开店时间', 'component' => 'Input', 'required' => true],
 			[
 				'field' => 'shop_type',
 				'label' => '店铺类型 1 线上 2 线下',
 				'component' => 'Input',
 				'required' => true,
-
 			],
 			[
 				'field' => 'is_one_delivery',
 				'label' => '是否支持一件代发',
 				'component' => 'Input',
-				'required' => true,
-
+				'disabled' => true,
 			],
-			[
-				'field' => 'is_after_sales',
-				'label' => '是否支持售后',
-				'component' => 'Input',
-				'required' => true,
-
-			],
+			['field' => 'is_after_sales', 'label' => '是否支持售后', 'component' => 'Input', 'disabled' => true],
+			['field' => 'apply_status', 'label' => '审核状态', 'component' => 'Input', 'required' => true],
+			['field' => 'apply_remark', 'label' => '审核备注', 'component' => 'Input', 'required' => true],
 		],
 	];
 
