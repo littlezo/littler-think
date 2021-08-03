@@ -547,4 +547,14 @@ class Balance extends BalanceAbstract
 	 * @var array 排除展示字段
 	 */
 	public $without = ['password', 'passwd', 'pay_passwd', 'pay_password'];
+
+	public function getAuditTimeAttr($value)
+	{
+		return date('Y-m-d H:i:s', $value);
+	}
+
+	public function getPaymentTimeAttr($value)
+	{
+		return date('Y-m-d H:i:s', $value);
+	}
 }

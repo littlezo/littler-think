@@ -326,7 +326,7 @@ class User extends UserAbstract implements AuthorizeInterface
 			'slots' => ['customRender' => 'action'],
 			'fixed' => 'right',
 		],
-		'actions' =>"[
+		'dropActions' =>"[
           {
             icon: 'clarity:note-edit-line',
             label: '修改',
@@ -440,14 +440,12 @@ class User extends UserAbstract implements AuthorizeInterface
 				'label' => '手机号',
 				'component' => 'Input',
 				'required' => true,
-
 			],
 			[
 				'field' => 'password',
 				'label' => '用户密码',
 				'component' => 'InputPassword',
 				'required' => false,
-
 			],
 			[
 				'field' => 'status',

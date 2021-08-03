@@ -107,7 +107,7 @@ class Agent extends AgentAbstract
 			'slots' => ['customRender' => 'action'],
 			'fixed' => 'right',
 		],
-		'actions' =>"[
+		'dropActions' =>"[
           {
             icon: 'clarity:note-edit-line',
             label: '修改',
