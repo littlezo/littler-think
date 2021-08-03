@@ -130,7 +130,6 @@ class User extends UserAbstract implements AuthorizeInterface
 				'align' => 'center',
 				'defaultHidden' => false,
 				'customRender' => "({ record }) => {
-					// console.log(h);
 			        return h(ant('Avatar'), {size:60 ,src: getImg(record.avatar) });
 			    }",
 			],

@@ -49,17 +49,6 @@ class Recharges extends RechargesAbstract
 				'align' => 'center',
 				'defaultHidden' => false,
 			],
-			// [
-			// 	'title' => '封面',
-			// 	'dataIndex' => 'cover_img',
-			// 	'width' => 180,
-			// 	'fixed' => false,
-			// 	'align' => 'center',
-			// 	'defaultHidden' => false,
-			// 	// 'customRender' => "({ record }) => {
-			// 	//     return h(ant('Avatar'), {size:60 ,src: getImg(record.cover_img) });
-			// 	// }",
-			// ],
 			[
 				'title' => '面值',
 				'dataIndex' => 'face_value',
@@ -209,27 +198,6 @@ class Recharges extends RechargesAbstract
 				'required' => true,
 				'colProps' => ['lg' => 12, 'xl' => 8, 'xxl' => 6],
 			],
-			// [
-			// 	'field' => 'cover_img',
-			// 	'label' => '封面',
-			// 	'component' => 'Upload',
-			// 	'required' => true,
-			// 	'colProps' => ['lg' => 12, 'xl' => 8, 'xxl' => 6],
-			// 	'rules' => [
-			// 		['required' => true, 'message' => '请选择上传文件'],
-			// 	],
-			// 	'componentProps' => [
-			// 		'maxSize' => 10,
-			// 		'multiple' => false,
-			// 		'accept'=>['jpg', 'jpeg', 'png'],
-			// 		'maxNumber'=>1,
-			// 		'api' => '(argv)=>uploadApi(argv)',
-			// 		'check' => '(argv)=>checkUploadApi(argv)',
-			// 		'handleChange' => '(list) => {
-			//             console.log(list);
-			//         }',
-			// 	],
-			// ],
 			[
 				'field' => 'face_value',
 				'label' => '面值',
@@ -299,26 +267,6 @@ class Recharges extends RechargesAbstract
 					],
 				],
 			],
-			// [
-			// 	'field' => 'type',
-			// 	'label' => '套餐类型 ',
-			// 	'component' => 'RadioGroup',
-			// 	'required' => true,
-			// 	'colProps' => ['lg' => 12, 'xl' => 8, 'xxl' => 6],
-			// 	'defaultValue' => 1,
-			// 	'componentProps' => [
-			// 		'options' => [
-			// 			[
-			// 				'label' => '现金劵',
-			// 				'value' => 1,
-			// 			],
-			// 			[
-			// 				'label' => '抵扣卷',
-			// 				'value' => 2,
-			// 			],
-			// 		],
-			// 	],
-			// ],
 			[
 				'field' => 'status',
 				'label' => '状态',
