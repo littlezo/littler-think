@@ -50,7 +50,12 @@ use think\model\concern\SoftDelete;
  * @property balance_withdraw $float 已提现余额
  * @property balance_withdraw_apply $float 提现中余额
  * @property is_auth $int 是否认证
- * @property Invite_code $string 邀请码
+ * @property is_region $int 是否区域代理
+ * @property region_level $int 区域代理等级
+ * @property invite_region $int 代理区域
+ * @property region_verify $int 代理是否审核
+ * @property region_desc $string 代理申请备注
+ * @property invite_code $string 邀请码
  * @property create_time $int 注册时间
  * @property update_time $int 更新时间
  * @property delete_time $int 删除时间
@@ -102,7 +107,12 @@ abstract class UserAbstract extends Model
 		'balance_withdraw' => 'float',
 		'balance_withdraw_apply' => 'float',
 		'is_auth' => 'int',
-		'Invite_code' => 'string',
+		'is_region' => 'int',
+		'region_level' => 'int',
+		'invite_region' => 'int',
+		'region_verify' => 'int',
+		'region_desc' => 'string',
+		'invite_code' => 'string',
 		'create_time' => 'int',
 		'update_time' => 'int',
 		'delete_time' => 'int',
@@ -144,7 +154,12 @@ abstract class UserAbstract extends Model
 		'balance_withdraw',
 		'balance_withdraw_apply',
 		'is_auth',
-		'Invite_code',
+		'is_region',
+		'region_level',
+		'invite_region',
+		'region_verify',
+		'region_desc',
+		'invite_code',
 		'create_time',
 		'update_time',
 		'delete_time',
