@@ -238,16 +238,22 @@ class Category extends CategoryAbstract
 			[
 				'field' => 'image',
 				'label' => '分类图片',
-				'component' => 'Input',
+				'component' => 'SingleUpload',
 				'required' => true,
-				'render' =>    '({ model, field }) => {
-                    return h(LzCropperAvatar,{
-                    uploadApi: (argv)=>uploadApi(argv),
-                    value: getImg(model[field]),
-                    onChange: (e) => {
-                        model[field] = e.id;
-                    },
-                })}',
+				'componentProps' => [
+					'maxSize' => 5,
+					'multiple' => false,
+					'accept'=>['jpg', 'jpeg', 'png'],
+					'maxNumber'=>1,
+				],
+				// 'render' => '({ model, field }) => {
+				//     return h(ant("Upload"),{
+				//     uploadApi: (argv)=>uploadApi(argv),
+				//     value: getImg(model[field]),
+				//     onChange: (e) => {
+				//         model[field] = e.id;
+				//     },
+				// })}',
 			],
 			[
 				'field' => 'keywords',
@@ -268,15 +274,9 @@ class Category extends CategoryAbstract
 				'required' => true,
 				'componentProps' => [
 					'maxSize' => 5,
-					'multiple' => false,
+					'multiple' => true,
 					'accept'=>['jpg', 'jpeg', 'png'],
 					'maxNumber'=>9,
-					'api' => '(argv)=>uploadApi(argv)',
-					'check' => '(argv)=>checkUploadApi(argv)',
-					'showUploadList'=>false,
-					'value' => '(list) => {
-			            console.log(list);
-			        }',
 				],
 			],
 			[

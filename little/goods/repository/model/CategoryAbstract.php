@@ -28,10 +28,9 @@ use littler\traits\RewriteTrait;
  * @property parent $int 分类上级
  * @property is_show $int 是否显示 0是 1否
  * @property sort $int 排序
- * @property image $string 分类图片
+ * @property image $int 分类图片
  * @property keywords $string 分类页面关键字
  * @property description $string 分类介绍
- * @property attr_class_id $int 关联商品类型id
  * @property image_adv $string 分类广告图
  * @property service_rate $float 服务费
  * @property path $string 跳转路径
@@ -61,10 +60,9 @@ abstract class CategoryAbstract extends Model
 		'parent' => 'int',
 		'is_show' => 'int',
 		'sort' => 'int',
-		'image' => 'string',
+		'image' => 'int',
 		'keywords' => 'string',
 		'description' => 'string',
-		'attr_class_id' => 'int',
 		'image_adv' => 'string',
 		'service_rate' => 'float',
 		'path' => 'string',
@@ -73,7 +71,12 @@ abstract class CategoryAbstract extends Model
 	/**
 	 * @var array $json JSON类型字段
 	 */
-	protected $json = [];
+	protected $json = ['image_adv'];
+
+	/**
+	 * @var array $json JSON字段自动转数组
+	 */
+	protected $jsonAssoc = true;
 
 	/**
 	 * @var array $createTime 关闭创建时间自动写入
@@ -98,7 +101,6 @@ abstract class CategoryAbstract extends Model
 		'image',
 		'keywords',
 		'description',
-		'attr_class_id',
 		'image_adv',
 		'service_rate',
 		'path',
