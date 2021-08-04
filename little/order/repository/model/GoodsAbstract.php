@@ -71,7 +71,12 @@ abstract class GoodsAbstract extends Model
 	/**
 	 * @var array $json JSON类型字段
 	 */
-	protected $json = [];
+	protected $json = ['sku_details'];
+
+	/**
+	 * @var array $json JSON字段自动转数组
+	 */
+	protected $jsonAssoc = true;
 
 	/**
 	 * @var array $createTime 关闭创建时间自动写入
