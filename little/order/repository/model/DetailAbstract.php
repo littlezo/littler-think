@@ -27,8 +27,9 @@ use think\model\concern\SoftDelete;
  * @property order_no $string 订单编号
  * @property site_id $int 商家id
  * @property order_name $string 订单内容
+ * @property order_goods_ids $string 订单商品ID
  * @property order_from $string 订单来源
- * @property order_type $int 订单类型 1. 线上订单  2. 线下订单  3. 抵扣卷订单  4余额订单
+ * @property order_type $int 订单类型 1. 线上订单  2. 线下订单  3. 抵扣卷订单  4余额订单 5现金券
  * @property out_trade_no $string 支付流水号
  * @property out_trade_no_2 $string 支付流水号（多次支付）
  * @property delivery_code $string 整体提货编码
@@ -118,6 +119,7 @@ abstract class DetailAbstract extends Model
 		'order_no' => 'string',
 		'site_id' => 'int',
 		'order_name' => 'string',
+		'order_goods_ids' => 'string',
 		'order_from' => 'string',
 		'order_type' => 'int',
 		'out_trade_no' => 'string',
@@ -189,7 +191,7 @@ abstract class DetailAbstract extends Model
 	/**
 	 * @var array $json JSON类型字段
 	 */
-	protected $json = ['promotion_details', 'order_status_action'];
+	protected $json = ['order_goods_ids', 'promotion_details', 'order_status_action'];
 
 	/**
 	 * @var array $json JSON字段自动转数组
@@ -209,6 +211,7 @@ abstract class DetailAbstract extends Model
 		'order_no',
 		'site_id',
 		'order_name',
+		'order_goods_ids',
 		'order_from',
 		'order_type',
 		'out_trade_no',
