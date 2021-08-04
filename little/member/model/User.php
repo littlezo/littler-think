@@ -426,7 +426,6 @@ class User extends UserAbstract implements AuthorizeInterface
 				'label' => '推荐人',
 				'component' => 'Select',
 				'required' => true,
-
 				'componentProps' => '() => {
                     return {
                         labelField: "nickname",

@@ -29,7 +29,7 @@ use think\model\concern\SoftDelete;
  * @property order_name $string 订单内容
  * @property order_goods_ids $string 订单商品ID
  * @property order_from $string 订单来源
- * @property order_type $int 订单类型 1. 线上订单  2. 线下订单  3. 抵扣卷订单  4余额订单 5现金券
+ * @property order_type $int 订单类型 1. 线上订单  2. 线下订单  3. 抵扣卷订单  4余额订单 5现金券 6区域代理订单
  * @property out_trade_no $string 支付流水号
  * @property out_trade_no_2 $string 支付流水号（多次支付）
  * @property delivery_code $string 整体提货编码
@@ -94,6 +94,7 @@ use think\model\concern\SoftDelete;
  * @property invoice_email $string 发票发送邮件
  * @property invoice_title_type $int 发票抬头类型  1 个人  2 企业
  * @property order_status_action $string 订单操作
+ * @property order_detail $string 订单详情
  */
 abstract class DetailAbstract extends Model
 {
@@ -186,12 +187,13 @@ abstract class DetailAbstract extends Model
 		'invoice_email' => 'string',
 		'invoice_title_type' => 'int',
 		'order_status_action' => 'string',
+		'order_detail' => 'string',
 	];
 
 	/**
 	 * @var array $json JSON类型字段
 	 */
-	protected $json = ['order_goods_ids', 'promotion_details', 'order_status_action'];
+	protected $json = ['order_goods_ids', 'promotion_details', 'order_status_action', 'order_detail'];
 
 	/**
 	 * @var array $json JSON字段自动转数组
@@ -278,5 +280,6 @@ abstract class DetailAbstract extends Model
 		'invoice_email',
 		'invoice_title_type',
 		'order_status_action',
+		'order_detail',
 	];
 }

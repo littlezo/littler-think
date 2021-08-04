@@ -1,12 +1,14 @@
 <?php
 
+declare(strict_types=1);
+
 return [
-    'bind' => [
-    ],
+	'bind' => [
+	],
 
-    'listen' => [
-    ],
+	'listen' => [
+	],
 
-    'subscribe' => [
-    ],
+	'subscribe' => [
+	],
 ];

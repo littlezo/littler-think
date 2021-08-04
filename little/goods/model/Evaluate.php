@@ -227,6 +227,8 @@ class Evaluate extends EvaluateAbstract
 			'slots' => ['customRender' => 'action'],
 			'fixed' => 'right',
 		],
+		'dropActions' => '[{"icon":"clarity:note-edit-line","label":"修改","auth":"goods:evaluate:update","onClick":"handleEdit.bind(null, record)"},{"label":"删除","icon":"ant-design:delete-outlined","color":"error","auth":"goods:evaluate:delete","popConfirm":{"title":"是否确认删除","confirm":"handleDelete.bind(null, record)"}}]',
+		'actions' => '[]',
 	];
 
 	/**
@@ -234,14 +236,8 @@ class Evaluate extends EvaluateAbstract
 	 */
 	public $search_schema = [
 		'labelWidth' => 100,
-		'schemas' => [
-			[
-				'field' => 'evaluate_id',
-				'label' => 'ID',
-				'component' => 'Input',
-
-			],
-		],
+		'baseColProps' => ['xxl' => 6, 'xl' => 8, 'lg' => 12, 'md' => 34],
+		'schemas' => [['field' => 'evaluate_id', 'label' => 'ID', 'component' => 'Input']],
 	];
 
 	/**
@@ -249,154 +245,34 @@ class Evaluate extends EvaluateAbstract
 	 */
 	public $form_schema = [
 		'labelWidth' => 120,
+		'baseColProps' => ['xxl' => 6, 'xl' => 8, 'lg' => 12, 'md' => 34],
 		'schemas' => [
-			[
-				'field' => 'site_id',
-				'label' => '站点id',
-				'component' => 'Input',
-				'required' => true,
-
-			],
-			[
-				'field' => 'order_id',
-				'label' => '订单ID',
-				'component' => 'Input',
-				'required' => true,
-
-			],
-			[
-				'field' => 'order_no',
-				'label' => '订单编号',
-				'component' => 'Input',
-				'required' => true,
-
-			],
-			[
-				'field' => 'order_goods_id',
-				'label' => '订单商品ID',
-				'component' => 'Input',
-				'required' => true,
-
-			],
-			[
-				'field' => 'goods_id',
-				'label' => '商品ID',
-				'component' => 'Input',
-				'required' => true,
-
-			],
-			[
-				'field' => 'sku_id',
-				'label' => '商品skuid',
-				'component' => 'Input',
-				'required' => true,
-
-			],
-			[
-				'field' => 'content',
-				'label' => '评价内容',
-				'component' => 'Input',
-				'required' => true,
-
-			],
-			[
-				'field' => 'images',
-				'label' => '评价图片',
-				'component' => 'Input',
-				'required' => true,
-
-			],
-			[
-				'field' => 'member_id',
-				'label' => '评价人id',
-				'component' => 'Input',
-				'required' => true,
-
-			],
-			[
-				'field' => 'member_name',
-				'label' => '评价人名称',
-				'component' => 'Input',
-				'required' => true,
-
-			],
+			['field' => 'site_id', 'label' => '站点id', 'component' => 'Input', 'required' => true],
+			['field' => 'order_id', 'label' => '订单ID', 'component' => 'Input', 'required' => true],
+			['field' => 'order_no', 'label' => '订单编号', 'component' => 'Input', 'required' => true],
+			['field' => 'order_goods_id', 'label' => '订单商品ID', 'component' => 'Input', 'required' => true],
+			['field' => 'goods_id', 'label' => '商品ID', 'component' => 'Input', 'required' => true],
+			['field' => 'sku_id', 'label' => '商品skuid', 'component' => 'Input', 'required' => true],
+			['field' => 'content', 'label' => '评价内容', 'component' => 'Input', 'required' => true],
+			['field' => 'images', 'label' => '评价图片', 'component' => 'Input', 'required' => true],
+			['field' => 'member_id', 'label' => '评价人id', 'component' => 'Input', 'required' => true],
+			['field' => 'member_name', 'label' => '评价人名称', 'component' => 'Input', 'required' => true],
 			[
 				'field' => 'is_anonymous',
 				'label' => '0表示不是 1表示是匿名评价',
 				'component' => 'Input',
 				'required' => true,
-
 			],
-			[
-				'field' => 'scores',
-				'label' => '1-5分',
-				'component' => 'Input',
-				'required' => true,
-
-			],
-			[
-				'field' => 'again_content',
-				'label' => '追加评价内容',
-				'component' => 'Input',
-				'required' => true,
-
-			],
-			[
-				'field' => 'again_images',
-				'label' => '追评评价图片',
-				'component' => 'Input',
-				'required' => true,
-
-			],
-			[
-				'field' => 'explain_type',
-				'label' => '1好评2中评3差评',
-				'component' => 'Input',
-				'required' => true,
-
-			],
-			[
-				'field' => 'is_show',
-				'label' => '1显示 0隐藏',
-				'component' => 'Input',
-				'required' => true,
-
-			],
-			[
-				'field' => 'create_time',
-				'label' => '评价时间',
-				'component' => 'Input',
-				'required' => true,
-
-			],
-			[
-				'field' => 'again_time',
-				'label' => '追加评价时间',
-				'component' => 'Input',
-				'required' => true,
-
-			],
-			[
-				'field' => 'shop_desccredit',
-				'label' => '描述分值',
-				'component' => 'Input',
-				'required' => true,
-
-			],
-			[
-				'field' => 'shop_servicecredit',
-				'label' => '服务分值',
-				'component' => 'Input',
-				'required' => true,
-
-			],
-			[
-				'field' => 'shop_deliverycredit',
-				'label' => '配送分值',
-				'component' => 'Input',
-				'required' => true,
-
-			],
+			['field' => 'scores', 'label' => '1-5分', 'component' => 'Input', 'required' => true],
+			['field' => 'again_content', 'label' => '追加评价内容', 'component' => 'Input', 'required' => true],
+			['field' => 'again_images', 'label' => '追评评价图片', 'component' => 'Input', 'required' => true],
+			['field' => 'explain_type', 'label' => '1好评2中评3差评', 'component' => 'Input', 'required' => true],
+			['field' => 'is_show', 'label' => '1显示 0隐藏', 'component' => 'Input', 'required' => true],
+			['field' => 'create_time', 'label' => '评价时间', 'component' => 'Input', 'required' => true],
+			['field' => 'again_time', 'label' => '追加评价时间', 'component' => 'Input', 'required' => true],
+			['field' => 'shop_desccredit', 'label' => '描述分值', 'component' => 'Input', 'required' => true],
+			['field' => 'shop_servicecredit', 'label' => '服务分值', 'component' => 'Input', 'required' => true],
+			['field' => 'shop_deliverycredit', 'label' => '配送分值', 'component' => 'Input', 'required' => true],
 		],
 	];
 

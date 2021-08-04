@@ -17,30 +17,22 @@ declare(strict_types=1);
 namespace little\goods\admin\controller;
 
 use little\goods\service\admin\CategoryService;
-use littler\BaseController as Controller;
-use littler\JWTAuth\Middleware\Jwt;
-use littler\Request;
-use littler\Response;
-use littler\annotation\Inject;
-use littler\annotation\Route;
 use littler\annotation\docs\ApiDocs;
+use littler\annotation\Inject;
 use littler\annotation\route\Group as RouteGroup;
 use littler\annotation\route\Middleware;
-use littler\annotation\route\Resource;
-use littler\annotation\route\Validate;
+use littler\BaseController as Controller;
 use littler\traits\DeleteTrait;
 use littler\traits\InfoTrait;
 use littler\traits\LayoutTrait;
 use littler\traits\ListTrait;
-use littler\traits\PageTrait;
 use littler\traits\SaveTrait;
 use littler\traits\UpdateTrait;
 
 /**
- * Class Category
- * @package little\goods\admin\controller
+ * Class Category.
  * @RouteGroup("admin/goods/category")
- * @Middleware({littler\JWTAuth\Middleware\Jwt::class,"admin"})
+ * @Middleware({littler\JWTAuth\Middleware\Jwt::class, "admin"})
  * @apiDocs({
  *     "title": "商品分类",
  *     "version": "1.0.0",
@@ -54,14 +46,14 @@ use littler\traits\UpdateTrait;
 class Category extends Controller
 {
 	use LayoutTrait;
-	use PageTrait;
+	use ListTrait;
 	use InfoTrait;
 	use SaveTrait;
 	use UpdateTrait;
 	use DeleteTrait;
 
 	/**
-	 * @Inject()
+	 * @Inject
 	 * @var CategoryService
 	 */
 	protected $service;

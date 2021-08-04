@@ -7,7 +7,7 @@
  * @version 1.0.0
  * @author @小小只^v^ <littlezov@qq.com>  littlezov@qq.com
  * @contact  littlezov@qq.com
- * @link     https://github.com/littlezo
+ * @see     https://github.com/littlezo
  * @document https://github.com/littlezo/wiki
  * @license  https://github.com/littlezo/MozillaPublicLicense/blob/main/LICENSE
  */
@@ -18,55 +18,53 @@ namespace little\goods\service\admin;
 
 use Exception;
 use little\goods\model\Category;
-use littler\Request;
 use littler\annotation\Inject;
+use littler\Request;
 
 class CategoryService
 {
 	/**
-	 * @Inject()
+	 * @Inject
 	 * @var Category
 	 */
 	private $model;
 
 	/**
-	 * @Inject()
+	 * @Inject
 	 * @var Request
-	 * desc  Request对象 request->user 可以取当前用户信息
+	 *              desc  Request对象 request->user 可以取当前用户信息
 	 */
 	private $request;
 
-
 	/**
-	 * #title 布局获取
+	 * #title 布局获取.
 	 * @param int $type form||table 页面布局类型
 	 * @return Category
 	 */
 	public function layout(string $type): ?array
 	{
 		if (in_array($type, ['table', 'form'], true)) {
-		    switch ($type) {
-		        case 'table':
-		        $schema = $this->model->table_schema;
-		        $schema['formConfig'] = $this->model->search_schema;
-		        break;
-		    case 'form':
-		        $schema = $this->model->form_schema;
-		        break;
-		    default:
-		        $schema =null;
-		        break;
-		    }
-		    if ($schema) {
-		        return $schema;
-		    }
+			switch ($type) {
+				case 'table':
+				$schema = $this->model->table_schema;
+				$schema['formConfig'] = $this->model->search_schema;
+				break;
+			case 'form':
+				$schema = $this->model->form_schema;
+				break;
+			default:
+				$schema =null;
+				break;
+			}
+			if ($schema) {
+				return $schema;
+			}
 		}
 		throw new Exception('类型错误', 9500901);
 	}
 
-
 	/**
-	 * #title 分页
+	 * #title 分页.
 	 * @return Category
 	 */
 	public function paginate(): ?object
@@ -74,19 +72,17 @@ class CategoryService
 		return $this->model->getList();
 	}
 
-
 	/**
-	 * #title 列表
+	 * #title 列表.
 	 * @return Category
 	 */
-	public function list(): ?object
+	public function list(): ?array
 	{
-		return $this->model->getList(false);
+		return $this->model->getList(false)->toTree(0, 'category_id', 'parent', 'children');
 	}
 
-
 	/**
-	 * #title 详情
+	 * #title 详情.
 	 * @param int $id 数据主键
 	 * @return Category
 	 */
@@ -95,9 +91,8 @@ class CategoryService
 		return $this->model->findBy($id);
 	}
 
-
 	/**
-	 * #title 保存
+	 * #title 保存.
 	 * @param array $args 待写入数据
 	 * @return int||bool
 	 */
@@ -106,9 +101,8 @@ class CategoryService
 		return $this->model->storeBy($args);
 	}
 
-
 	/**
-	 * #title 更新
+	 * #title 更新.
 	 * @param int $id ID
 	 * @param array $args 待更新的数据
 	 * @return int|bool
@@ -118,9 +112,8 @@ class CategoryService
 		return $this->model->updateBy($id, $args);
 	}
 
-
 	/**
-	 * #title 删除
+	 * #title 删除.
 	 * @param int $id ID
 	 * @return bool
 	 */

@@ -50,22 +50,6 @@ class Detail extends DetailAbstract
 				'defaultHidden' => false,
 			],
 			[
-				'title' => '商品种类1.实物商品2.虚拟商品3.卡券商品',
-				'dataIndex' => 'goods_class',
-				'width' => 100,
-				'fixed' => false,
-				'align' => 'center',
-				'defaultHidden' => false,
-			],
-			[
-				'title' => '商品类型id',
-				'dataIndex' => 'goods_attr_class',
-				'width' => 100,
-				'fixed' => false,
-				'align' => 'center',
-				'defaultHidden' => false,
-			],
-			[
 				'title' => '所属店铺id',
 				'dataIndex' => 'site_id',
 				'width' => 100,
@@ -76,10 +60,10 @@ class Detail extends DetailAbstract
 			[
 				'title' => '分类id',
 				'dataIndex' => 'category_id',
-				'width' => 80,
+				'width' => 100,
 				'fixed' => false,
 				'align' => 'center',
-				'defaultHidden' => true,
+				'defaultHidden' => false,
 			],
 			[
 				'title' => '商品主图路径',
@@ -98,8 +82,8 @@ class Detail extends DetailAbstract
 				'defaultHidden' => true,
 			],
 			[
-				'title' => '是否自营',
-				'dataIndex' => 'is_own',
+				'title' => '默认规格',
+				'dataIndex' => 'sku_id',
 				'width' => 100,
 				'fixed' => false,
 				'align' => 'center',
@@ -123,48 +107,8 @@ class Detail extends DetailAbstract
 			],
 			[
 				'title' => '商品违规或审核失败说明',
-				'dataIndex' => 'verify_state_remark',
+				'dataIndex' => 'verify_remark',
 				'width' => 180,
-				'fixed' => false,
-				'align' => 'center',
-				'defaultHidden' => false,
-			],
-			[
-				'title' => '商品价格（取第一个sku）',
-				'dataIndex' => 'price',
-				'width' => 100,
-				'fixed' => false,
-				'align' => 'center',
-				'defaultHidden' => false,
-			],
-			[
-				'title' => '市场价格（取第一个sku）',
-				'dataIndex' => 'market_price',
-				'width' => 100,
-				'fixed' => false,
-				'align' => 'center',
-				'defaultHidden' => false,
-			],
-			[
-				'title' => '成本价（取第一个sku）',
-				'dataIndex' => 'cost_price',
-				'width' => 100,
-				'fixed' => false,
-				'align' => 'center',
-				'defaultHidden' => false,
-			],
-			[
-				'title' => '商品库存（总和）',
-				'dataIndex' => 'goods_stock',
-				'width' => 100,
-				'fixed' => false,
-				'align' => 'center',
-				'defaultHidden' => false,
-			],
-			[
-				'title' => '库存预警',
-				'dataIndex' => 'goods_stock_alarm',
-				'width' => 100,
 				'fixed' => false,
 				'align' => 'center',
 				'defaultHidden' => false,
@@ -173,22 +117,6 @@ class Detail extends DetailAbstract
 				'title' => '是否免邮',
 				'dataIndex' => 'is_free_shipping',
 				'width' => 100,
-				'fixed' => false,
-				'align' => 'center',
-				'defaultHidden' => false,
-			],
-			[
-				'title' => '商品规格格式',
-				'dataIndex' => 'goods_spec_format',
-				'width' => 180,
-				'fixed' => false,
-				'align' => 'center',
-				'defaultHidden' => false,
-			],
-			[
-				'title' => '商品属性格式',
-				'dataIndex' => 'goods_attr_format',
-				'width' => 180,
 				'fixed' => false,
 				'align' => 'center',
 				'defaultHidden' => false,
@@ -204,14 +132,14 @@ class Detail extends DetailAbstract
 			[
 				'title' => '关键词',
 				'dataIndex' => 'keywords',
-				'width' => 180,
+				'width' => 80,
 				'fixed' => false,
 				'align' => 'center',
-				'defaultHidden' => false,
+				'defaultHidden' => true,
 			],
 			[
-				'title' => '单位',
-				'dataIndex' => 'unit',
+				'title' => '商品标签',
+				'dataIndex' => 'label',
 				'width' => 180,
 				'fixed' => false,
 				'align' => 'center',
@@ -221,30 +149,6 @@ class Detail extends DetailAbstract
 				'title' => '排序',
 				'dataIndex' => 'sort',
 				'width' => 100,
-				'fixed' => false,
-				'align' => 'center',
-				'defaultHidden' => false,
-			],
-			[
-				'title' => '创建时间',
-				'dataIndex' => 'create_time',
-				'width' => 120,
-				'fixed' => false,
-				'align' => 'center',
-				'defaultHidden' => false,
-			],
-			[
-				'title' => '修改时间',
-				'dataIndex' => 'update_time',
-				'width' => 120,
-				'fixed' => false,
-				'align' => 'center',
-				'defaultHidden' => false,
-			],
-			[
-				'title' => '视频',
-				'dataIndex' => 'video_url',
-				'width' => 180,
 				'fixed' => false,
 				'align' => 'center',
 				'defaultHidden' => false,
@@ -282,81 +186,65 @@ class Detail extends DetailAbstract
 				'defaultHidden' => false,
 			],
 			[
-				'title' => '评价晒图数',
-				'dataIndex' => 'evaluate_shaitu',
+				'title' => '商品服务费',
+				'dataIndex' => 'goods_service_rate',
 				'width' => 100,
 				'fixed' => false,
 				'align' => 'center',
 				'defaultHidden' => false,
 			],
 			[
-				'title' => '评价视频数',
-				'dataIndex' => 'evaluate_shipin',
+				'title' => '0 否 1是   是否精选',
+				'dataIndex' => 'is_selected',
 				'width' => 100,
 				'fixed' => false,
 				'align' => 'center',
 				'defaultHidden' => false,
 			],
 			[
-				'title' => '评价追评数',
-				'dataIndex' => 'evaluate_zhuiping',
+				'title' => '0 否  1是  是否实惠',
+				'dataIndex' => 'is_benefits',
 				'width' => 100,
 				'fixed' => false,
 				'align' => 'center',
 				'defaultHidden' => false,
 			],
 			[
-				'title' => '评价好评数',
-				'dataIndex' => 'evaluate_haoping',
+				'title' => '0 否  1是   新品',
+				'dataIndex' => 'is_new',
 				'width' => 100,
 				'fixed' => false,
 				'align' => 'center',
 				'defaultHidden' => false,
 			],
 			[
-				'title' => '评价中评数',
-				'dataIndex' => 'evaluate_zhongping',
+				'title' => '0 否  1是  是否推荐',
+				'dataIndex' => 'is_recommend',
 				'width' => 100,
 				'fixed' => false,
 				'align' => 'center',
 				'defaultHidden' => false,
 			],
 			[
-				'title' => '评价差评数',
-				'dataIndex' => 'evaluate_chaping',
-				'width' => 100,
+				'title' => '创建时间',
+				'dataIndex' => 'create_time',
+				'width' => 120,
 				'fixed' => false,
 				'align' => 'center',
 				'defaultHidden' => false,
 			],
 			[
-				'title' => '商品BV',
-				'dataIndex' => 'goods_bv',
-				'width' => 100,
+				'title' => '修改时间',
+				'dataIndex' => 'update_time',
+				'width' => 120,
 				'fixed' => false,
 				'align' => 'center',
 				'defaultHidden' => false,
 			],
 			[
-				'title' => '第一个商品sku_id',
-				'dataIndex' => 'sku_id',
-				'width' => 100,
-				'fixed' => false,
-				'align' => 'center',
-				'defaultHidden' => false,
-			],
-			[
-				'title' => '限购',
-				'dataIndex' => 'max_buy',
-				'width' => 100,
-				'fixed' => false,
-				'align' => 'center',
-				'defaultHidden' => false,
-			],
-			[
-				'title' => '起购',
-				'dataIndex' => 'min_buy',
-				'width' => 100,
+				'title' => '删除时间',
+				'dataIndex' => 'delete_time',
+				'width' => 120,
 				'fixed' => false,
 				'align' => 'center',
 				'defaultHidden' => false,
@@ -379,24 +267,19 @@ class Detail extends DetailAbstract
 			'slots' => ['customRender' => 'action'],
 			'fixed' => 'right',
 		],
-		'dropActions' =>"[
-          {
-            icon: 'clarity:note-edit-line',
-            label: '修改',
-            auth: 'goods:detail:update',
-            onClick: handleEdit.bind(null, record),
-          },
-          {
-            label: '删除',
-            icon: 'ant-design:delete-outlined',
-            color: 'error',
-            auth: 'goods:detail:delete',
-            popConfirm: {
-                title: '是否确认删除',
-                confirm: handleDelete.bind(null, record),
-            },
-          },
-        ]",
+		'dropActions' => '[{
+            "icon":"clarity:note-edit-line",
+            "label":"修改","auth":"goods:detail:update",
+            "onClick":handleEdit.bind(null, record)
+        },{
+            "label":"删除","icon":"ant-design:delete-outlined",
+            "color":"error","auth":"goods:detail:delete",
+            "popConfirm":{
+                "title":"是否确认删除",
+                "confirm":handleDelete.bind(null, record)
+            }
+        }]',
+		'actions' => '[]',
 	];
 
 	/**
@@ -404,14 +287,8 @@ class Detail extends DetailAbstract
 	 */
 	public $search_schema = [
 		'labelWidth' => 100,
-		'schemas' => [
-			[
-				'field' => 'goods_id',
-				'label' => 'ID',
-				'component' => 'Input',
-
-			],
-		],
+		'baseColProps' => ['xxl' => 6, 'xl' => 8, 'lg' => 12, 'md' => 34],
+		'schemas' => [['field' => 'goods_id', 'label' => 'ID', 'component' => 'Input']],
 	];
 
 	/**
@@ -419,294 +296,57 @@ class Detail extends DetailAbstract
 	 */
 	public $form_schema = [
 		'labelWidth' => 120,
+		'baseColProps' => ['xxl' => 6, 'xl' => 8, 'lg' => 12, 'md' => 34],
 		'schemas' => [
-			[
-				'field' => 'goods_name',
-				'label' => '商品名称',
-				'component' => 'Input',
-				'required' => true,
-
-			],
-			[
-				'field' => 'goods_class',
-				'label' => '商品种类1.实物商品2.虚拟商品3.卡券商品',
-				'component' => 'Input',
-				'required' => true,
-
-			],
-			[
-				'field' => 'goods_attr_class',
-				'label' => '商品类型id',
-				'component' => 'Input',
-				'required' => true,
-
-			],
+			['field' => 'goods_name', 'label' => '商品名称', 'component' => 'Input', 'required' => true],
 			[
 				'field' => 'site_id',
 				'label' => '所属店铺id',
-				'component' => 'Input',
+				'component' => 'ApiTreeSelect',
 				'required' => true,
-
-			],
-			[
-				'field' => 'category_id',
-				'label' => '分类id',
-				'component' => 'Input',
-				'required' => false,
-
-			],
-			[
-				'field' => 'goods_image',
-				'label' => '商品主图路径',
-				'component' => 'Input',
-				'required' => true,
-
-			],
-			[
-				'field' => 'goods_content',
-				'label' => '商品详情',
-				'component' => 'Input',
-				'required' => false,
-
-			],
-			[
-				'field' => 'is_own',
-				'label' => '是否自营',
-				'component' => 'Input',
-				'required' => true,
-
-			],
+				'componentProps' => '() => {
+                        // labelField: "ApiTreeSelect",
+                        // valueField: "id",
+                        // showSearch:true,
+                        // params:{},
+                    return {
+                        api: (argv) => api("get", "/goods/category/list", {...argv}),
+                    };
+                }',
+		],
+			['field' => 'category_id', 'label' => '分类id', 'component' => 'Input', 'required' => true],
+			['field' => 'goods_image', 'label' => '商品主图路径', 'component' => 'Input', 'required' => true],
+			['field' => 'goods_content', 'label' => '商品详情', 'component' => 'Input', 'required' => false],
+			['field' => 'sku_id', 'label' => '默认规格', 'component' => 'Input', 'required' => true],
 			[
 				'field' => 'goods_state',
 				'label' => '商品状态（1.正常0下架）',
 				'component' => 'Input',
 				'required' => true,
-
 			],
 			[
 				'field' => 'verify_state',
 				'label' => '审核状态（1 已审核 0 待审核 10 违规下架 -1 审核中 -2 审核失败）',
 				'component' => 'Input',
 				'required' => true,
-
 			],
 			[
-				'field' => 'verify_state_remark',
+				'field' => 'verify_remark',
 				'label' => '商品违规或审核失败说明',
 				'component' => 'Input',
 				'required' => true,
-
 			],
-			[
-				'field' => 'price',
-				'label' => '商品价格（取第一个sku）',
-				'component' => 'Input',
-				'required' => true,
-
-			],
-			[
-				'field' => 'market_price',
-				'label' => '市场价格（取第一个sku）',
-				'component' => 'Input',
-				'required' => true,
-
-			],
-			[
-				'field' => 'cost_price',
-				'label' => '成本价（取第一个sku）',
-				'component' => 'Input',
-				'required' => true,
-
-			],
-			[
-				'field' => 'goods_stock',
-				'label' => '商品库存（总和）',
-				'component' => 'Input',
-				'required' => true,
-
-			],
-			[
-				'field' => 'goods_stock_alarm',
-				'label' => '库存预警',
-				'component' => 'Input',
-				'required' => true,
-
-			],
-			[
-				'field' => 'is_free_shipping',
-				'label' => '是否免邮',
-				'component' => 'Input',
-				'required' => true,
-
-			],
-			[
-				'field' => 'goods_spec_format',
-				'label' => '商品规格格式',
-				'component' => 'Input',
-				'required' => true,
-
-			],
-			[
-				'field' => 'goods_attr_format',
-				'label' => '商品属性格式',
-				'component' => 'Input',
-				'required' => true,
-
-			],
-			[
-				'field' => 'is_delete',
-				'label' => '是否已经删除',
-				'component' => 'Input',
-				'required' => true,
-
-			],
-			[
-				'field' => 'introduction',
-				'label' => '促销语',
-				'component' => 'Input',
-				'required' => true,
-
-			],
-			[
-				'field' => 'keywords',
-				'label' => '关键词',
-				'component' => 'Input',
-				'required' => true,
-
-			],
-			[
-				'field' => 'unit',
-				'label' => '单位',
-				'component' => 'Input',
-				'required' => true,
-
-			],
-			[
-				'field' => 'sort',
-				'label' => '排序',
-				'component' => 'Input',
-				'required' => true,
-
-			],
-			[
-				'field' => 'create_time',
-				'label' => '创建时间',
-				'component' => 'Input',
-				'required' => true,
-
-			],
-			[
-				'field' => 'update_time',
-				'label' => '修改时间',
-				'component' => 'Input',
-				'required' => true,
-
-			],
-			[
-				'field' => 'video_url',
-				'label' => '视频',
-				'component' => 'Input',
-				'required' => true,
-
-			],
-			[
-				'field' => 'seckill_id',
-				'label' => '秒杀id',
-				'component' => 'Input',
-				'required' => true,
-
-			],
-			[
-				'field' => 'pintuan_id',
-				'label' => '拼团id',
-				'component' => 'Input',
-				'required' => true,
-
-			],
-			[
-				'field' => 'sale_num',
-				'label' => '销量',
-				'component' => 'Input',
-				'required' => true,
-
-			],
-			[
-				'field' => 'evaluate',
-				'label' => '评价数',
-				'component' => 'Input',
-				'required' => true,
-
-			],
-			[
-				'field' => 'evaluate_shaitu',
-				'label' => '评价晒图数',
-				'component' => 'Input',
-				'required' => true,
-
-			],
-			[
-				'field' => 'evaluate_shipin',
-				'label' => '评价视频数',
-				'component' => 'Input',
-				'required' => true,
-
-			],
-			[
-				'field' => 'evaluate_zhuiping',
-				'label' => '评价追评数',
-				'component' => 'Input',
-				'required' => true,
-
-			],
-			[
-				'field' => 'evaluate_haoping',
-				'label' => '评价好评数',
-				'component' => 'Input',
-				'required' => true,
-
-			],
-			[
-				'field' => 'evaluate_zhongping',
-				'label' => '评价中评数',
-				'component' => 'Input',
-				'required' => true,
-
-			],
-			[
-				'field' => 'evaluate_chaping',
-				'label' => '评价差评数',
-				'component' => 'Input',
-				'required' => true,
-
-			],
-			[
-				'field' => 'goods_bv',
-				'label' => '商品BV',
-				'component' => 'Input',
-				'required' => true,
-
-			],
-			[
-				'field' => 'sku_id',
-				'label' => '第一个商品sku_id',
-				'component' => 'Input',
-				'required' => true,
-
-			],
-			[
-				'field' => 'max_buy',
-				'label' => '限购',
-				'component' => 'Input',
-				'required' => true,
-
-			],
-			[
-				'field' => 'min_buy',
-				'label' => '起购',
-				'component' => 'Input',
-				'required' => true,
-
-			],
+			['field' => 'is_free_shipping', 'label' => '是否免邮', 'component' => 'Input', 'required' => true],
+			['field' => 'introduction', 'label' => '促销语', 'component' => 'Input', 'required' => true],
+			['field' => 'keywords', 'label' => '关键词', 'component' => 'Input', 'required' => false],
+			['field' => 'label', 'label' => '商品标签', 'component' => 'Input', 'required' => true],
+			['field' => 'sort', 'label' => '排序', 'component' => 'Input', 'required' => true],
+			['field' => 'evaluate', 'label' => '评价数', 'component' => 'Input', 'required' => true],
+			['field' => 'goods_service_rate', 'label' => '商品服务费', 'component' => 'Input', 'required' => true],
+			['field' => 'is_selected', 'label' => '0 否 1是   是否精选', 'component' => 'Input', 'required' => true],
+			['field' => 'is_benefits', 'label' => '0 否  1是  是否实惠', 'component' => 'Input', 'required' => true],
+			['field' => 'is_new', 'label' => '0 否  1是   新品', 'component' => 'Input', 'required' => true],
+			['field' => 'is_recommend', 'label' => '0 否  1是  是否推荐', 'component' => 'Input', 'required' => true],
 		],
 	];
 

@@ -14,6 +14,6 @@
 	"author": "@小小只^v^",
 	"content": "",
 	"version_no": "20210730",
-    "ignore": ["goods_attribute_value","goods_cart","goods_sku"],
+    "ignore": ["goods_cart","goods_sku"],
     "allow_layer": ["admin"]
 }

@@ -268,7 +268,6 @@ class Version extends VersionAbstract
 				'label' => '下载路径',
 				'component' => 'Upload',
 				'required' => true,
-
 				'componentProps' => [
 					'maxSize' => 256,
 					'multiple' => false,

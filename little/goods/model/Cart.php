@@ -91,6 +91,8 @@ class Cart extends CartAbstract
 			'slots' => ['customRender' => 'action'],
 			'fixed' => 'right',
 		],
+		'dropActions' => '[{"icon":"clarity:note-edit-line","label":"修改","auth":"goods:cart:update","onClick":"handleEdit.bind(null, record)"},{"label":"删除","icon":"ant-design:delete-outlined","color":"error","auth":"goods:cart:delete","popConfirm":{"title":"是否确认删除","confirm":"handleDelete.bind(null, record)"}}]',
+		'actions' => '[]',
 	];
 
 	/**
@@ -98,14 +100,8 @@ class Cart extends CartAbstract
 	 */
 	public $search_schema = [
 		'labelWidth' => 100,
-		'schemas' => [
-			[
-				'field' => 'cart_id',
-				'label' => 'ID',
-				'component' => 'Input',
-
-			],
-		],
+		'baseColProps' => ['xxl' => 6, 'xl' => 8, 'lg' => 12, 'md' => 34],
+		'schemas' => [['field' => 'cart_id', 'label' => 'ID', 'component' => 'Input']],
 	];
 
 	/**
@@ -113,35 +109,12 @@ class Cart extends CartAbstract
 	 */
 	public $form_schema = [
 		'labelWidth' => 120,
+		'baseColProps' => ['xxl' => 6, 'xl' => 8, 'lg' => 12, 'md' => 34],
 		'schemas' => [
-			[
-				'field' => 'site_id',
-				'label' => '站点id',
-				'component' => 'Input',
-				'required' => true,
-
-			],
-			[
-				'field' => 'member_id',
-				'label' => '会员id',
-				'component' => 'Input',
-				'required' => true,
-
-			],
-			[
-				'field' => 'sku_id',
-				'label' => 'sku_id',
-				'component' => 'Input',
-				'required' => true,
-
-			],
-			[
-				'field' => 'num',
-				'label' => '数量',
-				'component' => 'Input',
-				'required' => true,
-
-			],
+			['field' => 'site_id', 'label' => '站点id', 'component' => 'Input', 'required' => true],
+			['field' => 'member_id', 'label' => '会员id', 'component' => 'Input', 'required' => true],
+			['field' => 'sku_id', 'label' => 'sku_id', 'component' => 'Input', 'required' => true],
+			['field' => 'num', 'label' => '数量', 'component' => 'Input', 'required' => true],
 		],
 	];
 
