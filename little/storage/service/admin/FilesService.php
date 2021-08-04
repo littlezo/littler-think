@@ -97,6 +97,22 @@ class FilesService
 	}
 
 	/**
+	 * #title 详情.
+	 * @param array $argv 数据主键
+	 * @return Files
+	 */
+	public function check(array $argv)
+	{
+		// dd($argv);
+		$file_info = $this->model->where($argv)->find();
+		if ($file_info) {
+			$file_info['url'] = $this->request->domain() . '/storage/' . $file_info['path'];
+			return $file_info;
+		}
+		return [];
+	}
+
+	/**
 	 * #title 保存.
 	 * @param array $args 待写入数据
 	 * @return int||bool

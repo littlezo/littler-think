@@ -160,6 +160,48 @@ class Files extends Controller
 	}
 
 	/**
+	 * @Route("^/admin/file/check", method="POST", ignore_verify=true)
+	 * @apiDocs({
+	 *     "title": "文件检查",
+	 *     "version": "v1.0.0",
+	 *     "name": "adminCheck",
+	 *     "headers": {
+	 *         "Authorization": "Bearer Token",
+	 *     },
+	 *     "desc": "查询参数详见快速查询 字段含义参加字段映射",
+	 *     "success": {
+	 *         "code": 200,
+	 *         "type": "success",
+	 *         "message": "成功消息||success",
+	 *         "timestamp": 1234567890,
+	 *         "result": {
+	 *             "encryptData": "加密数据自行解密",
+	 *         },
+	 *     },
+	 *     "error": {
+	 *         "code": 500,
+	 *         "message": "错误消息",
+	 *         "type": "error",
+	 *         "result": "",
+	 *         "timestamp": 1234567890
+	 *     },
+	 *     "param": {
+	 *         "group_id": {
+	 *             "required": false,
+	 *             "desc": "文件分组ID",
+	 *             "type": "int",
+	 *             "default": 0,
+	 *         },
+	 *     }
+	 * })
+	 * @return \think\Response
+	 */
+	public function check(Request $request): ?\think\Response
+	{
+		return Response::success($this->service->check($request->param()));
+	}
+
+	/**
 	 * @Route("^/admin/file/upload", method="POST", ignore_verify=true)
 	 * @apiDocs({
 	 *     "title": "文件上传",
