@@ -16,7 +16,7 @@ declare(strict_types=1);
 
 namespace little\shop\admin\controller;
 
-use little\shop\service\admin\ApplyService;
+use little\shop\service\admin\AccountService;
 use littler\BaseController as Controller;
 use littler\JWTAuth\Middleware\Jwt;
 use littler\Request;
@@ -37,21 +37,21 @@ use littler\traits\SaveTrait;
 use littler\traits\UpdateTrait;
 
 /**
- * Class Apply
+ * Class Account
  * @package little\shop\admin\controller
- * @RouteGroup("admin/shop/apply")
+ * @RouteGroup("admin/shop/account")
  * @Middleware({littler\JWTAuth\Middleware\Jwt::class,"admin"})
  * @apiDocs({
- *     "title": "商家申请",
+ *     "title": "用户",
  *     "version": "1.0.0",
  *     "layer": "admin",
- *     "name": "apply",
+ *     "name": "account",
  *     "module": "shop",
- *     "group": "apply",
+ *     "group": "account",
  *     "desc": "查询参数详见快速查询 字段含义参加字段映射"
  * })
  */
-class Apply extends Controller
+class Account extends Controller
 {
 	use LayoutTrait;
 	use PageTrait;
@@ -62,7 +62,7 @@ class Apply extends Controller
 
 	/**
 	 * @Inject()
-	 * @var ApplyService
+	 * @var AccountService
 	 */
 	protected $service;
 }

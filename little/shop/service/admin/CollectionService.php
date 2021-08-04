@@ -17,15 +17,15 @@ declare(strict_types=1);
 namespace little\shop\service\admin;
 
 use Exception;
-use little\shop\model\Apply;
+use little\shop\model\Collection;
 use littler\Request;
 use littler\annotation\Inject;
 
-class ApplyService
+class CollectionService
 {
 	/**
 	 * @Inject()
-	 * @var Apply
+	 * @var Collection
 	 */
 	private $model;
 
@@ -40,7 +40,7 @@ class ApplyService
 	/**
 	 * #title 布局获取
 	 * @param int $type form||table 页面布局类型
-	 * @return Apply
+	 * @return Collection
 	 */
 	public function layout(string $type): ?array
 	{
@@ -67,7 +67,7 @@ class ApplyService
 
 	/**
 	 * #title 分页
-	 * @return Apply
+	 * @return Collection
 	 */
 	public function paginate(): ?object
 	{
@@ -77,7 +77,7 @@ class ApplyService
 
 	/**
 	 * #title 列表
-	 * @return Apply
+	 * @return Collection
 	 */
 	public function list(): ?object
 	{
@@ -88,7 +88,7 @@ class ApplyService
 	/**
 	 * #title 详情
 	 * @param int $id 数据主键
-	 * @return Apply
+	 * @return Collection
 	 */
 	public function info(int $id): ?object
 	{

@@ -21,7 +21,6 @@ use littler\annotation\model\relation\HasOne;
 
 /**
  * 商家店铺 模型.
- * @HasOne("cert", model="Cert", foreignKey="site_id", localKey="site_id")
  * @HasOne("category", model="Category", foreignKey="category_id", localKey="category_id")
  * @HasOne("member", model="little\member\model\User", foreignKey="id", localKey="member_id")
  */
@@ -30,7 +29,7 @@ class User extends UserAbstract
 	/**
 	 * @var array 关联预载
 	 */
-	public $with = ['cert', 'category', 'member'];
+	public $with = ['category', 'member'];
 
 	/**
 	 * @var array 列表字段映射
@@ -54,14 +53,6 @@ class User extends UserAbstract
 				'defaultHidden' => false,
 			],
 			[
-				'title' => '用户名',
-				'dataIndex' => 'username',
-				'width' => 180,
-				'fixed' => false,
-				'align' => 'center',
-				'defaultHidden' => false,
-			],
-			[
 				'title' => '联系电话',
 				'dataIndex' => 'phone',
 				'width' => 160,
@@ -69,17 +60,9 @@ class User extends UserAbstract
 				'align' => 'center',
 				'defaultHidden' => false,
 			],
-			// [
-			// 	'title' => '认证信息',
-			// 	'dataIndex' => 'cert_id',
-			// 	'width' => 100,
-			// 	'fixed' => false,
-			// 	'align' => 'center',
-			// 	'defaultHidden' => false,
-			// ],
 			[
 				'title' => '店铺类别',
-				'dataIndex' => 'category.category_name',
+				'dataIndex' => 'category_id.category_name',
 				'width' => 100,
 				'fixed' => false,
 				'align' => 'center',
@@ -113,6 +96,143 @@ class User extends UserAbstract
                     return h(ant('Tag'), { color: color }, () => text);
                 }",
 			],
+			// [
+			// 	'title' => '申请类型1.个人2.公司',
+			// 	'dataIndex' => 'cert_type',
+			// 	'width' => 100,
+			// 	'fixed' => false,
+			// 	'align' => 'center',
+			// 	'defaultHidden' => false,
+			// ],
+			[
+				'title' => '联系人身份证',
+				'dataIndex' => 'card_no',
+				'width' => 180,
+				'fixed' => false,
+				'align' => 'center',
+				'defaultHidden' => false,
+			],
+			[
+				'title' => '申请人手持身份证电子版',
+				'dataIndex' => 'card_hand',
+				'width' => 180,
+				'fixed' => false,
+				'align' => 'center',
+				'defaultHidden' => false,
+			],
+			[
+				'title' => '申请人身份证正面',
+				'dataIndex' => 'card_positive',
+				'width' => 180,
+				'fixed' => false,
+				'align' => 'center',
+				'defaultHidden' => false,
+			],
+			[
+				'title' => '申请人身份证反面',
+				'dataIndex' => 'card_back',
+				'width' => 180,
+				'fixed' => false,
+				'align' => 'center',
+				'defaultHidden' => false,
+			],
+			[
+				'title' => '统一社会信用码',
+				'dataIndex' => 'business_licence_number',
+				'width' => 180,
+				'fixed' => false,
+				'align' => 'center',
+				'defaultHidden' => false,
+			],
+			[
+				'title' => '营业执照电子版',
+				'dataIndex' => 'business_licence_number_electronic',
+				'width' => 180,
+				'fixed' => false,
+				'align' => 'center',
+				'defaultHidden' => false,
+			],
+			[
+				'title' => '法定经营范围',
+				'dataIndex' => 'business_sphere',
+				'width' => 180,
+				'fixed' => false,
+				'align' => 'center',
+				'defaultHidden' => false,
+			],
+			[
+				'title' => '银行开户名',
+				'dataIndex' => 'bank_account_name',
+				'width' => 180,
+				'fixed' => false,
+				'align' => 'center',
+				'defaultHidden' => false,
+			],
+			[
+				'title' => '公司银行账号',
+				'dataIndex' => 'bank_account_number',
+				'width' => 180,
+				'fixed' => false,
+				'align' => 'center',
+				'defaultHidden' => false,
+			],
+			[
+				'title' => '开户银行支行名称',
+				'dataIndex' => 'bank_name',
+				'width' => 180,
+				'fixed' => false,
+				'align' => 'center',
+				'defaultHidden' => false,
+			],
+			[
+				'title' => '开户银行所在地',
+				'dataIndex' => 'bank_address',
+				'width' => 180,
+				'fixed' => false,
+				'align' => 'center',
+				'defaultHidden' => false,
+			],
+			[
+				'title' => '结算账户类型  1微信 2 支付宝 3银行卡 ',
+				'dataIndex' => 'bank_type',
+				'width' => 100,
+				'fixed' => false,
+				'align' => 'center',
+				'defaultHidden' => false,
+			],
+			[
+				'title' => '结算银行开户名',
+				'dataIndex' => 'settlement_bank_account_name',
+				'width' => 180,
+				'fixed' => false,
+				'align' => 'center',
+				'defaultHidden' => false,
+			],
+			[
+				'title' => '结算公司银行账号',
+				'dataIndex' => 'settlement_bank_account_number',
+				'width' => 180,
+				'fixed' => false,
+				'align' => 'center',
+				'defaultHidden' => false,
+			],
+			[
+				'title' => '结算开户银行支行名称',
+				'dataIndex' => 'settlement_bank_name',
+				'width' => 180,
+				'fixed' => false,
+				'align' => 'center',
+				'defaultHidden' => false,
+			],
+			[
+				'title' => '结算开户银行所在地',
+				'dataIndex' => 'settlement_bank_address',
+				'width' => 180,
+				'fixed' => false,
+				'align' => 'center',
+				'defaultHidden' => false,
+			],
+
 			[
 				'title' => '店铺关闭原因',
 				'dataIndex' => 'close_info',
@@ -192,7 +312,7 @@ class User extends UserAbstract
 				'defaultHidden' => false,
 			],
 			[
-				'title' => '联系人姓名',
+				'title' => '法人代表',
 				'dataIndex' => 'name',
 				'width' => 180,
 				'fixed' => false,
@@ -200,7 +320,7 @@ class User extends UserAbstract
 				'defaultHidden' => false,
 			],
 			[
-				'title' => '联系手机号',
+				'title' => '联系电话',
 				'dataIndex' => 'mobile',
 				'width' => 160,
 				'fixed' => false,
@@ -239,14 +359,6 @@ class User extends UserAbstract
 				'align' => 'center',
 				'defaultHidden' => false,
 			],
-			// [
-			// 	'title' => '是否推荐',
-			// 	'dataIndex' => 'is_recommend',
-			// 	'width' => 100,
-			// 	'fixed' => false,
-			// 	'align' => 'center',
-			// 	'defaultHidden' => false,
-			// ],
 			[
 				'title' => '账户实际余额',
 				'dataIndex' => 'balance_money',
@@ -426,15 +538,31 @@ class User extends UserAbstract
 			[
 				'title' => '审核时间',
 				'dataIndex' => 'audit_time',
-				'width' => 180,
+				'width' => 150,
 				'fixed' => false,
 				'align' => 'center',
 				'defaultHidden' => false,
 			],
 			[
+				'title' => '审核状态',
+				'dataIndex' => 'audit_status',
+				'width' => 150,
+				'fixed' => false,
+				'align' => 'center',
+				'defaultHidden' => false,
+				'customRender' => "({ record }) => {
+                    const textMap = {0:'拒绝',1:'通过',2:'等待审核'};
+                    const colorMap = {0:'red',1:'blue',2:'green'};
+                    const value = record.shop_status;
+                    const color = colorMap[value];
+                    const text = textMap[value];
+                    return h(ant('Tag'), { color: color }, () => text);
+                }",
+			],
+			[
 				'title' => '审核备注',
-				'dataIndex' => 'apply_remark',
-				'width' => 120,
+				'dataIndex' => 'audit_remark',
+				'width' => 180,
 				'fixed' => false,
 				'align' => 'center',
 				'defaultHidden' => false,
@@ -460,7 +588,7 @@ class User extends UserAbstract
 		'actions' => "[
 			{
                 icon: 'clarity:note-edit-line',
-				label : '修改',
+				label : '审核',
 				auth : 'shop:user:update',
 				onClick : handleEdit.bind(null, record)
             }
@@ -510,74 +638,312 @@ class User extends UserAbstract
 	 * @var array 增加表单字段映射
 	 */
 	public $form_schema = [
-		'labelWidth' => 120,
-		'baseColProps' => ['xxl' => 6, 'xl' => 8, 'lg' => 12, 'md' => 34],
+		'labelWidth' => 180,
+		'baseColProps' => ['xl' => 8, 'lg' => 12, 'md' => 34],
 		'schemas' => [
 			[
 				'field' => 'site_name',
 				'label' => '店铺名称',
 				'component' => 'Input',
-				'disabled' => true,
+				'render' => '({ model, field }) => {
+					return model[field];
+				}',
 			],
-			['field' => 'cert.contacts_name', 'label' => '法人代表', 'component' => 'Input', 'disabled' => true],
-			['field' => 'phone', 'label' => '联系电话', 'component' => 'Input', 'disabled' => true],
-			// ['field' => 'cert_id', 'label' => '认证信息', 'component' => 'Input', 'required' => true],
-			['field' => 'category.category_name', 'label' => '店铺类别', 'component' => 'Input', 'required' => true],
-			['field' => 'member_id', 'label' => '创建会员id', 'component' => 'Input', 'required' => true],
+			[
+				'field' => 'name',
+				'label' => '法人代表',
+				'component' => 'Input',
+				'render' => '({ model, field }) => {
+					return model[field];
+				}',
+			],
+			[
+				'field' => 'mobile',
+				'label' => '联系电话',
+				'component' => 'Input',
+				'render' => '({ model, field }) => {
+					return model[field];
+				}',
+			],
+			[
+				'field' => 'category',
+				'label' => '分类',
+				'component' => 'Input',
+				'ifShow' => '({ values }) => {
+                    return false;
+                }',
+			],
+			[
+				'field' => 'category_id',
+				'label' => '店铺类别',
+				// 'component' => 'Input',
+				'render' => '({ model, field }) => {
+					return model.category?.category_name;
+				}',
+			],
+			[
+				'field' => 'member',
+				'label' => '会员',
+				// 'component' => 'Input',
+				'ifShow' => '({ values }) => {
+                    return false;
+                }',
+			],
+			[
+				'field' => 'member_id',
+				'label' => '创建会员',
+				'component' => 'Input',
+				'render' => '({ model, field,values }) => {
+					return model[field] + "-"+values.member?.nickname;
+				}',
+			],
+			[
+				'field' => 'card_no',
+				'label' => '联系人身份证',
+				'component' => 'Input',
+				'render' => "({ model, field }) => {
+				    return h(ant('Image'), {width:60 ,src: getImg(model[field]) });
+				}",
+			],
+			[
+				'field' => 'business_licence_number_electronic',
+				'label' => '营业执照电子版',
+				'component' => 'Input',
+				'render' => "({ model, field }) => {
+				    return h(ant('Image'), {width:60 ,src: getImg(model[field]) });
+				}",
+			],
+			[
+				'field' => 'card_hand',
+				'label' => '申请人手持身份证电子版',
+				'component' => 'Input',
+				'render' => "({ model, field }) => {
+				    return h(ant('Image'), {width:60 ,src: getImg(model[field]) });
+				}",
+			],
+			[
+				'field' => 'card_positive',
+				'label' => '申请人身份证正面',
+				'component' => 'Input',
+				'render' => "({ model, field }) => {
+				    return h(ant('Image'), {width:60 ,src: getImg(model[field]) });
+				}",
+			],
+			[
+				'field' => 'card_back',
+				'label' => '申请人身份证反面',
+				'component' => 'Input',
+				'render' => '({ model, field }) => {
+					return model[field];
+				}',
+			],
+
 			[
 				'field' => 'shop_status',
-				'label' => '店铺经营状态（0.关闭，1正常 2. 审核中）',
+				'label' => '店铺经营状态',
 				'component' => 'Input',
-				'required' => true,
+				'render' => "({ model, field }) => {
+                    const textMap = {0:'关闭',1:'正常',2:'审核中'};
+					return textMap[model[field]];
+				}",
 			],
-			['field' => 'security_deposit', 'label' => '保证金', 'component' => 'Input', 'required' => true],
+			[
+				'field' => 'close_info',
+				'label' => '店铺关闭原因',
+				'component' => 'Input',
+				'render' => '({ model, field }) => {
+					return model[field];
+				}',
+			],
+			[
+				'field' => 'security_deposit',
+				'label' => '保证金',
+				'component' => 'Input',
+				'render' => '({ model, field }) => {
+					return model[field];
+				}',
+			],
 			[
 				'field' => 'deposit_status',
-				'label' => '保证金状态 0等待支付 1已支付 2已退还',
+				'label' => '保证金状态',
 				'component' => 'Input',
-				'required' => true,
+				'render' => "({ model, field }) => {
+                    const textMap = {0:'等待支付',1:'已支付',2:'已退还'}
+					return textMap[model[field]];
+				}",
 			],
-			['field' => 'sort', 'label' => '排序号', 'component' => 'Input', 'required' => true],
-			['field' => 'logo', 'label' => '店铺logo', 'component' => 'Input', 'required' => true],
-			['field' => 'banner', 'label' => '店铺条幅', 'component' => 'Input', 'required' => false],
-			['field' => 'name', 'label' => '联系人姓名', 'component' => 'Input', 'required' => true],
-			['field' => 'mobile', 'label' => '联系手机号', 'component' => 'Input', 'required' => true],
-			['field' => 'profession_name', 'label' => '业务联系人姓名', 'component' => 'Input', 'required' => true],
+			[
+				'field' => 'logo',
+				'label' => '店铺logo',
+				'component' => 'Input',
+				'render' => '({ model, field }) => {
+					return model[field];
+				}',
+				'render' => "({ model, field }) => {
+				    return h(ant('Image'), {width:60 ,src: getImg(model[field]) });
+				}",
+			],
+			[
+				'field' => 'banner',
+				'label' => '店铺条幅',
+				'component' => 'Input',
+				'disabled' => false,
+				'render' => '({ model, field }) => {
+					return model[field];
+				}',
+				'render' => '({ model, field }) => {
+                    return h(Image, {size:60 ,imgList: model[field], srcPrefix: srcPrefix });
+                }',
+			],
+
+			[
+				'field' => 'profession_name',
+				'label' => '业务联系人姓名',
+				'component' => 'Input',
+				'render' => '({ model, field }) => {
+					return model[field];
+				}',
+			],
 			[
 				'field' => 'profession_mobile',
 				'label' => '业务联系人电话',
 				'component' => 'Input',
-				'required' => true,
+				'render' => '({ model, field }) => {
+					return model[field];
+				}',
 			],
 			[
 				'field' => 'business_affairs_name',
 				'label' => '商务联系人姓名',
 				'component' => 'Input',
-				'required' => true,
+				'render' => '({ model, field }) => {
+					return model[field];
+				}',
 			],
 			[
 				'field' => 'business_affairs_mobile',
 				'label' => '商务联系人电话',
 				'component' => 'Input',
-				'required' => true,
+				'render' => '({ model, field }) => {
+					return model[field];
+				}',
 			],
-			['field' => 'full_address', 'label' => '地址地址', 'component' => 'Input', 'required' => true],
-			['field' => 'create_time', 'label' => '开店时间', 'component' => 'Input', 'required' => true],
+
+			[
+				'field' => 'province_name',
+				'label' => '省名称',
+				'component' => 'Input',
+				'render' => '({ model, field }) => {
+					return model[field];
+				}',
+			],
+			[
+				'field' => 'city_name',
+				'label' => '城市名称',
+				'component' => 'Input',
+				'render' => '({ model, field }) => {
+					return model[field];
+				}',
+			],
+			[
+				'field' => 'district_name',
+				'label' => '区县地址',
+				'component' => 'Input',
+				'render' => '({ model, field }) => {
+					return model[field];
+				}',
+			],
+			[
+				'field' => 'address',
+				'label' => '详细地址',
+				'component' => 'Input',
+				'render' => '({ model, field }) => {
+					return model[field];
+				}',
+			],
+			[
+				'field' => 'full_address',
+				'label' => '完整地址',
+				'component' => 'Input',
+				'render' => '({ model, field }) => {
+					return model[field];
+				}',
+			],
+			[
+				'field' => 'create_time',
+				'label' => '开店时间',
+				'component' => 'Input',
+				'render' => '({ model, field }) => {
+					return model[field];
+				}',
+			],
 			[
 				'field' => 'shop_type',
-				'label' => '店铺类型 1 线上 2 线下',
+				'label' => '店铺类型 ',
 				'component' => 'Input',
-				'required' => true,
+				'render' => "({ model, field }) => {
+                    const textMap = {1:'线上',2:'线下'};
+					return textMap[model[field]];
+				}",
 			],
 			[
 				'field' => 'is_one_delivery',
 				'label' => '是否支持一件代发',
 				'component' => 'Input',
-				'disabled' => true,
+				'render' => "({ model, field }) => {
+                    const textMap = {1:'是',0:'否'};
+					return textMap[model[field]];
+				}",
 			],
-			['field' => 'is_after_sales', 'label' => '是否支持售后', 'component' => 'Input', 'disabled' => true],
-			['field' => 'apply_status', 'label' => '审核状态', 'component' => 'Input', 'required' => true],
-			['field' => 'apply_remark', 'label' => '审核备注', 'component' => 'Input', 'required' => true],
+			[
+				'field' => 'is_after_sales',
+				'label' => '是否支持售后',
+				'component' => 'Input',
+				 'render' => "({ model, field }) => {
+                    const textMap = {1:'是',0:'否'};
+					return textMap[model[field]];
+				}",
+			],
+			[
+				'field' => 'audit_time',
+				'label' => '审核时间',
+				'component' => 'Input',
+				'render' => '({ model, field }) => {
+					return model[field];
+				}',
+			],
+			[
+				'field' => 'audit_status',
+				'label' => '状态',
+				'component' => 'RadioButtonGroup',
+				'required' => true,
+				'componentProps' => [
+					'options' => [
+						[
+							'label' => '拒绝',
+							'value' => 0,
+						],
+						[
+							'label' => '通过',
+							'value' => 1,
+						],
+					],
+				],
+				// 'render' => '({ model, field }) => {
+				//     if( model[field]===1){
+				//         model.shop = 1;
+				//     }
+				//     if( model[field]===0){
+				//         model.shop = 2;
+				//     }
+				// }',
+			],
+			[
+				'field' => 'audit_remark',
+				'label' => '审核备注',
+				'component' => 'InputTextArea',
+				'required' => true,
+			],
 		],
 	];
 

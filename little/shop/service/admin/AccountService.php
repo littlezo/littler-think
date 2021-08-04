@@ -17,15 +17,15 @@ declare(strict_types=1);
 namespace little\shop\service\admin;
 
 use Exception;
-use little\shop\model\Cert;
+use little\shop\model\Account;
 use littler\Request;
 use littler\annotation\Inject;
 
-class CertService
+class AccountService
 {
 	/**
 	 * @Inject()
-	 * @var Cert
+	 * @var Account
 	 */
 	private $model;
 
@@ -40,7 +40,7 @@ class CertService
 	/**
 	 * #title 布局获取
 	 * @param int $type form||table 页面布局类型
-	 * @return Cert
+	 * @return Account
 	 */
 	public function layout(string $type): ?array
 	{
@@ -67,7 +67,7 @@ class CertService
 
 	/**
 	 * #title 分页
-	 * @return Cert
+	 * @return Account
 	 */
 	public function paginate(): ?object
 	{
@@ -77,7 +77,7 @@ class CertService
 
 	/**
 	 * #title 列表
-	 * @return Cert
+	 * @return Account
 	 */
 	public function list(): ?object
 	{
@@ -88,7 +88,7 @@ class CertService
 	/**
 	 * #title 详情
 	 * @param int $id 数据主键
-	 * @return Cert
+	 * @return Account
 	 */
 	public function info(int $id): ?object
 	{

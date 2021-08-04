@@ -23,27 +23,41 @@ use littler\traits\RewriteTrait;
 
 /**
  * @property site_id $int
+ * @property cert_type $int 申请类型1.个人2.公司
+ * @property card_no $string 联系人身份证
+ * @property card_hand $string 申请人手持身份证电子版
+ * @property card_positive $string 申请人身份证正面
+ * @property card_back $string 申请人身份证反面
+ * @property business_licence_number $string 统一社会信用码
+ * @property business_licence_number_electronic $string 营业执照电子版
+ * @property business_sphere $string 法定经营范围
+ * @property bank_account_name $string 银行开户名
+ * @property bank_account_number $string 公司银行账号
+ * @property bank_name $string 开户银行支行名称
+ * @property bank_address $string 开户银行所在地
+ * @property bank_type $int 结算账户类型  1微信 2 支付宝 3银行卡
+ * @property settlement_bank_account_name $string 结算银行开户名
+ * @property settlement_bank_account_number $string 结算公司银行账号
+ * @property settlement_bank_name $string 结算开户银行支行名称
+ * @property settlement_bank_address $string 结算开户银行所在地
  * @property site_name $string 店铺名称
- * @property username $string 用户名
- * @property phone $string 联系电话
- * @property cert_id $int 认证信息
  * @property category_id $int 店铺类别
  * @property member_id $int 创建会员id
  * @property shop_status $int 店铺经营状态（0.关闭，1正常 2. 审核中）
  * @property close_info $string 店铺关闭原因
+ * @property security_deposit $float 保证金
+ * @property deposit_status $int 保证金状态 0等待支付 1已支付 2已退还
  * @property sort $int 排序号
- * @property logo $string 店铺logo
- * @property avatar $string 店铺头像（大图）
+ * @property logo $int 店铺logo
  * @property banner $string 店铺条幅
  * @property keywords $string 店铺关键字
  * @property description $string 店铺简介
- * @property name $string 联系人姓名
- * @property mobile $string 联系手机号
+ * @property name $string 法人代表
+ * @property mobile $string 法人联系电话
  * @property profession_name $string 业务联系人姓名
  * @property profession_mobile $string 业务联系人电话
  * @property business_affairs_name $string 商务联系人姓名
  * @property business_affairs_mobile $string 商务联系人电话
- * @property is_recommend $int 是否推荐
  * @property balance_money $float 账户实际余额
  * @property balance_withdraw $float 已提现金额
  * @property balance_withdraw_apply $float 申请提现中金额
@@ -60,10 +74,12 @@ use littler\traits\RewriteTrait;
  * @property longitude $string 经度
  * @property latitude $string 纬度
  * @property create_time $int 开店时间
- * @property expire_time $int 到期时间（0表示无限期）
  * @property shop_type $int 店铺类型 1 线上 2 线下
  * @property is_one_delivery $int 是否支持一件代发
  * @property is_after_sales $int 是否支持售后
+ * @property audit_time $int 审核时间
+ * @property audit_status $int 审核状态 0拒绝 1通过 2 等待审核
+ * @property audit_remark $string 审核备注
  */
 abstract class UserAbstract extends Model
 {
@@ -85,17 +101,32 @@ abstract class UserAbstract extends Model
 	 */
 	protected $schema = [
 		'site_id' => 'int',
+		'cert_type' => 'int',
+		'card_no' => 'string',
+		'card_hand' => 'string',
+		'card_positive' => 'string',
+		'card_back' => 'string',
+		'business_licence_number' => 'string',
+		'business_licence_number_electronic' => 'string',
+		'business_sphere' => 'string',
+		'bank_account_name' => 'string',
+		'bank_account_number' => 'string',
+		'bank_name' => 'string',
+		'bank_address' => 'string',
+		'bank_type' => 'int',
+		'settlement_bank_account_name' => 'string',
+		'settlement_bank_account_number' => 'string',
+		'settlement_bank_name' => 'string',
+		'settlement_bank_address' => 'string',
 		'site_name' => 'string',
-		'username' => 'string',
-		'phone' => 'string',
-		'cert_id' => 'int',
 		'category_id' => 'int',
 		'member_id' => 'int',
 		'shop_status' => 'int',
 		'close_info' => 'string',
+		'security_deposit' => 'float',
+		'deposit_status' => 'int',
 		'sort' => 'int',
-		'logo' => 'string',
-		'avatar' => 'string',
+		'logo' => 'int',
 		'banner' => 'string',
 		'keywords' => 'string',
 		'description' => 'string',
@@ -105,7 +136,6 @@ abstract class UserAbstract extends Model
 		'profession_mobile' => 'string',
 		'business_affairs_name' => 'string',
 		'business_affairs_mobile' => 'string',
-		'is_recommend' => 'int',
 		'balance_money' => 'float',
 		'balance_withdraw' => 'float',
 		'balance_withdraw_apply' => 'float',
@@ -122,10 +152,12 @@ abstract class UserAbstract extends Model
 		'longitude' => 'string',
 		'latitude' => 'string',
 		'create_time' => 'int',
-		'expire_time' => 'int',
 		'shop_type' => 'int',
 		'is_one_delivery' => 'int',
 		'is_after_sales' => 'int',
+		'audit_time' => 'int',
+		'audit_status' => 'int',
+		'audit_remark' => 'string',
 	];
 
 	/**
@@ -148,17 +180,32 @@ abstract class UserAbstract extends Model
 	 */
 	public $field = [
 		'site_id',
+		'cert_type',
+		'card_no',
+		'card_hand',
+		'card_positive',
+		'card_back',
+		'business_licence_number',
+		'business_licence_number_electronic',
+		'business_sphere',
+		'bank_account_name',
+		'bank_account_number',
+		'bank_name',
+		'bank_address',
+		'bank_type',
+		'settlement_bank_account_name',
+		'settlement_bank_account_number',
+		'settlement_bank_name',
+		'settlement_bank_address',
 		'site_name',
-		'username',
-		'phone',
-		'cert_id',
 		'category_id',
 		'member_id',
 		'shop_status',
 		'close_info',
+		'security_deposit',
+		'deposit_status',
 		'sort',
 		'logo',
-		'avatar',
 		'banner',
 		'keywords',
 		'description',
@@ -168,7 +215,6 @@ abstract class UserAbstract extends Model
 		'profession_mobile',
 		'business_affairs_name',
 		'business_affairs_mobile',
-		'is_recommend',
 		'balance_money',
 		'balance_withdraw',
 		'balance_withdraw_apply',
@@ -185,9 +231,11 @@ abstract class UserAbstract extends Model
 		'longitude',
 		'latitude',
 		'create_time',
-		'expire_time',
 		'shop_type',
 		'is_one_delivery',
 		'is_after_sales',
+		'audit_time',
+		'audit_status',
+		'audit_remark',
 	];
 }
