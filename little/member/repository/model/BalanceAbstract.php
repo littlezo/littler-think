@@ -23,14 +23,14 @@ use littler\traits\RewriteTrait;
 
 /**
  * @property id $int
- * @property trade_no $string 提现交易号
+ * @property trade_no $string 交易号
  * @property member_id $int 会员id
  * @property trade_type $int 交易类型: 1充值，2提现，3转账，4购物，5销售利润，6代理收益，7货款结算  8商家保证金
  * @property to_member_id $int 目标用户
  * @property status $int 状态0待审核1.待到账2已到账 -1已拒绝
  * @property remarks $string 备注
  * @property audit_remark $string 审核备注
- * @property account_type $string 账号类型 1支付宝，2微信，3银行卡，4会员账户
+ * @property account_type $int 账号类型 1支付宝，2微信，3银行卡，4会员账户
  * @property account_name $string 收付款人
  * @property account_number $string 收付款账号
  * @property before $float 变更前金额
@@ -76,7 +76,7 @@ abstract class BalanceAbstract extends Model
 		'status' => 'int',
 		'remarks' => 'string',
 		'audit_remark' => 'string',
-		'account_type' => 'string',
+		'account_type' => 'int',
 		'account_name' => 'string',
 		'account_number' => 'string',
 		'before' => 'float',

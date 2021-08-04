@@ -407,6 +407,7 @@ class User extends UserAbstract implements AuthorizeInterface
 	 */
 	public $search_schema = [
 		'labelWidth' => 100,
+		'baseColProps'=>  ['xxl'=> 6, 'xl'=> 8, 'lg'=> 12, 'md'=> 24],
 		'schemas' => [
 			['field' => 'id', 'label' => 'ID', 'component' => 'Input', 'colProps' => ['lg' => 12, 'xl' => 8, 'xxl' => 6]],
 			['field' => 'left_like_mobile', 'label' => '手机号', 'component' => 'Input', 'colProps' => ['lg' => 12, 'xl' => 8, 'xxl' => 6]],

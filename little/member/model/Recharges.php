@@ -196,28 +196,24 @@ class Recharges extends RechargesAbstract
 				'label' => '套餐名称',
 				'component' => 'Input',
 				'required' => true,
-
 			],
 			[
 				'field' => 'face_value',
 				'label' => '面值',
 				'component' => 'Input',
 				'required' => true,
-
 			],
 			[
 				'field' => 'buy_money',
 				'label' => '购买金额',
 				'component' => 'Input',
 				'required' => true,
-
 			],
 			[
 				'field' => 'growth',
 				'label' => '贡献值',
 				'component' => 'Input',
 				'required' => true,
-
 			],
 
 			[
@@ -225,7 +221,6 @@ class Recharges extends RechargesAbstract
 				'label' => '排序',
 				'component' => 'InputNumber',
 				'required' => true,
-
 			],
 			[
 				'field' => 'is_new',
@@ -252,7 +247,6 @@ class Recharges extends RechargesAbstract
 				'label' => '是否首页推荐',
 				'component' => 'RadioButtonGroup',
 				'required' => true,
-
 				'defaultValue'=>1,
 				'componentProps' => [
 					'options' => [
@@ -285,7 +279,6 @@ class Recharges extends RechargesAbstract
 				'label' => '描述',
 				'component' => 'InputTextArea',
 				'required' => true,
-
 			],
 		],
 	];
