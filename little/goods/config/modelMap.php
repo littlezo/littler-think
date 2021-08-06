@@ -6,4 +6,5 @@ return [
 	'model.goods.Detail' => 'little\goods\model\Detail',
 	'model.goods.Evaluate' => 'little\goods\model\Evaluate',
 	'model.goods.Sku' => 'little\goods\model\Sku',
+	'model.goods.Follow' => 'little\goods\model\Follow',
 ];

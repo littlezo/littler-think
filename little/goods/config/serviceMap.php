@@ -6,4 +6,5 @@ return [
 	'service.admin.goods.DetailService' => 'little\goods\service\admin\DetailService',
 	'service.admin.goods.EvaluateService' => 'little\goods\service\admin\EvaluateService',
 	'service.admin.goods.SkuService' => 'little\goods\service\admin\SkuService',
+	'service.admin.goods.FollowService' => 'little\goods\service\admin\FollowService',
 ];
