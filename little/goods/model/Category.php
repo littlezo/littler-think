@@ -246,14 +246,6 @@ class Category extends CategoryAbstract
 					'accept'=>['jpg', 'jpeg', 'png'],
 					'maxNumber'=>1,
 				],
-				// 'render' => '({ model, field }) => {
-				//     return h(ant("Upload"),{
-				//     uploadApi: (argv)=>uploadApi(argv),
-				//     value: getImg(model[field]),
-				//     onChange: (e) => {
-				//         model[field] = e.id;
-				//     },
-				// })}',
 			],
 			[
 				'field' => 'keywords',
@@ -282,7 +274,7 @@ class Category extends CategoryAbstract
 			[
 				'field' => 'service_rate',
 				'label' => '服务费',
-				'component' => 'Input',
+				'component' => 'InputNumber',
 				'required' => true,
 			],
 			[

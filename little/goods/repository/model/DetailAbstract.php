@@ -33,8 +33,12 @@ use think\model\concern\SoftDelete;
  * @property goods_state $int 商品状态（1.正常0下架）
  * @property verify_state $int 审核状态（1 已审核 0 待审核 10 违规下架 -1 审核中 -2 审核失败）
  * @property verify_remark $string 商品违规或审核失败说明
- * @property is_free_shipping $int 是否免邮
+ * @property is_free_freight $int 是否免邮
+ * @property freight_free $float 运费
  * @property introduction $string 促销语
+ * @property max_buy $int 最多购买数
+ * @property min_buy $int 最低购买数
+ * @property limit_buy $int 限制购买数
  * @property keywords $string 关键词
  * @property label $string 商品标签
  * @property sort $int 排序
@@ -81,8 +85,12 @@ abstract class DetailAbstract extends Model
 		'goods_state' => 'int',
 		'verify_state' => 'int',
 		'verify_remark' => 'string',
-		'is_free_shipping' => 'int',
+		'is_free_freight' => 'int',
+		'freight_free' => 'float',
 		'introduction' => 'string',
+		'max_buy' => 'int',
+		'min_buy' => 'int',
+		'limit_buy' => 'int',
 		'keywords' => 'string',
 		'label' => 'string',
 		'sort' => 'int',
@@ -103,7 +111,7 @@ abstract class DetailAbstract extends Model
 	/**
 	 * @var array $json JSON类型字段
 	 */
-	protected $json = ['keywords'];
+	protected $json = ['goods_image', 'keywords'];
 
 	/**
 	 * @var array $json JSON字段自动转数组
@@ -124,8 +132,12 @@ abstract class DetailAbstract extends Model
 		'goods_state',
 		'verify_state',
 		'verify_remark',
-		'is_free_shipping',
+		'is_free_freight',
+		'freight_free',
 		'introduction',
+		'max_buy',
+		'min_buy',
+		'limit_buy',
 		'keywords',
 		'label',
 		'sort',

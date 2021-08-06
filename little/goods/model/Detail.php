@@ -115,7 +115,7 @@ class Detail extends DetailAbstract
 			],
 			[
 				'title' => '是否免邮',
-				'dataIndex' => 'is_free_shipping',
+				'dataIndex' => 'is_free_freight',
 				'width' => 100,
 				'fixed' => false,
 				'align' => 'center',
@@ -287,7 +287,7 @@ class Detail extends DetailAbstract
 	 */
 	public $search_schema = [
 		'labelWidth' => 100,
-		'baseColProps' => ['xxl' => 6, 'xl' => 8, 'lg' => 12, 'md' => 34],
+		'baseColProps' => ['xxl' => 6, 'xl' => 8, 'lg' => 12, 'md' => 24],
 		'schemas' => [['field' => 'goods_id', 'label' => 'ID', 'component' => 'Input']],
 	];
 
@@ -296,57 +296,229 @@ class Detail extends DetailAbstract
 	 */
 	public $form_schema = [
 		'labelWidth' => 120,
-		'baseColProps' => ['xxl' => 6, 'xl' => 8, 'lg' => 12, 'md' => 34],
+		'baseColProps' => ['xxl' => 12, 'xl' => 12, 'lg' => 12, 'md' => 24],
+		// 'tableProps'=>[
+		// 	 'apiColumns'=> '() => api("get", "/goods/sku/layout" , {type: "table"})',
+		// 	 'api'=> '(argv) => api("get", "/goods/sku/list", {...argv})',
+		// ],
 		'schemas' => [
-			['field' => 'goods_name', 'label' => '商品名称', 'component' => 'Input', 'required' => true],
 			[
-				'field' => 'site_id',
-				'label' => '所属店铺id',
+				'field' => 'goods_name',
+				'label' => '商品名称',
+				'component' => 'Input',
+				'required' => true,
+			],
+			[
+				'field' => 'category_id',
+				'label' => '商品分类',
 				'component' => 'ApiTreeSelect',
 				'required' => true,
 				'componentProps' => '() => {
-                        // labelField: "ApiTreeSelect",
-                        // valueField: "id",
-                        // showSearch:true,
-                        // params:{},
                     return {
+                        params:{order:"asc"},
+                        replaceFields: {
+                            title: "category_name",
+                            key: "category_id",
+                            value: "category_id",
+                        },
                         api: (argv) => api("get", "/goods/category/list", {...argv}),
+                        getPopupContainer: () => document.body,
                     };
                 }',
-		],
-			['field' => 'category_id', 'label' => '分类id', 'component' => 'Input', 'required' => true],
-			['field' => 'goods_image', 'label' => '商品主图路径', 'component' => 'Input', 'required' => true],
-			['field' => 'goods_content', 'label' => '商品详情', 'component' => 'Input', 'required' => false],
-			['field' => 'sku_id', 'label' => '默认规格', 'component' => 'Input', 'required' => true],
+			],
 			[
-				'field' => 'goods_state',
-				'label' => '商品状态（1.正常0下架）',
+				'field' => 'goods_image',
+				'label' => '商品主图',
+				'component' => 'Upload',
+				'required' => true,
+				'componentProps' => [
+					'maxSize' => 5,
+					'multiple' => true,
+					'accept' => ['jpg', 'jpeg', 'png'],
+					'maxNumber' => 9,
+				],
+			],
+			// ['field' => 'sku_id', 'label' => '默认规格', 'component' => 'Input', 'required' => true],
+			[
+				'field' => 'introduction',
+				'label' => '促销语',
 				'component' => 'Input',
 				'required' => true,
 			],
+
 			[
-				'field' => 'verify_state',
-				'label' => '审核状态（1 已审核 0 待审核 10 违规下架 -1 审核中 -2 审核失败）',
+				'field' => 'keywords',
+				'label' => '关键词',
+				'component' => 'DynamicTag',
+				// 'required' => false,
+				'renderComponentContent'=>'({model,field,values}) => {
+					// console.log(model[field]);
+				    return ()=>{
+				        value: ["aa","bb"],
+				        tagText:"添加关键词",
+				        onChange: (value) => {
+							console.log(value);
+				            model[field] = value;
+				        },
+				    };
+				}',
+			],
+			[
+				'field' => 'label',
+				'label' => '商品标签',
 				'component' => 'Input',
+			],
+			[
+				'field' => 'sort',
+				'label' => '排序',
+				'component' => 'InputNumber',
+				'defaultValue' => 0,
 				'required' => true,
 			],
 			[
-				'field' => 'verify_remark',
-				'label' => '商品违规或审核失败说明',
-				'component' => 'Input',
+				'field' => 'is_free_freight',
+				'label' => '是否免邮',
+				'component' => 'RadioButtonGroup',
 				'required' => true,
+				'defaultValue' => 1,
+				'componentProps' => [
+					'options' => [
+						[
+							'label' => '否',
+							'value' => 0,
+						],
+						[
+							'label' => '是',
+							'value' => 1,
+						],
+					],
+				],
 			],
-			['field' => 'is_free_shipping', 'label' => '是否免邮', 'component' => 'Input', 'required' => true],
-			['field' => 'introduction', 'label' => '促销语', 'component' => 'Input', 'required' => true],
-			['field' => 'keywords', 'label' => '关键词', 'component' => 'Input', 'required' => false],
-			['field' => 'label', 'label' => '商品标签', 'component' => 'Input', 'required' => true],
-			['field' => 'sort', 'label' => '排序', 'component' => 'Input', 'required' => true],
-			['field' => 'evaluate', 'label' => '评价数', 'component' => 'Input', 'required' => true],
-			['field' => 'goods_service_rate', 'label' => '商品服务费', 'component' => 'Input', 'required' => true],
-			['field' => 'is_selected', 'label' => '0 否 1是   是否精选', 'component' => 'Input', 'required' => true],
-			['field' => 'is_benefits', 'label' => '0 否  1是  是否实惠', 'component' => 'Input', 'required' => true],
-			['field' => 'is_new', 'label' => '0 否  1是   新品', 'component' => 'Input', 'required' => true],
-			['field' => 'is_recommend', 'label' => '0 否  1是  是否推荐', 'component' => 'Input', 'required' => true],
+			[
+				'field' => 'is_selected',
+				'label' => '是否精选',
+				'component' => 'RadioButtonGroup',
+				'required' => true,
+				'defaultValue' => 0,
+				'componentProps' => [
+					'options' => [
+						[
+							'label' => '否',
+							'value' => 0,
+						],
+						[
+							'label' => '是',
+							'value' => 1,
+						],
+					],
+				],
+			],
+			[
+				'field' => 'is_benefits',
+				'label' => '是否实惠',
+				'component' => 'RadioButtonGroup',
+				'required' => true,
+				'defaultValue' => 0,
+				'componentProps' => [
+					'options' => [
+						[
+							'label' => '否',
+							'value' => 0,
+						],
+						[
+							'label' => '是',
+							'value' => 1,
+						],
+					],
+				],
+			],
+			[
+				'field' => 'is_new',
+				'label' => '否是新品',
+				'component' => 'RadioButtonGroup',
+				'required' => true,
+				'defaultValue' => 0,
+				'componentProps' => [
+					'options' => [
+						[
+							'label' => '否',
+							'value' => 0,
+						],
+						[
+							'label' => '是',
+							'value' => 1,
+						],
+					],
+				],
+			],
+			[
+				'field' => 'is_recommend',
+				'label' => '是否推荐',
+				'component' => 'RadioButtonGroup',
+				'required' => true,
+				'defaultValue' => 0,
+				'componentProps' => [
+					'options' => [
+						[
+							'label' => '否',
+							'value' => 0,
+						],
+						[
+							'label' => '是',
+							'value' => 1,
+						],
+					],
+				],
+			],
+			[
+				'field' => 'freight_free',
+				'label' => '运费',
+				'component' => 'InputNumber',
+				'defaultValue'=>0,
+			],
+			[
+				'field' => 'min_buy',
+				'label' => '最少购买',
+				'component' => 'InputNumber',
+				 'defaultValue'=>0,
+			],
+			[
+				'field' => 'max_buy',
+				'label' => '最多购买',
+				'component' => 'InputNumber',
+				 'defaultValue'=>0,
+			],
+			[
+				'field' => 'limit_buy',
+				'label' => '单用户最多购买',
+				'component' => 'InputNumber',
+				'defaultValue'=>0,
+			],
+			[
+				'field' => 'goods_content',
+				'label' => '商品详情',
+				'component' => 'Input',
+				'render' => '({ model, field }) => {
+				    return h(Tinymce,{
+				    value: model[field],
+				    onChange: (value) => {
+				        model[field] = value;
+				    },
+				})}',
+			],
+			[
+				'field' => 'goods_spec',
+				'label' => '商品规格',
+				'component' => 'Input',
+				'render' => '({ model, field }) => {
+				    return h(Sku,{
+				    spec: model[field],
+				    sku: model?.sku,
+				    onChange: (value) => {
+				        model[field] = value;
+				    },
+				})}',
+			],
 		],
 	];
 
