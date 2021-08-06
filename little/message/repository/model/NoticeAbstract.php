@@ -30,6 +30,7 @@ use littler\traits\RewriteTrait;
  * @property update_time $int 修改时间
  * @property receiving_type $string 接受对象
  * @property receiving_name $string 接受对象名称
+ * @property is_type $int 1默认  2关于我们 3代理商 4商家入驻 5店铺协议
  */
 abstract class NoticeAbstract extends Model
 {
@@ -58,6 +59,7 @@ abstract class NoticeAbstract extends Model
 		'update_time' => 'int',
 		'receiving_type' => 'string',
 		'receiving_name' => 'string',
+		'is_type' => 'int',
 	];
 
 	/**
@@ -68,5 +70,15 @@ abstract class NoticeAbstract extends Model
 	/**
 	 * @var array $field 允许写入字段
 	 */
-	public $field = ['id', 'title', 'content', 'is_top', 'create_time', 'update_time', 'receiving_type', 'receiving_name'];
+	public $field = [
+		'id',
+		'title',
+		'content',
+		'is_top',
+		'create_time',
+		'update_time',
+		'receiving_type',
+		'receiving_name',
+		'is_type',
+	];
 }
