@@ -1,0 +1,19 @@
+{
+  "name": "sms",
+	"title": "短信",
+	"description": "短信",
+	"version": "1.0.0",
+	"keywords": "短信",
+	"order": 100,
+	"services": ["\\little\\sms\\Service"],
+	"aliases": {},
+	"files": [],
+	"requires": [],
+	"enable": true,
+	"dev_mode": true,
+	"author": "@小小只^v^",
+	"content": "",
+	"version_no": "20210805",
+    "ignore": ["sms_code"],
+    "allow_layer": ["admin"]
+}
