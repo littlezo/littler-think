@@ -1,5 +1,3 @@
 <?php
 
-declare(strict_types=1);
-
-return [];
+return ['service.admin.sms.CodeService' => 'little\sms\service\admin\CodeService'];

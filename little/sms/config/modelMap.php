@@ -1,5 +1,3 @@
 <?php
 
-declare(strict_types=1);
-
-return [];
+return ['model.sms.Code' => 'little\sms\model\Code'];
