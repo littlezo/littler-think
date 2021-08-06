@@ -32,8 +32,9 @@ use littler\traits\RewriteTrait;
  * @property location $int 0 前端 1后台
  * @property create_time $int 创建时间
  * @property update_time $int 修改时间
- * @property is_cash $int 现金券划转 1全网转 2上下转 3向下转
- * @property is_deduct $int 抵扣券划转 1全网转 2上下转 3向下转
+ * @property is_cash $int 现金券划转 1全网转 2上下转 3向下转  0不能转
+ * @property is_deduct $int 抵扣券划转 1全网转 2上下转 3向下转  0不能转
+ * @property is_money $int 余额划转 1全网转 2上下转 3向下转  0不能转
  */
 abstract class ConfigAbstract extends Model
 {
@@ -66,6 +67,7 @@ abstract class ConfigAbstract extends Model
 		'update_time' => 'int',
 		'is_cash' => 'int',
 		'is_deduct' => 'int',
+		'is_money' => 'int',
 	];
 
 	/**
@@ -94,5 +96,6 @@ abstract class ConfigAbstract extends Model
 		'update_time',
 		'is_cash',
 		'is_deduct',
+		'is_money',
 	];
 }
