@@ -147,7 +147,6 @@ class Agent extends AgentAbstract
 				'label' => '代理类型',
 				'component' => 'RadioButtonGroup',
 				'required' => true,
-
 				'defaultValue'=>1,
 				'componentProps' => [
 					'options' => [

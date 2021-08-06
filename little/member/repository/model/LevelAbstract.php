@@ -35,10 +35,10 @@ use littler\traits\RewriteTrait;
  * @property is_region_settle $int 开启代理佣金
  * @property is_shop $int 是否允许申请商家
  * @property is_shop_settle $int  开启商家佣金
- * @property is_seller $int 是否出券
+ * @property is_seller $int 是否出券 1出券
  * @property is_hand $int 是否立即结算
  * @property settle_ratio $int 分佣比例
- * @property status $int 状态
+ * @property status $int 状态 1启用
  */
 abstract class LevelAbstract extends Model
 {

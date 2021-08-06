@@ -25,7 +25,7 @@ use littler\traits\RewriteTrait;
  * @property id $int
  * @property trade_no $string 交易号
  * @property member_id $int 会员id
- * @property trade_type $int 交易类型: 1充值，2提现，3转账，4购物，5销售利润，6代理收益，7货款结算  8商家保证金 9区域代理申请
+ * @property trade_type $int 交易类型: 1充值，2提现，3转账，4购物，5销售利润，6代理收益，7货款结算  8商家保证金 9区域代理申请  10贡献值记录
  * @property to_member_id $int 目标用户
  * @property status $int 状态0待审核1.待到账2已到账 -1已拒绝
  * @property remarks $string 备注
@@ -46,7 +46,7 @@ use littler\traits\RewriteTrait;
  * @property audit_time $int 审核时间
  * @property payment_time $int 转账时间
  * @property update_time $int 更新时间
- * @property type $int 0余额  1现金券 2 抵扣券
+ * @property type $int 0余额  1现金券 2 抵扣券 3贡献值
  * @property pay_status $int 支付状态 0支出  1收入
  */
 abstract class BalanceAbstract extends Model
