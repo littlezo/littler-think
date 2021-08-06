@@ -39,8 +39,8 @@ class Sku extends SkuAbstract
 				'defaultHidden' => true,
 			],
 			[
-				'title' => '规格名称',
-				'dataIndex' => 'sku_name',
+				'title' => '规格',
+				'dataIndex' => 'spec_value',
 				'editRow'=> true,
 			],
 			[
@@ -109,14 +109,11 @@ class Sku extends SkuAbstract
 		'labelWidth' => 120,
 		'baseColProps' => ['xxl' => 6, 'xl' => 8, 'lg' => 12, 'md' => 34],
 		'schemas' => [
-			['field' => 'sku_name', 'label' => '商品sku名称', 'component' => 'Input', 'required' => true],
+			['field' => 'spec_value', 'label' => 'sku规格', 'component' => 'Input', 'required' => true],
 			['field' => 'price', 'label' => '售价', 'component' => 'Input', 'required' => true],
 			['field' => 'market_price', 'label' => '市场价', 'component' => 'Input', 'required' => true],
 			['field' => 'cost_price', 'label' => '成本价', 'component' => 'Input', 'required' => true],
 			['field' => 'stock', 'label' => '规格库存', 'component' => 'Input', 'required' => true],
-			['field' => 'click_num', 'label' => '点击量', 'component' => 'Input', 'required' => true],
-			['field' => 'sale_num', 'label' => '销量', 'component' => 'Input', 'required' => true],
-			['field' => 'collect_num', 'label' => '收藏量', 'component' => 'Input', 'required' => true],
 			['field' => 'sku_image', 'label' => '规格图片', 'component' => 'Input', 'required' => true],
 			['field' => 'goods_id', 'label' => '商品id', 'component' => 'Input', 'required' => true],
 			['field' => 'stock_alarm', 'label' => '库存预警', 'component' => 'Input', 'required' => true],

@@ -17,16 +17,18 @@ declare(strict_types=1);
 namespace little\goods\model;
 
 use little\goods\repository\model\DetailAbstract;
+use littler\annotation\model\relation\HasMany;
 
 /**
  * 商品列表 模型.
+ * @HasMany("sku", model="Sku", foreignKey="goods_id")
  */
 class Detail extends DetailAbstract
 {
 	/**
 	 * @var array 关联预载
 	 */
-	public $with = [];
+	public $with = ['sku'];
 
 	/**
 	 * @var array 列表字段映射
@@ -507,15 +509,24 @@ class Detail extends DetailAbstract
 				})}',
 			],
 			[
+				'field' => 'sku',
+				'label' => 'sku',
+				'component' => 'InputTextArea',
+				'show'=> false,
+			],
+			[
 				'field' => 'goods_spec',
 				'label' => '商品规格',
-				'component' => 'Input',
-				'render' => '({ model, field }) => {
+				'component' => 'InputTextArea',
+				'render' => '({ model, field,values }) => {
 				    return h(Sku,{
 				    spec: model[field],
 				    sku: model?.sku,
-				    onChange: (value) => {
-				        model[field] = value;
+				    onChange: (argv) => {
+                        console.log( "model",model, "field",field,"value",values);
+						model[field] = argv.spec;
+						model.sku = argv.sku;
+						console.log(argv);
 				    },
 				})}',
 			],

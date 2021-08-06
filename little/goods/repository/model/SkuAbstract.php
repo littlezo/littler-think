@@ -20,26 +20,28 @@ use littler\BaseModel as Model;
 use littler\annotation\Inject;
 use littler\traits\BaseOptionsTrait;
 use littler\traits\RewriteTrait;
+use think\model\concern\SoftDelete;
 
 /**
  * @property sku_id $int 商品sku_id
- * @property sku_name $string 商品sku名称
+ * @property spec_value $string sku
  * @property price $float 售价
  * @property market_price $float 市场价
  * @property cost_price $float 成本价
  * @property stock $int 规格库存
- * @property click_num $int 点击量
- * @property sale_num $int 销量
- * @property collect_num $int 收藏量
  * @property sku_image $int 规格图片
  * @property goods_id $int 商品id
  * @property stock_alarm $int 库存预警
  * @property unit $string 单位
+ * @property create_time $int 创建时间
+ * @property update_time $int 更新时间
+ * @property delete_time $int 删除时间
  */
 abstract class SkuAbstract extends Model
 {
 	use BaseOptionsTrait;
 	use RewriteTrait;
+	use SoftDelete;
 
 	/**
 	 * @var string $name 表名
@@ -56,51 +58,46 @@ abstract class SkuAbstract extends Model
 	 */
 	protected $schema = [
 		'sku_id' => 'int',
-		'sku_name' => 'string',
+		'spec_value' => 'string',
 		'price' => 'float',
 		'market_price' => 'float',
 		'cost_price' => 'float',
 		'stock' => 'int',
-		'click_num' => 'int',
-		'sale_num' => 'int',
-		'collect_num' => 'int',
 		'sku_image' => 'int',
 		'goods_id' => 'int',
 		'stock_alarm' => 'int',
 		'unit' => 'string',
+		'create_time' => 'int',
+		'update_time' => 'int',
+		'delete_time' => 'int',
 	];
 
 	/**
 	 * @var array $json JSON类型字段
 	 */
-	protected $json = [];
+	protected $json = ['spec_value'];
 
 	/**
-	 * @var array $createTime 关闭创建时间自动写入
+	 * @var array $json JSON字段自动转数组
 	 */
-	protected $createTime = false;
-
-	/**
-	 * @var array $updateTime 关闭更新时间自动写入
-	 */
-	protected $updateTime = false;
+	protected $jsonAssoc = true;
 
 	/**
 	 * @var array $field 允许写入字段
 	 */
 	public $field = [
 		'sku_id',
-		'sku_name',
+		'spec_value',
 		'price',
 		'market_price',
 		'cost_price',
 		'stock',
-		'click_num',
-		'sale_num',
-		'collect_num',
 		'sku_image',
 		'goods_id',
 		'stock_alarm',
 		'unit',
+		'create_time',
+		'update_time',
+		'delete_time',
 	];
 }

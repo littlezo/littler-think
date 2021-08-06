@@ -51,6 +51,7 @@ use think\model\concern\SoftDelete;
  * @property is_benefits $int 0 否  1是  是否实惠
  * @property is_new $int 0 否  1是   新品
  * @property is_recommend $int 0 否  1是  是否推荐
+ * @property goods_spec $string 商品规格
  * @property create_time $int 创建时间
  * @property update_time $int 修改时间
  * @property delete_time $int 删除时间
@@ -103,6 +104,7 @@ abstract class DetailAbstract extends Model
 		'is_benefits' => 'int',
 		'is_new' => 'int',
 		'is_recommend' => 'int',
+		'goods_spec' => 'string',
 		'create_time' => 'int',
 		'update_time' => 'int',
 		'delete_time' => 'int',
@@ -111,7 +113,7 @@ abstract class DetailAbstract extends Model
 	/**
 	 * @var array $json JSON类型字段
 	 */
-	protected $json = ['goods_image', 'keywords'];
+	protected $json = ['goods_image', 'keywords', 'goods_spec'];
 
 	/**
 	 * @var array $json JSON字段自动转数组
@@ -150,6 +152,7 @@ abstract class DetailAbstract extends Model
 		'is_benefits',
 		'is_new',
 		'is_recommend',
+		'goods_spec',
 		'create_time',
 		'update_time',
 		'delete_time',
