@@ -192,7 +192,6 @@ class Version extends VersionAbstract
 				'label' => '标题',
 				'component' => 'Input',
 				'required' => true,
-
 			],
 			[
 				'field' => 'platform',
@@ -220,14 +219,12 @@ class Version extends VersionAbstract
 				'label' => '版本',
 				'component' => 'Input',
 				'required' => true,
-
 			],
 			[
 				'field' => 'version_code',
 				'label' => '版本号',
 				'component' => 'Input',
 				'required' => true,
-
 			],
 			[
 				'field' => 'type',
@@ -266,19 +263,19 @@ class Version extends VersionAbstract
 			[
 				'field' => 'path',
 				'label' => '下载路径',
-				'component' => 'Upload',
+				'component' => 'SingleUpload',
 				'required' => true,
 				'componentProps' => [
 					'maxSize' => 256,
 					'multiple' => false,
 					'accept'=>['apk', 'ipa', 'wgt'],
 					'maxNumber'=>1,
-					'api' => '(argv)=>uploadApi(argv)',
-					'check' => '(argv)=>checkUploadApi(argv)',
+					// 'api' => '(argv)=>uploadApi(argv)',
+					// 'check' => '(argv)=>checkUploadApi(argv)',
 					'showUploadList'=>false,
-					'value' => '(list) => {
-			            console.log(list);
-			        }',
+					// 'value' => '(list) => {
+					//     console.log(list);
+					// }',
 				],
 			],
 			[
@@ -299,8 +296,14 @@ class Version extends VersionAbstract
 				'field' => 'content',
 				'label' => '更新内容',
 				'component' => 'InputTextArea',
-				'required' => false,
-
+				'colProps' => ['xs'=>24, 'sm'=>24, 'md'=>24, 'lg' => 24, 'xl' => 24, 'xxl' => 24],
+				// 'render' => '({ model, field }) => {
+				//     return h(Tinymce,{
+				//     value: model[field],
+				//     onChange: (value) => {
+				//         model[field] = value;
+				//     },
+				// })}',
 			],
 		],
 	];

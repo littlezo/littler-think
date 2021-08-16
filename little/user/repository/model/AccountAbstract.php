@@ -7,7 +7,7 @@
  * @version 1.0.0
  * @author @小小只^v^ <littlezov@qq.com>  littlezov@qq.com
  * @contact  littlezov@qq.com
- * @link     https://github.com/littlezo
+ * @see     https://github.com/littlezo
  * @document https://github.com/littlezo/wiki
  * @license  https://github.com/littlezo/MozillaPublicLicense/blob/main/LICENSE
  */
@@ -17,7 +17,6 @@ declare(strict_types=1);
 namespace little\user\repository\model;
 
 use littler\BaseModel as Model;
-use littler\annotation\Inject;
 use littler\traits\BaseOptionsTrait;
 use littler\traits\RewriteTrait;
 use think\model\concern\SoftDelete;
@@ -30,6 +29,7 @@ use think\model\concern\SoftDelete;
  * @property avatar $string 头像
  * @property real_name $string 真实姓名
  * @property mobile $string 手机号
+ * @property shop_id $int shopID
  * @property dept_ids $int 部门ID
  * @property jobs_ids $int 职位ID
  * @property roles_ids $int 角色ID
@@ -48,45 +48,12 @@ abstract class AccountAbstract extends Model
 	use SoftDelete;
 
 	/**
-	 * @var string $name 表名
-	 */
-	protected $name = 'user_account';
-
-	/**
-	 * @var string $pk 主键
+	 * @var string 主键
 	 */
 	public $pk = 'id';
 
 	/**
-	 * @var array $schema 字段信息
-	 */
-	protected $schema = [
-		'id' => 'int',
-		'username' => 'string',
-		'password' => 'string',
-		'email' => 'string',
-		'avatar' => 'string',
-		'real_name' => 'string',
-		'mobile' => 'string',
-		'dept_ids' => 'int',
-		'jobs_ids' => 'int',
-		'roles_ids' => 'int',
-		'remark' => 'string',
-		'status' => 'int',
-		'last_login_ip' => 'string',
-		'last_login_time' => 'int',
-		'create_time' => 'int',
-		'update_time' => 'int',
-		'delete_time' => 'int',
-	];
-
-	/**
-	 * @var array $json JSON类型字段
-	 */
-	protected $json = [];
-
-	/**
-	 * @var array $field 允许写入字段
+	 * @var array 允许写入字段
 	 */
 	public $field = [
 		'id',
@@ -99,6 +66,7 @@ abstract class AccountAbstract extends Model
 		'dept_ids',
 		'jobs_ids',
 		'roles_ids',
+		'shop_id',
 		'remark',
 		'status',
 		'last_login_ip',
@@ -107,4 +75,38 @@ abstract class AccountAbstract extends Model
 		'update_time',
 		'delete_time',
 	];
+
+	/**
+	 * @var string 表名
+	 */
+	protected $name = 'user_account';
+
+	/**
+	 * @var array 字段信息
+	 */
+	protected $schema = [
+		'id' => 'int',
+		'username' => 'string',
+		'password' => 'string',
+		'email' => 'string',
+		'avatar' => 'string',
+		'real_name' => 'string',
+		'mobile' => 'string',
+		'dept_ids' => 'int',
+		'jobs_ids' => 'int',
+		'shop_id' => 'int',
+		'roles_ids' => 'int',
+		'remark' => 'string',
+		'status' => 'int',
+		'last_login_ip' => 'string',
+		'last_login_time' => 'int',
+		'create_time' => 'int',
+		'update_time' => 'int',
+		'delete_time' => 'int',
+	];
+
+	/**
+	 * @var array JSON类型字段
+	 */
+	protected $json = [];
 }

@@ -90,7 +90,9 @@ class Account extends Controller
 	 */
 	public function info(Request $request): ?\think\Response
 	{
-		return Response::success($this->service->info($request->user->id));
+        $user = $this->service->info($request->user->id);
+        $user->shop_id = 0;
+		return Response::success($user);
 	}
 
 	/**

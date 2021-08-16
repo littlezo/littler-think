@@ -74,6 +74,16 @@ class Detail extends DetailAbstract
 				'fixed' => false,
 				'align' => 'center',
 				'defaultHidden' => false,
+				'customRender' => '({ record,text }) => {
+                    const src = ()=>{
+                        if(IsArray(text)){
+							return text;
+                        }else{
+                            return [text];
+                        }
+                    }
+			        return h(Image, {size:60 ,simpleShow:false ,imgList:text,});
+			    }',
 			],
 			[
 				'title' => '商品详情',
@@ -353,7 +363,7 @@ class Detail extends DetailAbstract
 				'label' => '关键词',
 				'component' => 'DynamicTag',
 				// 'required' => false,
-				'renderComponentContent'=>'({model,field,values}) => {
+				'renderComponentContent' => '({model,field,values}) => {
 					// console.log(model[field]);
 				    return ()=>{
 				        value: ["aa","bb"],
@@ -476,30 +486,31 @@ class Detail extends DetailAbstract
 				'field' => 'freight_free',
 				'label' => '运费',
 				'component' => 'InputNumber',
-				'defaultValue'=>0,
+				'defaultValue' => 0,
 			],
 			[
 				'field' => 'min_buy',
 				'label' => '最少购买',
 				'component' => 'InputNumber',
-				 'defaultValue'=>0,
+				'defaultValue' => 0,
 			],
 			[
 				'field' => 'max_buy',
 				'label' => '最多购买',
 				'component' => 'InputNumber',
-				 'defaultValue'=>0,
+				'defaultValue' => 0,
 			],
 			[
 				'field' => 'limit_buy',
 				'label' => '单用户最多购买',
 				'component' => 'InputNumber',
-				'defaultValue'=>0,
+				'defaultValue' => 0,
 			],
 			[
 				'field' => 'goods_content',
 				'label' => '商品详情',
 				'component' => 'Input',
+				'colProps' => ['xs' => 24, 'sm' => 24, 'md' => 24, 'lg' => 24, 'xl' => 24, 'xxl' => 24],
 				'render' => '({ model, field }) => {
 				    return h(Tinymce,{
 				    value: model[field],
@@ -512,18 +523,19 @@ class Detail extends DetailAbstract
 				'field' => 'sku',
 				'label' => 'sku',
 				'component' => 'InputTextArea',
-				'show'=> false,
+				'show' => false,
 			],
 			[
 				'field' => 'goods_spec',
 				'label' => '商品规格',
 				'component' => 'InputTextArea',
+				'colProps' => ['xs' => 24, 'sm' => 24, 'md' => 24, 'lg' => 24, 'xl' => 24, 'xxl' => 24],
 				'render' => '({ model, field,values }) => {
 				    return h(Sku,{
 				    spec: model[field],
 				    sku: model?.sku,
 				    onChange: (argv) => {
-                        console.log( "model",model, "field",field,"value",values);
+			            console.log( "model",model, "field",field,"value",values);
 						model[field] = argv.spec;
 						model.sku = argv.sku;
 						console.log(argv);

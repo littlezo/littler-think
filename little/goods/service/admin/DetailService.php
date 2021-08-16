@@ -153,7 +153,45 @@ class DetailService
 	 */
 	public function save(array $args)
 	{
-		return $this->model->storeBy($args);
+		$id = $this->model->storeBy($args);
+		$attr = $args['goods_spec'];
+		$sku = $args['sku'];
+		$spec = [];
+		dd($this->request->user);
+		foreach ($attr as $key => $value) {
+			$spec[$value['spec_id']]=array_column($value['value'], 'spec_value_name');
+		}
+
+		$spec_value= cartesian($spec);
+		$sku_list =$this->sku_model->withTrashed()->where('goods_id', $id)->select()->toArray();
+		// 插入商品ID
+		foreach ($sku as &$sku_value) {
+			$sku_value['goods_id']=$id;
+		}
+		if (empty($sku_list)) {
+			$this->sku_model->insertAllBy($sku);
+		} else {
+			foreach ($sku_list as $sku_info) {
+				$spec_sku_value=	array_column($sku_info['spec_value'], 'spec_value_name');
+				if ($spec_index =(array_keys($spec_value, implode(',', $spec_sku_value), true))) {
+					if ($sku_info['delete_time']===0) {
+						$this->sku_model->updateBy($sku_info['sku_id'], $sku[$spec_index[0]]);
+					} else {
+						$this->sku_model->recover($sku_info['sku_id']);
+						$this->sku_model->updateBy($sku_info['sku_id'], $sku[$spec_index[0]]);
+					}
+					unset($sku[$spec_index[0]]);
+				} else {
+					$this->sku_model->deleteBy($sku_info['sku_id']);
+				}
+			}
+		}
+		if (! empty($sku)) {
+			$this->sku_model->insertAllBy($sku);
+		}
+		$sku_id=$this->sku_model->where('goods_id', $id)->value('sku_id') ?: 0;
+		$this->model->updateBy($id, ['sku_id'=>$sku_id]);
+		return $id;
 	}
 
 	/**

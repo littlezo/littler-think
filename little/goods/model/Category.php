@@ -66,12 +66,20 @@ class Category extends CategoryAbstract
 				'defaultHidden' => false,
 			],
 			[
-				'title' => '是否显示 0是 1否',
+				'title' => '是否显示',
 				'dataIndex' => 'is_show',
 				'width' => 100,
 				'fixed' => false,
 				'align' => 'center',
 				'defaultHidden' => false,
+				'customRender' => "({ record,text }) => {
+                    const textMap = {0:'否',1:'是',2:'未知'};
+                    const colorMap = {0:'red',1:'blue',2:'green'};
+                    const value = text;
+                    const color = colorMap[value];
+                    const value_text = textMap[value];
+                    return h(ant('Tag'), { color: color }, () => value_text);
+                }",
 			],
 			[
 				'title' => '排序',
@@ -88,31 +96,34 @@ class Category extends CategoryAbstract
 				'fixed' => false,
 				'align' => 'center',
 				'defaultHidden' => false,
+				'customRender' => "({ record }) => {
+			        return h(ant('Avatar'), {size:60 ,src: getImg(record.image) });
+			    }",
 			],
-			[
-				'title' => '分类页面关键字',
-				'dataIndex' => 'keywords',
-				'width' => 180,
-				'fixed' => false,
-				'align' => 'center',
-				'defaultHidden' => false,
-			],
-			[
-				'title' => '分类介绍',
-				'dataIndex' => 'description',
-				'width' => 180,
-				'fixed' => false,
-				'align' => 'center',
-				'defaultHidden' => false,
-			],
-			[
-				'title' => '分类广告图',
-				'dataIndex' => 'image_adv',
-				'width' => 180,
-				'fixed' => false,
-				'align' => 'center',
-				'defaultHidden' => false,
-			],
+			// [
+			// 	'title' => '分类页面关键字',
+			// 	'dataIndex' => 'keywords',
+			// 	'width' => 180,
+			// 	'fixed' => false,
+			// 	'align' => 'center',
+			// 	'defaultHidden' => false,
+			// ],
+			// [
+			// 	'title' => '分类介绍',
+			// 	'dataIndex' => 'description',
+			// 	'width' => 180,
+			// 	'fixed' => false,
+			// 	'align' => 'center',
+			// 	'defaultHidden' => false,
+			// ],
+			// [
+			// 	'title' => '分类广告图',
+			// 	'dataIndex' => 'image_adv',
+			// 	'width' => 180,
+			// 	'fixed' => false,
+			// 	'align' => 'center',
+			// 	'defaultHidden' => false,
+			// ],
 			[
 				'title' => '服务费',
 				'dataIndex' => 'service_rate',
@@ -259,18 +270,18 @@ class Category extends CategoryAbstract
 				'component' => 'InputTextArea',
 				'required' => true,
 			],
-			[
-				'field' => 'image_adv',
-				'label' => '分类广告图',
-				'component' => 'Upload',
-				'required' => true,
-				'componentProps' => [
-					'maxSize' => 5,
-					'multiple' => true,
-					'accept'=>['jpg', 'jpeg', 'png'],
-					'maxNumber'=>9,
-				],
-			],
+			// [
+			// 	'field' => 'image_adv',
+			// 	'label' => '分类广告图',
+			// 	'component' => 'Upload',
+			// 	'required' => true,
+			// 	'componentProps' => [
+			// 		'maxSize' => 5,
+			// 		'multiple' => true,
+			// 		'accept'=>['jpg', 'jpeg', 'png'],
+			// 		'maxNumber'=>9,
+			// 	],
+			// ],
 			[
 				'field' => 'service_rate',
 				'label' => '服务费',

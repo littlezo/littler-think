@@ -129,8 +129,15 @@ class User extends UserAbstract implements AuthorizeInterface
 				'fixed' => false,
 				'align' => 'center',
 				'defaultHidden' => false,
-				'customRender' => "({ record }) => {
-			        return h(ant('Avatar'), {size:60 ,src: getImg(record.avatar) });
+				'customRender' => "({ record,text }) => {
+                    const src = ()=>{
+                        if(IsNumber(text)){
+							return getImg(text);
+                        }else{
+						    return text;
+                        }
+                    }
+			        return h(ant('Avatar'), {size:60 ,src:src() });
 			    }",
 			],
 			[

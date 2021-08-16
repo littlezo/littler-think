@@ -111,10 +111,11 @@ class Version extends Controller
 		$res = $this->service->last($param);
 		if ($res) {
 			$res->url = 'http://' . $request->host() . '/' . $res->url;
-		}
+		}	// $file = service('admin.storage.Files');
+		// dd($file);
 
 		if ($res?->path > 1) {
-			$file = service('admin.Files')->info($res->path);
+			$file = service('admin.storage.Files')->info($res->path);
 			$res->url = $file->url;
 		}
 		return Response::success($res ?? []);
@@ -171,7 +172,7 @@ class Version extends Controller
 		$param['type'] = 1;
 		$res = $this->service->last($param);
 		if ($res?->path > 1) {
-			$file = service('admin.Files')->info($res->path);
+			$file = service('admin.storage.Files')->info($res->path);
 			return redirect($file->url);
 		}
 		$download_url =  'http://' . $request->host() . '/' . (! empty($res->url) ? $res->url : 'storage/release/com.hphk.shop.base.apk');
