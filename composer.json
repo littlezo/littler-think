@@ -31,7 +31,8 @@
     "littler/user": "dev-main",
     "nette/utils": "^3.2",
     "erusev/parsedown": "^1.7",
-    "topthink/think-worker": "^3.0"
+    "topthink/think-worker": "^3.0",
+    "xingwenge/canal_php": "^1.0"
   },
   "require-dev": {
     "symfony/var-dumper": "^4.2",
@@ -56,11 +57,5 @@
       "@php think vendor:publish"
     ],
     "cs-fix": "php-cs-fixer fix $1"
-  },
-  "repositories": [
-    {
-      "type": "path",
-      "url": "./package/*/*"
-    }
-  ]
+  }
 }

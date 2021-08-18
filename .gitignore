@@ -2,3 +2,9 @@
 /.vscode
 /vendor
 *.log
+public/assets/
+public/resource/
+public/_app.config.js
+public/index.html
+public/favicon.ico
+public/storage/
