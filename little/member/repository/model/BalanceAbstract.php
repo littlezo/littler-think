@@ -28,6 +28,9 @@ use littler\traits\RewriteTrait;
  * @property trade_type $int 交易类型: 1充值，2提现，3转账，4购物，5销售利润，6代理收益，7货款结算  8商家保证金 9区域代理申请  10贡献值记录
  * @property to_member_id $int 目标用户
  * @property status $int 状态0待审核1.待到账2已到账 -1已拒绝
+ * @property settlement_status $int 结算状态：0 未结算  1已结算 默认:1
+ * @property settlement_end_time $int 结算截止时间
+ * @property settlement_level_id $int 结算条件等级ID
  * @property remarks $string 备注
  * @property audit_remark $string 审核备注
  * @property account_type $int 账号类型 1支付宝，2微信，3银行卡，4会员账户
@@ -74,6 +77,9 @@ abstract class BalanceAbstract extends Model
 		'trade_type' => 'int',
 		'to_member_id' => 'int',
 		'status' => 'int',
+		'settlement_status' => 'int',
+		'settlement_end_time' => 'int',
+		'settlement_level_id' => 'int',
 		'remarks' => 'string',
 		'audit_remark' => 'string',
 		'account_type' => 'int',
@@ -111,6 +117,9 @@ abstract class BalanceAbstract extends Model
 		'trade_type',
 		'to_member_id',
 		'status',
+		'settlement_status',
+		'settlement_end_time',
+		'settlement_level_id',
 		'remarks',
 		'audit_remark',
 		'account_type',

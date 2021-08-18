@@ -16,45 +16,53 @@ declare(strict_types=1);
 
 namespace little\member\admin\controller;
 
-use little\member\service\admin\RechargesService;
-use littler\annotation\docs\ApiDocs;
+use little\member\service\admin\AddressService;
+use littler\BaseController as Controller;
+use littler\JWTAuth\Middleware\Jwt;
+use littler\Request;
+use littler\Response;
 use littler\annotation\Inject;
+use littler\annotation\Route;
+use littler\annotation\docs\ApiDocs;
 use littler\annotation\route\Group as RouteGroup;
 use littler\annotation\route\Middleware;
-use littler\BaseController as Controller;
+use littler\annotation\route\Resource;
+use littler\annotation\route\Validate;
 use littler\traits\DeleteTrait;
 use littler\traits\InfoTrait;
 use littler\traits\LayoutTrait;
 use littler\traits\ListTrait;
+use littler\traits\PageTrait;
 use littler\traits\SaveTrait;
 use littler\traits\UpdateTrait;
 
 /**
- * Class Recharges.
- * @RouteGroup("admin/member/recharges")
- * @Middleware({littler\JWTAuth\Middleware\Jwt::class, "admin"})
+ * Class Address
+ * @package little\member\admin\controller
+ * @RouteGroup("admin/member/address")
+ * @Middleware({littler\JWTAuth\Middleware\Jwt::class,"admin"})
  * @apiDocs({
- *     "title": "会员套餐",
+ *     "title": "会员地址",
  *     "version": "1.0.0",
  *     "layer": "admin",
- *     "name": "recharges",
+ *     "name": "address",
  *     "module": "member",
- *     "group": "recharges",
+ *     "group": "address",
  *     "desc": "查询参数详见快速查询 字段含义参加字段映射"
  * })
  */
-class Recharges extends Controller
+class Address extends Controller
 {
 	use LayoutTrait;
-	use ListTrait;
+	use PageTrait;
 	use InfoTrait;
 	use SaveTrait;
 	use UpdateTrait;
 	use DeleteTrait;
 
 	/**
-	 * @Inject
-	 * @var RechargesService
+	 * @Inject()
+	 * @var AddressService
 	 */
 	protected $service;
 }

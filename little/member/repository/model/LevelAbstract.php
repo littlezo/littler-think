@@ -38,6 +38,9 @@ use littler\traits\RewriteTrait;
  * @property is_seller $int 是否出券 1出券
  * @property is_hand $int 是否立即结算
  * @property settle_ratio $int 分佣比例
+ * @property p_to_p $float 平推平收益比例（如：0.30 即30%）
+ * @property s_to_b $float 小推大收益比例（如：0.30 即30%）
+ * @property b_to_s $float 大推小收益比例（如：1.00 即100%）
  * @property status $int 状态 1启用
  */
 abstract class LevelAbstract extends Model
@@ -75,6 +78,9 @@ abstract class LevelAbstract extends Model
 		'is_seller' => 'int',
 		'is_hand' => 'int',
 		'settle_ratio' => 'int',
+		'p_to_p' => 'float',
+		's_to_b' => 'float',
+		'b_to_s' => 'float',
 		'status' => 'int',
 	];
 
@@ -113,6 +119,9 @@ abstract class LevelAbstract extends Model
 		'is_seller',
 		'is_hand',
 		'settle_ratio',
+		'p_to_p',
+		's_to_b',
+		'b_to_s',
 		'status',
 	];
 }

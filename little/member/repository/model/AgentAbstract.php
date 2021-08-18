@@ -23,11 +23,12 @@ use littler\traits\RewriteTrait;
 
 /**
  * @property agent_id $int 等级ID
- * @property agent_type $int 代理类型
+ * @property agent_type $int 代理类型 1省 2市 3区 4大区
  * @property agent_money $float 代理费
  * @property agent_ratio $float 代理分润
  * @property invite_ratio $float 推荐分佣
  * @property status $int 状态
+ * @property sort $int 等级排序
  */
 abstract class AgentAbstract extends Model
 {
@@ -54,6 +55,7 @@ abstract class AgentAbstract extends Model
 		'agent_ratio' => 'float',
 		'invite_ratio' => 'float',
 		'status' => 'int',
+		'sort' => 'int',
 	];
 
 	/**
@@ -74,5 +76,5 @@ abstract class AgentAbstract extends Model
 	/**
 	 * @var array $field 允许写入字段
 	 */
-	public $field = ['agent_id', 'agent_type', 'agent_money', 'agent_ratio', 'invite_ratio', 'status'];
+	public $field = ['agent_id', 'agent_type', 'agent_money', 'agent_ratio', 'invite_ratio', 'status', 'sort'];
 }

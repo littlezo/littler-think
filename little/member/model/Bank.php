@@ -7,7 +7,7 @@
  * @version 1.0.0
  * @author @小小只^v^ <littlezov@qq.com>  littlezov@qq.com
  * @contact  littlezov@qq.com
- * @see     https://github.com/littlezo
+ * @link     https://github.com/littlezo
  * @document https://github.com/littlezo/wiki
  * @license  https://github.com/littlezo/MozillaPublicLicense/blob/main/LICENSE
  */
@@ -19,7 +19,7 @@ namespace little\member\model;
 use little\member\repository\model\BankAbstract;
 
 /**
- * 会员提现账号 模型.
+ * 会员提现账号 模型
  */
 class Bank extends BankAbstract
 {
@@ -66,7 +66,7 @@ class Bank extends BankAbstract
 				'defaultHidden' => false,
 			],
 			[
-				'title' => '账户类型 1-支付宝  2-银行卡 3-微信',
+				'title' => '账户类型 1-支付宝  2-银行卡3-微信',
 				'dataIndex' => 'account_type',
 				'width' => 100,
 				'fixed' => false,
@@ -131,6 +131,8 @@ class Bank extends BankAbstract
 			'slots' => ['customRender' => 'action'],
 			'fixed' => 'right',
 		],
+		'dropActions' => '[{"icon":"clarity:note-edit-line","label":"修改","auth":"member:bank:update","onClick":"handleEdit.bind(null, record)"},{"label":"删除","icon":"ant-design:delete-outlined","color":"error","auth":"member:bank:delete","popConfirm":{"title":"是否确认删除","confirm":"handleDelete.bind(null, record)"}}]',
+		'actions' => '[]',
 	];
 
 	/**
@@ -138,9 +140,8 @@ class Bank extends BankAbstract
 	 */
 	public $search_schema = [
 		'labelWidth' => 100,
-		'schemas' => [
-			['field' => 'id', 'label' => 'ID', 'component' => 'Input', 'colProps' => ['lg' => 12, 'xl' => 8, 'xxl' => 6]],
-		],
+		'baseColProps' => ['xxl' => 6, 'xl' => 8, 'lg' => 12, 'md' => 34],
+		'schemas' => [['field' => 'id', 'label' => 'ID', 'component' => 'Input']],
 	];
 
 	/**
@@ -148,70 +149,22 @@ class Bank extends BankAbstract
 	 */
 	public $form_schema = [
 		'labelWidth' => 120,
+		'baseColProps' => ['xxl' => 6, 'xl' => 8, 'lg' => 12, 'md' => 34],
 		'schemas' => [
-			[
-				'field' => 'member_id',
-				'label' => '会员id',
-				'component' => 'Input',
-				'required' => true,
-
-			],
-			[
-				'field' => 'realname',
-				'label' => '真实姓名',
-				'component' => 'Input',
-				'required' => true,
-
-			],
-			[
-				'field' => 'mobile',
-				'label' => '手机号',
-				'component' => 'Input',
-				'required' => true,
-
-			],
+			['field' => 'member_id', 'label' => '会员id', 'component' => 'Input', 'required' => true],
+			['field' => 'realname', 'label' => '真实姓名', 'component' => 'Input', 'required' => true],
+			['field' => 'mobile', 'label' => '手机号', 'component' => 'Input', 'required' => true],
 			[
 				'field' => 'account_type',
 				'label' => '账户类型 1-支付宝  2-银行卡3-微信',
 				'component' => 'Input',
 				'required' => true,
-
 			],
-			[
-				'field' => 'account_name',
-				'label' => '银行名称',
-				'component' => 'Input',
-				'required' => true,
-
-			],
-			[
-				'field' => 'account_number',
-				'label' => '银行账号',
-				'component' => 'Input',
-				'required' => true,
-
-			],
-			[
-				'field' => 'is_default',
-				'label' => '是否默认账号',
-				'component' => 'Input',
-				'required' => true,
-
-			],
-			[
-				'field' => 'create_time',
-				'label' => '创建日期',
-				'component' => 'Input',
-				'required' => true,
-
-			],
-			[
-				'field' => 'update_time',
-				'label' => '修改日期',
-				'component' => 'Input',
-				'required' => true,
-
-			],
+			['field' => 'account_name', 'label' => '银行名称', 'component' => 'Input', 'required' => true],
+			['field' => 'account_number', 'label' => '银行账号', 'component' => 'Input', 'required' => true],
+			['field' => 'is_default', 'label' => '是否默认账号', 'component' => 'Input', 'required' => true],
+			['field' => 'create_time', 'label' => '创建日期', 'component' => 'Input', 'required' => true],
+			['field' => 'update_time', 'label' => '修改日期', 'component' => 'Input', 'required' => true],
 		],
 	];
 

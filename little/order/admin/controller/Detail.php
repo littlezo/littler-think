@@ -14,47 +14,55 @@
 
 declare(strict_types=1);
 
-namespace little\member\admin\controller;
+namespace little\order\admin\controller;
 
-use little\member\service\admin\AgentService;
-use littler\annotation\docs\ApiDocs;
+use little\order\service\admin\DetailService;
+use littler\BaseController as Controller;
+use littler\JWTAuth\Middleware\Jwt;
+use littler\Request;
+use littler\Response;
 use littler\annotation\Inject;
+use littler\annotation\Route;
+use littler\annotation\docs\ApiDocs;
 use littler\annotation\route\Group as RouteGroup;
 use littler\annotation\route\Middleware;
-use littler\BaseController as Controller;
+use littler\annotation\route\Resource;
+use littler\annotation\route\Validate;
 use littler\traits\DeleteTrait;
 use littler\traits\InfoTrait;
 use littler\traits\LayoutTrait;
 use littler\traits\ListTrait;
+use littler\traits\PageTrait;
 use littler\traits\SaveTrait;
 use littler\traits\UpdateTrait;
 
 /**
- * Class Agent.
- * @RouteGroup("admin/member/agent")
- * @Middleware({littler\JWTAuth\Middleware\Jwt::class, "admin"})
+ * Class Detail
+ * @package little\order\admin\controller
+ * @RouteGroup("admin/order/detail")
+ * @Middleware({littler\JWTAuth\Middleware\Jwt::class,"admin"})
  * @apiDocs({
- *     "title": "代理等级",
+ *     "title": "订单详情",
  *     "version": "1.0.0",
  *     "layer": "admin",
- *     "name": "agent",
- *     "module": "member",
- *     "group": "agent",
+ *     "name": "detail",
+ *     "module": "order",
+ *     "group": "detail",
  *     "desc": "查询参数详见快速查询 字段含义参加字段映射"
  * })
  */
-class Agent extends Controller
+class Detail extends Controller
 {
 	use LayoutTrait;
-	use ListTrait;
+	use PageTrait;
 	use InfoTrait;
 	use SaveTrait;
 	use UpdateTrait;
 	use DeleteTrait;
 
 	/**
-	 * @Inject
-	 * @var AgentService
+	 * @Inject()
+	 * @var DetailService
 	 */
 	protected $service;
 }

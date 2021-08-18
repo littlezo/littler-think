@@ -7,7 +7,7 @@
  * @version 1.0.0
  * @author @小小只^v^ <littlezov@qq.com>  littlezov@qq.com
  * @contact  littlezov@qq.com
- * @see     https://github.com/littlezo
+ * @link     https://github.com/littlezo
  * @document https://github.com/littlezo/wiki
  * @license  https://github.com/littlezo/MozillaPublicLicense/blob/main/LICENSE
  */
@@ -17,25 +17,16 @@ declare(strict_types=1);
 namespace little\member\model;
 
 use little\member\repository\model\UserAbstract;
-use littler\annotation\model\relation\HasMany;
-use littler\annotation\model\relation\HasOne;
-use littler\user\AuthorizeInterface;
-use littler\user\Traits\User as TraitsUser;
 
 /**
- * 会员列表 模型.
- * @HasOne("sup", model="user", foreignKey="id", localKey="parent")
- * @HasMany("children", model="user", foreignKey="parent", localKey="id")
- * @HasOne("level", model="Level", foreignKey="level_id", localKey="level_id")
+ * 会员列表 模型
  */
-class User extends UserAbstract implements AuthorizeInterface
+class User extends UserAbstract
 {
-	use TraitsUser;
-
 	/**
 	 * @var array 关联预载
 	 */
-	public $with = ['sup', 'level'];
+	public $with = [];
 
 	/**
 	 * @var array 列表字段映射
@@ -52,7 +43,7 @@ class User extends UserAbstract implements AuthorizeInterface
 			],
 			[
 				'title' => '推荐人',
-				'dataIndex' => 'sup.nickname',
+				'dataIndex' => 'parent',
 				'width' => 100,
 				'fixed' => false,
 				'align' => 'center',
@@ -91,36 +82,20 @@ class User extends UserAbstract implements AuthorizeInterface
 				'defaultHidden' => false,
 			],
 			[
-				'title' => '用户状态',
+				'title' => '用户密码',
+				'dataIndex' => 'password',
+				'width' => 180,
+				'fixed' => false,
+				'align' => 'center',
+				'defaultHidden' => false,
+			],
+			[
+				'title' => '用户状态 1启用',
 				'dataIndex' => 'status',
 				'width' => 100,
 				'fixed' => false,
 				'align' => 'center',
 				'defaultHidden' => false,
-				'customRender' => "({ record }) => {
-                    return h(ant('Switch'), {
-                        checked: record.status === 1,
-                        checkedChildren: '正常',
-                        unCheckedChildren: '禁用',
-                        onChange(checked) {
-                        const newStatus = checked ? 1 : 0;
-                        const member_id = record.id;
-                        api('put','/member/user/'+member_id, {status:newStatus})
-                            .then(() => {
-                                record.status = newStatus;
-                                createMessage.success(`已成功用户状态 `);
-                            })
-                            .catch(() => {
-                              createMessage.error('修改用户状态失败');
-                            })
-                        },
-                    });
-                    const value = record.status;
-                    const enable = ~~value === 1;
-                    const color = enable ? 'green' : 'red';
-                    const text = enable ? '正常' : '停用';
-                    return h(ant('Tag'), { color: color }, () => text);
-                }",
 			],
 			[
 				'title' => '用户头像',
@@ -129,20 +104,10 @@ class User extends UserAbstract implements AuthorizeInterface
 				'fixed' => false,
 				'align' => 'center',
 				'defaultHidden' => false,
-				'customRender' => "({ record,text }) => {
-                    const src = ()=>{
-                        if(IsNumber(text)){
-							return getImg(text);
-                        }else{
-						    return text;
-                        }
-                    }
-			        return h(ant('Avatar'), {size:60 ,src:src() });
-			    }",
 			],
 			[
 				'title' => '用户等级',
-				'dataIndex' => 'level.level_name',
+				'dataIndex' => 'level_id',
 				'width' => 100,
 				'fixed' => false,
 				'align' => 'center',
@@ -197,20 +162,12 @@ class User extends UserAbstract implements AuthorizeInterface
 				'defaultHidden' => false,
 			],
 			[
-				'title' => '性别',
+				'title' => '性别 0保密 1男 2女',
 				'dataIndex' => 'sex',
 				'width' => 100,
 				'fixed' => false,
 				'align' => 'center',
 				'defaultHidden' => false,
-				'customRender' => "({ record }) => {
-                    const textMap = {0:'女',1:'男',2:'未知'};
-                    const colorMap = {0:'red',1:'blue',2:'green'};
-                    const value = record.sex;
-                    const color = colorMap[value];
-                    const text = textMap[value];
-                    return h(ant('Tag'), { color: color }, () => text);
-                }",
 			],
 			[
 				'title' => '地址',
@@ -283,17 +240,58 @@ class User extends UserAbstract implements AuthorizeInterface
 				'fixed' => false,
 				'align' => 'center',
 				'defaultHidden' => false,
-				'customRender' => "({ record }) => {
-                    const value = record.status;
-                    const enable = ~~value === 1;
-                    const color = enable ? 'green' : 'red';
-                    const text = enable ? '是' : '否';
-                    return h(ant('Tag'), { color: color }, () => text);
-                }",
+			],
+			[
+				'title' => '是否区域代理',
+				'dataIndex' => 'is_region',
+				'width' => 100,
+				'fixed' => false,
+				'align' => 'center',
+				'defaultHidden' => false,
+			],
+			[
+				'title' => '区域代理等级',
+				'dataIndex' => 'region_level',
+				'width' => 100,
+				'fixed' => false,
+				'align' => 'center',
+				'defaultHidden' => false,
+			],
+			[
+				'title' => '代理区域',
+				'dataIndex' => 'invite_region',
+				'width' => 100,
+				'fixed' => false,
+				'align' => 'center',
+				'defaultHidden' => false,
+			],
+			[
+				'title' => '代理区域名称',
+				'dataIndex' => 'invite_name',
+				'width' => 180,
+				'fixed' => false,
+				'align' => 'center',
+				'defaultHidden' => false,
+			],
+			[
+				'title' => '代理是否审核 -9未申请 0待审核 1审核通过 2审核驳回',
+				'dataIndex' => 'region_verify',
+				'width' => 100,
+				'fixed' => false,
+				'align' => 'center',
+				'defaultHidden' => false,
+			],
+			[
+				'title' => '代理申请备注',
+				'dataIndex' => 'region_desc',
+				'width' => 180,
+				'fixed' => false,
+				'align' => 'center',
+				'defaultHidden' => false,
 			],
 			[
 				'title' => '邀请码',
-				'dataIndex' => 'Invite_code',
+				'dataIndex' => 'invite_code',
 				'width' => 160,
 				'fixed' => false,
 				'align' => 'center',
@@ -311,6 +309,22 @@ class User extends UserAbstract implements AuthorizeInterface
 				'title' => '更新时间',
 				'dataIndex' => 'update_time',
 				'width' => 120,
+				'fixed' => false,
+				'align' => 'center',
+				'defaultHidden' => false,
+			],
+			[
+				'title' => '删除时间',
+				'dataIndex' => 'delete_time',
+				'width' => 120,
+				'fixed' => false,
+				'align' => 'center',
+				'defaultHidden' => false,
+			],
+			[
+				'title' => '代理审核备注',
+				'dataIndex' => 'region_remark',
+				'width' => 180,
 				'fixed' => false,
 				'align' => 'center',
 				'defaultHidden' => false,
@@ -333,80 +347,8 @@ class User extends UserAbstract implements AuthorizeInterface
 			'slots' => ['customRender' => 'action'],
 			'fixed' => 'right',
 		],
-		'dropActions' =>"[
-          {
-            icon: 'clarity:note-edit-line',
-            label: '修改',
-            auth: 'member:user:update',
-            onClick: handleEdit.bind(null, record),
-          },
-          {
-            label: '删除',
-            icon: 'ant-design:delete-outlined',
-            color: 'error',
-            auth: 'member:user:delete',
-            popConfirm: {
-                title: '是否确认删除',
-                confirm: handleDelete.bind(null, record),
-            },
-          },
-          {
-            icon: 'clarity:note-edit-line',
-            label: '余额操作',
-            auth: 'member:user:update',
-            onClick: handleRowPart.bind(null, record, {
-                schemas:[
-                    {
-                    field: 'field',
-                    label: '操作类型',
-                    component: 'RadioButtonGroup',
-                    defaultValue: 1,
-                    componentProps: {
-                        options: [
-                            { label: '余额', value: 1 },
-                            { label: '现金劵', value: 2 },
-                            { label: '抵扣券', value: 3 },
-                        ],
-                    },
-                },
-                {
-                    field: 'type',
-                    label: '类型',
-                    component: 'RadioButtonGroup',
-                    defaultValue: 0,
-                    componentProps: {
-                        options: [
-                            { label: '扣除', value: 0 },
-                            { label: '增加', value: 1 },
-                        ],
-                    },
-                },
-                {
-                    field: 'money',
-                    label: '金额',
-                    required: true,
-                    component: 'Input',
-                },
-                {
-                    label: '备注',
-                    field: 'remark',
-                    required: true,
-                    component: 'InputTextArea',
-                }],
-                api:{
-                    method:'put',
-                    api:'/member/user/money',
-                },
-                title:'余额操作'
-            }),
-          },
-          {
-              label: '查看详情',
-              icon: 'ant-design:profile-outlined',
-              auth: 'member:user:info',
-              onClick: handleDetail.bind(null, record),
-          }
-        ]",
+		'dropActions' => '[{"icon":"clarity:note-edit-line","label":"修改","auth":"member:user:update","onClick":"handleEdit.bind(null, record)"},{"label":"删除","icon":"ant-design:delete-outlined","color":"error","auth":"member:user:delete","popConfirm":{"title":"是否确认删除","confirm":"handleDelete.bind(null, record)"}}]',
+		'actions' => '[]',
 	];
 
 	/**
@@ -414,12 +356,8 @@ class User extends UserAbstract implements AuthorizeInterface
 	 */
 	public $search_schema = [
 		'labelWidth' => 100,
-		'baseColProps'=>  ['xxl'=> 6, 'xl'=> 8, 'lg'=> 12, 'md'=> 24],
-		'schemas' => [
-			['field' => 'id', 'label' => 'ID', 'component' => 'Input', 'colProps' => ['lg' => 12, 'xl' => 8, 'xxl' => 6]],
-			['field' => 'left_like_mobile', 'label' => '手机号', 'component' => 'Input', 'colProps' => ['lg' => 12, 'xl' => 8, 'xxl' => 6]],
-			['field' => 'left_like_nickname', 'label' => '昵称', 'component' => 'Input', 'colProps' => ['lg' => 12, 'xl' => 8, 'xxl' => 6]],
-		],
+		'baseColProps' => ['xxl' => 6, 'xl' => 8, 'lg' => 12, 'md' => 34],
+		'schemas' => [['field' => 'id', 'label' => 'ID', 'component' => 'Input']],
 	];
 
 	/**
@@ -427,59 +365,46 @@ class User extends UserAbstract implements AuthorizeInterface
 	 */
 	public $form_schema = [
 		'labelWidth' => 120,
+		'baseColProps' => ['xxl' => 6, 'xl' => 8, 'lg' => 12, 'md' => 34],
 		'schemas' => [
+			['field' => 'parent', 'label' => '推荐人', 'component' => 'Input', 'required' => true],
+			['field' => 'username', 'label' => '用户名', 'component' => 'Input', 'required' => true],
+			['field' => 'nickname', 'label' => '用户昵称', 'component' => 'Input', 'required' => true],
+			['field' => 'mobile', 'label' => '手机号', 'component' => 'Input', 'required' => true],
+			['field' => 'email', 'label' => '邮箱', 'component' => 'Input', 'required' => true],
+			['field' => 'password', 'label' => '用户密码', 'component' => 'Input', 'required' => true],
+			['field' => 'pay_password', 'label' => '交易密码', 'component' => 'Input', 'required' => true],
+			['field' => 'status', 'label' => '用户状态 1启用', 'component' => 'Input', 'required' => true],
+			['field' => 'avatar', 'label' => '用户头像', 'component' => 'Input', 'required' => true],
+			['field' => 'level_id', 'label' => '用户等级', 'component' => 'Input', 'required' => true],
+			['field' => 'wx_account', 'label' => '微信号', 'component' => 'Input', 'required' => true],
+			['field' => 'realname', 'label' => '真实姓名', 'component' => 'Input', 'required' => true],
+			['field' => 'sex', 'label' => '性别 0保密 1男 2女', 'component' => 'Input', 'required' => true],
+			['field' => 'location', 'label' => '地址', 'component' => 'Input', 'required' => true],
+			['field' => 'birthday', 'label' => '出生日期', 'component' => 'Input', 'required' => true],
+			['field' => 'growth', 'label' => '贡献值', 'component' => 'Input', 'required' => true],
+			['field' => 'balance_money', 'label' => '现金余额', 'component' => 'Input', 'required' => true],
+			['field' => 'balance_cash', 'label' => '现金卷余额', 'component' => 'Input', 'required' => true],
+			['field' => 'balance_deduct', 'label' => '抵扣券余额', 'component' => 'Input', 'required' => true],
+			['field' => 'balance_withdraw', 'label' => '已提现余额', 'component' => 'Input', 'required' => true],
+			['field' => 'balance_withdraw_apply', 'label' => '提现中余额', 'component' => 'Input', 'required' => true],
+			['field' => 'is_auth', 'label' => '是否认证', 'component' => 'Input', 'required' => true],
+			['field' => 'is_region', 'label' => '是否区域代理', 'component' => 'Input', 'required' => true],
+			['field' => 'region_level', 'label' => '区域代理等级', 'component' => 'Input', 'required' => true],
+			['field' => 'invite_region', 'label' => '代理区域', 'component' => 'Input', 'required' => true],
+			['field' => 'invite_name', 'label' => '代理区域名称', 'component' => 'Input', 'required' => true],
 			[
-				'field' => 'parent',
-				'label' => '推荐人',
-				'component' => 'Select',
-				'required' => true,
-				'componentProps' => '() => {
-                    return {
-                        labelField: "nickname",
-                        valueField: "id",
-                        showSearch:true,
-                        api: (argv) => api("get", "/member/user/list", {...argv},),
-                    };
-                }',
-			],
-			[
-				'field' => 'mobile',
-				'label' => '手机号',
+				'field' => 'region_verify',
+				'label' => '代理是否审核 -9未申请 0待审核 1审核通过 2审核驳回',
 				'component' => 'Input',
 				'required' => true,
 			],
-			[
-				'field' => 'password',
-				'label' => '用户密码',
-				'component' => 'InputPassword',
-				'required' => false,
-			],
-			[
-				'field' => 'status',
-				'label' => '用户状态 ',
-				'component' => 'Switch',
-				'required' => true,
-
-				'defaultValue' => 1,
-				'componentProps' => [
-					'checkedValue' => 1,
-					'unCheckedValue' => 0,
-				],
-			],
-			[
-				'field' => 'level_id',
-				'label' => '用户等级',
-				'component' => 'ApiSelect',
-				'required' => true,
-
-				'componentProps' => '() => {
-                    return {
-                        labelField: "level_name",
-                        valueField: "level_id",
-                        api: (argv) => api("get", "/member/level/list", argv),
-                    };
-                }',
-			],
+			['field' => 'region_desc', 'label' => '代理申请备注', 'component' => 'Input', 'required' => true],
+			['field' => 'invite_code', 'label' => '邀请码', 'component' => 'Input', 'required' => true],
+			['field' => 'create_time', 'label' => '注册时间', 'component' => 'Input', 'required' => true],
+			['field' => 'update_time', 'label' => '更新时间', 'component' => 'Input', 'required' => true],
+			['field' => 'delete_time', 'label' => '删除时间', 'component' => 'Input', 'required' => true],
+			['field' => 'region_remark', 'label' => '代理审核备注', 'component' => 'Input', 'required' => false],
 		],
 	];
 
@@ -487,14 +412,4 @@ class User extends UserAbstract implements AuthorizeInterface
 	 * @var array 排除展示字段
 	 */
 	public $without = ['password', 'passwd', 'pay_passwd', 'pay_password'];
-
-	public function setBirthdayAttr($value)
-	{
-		return strtotime($value);
-	}
-
-	public function getBirthdayAttr($value)
-	{
-		return date('Y-m-d', $value);
-	}
 }

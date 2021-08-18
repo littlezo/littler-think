@@ -7,7 +7,7 @@
  * @version 1.0.0
  * @author @小小只^v^ <littlezov@qq.com>  littlezov@qq.com
  * @contact  littlezov@qq.com
- * @see     https://github.com/littlezo
+ * @link     https://github.com/littlezo
  * @document https://github.com/littlezo/wiki
  * @license  https://github.com/littlezo/MozillaPublicLicense/blob/main/LICENSE
  */
@@ -19,7 +19,7 @@ namespace little\member\model;
 use little\member\repository\model\AgentAbstract;
 
 /**
- * MemberAgent 模型.
+ * 会员代理 模型
  */
 class Agent extends AgentAbstract
 {
@@ -42,7 +42,7 @@ class Agent extends AgentAbstract
 				'defaultHidden' => false,
 			],
 			[
-				'title' => '代理类型',
+				'title' => '代理类型 1省 2市 3区 4大区',
 				'dataIndex' => 'agent_type',
 				'width' => 100,
 				'fixed' => false,
@@ -80,20 +80,20 @@ class Agent extends AgentAbstract
 				'fixed' => false,
 				'align' => 'center',
 				'defaultHidden' => false,
-				'customRender' => "({ record }) => {
-                    const textMap = {0:'禁用',1:'正常'};
-                    const colorMap = {0:'red',1:'green'};
-                    const value = record.status;
-                    const color = colorMap[value];
-                    const text = textMap[value];
-                    return h(ant('Tag'), { color: color }, () => text);
-                }",
+			],
+			[
+				'title' => '等级排序',
+				'dataIndex' => 'sort',
+				'width' => 100,
+				'fixed' => false,
+				'align' => 'center',
+				'defaultHidden' => false,
 			],
 		],
 		'formConfig' => [],
-		'pagination' => false,
+		'pagination' => true,
 		'striped' => true,
-		'useSearchForm' => false,
+		'useSearchForm' => true,
 		'showTableSetting' => true,
 		'bordered' => true,
 		'showIndexColumn' => false,
@@ -107,24 +107,8 @@ class Agent extends AgentAbstract
 			'slots' => ['customRender' => 'action'],
 			'fixed' => 'right',
 		],
-		'dropActions' =>"[
-          {
-            icon: 'clarity:note-edit-line',
-            label: '修改',
-            auth: 'member:agent:update',
-            onClick: handleEdit.bind(null, record),
-          },
-          {
-            label: '删除',
-            icon: 'ant-design:delete-outlined',
-            color: 'error',
-            auth: 'member:agent:delete',
-            popConfirm: {
-                title: '是否确认删除',
-                confirm: handleDelete.bind(null, record),
-            },
-          }
-        ]",
+		'dropActions' => '[{"icon":"clarity:note-edit-line","label":"修改","auth":"member:agent:update","onClick":"handleEdit.bind(null, record)"},{"label":"删除","icon":"ant-design:delete-outlined","color":"error","auth":"member:agent:delete","popConfirm":{"title":"是否确认删除","confirm":"handleDelete.bind(null, record)"}}]',
+		'actions' => '[]',
 	];
 
 	/**
@@ -132,8 +116,8 @@ class Agent extends AgentAbstract
 	 */
 	public $search_schema = [
 		'labelWidth' => 100,
-		'schemas' => [
-		],
+		'baseColProps' => ['xxl' => 6, 'xl' => 8, 'lg' => 12, 'md' => 34],
+		'schemas' => [['field' => 'agent_id', 'label' => 'ID', 'component' => 'Input']],
 	];
 
 	/**
@@ -141,71 +125,19 @@ class Agent extends AgentAbstract
 	 */
 	public $form_schema = [
 		'labelWidth' => 120,
+		'baseColProps' => ['xxl' => 6, 'xl' => 8, 'lg' => 12, 'md' => 34],
 		'schemas' => [
 			[
 				'field' => 'agent_type',
-				'label' => '代理类型',
-				'component' => 'RadioButtonGroup',
+				'label' => '代理类型 1省 2市 3区 4大区',
+				'component' => 'Input',
 				'required' => true,
-				'defaultValue'=>1,
-				'componentProps' => [
-					'options' => [
-						[
-							'label' => '省代',
-							'value' => 1,
-						],
-						[
-							'label' => '市代',
-							'value' => 2,
-						],
-						[
-							'label' => '区县代',
-							'value' => 3,
-						],
-					],
-				],
 			],
-			[
-				'field' => 'agent_money',
-				'label' => '代理费',
-				'component' => 'InputNumber',
-				'required' => true,
-
-			],
-			[
-				'field' => 'agent_ratio',
-				'label' => '代理分润',
-				'component' => 'InputNumber',
-				'required' => true,
-
-			],
-			[
-				'field' => 'invite_ratio',
-				'label' => '推荐分佣',
-				'component' => 'InputNumber',
-				'required' => true,
-
-			],
-			[
-				'field' => 'status',
-				'label' => '状态',
-				'component' => 'RadioButtonGroup',
-				'required' => true,
-
-				'defaultValue'=>1,
-				'componentProps' => [
-					'options' => [
-						[
-							'label' => '启用',
-							'value' => 1,
-						],
-						[
-							'label' => '禁用',
-							'value' => 0,
-						],
-					],
-				],
-			],
+			['field' => 'agent_money', 'label' => '代理费', 'component' => 'Input', 'required' => true],
+			['field' => 'agent_ratio', 'label' => '代理分润', 'component' => 'Input', 'required' => true],
+			['field' => 'invite_ratio', 'label' => '推荐分佣', 'component' => 'Input', 'required' => true],
+			['field' => 'status', 'label' => '状态', 'component' => 'Input', 'required' => true],
+			['field' => 'sort', 'label' => '等级排序', 'component' => 'Input', 'required' => false],
 		],
 	];
 

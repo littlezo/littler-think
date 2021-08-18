@@ -29,22 +29,27 @@ use think\model\concern\SoftDelete;
  * @property order_name $string 订单内容
  * @property order_goods_ids $string 订单商品ID
  * @property order_from $string 订单来源
- * @property order_type $int 订单类型 1. 线上订单  2. 线下订单  3. 抵扣卷订单  4余额订单 5现金券 6区域代理订单
+ * @property order_type $int 订单类型 1. 线上订单  2. 线下订单  3. 抵扣卷订单  4余额订单 5现金券 6区域代理订单  10贡献值订单
  * @property out_trade_no $string 支付流水号
  * @property out_trade_no_2 $string 支付流水号（多次支付）
  * @property delivery_code $string 整体提货编码
- * @property delivery_status $int 配送状态
+ * @property delivery_status $int 配送状态 1 待发货 2配送中  3已完成   4已退货
  * @property pay_type $int 支付方式 1微信 2 支付宝 3 余额
  * @property delivery_type $int 配送方式 1物流 2 到店
  * @property member_id $int 购买人uid
  * @property name $string 购买人姓名
  * @property mobile $string 购买人手机
+ * @property logistics $string 物流公司名称
+ * @property logistics_code $string 物流公司标识
+ * @property logistics_number $string 物流单号
+ * @property logistics_id $int 物流公司id
  * @property province_id $int 购买人省id
  * @property city_id $int 购买人市id
  * @property district_id $int 购买人区县id
  * @property community_id $int 购买人社区id
  * @property address $string 购买人地址
  * @property full_address $string 购买人详细地址
+ * @property mail_address $string 寄件地址
  * @property longitude $string 购买人地址经度
  * @property latitude $string 购买人地址纬度
  * @property buyer_message $string 购买人留言信息
@@ -55,14 +60,14 @@ use think\model\concern\SoftDelete;
  * @property goods_money $float 商品总金额
  * @property order_money $float 订单合计金额
  * @property deduct_money $float 优惠抵扣金额
- * @property adjust_money $float 订单调整金额
+ * @property cash_money $float 现金券支付余额
  * @property balance_money $float 余额支付金额
  * @property delivery_money $float 配送费用
  * @property order_invoice_rate $float 发票税率
  * @property invoice_money $float 发票金额
  * @property pay_money $float 实付金额
  * @property create_time $int 创建时间
- * @property order_status $int 订单状态
+ * @property order_status $int 订单状态  1待发货  2已发货 3已完成 4退款中 5 已退款
  * @property pay_status $int 支付状态 1已支付
  * @property pay_time $int 订单支付时间
  * @property delivery_time $int 订单配送时间
@@ -75,7 +80,7 @@ use think\model\concern\SoftDelete;
  * @property is_enable_refund $int 是否允许退款
  * @property remark $string 卖家留言
  * @property goods_num $int 商品件数
- * @property is_settlement $int 是否进行结算
+ * @property is_settlement $int 是否进行结算 0：未结算  1：已结算
  * @property promotion_id $int 营销活动id
  * @property promotion_type $string 营销类型
  * @property promotion_details $string 营销详情
@@ -93,6 +98,7 @@ use think\model\concern\SoftDelete;
  * @property is_tax_invoice $int 是否需要增值税专用发票
  * @property invoice_email $string 发票发送邮件
  * @property invoice_title_type $int 发票抬头类型  1 个人  2 企业
+ * @property goods_bv $float
  * @property order_status_action $string 订单操作
  * @property order_detail $string 订单详情
  */
@@ -132,12 +138,17 @@ abstract class DetailAbstract extends Model
 		'member_id' => 'int',
 		'name' => 'string',
 		'mobile' => 'string',
+		'logistics' => 'string',
+		'logistics_code' => 'string',
+		'logistics_number' => 'string',
+		'logistics_id' => 'int',
 		'province_id' => 'int',
 		'city_id' => 'int',
 		'district_id' => 'int',
 		'community_id' => 'int',
 		'address' => 'string',
 		'full_address' => 'string',
+		'mail_address' => 'string',
 		'longitude' => 'string',
 		'latitude' => 'string',
 		'buyer_message' => 'string',
@@ -148,7 +159,7 @@ abstract class DetailAbstract extends Model
 		'goods_money' => 'float',
 		'order_money' => 'float',
 		'deduct_money' => 'float',
-		'adjust_money' => 'float',
+		'cash_money' => 'float',
 		'balance_money' => 'float',
 		'delivery_money' => 'float',
 		'order_invoice_rate' => 'float',
@@ -186,6 +197,7 @@ abstract class DetailAbstract extends Model
 		'is_tax_invoice' => 'int',
 		'invoice_email' => 'string',
 		'invoice_title_type' => 'int',
+		'goods_bv' => 'float',
 		'order_status_action' => 'string',
 		'order_detail' => 'string',
 	];
@@ -225,12 +237,17 @@ abstract class DetailAbstract extends Model
 		'member_id',
 		'name',
 		'mobile',
+		'logistics',
+		'logistics_code',
+		'logistics_number',
+		'logistics_id',
 		'province_id',
 		'city_id',
 		'district_id',
 		'community_id',
 		'address',
 		'full_address',
+		'mail_address',
 		'longitude',
 		'latitude',
 		'buyer_message',
@@ -241,7 +258,7 @@ abstract class DetailAbstract extends Model
 		'goods_money',
 		'order_money',
 		'deduct_money',
-		'adjust_money',
+		'cash_money',
 		'balance_money',
 		'delivery_money',
 		'order_invoice_rate',
@@ -279,6 +296,7 @@ abstract class DetailAbstract extends Model
 		'is_tax_invoice',
 		'invoice_email',
 		'invoice_title_type',
+		'goods_bv',
 		'order_status_action',
 		'order_detail',
 	];

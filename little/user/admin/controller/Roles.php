@@ -16,16 +16,17 @@ declare(strict_types=1);
 
 namespace little\user\admin\controller;
 
-use little\user\service\admin\RolesService;
-use littler\annotation\docs\ApiDocs;
-use littler\annotation\Inject;
-use littler\annotation\route\Group as RouteGroup;
-use littler\annotation\route\Middleware;
-use littler\BaseController as Controller;
-use littler\traits\DeleteTrait;
+use littler\traits\ListTrait;
 use littler\traits\PageTrait;
 use littler\traits\SaveTrait;
+use littler\annotation\Inject;
+use littler\traits\DeleteTrait;
 use littler\traits\UpdateTrait;
+use littler\annotation\docs\ApiDocs;
+use littler\annotation\route\Middleware;
+use littler\BaseController as Controller;
+use little\user\service\admin\RolesService;
+use littler\annotation\route\Group as RouteGroup;
 
 /**
  * Class Roles.
@@ -43,7 +44,8 @@ use littler\traits\UpdateTrait;
  */
 class Roles extends Controller
 {
-	use PageTrait;
+	use ListTrait;
+    use PageTrait;
 	use UpdateTrait;
 	use DeleteTrait;
 	use SaveTrait;

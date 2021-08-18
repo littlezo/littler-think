@@ -24,17 +24,13 @@ use littler\traits\RewriteTrait;
 /**
  * @property id $int 主键
  * @property site_id $int 站点id（店铺，分站）,总平台端为0
+ * @property key $string 配置项关键字
+ * @property label $string 配置字段描述
  * @property value $string 配置值json
- * @property config_key $string 配置项关键字
- * @property config_label $string 配置字段描述
- * @property config_desc $string 描述
+ * @property desc $string 描述
  * @property is_use $int 是否启用 1启用 0不启用
- * @property location $int 0 前端 1后台
  * @property create_time $int 创建时间
  * @property update_time $int 修改时间
- * @property is_cash $int 现金券划转 1全网转 2上下转 3向下转  0不能转
- * @property is_deduct $int 抵扣券划转 1全网转 2上下转 3向下转  0不能转
- * @property is_money $int 余额划转 1全网转 2上下转 3向下转  0不能转
  */
 abstract class ConfigAbstract extends Model
 {
@@ -57,23 +53,19 @@ abstract class ConfigAbstract extends Model
 	protected $schema = [
 		'id' => 'int',
 		'site_id' => 'int',
+		'key' => 'string',
+		'label' => 'string',
 		'value' => 'string',
-		'config_key' => 'string',
-		'config_label' => 'string',
-		'config_desc' => 'string',
+		'desc' => 'string',
 		'is_use' => 'int',
-		'location' => 'int',
 		'create_time' => 'int',
 		'update_time' => 'int',
-		'is_cash' => 'int',
-		'is_deduct' => 'int',
-		'is_money' => 'int',
 	];
 
 	/**
 	 * @var array $json JSON类型字段
 	 */
-	protected $json = ['value', 'config_label'];
+	protected $json = ['label', 'value'];
 
 	/**
 	 * @var array $json JSON字段自动转数组
@@ -83,19 +75,5 @@ abstract class ConfigAbstract extends Model
 	/**
 	 * @var array $field 允许写入字段
 	 */
-	public $field = [
-		'id',
-		'site_id',
-		'value',
-		'config_key',
-		'config_label',
-		'config_desc',
-		'is_use',
-		'location',
-		'create_time',
-		'update_time',
-		'is_cash',
-		'is_deduct',
-		'is_money',
-	];
+	public $field = ['id', 'site_id', 'key', 'label', 'value', 'desc', 'is_use', 'create_time', 'update_time'];
 }

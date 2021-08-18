@@ -7,7 +7,7 @@
  * @version 1.0.0
  * @author @小小只^v^ <littlezov@qq.com>  littlezov@qq.com
  * @contact  littlezov@qq.com
- * @see     https://github.com/littlezo
+ * @link     https://github.com/littlezo
  * @document https://github.com/littlezo/wiki
  * @license  https://github.com/littlezo/MozillaPublicLicense/blob/main/LICENSE
  */
@@ -17,19 +17,16 @@ declare(strict_types=1);
 namespace little\member\model;
 
 use little\member\repository\model\BalanceAbstract;
-use littler\annotation\model\relation\HasOne;
 
 /**
- * 会员账户流水 模型.
- * @HasOne("member", model="User", foreignKey="id", localKey="member_id")
- * @HasOne("target", model="User", foreignKey="id", localKey="to_member_id")
+ * 会员账户流水 模型
  */
 class Balance extends BalanceAbstract
 {
 	/**
 	 * @var array 关联预载
 	 */
-	public $with = ['member', 'target'];
+	public $with = [];
 
 	/**
 	 * @var array 列表字段映射
@@ -53,96 +50,60 @@ class Balance extends BalanceAbstract
 				'defaultHidden' => false,
 			],
 			[
-				'title' => '会员',
-				'dataIndex' => 'member.nickname',
+				'title' => '会员id',
+				'dataIndex' => 'member_id',
 				'width' => 100,
 				'fixed' => false,
 				'align' => 'center',
 				'defaultHidden' => false,
 			],
 			[
-				'title' => '手机号',
-				'dataIndex' => 'member.mobile',
-				'width' => 100,
-				'fixed' => false,
-				'align' => 'center',
-				'defaultHidden' => false,
-			],
-			[
-				'title' => '交易类型',
+				'title' => '交易类型: 1充值，2提现，3转账，4购物，5销售利润，6代理收益，7货款结算  8商家保证金 9区域代理申请  10贡献值记录',
 				'dataIndex' => 'trade_type',
 				'width' => 100,
 				'fixed' => false,
 				'align' => 'center',
 				'defaultHidden' => false,
-				'customRender' => "({ record }) => {
-                    const textMap = {
-                        1:'充值',
-                        2:'提现',
-                        3:'转账',
-                        4:'购物',
-                        5:'销售利润',
-                        6:'代理收益',
-                        7:'货款结算',
-                        8:'商家保证金'
-                    };
-                    const colorMap = {
-                        1:'pink',
-                        2:'red',
-                        3:'orange',
-                        4:'green',
-                        5:'cyan',
-                        6:'blue',
-                        7:'purple',
-                        8:'#2db7f5',
-                    };
-                    const value = record.trade_type;
-                    const color = colorMap[value];
-                    const text = textMap[value];
-                    return h(ant('Tag'), { color: color }, () => text);
-                }",
 			],
 			[
 				'title' => '目标用户',
-				'dataIndex' => 'target.nickname',
+				'dataIndex' => 'to_member_id',
 				'width' => 100,
 				'fixed' => false,
 				'align' => 'center',
 				'defaultHidden' => false,
 			],
 			[
-				'title' => '目标手机号',
-				'dataIndex' => 'target.mobile',
-				'width' => 100,
-				'fixed' => false,
-				'align' => 'center',
-				'defaultHidden' => false,
-			],
-			[
-				'title' => '状态',
+				'title' => '状态0待审核1.待到账2已到账 -1已拒绝',
 				'dataIndex' => 'status',
 				'width' => 100,
 				'fixed' => false,
 				'align' => 'center',
 				'defaultHidden' => false,
-				'customRender' => "({ record }) => {
-				    const textMap = {
-				        '-1':'已拒绝',
-				        '0':'待审核',
-				        '1':'待到账',
-				        '2':'已到账',
-                    };
-				    const colorMap = {
-				        '-1':'red',
-				        '0':'pink',
-				        '1':'orange',
-				        '2':'green',
-                    };
-				    const value = record.status;
-				    const color = colorMap[value];
-				    const text = textMap[value];
-				    return h(ant('Tag'), { color: color }, () => text);
-				}",
+			],
+			[
+				'title' => '结算状态：0 未结算  1已结算 默认:1',
+				'dataIndex' => 'settlement_status',
+				'width' => 100,
+				'fixed' => false,
+				'align' => 'center',
+				'defaultHidden' => false,
+			],
+			[
+				'title' => '结算截止时间',
+				'dataIndex' => 'settlement_end_time',
+				'width' => 120,
+				'fixed' => false,
+				'align' => 'center',
+				'defaultHidden' => false,
+			],
+			[
+				'title' => '结算条件等级ID',
+				'dataIndex' => 'settlement_level_id',
+				'width' => 100,
+				'fixed' => false,
+				'align' => 'center',
+				'defaultHidden' => false,
 			],
 			[
 				'title' => '备注',
@@ -161,30 +122,12 @@ class Balance extends BalanceAbstract
 				'defaultHidden' => false,
 			],
 			[
-				'title' => '账号类型',
+				'title' => '账号类型 1支付宝，2微信，3银行卡，4会员账户',
 				'dataIndex' => 'account_type',
-				'width' => 180,
+				'width' => 100,
 				'fixed' => false,
 				'align' => 'center',
 				'defaultHidden' => false,
-				'customRender' => "({ record }) => {
-				    const textMap = {
-				        '1':'支付宝',
-				        '2':'微信',
-				        '3':'银行卡',
-				        '4':'会员账户',
-                    };
-				    const colorMap = {
-				        '1':'red',
-				        '2':'pink',
-				        '3':'orange',
-				        '4':'green',
-                    };
-				    const value = record.account_type;
-				    const color = colorMap[value];
-				    const text = textMap[value];
-				    return h(ant('Tag'), { color: color }, () => text);
-				}",
 			],
 			[
 				'title' => '收付款人',
@@ -219,7 +162,15 @@ class Balance extends BalanceAbstract
 				'defaultHidden' => false,
 			],
 			[
-				'title' => '变更金额',
+				'title' => '最新一次变更记录id ',
+				'dataIndex' => 'prev_id',
+				'width' => 100,
+				'fixed' => false,
+				'align' => 'center',
+				'defaultHidden' => false,
+			],
+			[
+				'title' => '金额',
 				'dataIndex' => 'money',
 				'width' => 100,
 				'fixed' => false,
@@ -299,50 +250,20 @@ class Balance extends BalanceAbstract
 				'defaultHidden' => false,
 			],
 			[
-				'title' => '余额类型',
+				'title' => '0余额  1现金券 2 抵扣券 3贡献值',
 				'dataIndex' => 'type',
 				'width' => 100,
 				'fixed' => false,
 				'align' => 'center',
 				'defaultHidden' => false,
-				'customRender' => "({ record }) => {
-				    const textMap = {
-				        '0':'余额',
-				        '1':'现金劵',
-				        '2':'抵扣券',
-                    };
-				    const colorMap = {
-				        '0':'pink',
-				        '1':'orange',
-				        '2':'green',
-                    };
-				    const value = record.type;
-				    const color = colorMap[value];
-				    const text = textMap[value];
-				    return h(ant('Tag'), { color: color }, () => text);
-				}",
 			],
 			[
-				'title' => '收支类型',
+				'title' => '支付状态 0支出  1收入',
 				'dataIndex' => 'pay_status',
 				'width' => 100,
 				'fixed' => false,
 				'align' => 'center',
 				'defaultHidden' => false,
-				'customRender' => "({ record }) => {
-				    const textMap = {
-				        '0':'支出',
-				        '1':'收入',
-                    };
-				    const colorMap = {
-				        '0':'orange',
-				        '1':'green',
-                    };
-				    const value = record.pay_status;
-				    const color = colorMap[value];
-				    const text = textMap[value];
-				    return h(ant('Tag'), { color: color }, () => text);
-				}",
 			],
 		],
 		'formConfig' => [],
@@ -354,7 +275,7 @@ class Balance extends BalanceAbstract
 		'showIndexColumn' => false,
 		'canResize' => true,
 		'rowKey' => 'id',
-		// 'searchInfo' => ['order' => 'asc'],
+		'searchInfo' => ['order' => 'asc'],
 		'actionColumn' => [
 			'width' => 100,
 			'title' => '操作',
@@ -362,15 +283,8 @@ class Balance extends BalanceAbstract
 			'slots' => ['customRender' => 'action'],
 			'fixed' => 'right',
 		],
-		'actions' => "[
-          {
-            icon: 'clarity:note-edit-line',
-            label: '审核',
-            auth: 'member:balance:update',
-            ifShow: ()=>record.trade_type===2&&record.status===0,
-            onClick: handleEdit.bind(null, record),
-          }
-        ]",
+		'dropActions' => '[{"icon":"clarity:note-edit-line","label":"修改","auth":"member:balance:update","onClick":"handleEdit.bind(null, record)"},{"label":"删除","icon":"ant-design:delete-outlined","color":"error","auth":"member:balance:delete","popConfirm":{"title":"是否确认删除","confirm":"handleDelete.bind(null, record)"}}]',
+		'actions' => '[]',
 	];
 
 	/**
@@ -378,68 +292,8 @@ class Balance extends BalanceAbstract
 	 */
 	public $search_schema = [
 		'labelWidth' => 100,
-		'baseColProps'=>  ['xxl'=> 6, 'xl'=> 8, 'lg'=> 12, 'md'=> 24],
-		'schemas' => [
-			[
-				'field' => 'like_trade_no',
-				'label' => '交易号',
-				'component' => 'Input',
-			],
-			[
-				'field' => 'trade_type',
-				'label' => '交易类型',
-				'component' => 'Select',
-				'componentProps' => [
-					'options' => [
-						[
-							'label' => '充值',
-							'value' => 1,
-							'key' => 1,
-						],
-						[
-							'label' => '提现',
-							'value' => 2,
-							'key' => 2,
-						],
-						[
-							'label' => '转账',
-							'value' => 3,
-							'key' => 3,
-						],
-						[
-							'label' => '购物',
-							'value' => 4,
-							'key' => 4,
-						],
-						[
-							'label' => '销售利润',
-							'value' => 5,
-							'key' => 5,
-						],
-						[
-							'label' => '代理收益',
-							'value' => 6,
-							'key' => 6,
-						],
-						[
-							'label' => '货款结算',
-							'value' => 7,
-							'key' => 7,
-						],
-						[
-							'label' => '商家保证金',
-							'value' => 8,
-							'key' => 8,
-						],
-					],
-				],
-			],
-			[
-				'field' => 'member_id',
-				'label' => '会员ID',
-				'component' => 'Input',
-			],
-		],
+		'baseColProps' => ['xxl' => 6, 'xl' => 8, 'lg' => 12, 'md' => 34],
+		'schemas' => [['field' => 'id', 'label' => 'ID', 'component' => 'Input']],
 	];
 
 	/**
@@ -447,250 +301,70 @@ class Balance extends BalanceAbstract
 	 */
 	public $form_schema = [
 		'labelWidth' => 120,
+		'baseColProps' => ['xxl' => 6, 'xl' => 8, 'lg' => 12, 'md' => 34],
 		'schemas' => [
-			[
-				'field' => 'trade_no',
-				'label' => '交易号',
-				'component' => 'Input',
-				'dynamicDisabled' => '({ values }) => {
-                    return true;
-                }',
-			],
+			['field' => 'trade_no', 'label' => '交易号', 'component' => 'Input', 'required' => true],
+			['field' => 'member_id', 'label' => '会员id', 'component' => 'Input', 'required' => true],
 			[
 				'field' => 'trade_type',
-				'label' => '交易类型',
-				'component' => 'Select',
-				'dynamicDisabled' => '({ values }) => {
-                    return true;
-                }',
-				'componentProps' => [
-					'options' => [
-						[
-							'label' => '充值',
-							'value' => 1,
-							'key' => 1,
-						],
-						[
-							'label' => '提现',
-							'value' => 2,
-							'key' => 2,
-						],
-						[
-							'label' => '转账',
-							'value' => 3,
-							'key' => 3,
-						],
-						[
-							'label' => '购物',
-							'value' => 4,
-							'key' => 4,
-						],
-						[
-							'label' => '销售利润',
-							'value' => 5,
-							'key' => 5,
-						],
-						[
-							'label' => '代理收益',
-							'value' => 6,
-							'key' => 6,
-						],
-						[
-							'label' => '货款结算',
-							'value' => 7,
-							'key' => 7,
-						],
-						[
-							'label' => '商家保证金',
-							'value' => 8,
-							'key' => 8,
-						],
-					],
-				],
-			],
-			[
-				'field' => 'remarks',
-				'label' => '备注',
+				'label' => '交易类型: 1充值，2提现，3转账，4购物，5销售利润，6代理收益，7货款结算  8商家保证金 9区域代理申请  10贡献值记录',
 				'component' => 'Input',
-				'dynamicDisabled' => '({ values }) => {
-                    return true;
-                }',
+				'required' => true,
 			],
-			[
-				'field' => 'account_type',
-				'label' => '账号类型',
-				'component' => 'Select',
-				'dynamicDisabled' => '({ values }) => {
-                    return true;
-                }',
-				'componentProps' => [
-					'options' => [
-						[
-							'label' => '支付宝',
-							'value' => 1,
-							'key' => 1,
-						],
-						[
-							'label' => '微信',
-							'value' => 2,
-							'key' => 2,
-						],
-						[
-							'label' => '银行卡',
-							'value' => 3,
-							'key' => 3,
-						],
-						[
-							'label' => '会员账户',
-							'value' => 4,
-							'key' => 4,
-						],
-					],
-				],
-			],
-			[
-				'field' => 'account_name',
-				'label' => '收付款人',
-				'component' => 'Input',
-				'dynamicDisabled' => '({ values }) => {
-                    return true;
-                }',
-			],
-			[
-				'field' => 'account_number',
-				'label' => '收付款账号',
-				'component' => 'Input',
-				'dynamicDisabled' => '({ values }) => {
-                    return true;
-                }',
-			],
-			[
-				'field' => 'money',
-				'label' => '金额',
-				'component' => 'Input',
-				'dynamicDisabled' => '({ values }) => {
-                    return true;
-                }',
-			],
-			[
-				'field' => 'fact_money',
-				'label' => '到账金额',
-				'component' => 'Input',
-				'dynamicDisabled' => '({ values }) => {
-                    return true;
-                }',
-			],
-			[
-				'field' => 'rate',
-				'label' => '手续费率',
-				'component' => 'Input',
-				'dynamicDisabled' => '({ values }) => {
-                    return true;
-                }',
-			],
-			[
-				'field' => 'service_money',
-				'label' => '手续费',
-				'component' => 'Input',
-				'dynamicDisabled' => '({ values }) => {
-                    return true;
-                }',
-			],
-			[
-				'field' => 'create_time',
-				'label' => '申请时间',
-				'component' => 'Input',
-				'dynamicDisabled' => '({ values }) => {
-                    return true;
-                }',
-			],
+			['field' => 'to_member_id', 'label' => '目标用户', 'component' => 'Input', 'required' => true],
 			[
 				'field' => 'status',
-				'label' => '状态',
-				'component' => 'RadioButtonGroup',
-				'required' => true,
-				'defaultValue' => 1,
-				'componentProps' => [
-					'options' => [
-						[
-							'label' => '拒绝',
-							'value' => -1,
-						],
-						[
-							'label' => '通过',
-							'value' => 1,
-						],
-					],
-				],
-			],
-			[
-				'field' => 'pay_type',
-				'label' => '打款方式',
-				'component' => 'RadioButtonGroup',
-				'required' => true,
-				'ifShow' => '({ values }) => {
-                    return values.status===1;
-                }',
-				'componentProps' => [
-					'options' => [
-						[
-							'label' => '自动打款',
-							'value' => 1,
-						],
-						[
-							'label' => '手动打款',
-							'value' => 0,
-						],
-					],
-				],
-			],
-			[
-				'field' => 'audit_remark',
-				'label' => '审核备注',
+				'label' => '状态0待审核1.待到账2已到账 -1已拒绝',
 				'component' => 'Input',
-				'dynamicRules' => '({ values }) => {
-                    return values.status===-1?[{required:true}]:[];
-                }',
-				'ifShow' => '({ values }) => {
-                    return values.status===-1;
-                }',
+				'required' => true,
 			],
 			[
-				'field' => 'certificate',
-				'label' => '凭证',
-				// 'component' => 'Input',
-				'component' => 'Upload',
-				// 'rules' => [
-				// 	['required' => true, 'message' => '请选择上传文件'],
-				// ],
-				'componentProps' => [
-					'maxSize' => 10,
-					'multiple' => false,
-					'accept' => ['jpg', 'jpeg', 'png'],
-					'maxNumber' => 1,
-					'api' => '(argv)=>uploadApi(argv)',
-					'check' => '(argv)=>checkUploadApi(argv)',
-					'handleChange' => '(list) => {
-			            console.log(list);
-			        }',
-				],
-				'dynamicRules' => '({ values }) => {
-                    return values.pay_type===0||values.account_type===3?[{required:true}]:[];
-                }',
-				'ifShow' => '({ values }) => {
-                    return values.pay_type===0 && values.status===1&&[1,2,3].includes(values.account_type);
-                }',
-			],
-			[
-				'field' => 'certificate_remark',
-				'label' => '凭证备注',
+				'field' => 'settlement_status',
+				'label' => '结算状态：0 未结算  1已结算 默认:1',
 				'component' => 'Input',
-				'dynamicRules' => '({ values }) => {
-                    return values.pay_type===0||values.account_type===3?[{required:true}]:[];
-                }',
-				'ifShow' => '({ values }) => {
-                    return values.pay_type===0 && values.status===1&&[1,2,3].includes(values.account_type);
-                }',
+				'required' => true,
+			],
+			['field' => 'settlement_end_time', 'label' => '结算截止时间', 'component' => 'Input', 'required' => true],
+			[
+				'field' => 'settlement_level_id',
+				'label' => '结算条件等级ID',
+				'component' => 'Input',
+				'required' => true,
+			],
+			['field' => 'remarks', 'label' => '备注', 'component' => 'Input', 'required' => true],
+			['field' => 'audit_remark', 'label' => '审核备注', 'component' => 'Input', 'required' => true],
+			[
+				'field' => 'account_type',
+				'label' => '账号类型 1支付宝，2微信，3银行卡，4会员账户',
+				'component' => 'Input',
+				'required' => true,
+			],
+			['field' => 'account_name', 'label' => '收付款人', 'component' => 'Input', 'required' => true],
+			['field' => 'account_number', 'label' => '收付款账号', 'component' => 'Input', 'required' => true],
+			['field' => 'before', 'label' => '变更前金额', 'component' => 'Input', 'required' => true],
+			['field' => 'after', 'label' => '变更后金额', 'component' => 'Input', 'required' => true],
+			['field' => 'prev_id', 'label' => '最新一次变更记录id ', 'component' => 'Input', 'required' => true],
+			['field' => 'money', 'label' => '金额', 'component' => 'Input', 'required' => true],
+			['field' => 'fact_money', 'label' => '到账金额', 'component' => 'Input', 'required' => true],
+			['field' => 'rate', 'label' => '手续费率', 'component' => 'Input', 'required' => true],
+			['field' => 'service_money', 'label' => '手续费', 'component' => 'Input', 'required' => true],
+			['field' => 'certificate', 'label' => '凭证', 'component' => 'Input', 'required' => true],
+			['field' => 'certificate_remark', 'label' => '凭证备注', 'component' => 'Input', 'required' => true],
+			['field' => 'create_time', 'label' => '申请时间', 'component' => 'Input', 'required' => true],
+			['field' => 'audit_time', 'label' => '审核时间', 'component' => 'Input', 'required' => true],
+			['field' => 'payment_time', 'label' => '转账时间', 'component' => 'Input', 'required' => true],
+			['field' => 'update_time', 'label' => '更新时间', 'component' => 'Input', 'required' => true],
+			[
+				'field' => 'type',
+				'label' => '0余额  1现金券 2 抵扣券 3贡献值',
+				'component' => 'Input',
+				'required' => true,
+			],
+			[
+				'field' => 'pay_status',
+				'label' => '支付状态 0支出  1收入',
+				'component' => 'Input',
+				'required' => true,
 			],
 		],
 	];
@@ -699,14 +373,4 @@ class Balance extends BalanceAbstract
 	 * @var array 排除展示字段
 	 */
 	public $without = ['password', 'passwd', 'pay_passwd', 'pay_password'];
-
-	public function getAuditTimeAttr($value)
-	{
-		return date('Y-m-d H:i:s', $value);
-	}
-
-	public function getPaymentTimeAttr($value)
-	{
-		return date('Y-m-d H:i:s', $value);
-	}
 }

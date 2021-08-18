@@ -147,6 +147,8 @@ class Auth extends AuthAbstract
 			'slots' => ['customRender' => 'action'],
 			'fixed' => 'right',
 		],
+		'dropActions' => '[{"icon":"clarity:note-edit-line","label":"修改","auth":"member:auth:update","onClick":"handleEdit.bind(null, record)"},{"label":"删除","icon":"ant-design:delete-outlined","color":"error","auth":"member:auth:delete","popConfirm":{"title":"是否确认删除","confirm":"handleDelete.bind(null, record)"}}]',
+		'actions' => '[]',
 	];
 
 	/**
@@ -154,14 +156,8 @@ class Auth extends AuthAbstract
 	 */
 	public $search_schema = [
 		'labelWidth' => 100,
-		'schemas' => [
-			[
-				'field' => 'auth_id',
-				'label' => 'ID',
-				'component' => 'Input',
-
-			],
-		],
+		'baseColProps' => ['xxl' => 6, 'xl' => 8, 'lg' => 12, 'md' => 34],
+		'schemas' => [['field' => 'auth_id', 'label' => 'ID', 'component' => 'Input']],
 	];
 
 	/**
@@ -169,84 +165,39 @@ class Auth extends AuthAbstract
 	 */
 	public $form_schema = [
 		'labelWidth' => 120,
+		'baseColProps' => ['xxl' => 6, 'xl' => 8, 'lg' => 12, 'md' => 34],
 		'schemas' => [
-			[
-				'field' => 'member_id',
-				'label' => '会员ID',
-				'component' => 'Input',
-				'required' => true,
-
-			],
-			[
-				'field' => 'member_username',
-				'label' => '会员用户名',
-				'component' => 'Input',
-				'required' => true,
-
-			],
-			[
-				'field' => 'auth_card_name',
-				'label' => '实名姓名',
-				'component' => 'Input',
-				'required' => true,
-
-			],
-			[
-				'field' => 'auth_card_no',
-				'label' => '实名身份证',
-				'component' => 'Input',
-				'required' => true,
-
-			],
+			['field' => 'member_id', 'label' => '会员ID', 'component' => 'Input', 'required' => true],
+			['field' => 'member_username', 'label' => '会员用户名', 'component' => 'Input', 'required' => true],
+			['field' => 'auth_card_name', 'label' => '实名姓名', 'component' => 'Input', 'required' => true],
+			['field' => 'auth_card_no', 'label' => '实名身份证', 'component' => 'Input', 'required' => true],
 			[
 				'field' => 'auth_card_hand',
 				'label' => '申请人手持身份证电子版',
 				'component' => 'Input',
 				'required' => true,
-
 			],
 			[
 				'field' => 'auth_card_front',
 				'label' => '申请人身份证正面',
 				'component' => 'Input',
 				'required' => true,
-
 			],
 			[
 				'field' => 'auth_card_back',
 				'label' => '申请人身份证反面',
 				'component' => 'Input',
 				'required' => true,
-
 			],
 			[
 				'field' => 'status',
 				'label' => '审核状态0待审核1.已审核-1已拒绝',
 				'component' => 'Input',
 				'required' => true,
-
 			],
-			[
-				'field' => 'remark',
-				'label' => '审核意见',
-				'component' => 'Input',
-				'required' => true,
-
-			],
-			[
-				'field' => 'create_time',
-				'label' => '创建时间',
-				'component' => 'Input',
-				'required' => true,
-
-			],
-			[
-				'field' => 'audit_time',
-				'label' => '审核通过时间',
-				'component' => 'Input',
-				'required' => true,
-
-			],
+			['field' => 'remark', 'label' => '审核意见', 'component' => 'Input', 'required' => true],
+			['field' => 'create_time', 'label' => '创建时间', 'component' => 'Input', 'required' => true],
+			['field' => 'audit_time', 'label' => '审核通过时间', 'component' => 'Input', 'required' => true],
 		],
 	];
 

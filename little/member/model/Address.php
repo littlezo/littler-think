@@ -66,14 +66,6 @@ class Address extends AddressAbstract
 				'defaultHidden' => false,
 			],
 			[
-				'title' => '联系电话',
-				'dataIndex' => 'telephone',
-				'width' => 180,
-				'fixed' => false,
-				'align' => 'center',
-				'defaultHidden' => false,
-			],
-			[
 				'title' => '地址信息',
 				'dataIndex' => 'address',
 				'width' => 180,
@@ -145,6 +137,14 @@ class Address extends AddressAbstract
 				'align' => 'center',
 				'defaultHidden' => false,
 			],
+			[
+				'title' => 'CreateTime',
+				'dataIndex' => 'create_time',
+				'width' => 120,
+				'fixed' => false,
+				'align' => 'center',
+				'defaultHidden' => false,
+			],
 		],
 		'formConfig' => [],
 		'pagination' => true,
@@ -163,6 +163,8 @@ class Address extends AddressAbstract
 			'slots' => ['customRender' => 'action'],
 			'fixed' => 'right',
 		],
+		'dropActions' => '[{"icon":"clarity:note-edit-line","label":"修改","auth":"member:address:update","onClick":"handleEdit.bind(null, record)"},{"label":"删除","icon":"ant-design:delete-outlined","color":"error","auth":"member:address:delete","popConfirm":{"title":"是否确认删除","confirm":"handleDelete.bind(null, record)"}}]',
+		'actions' => '[]',
 	];
 
 	/**
@@ -170,9 +172,8 @@ class Address extends AddressAbstract
 	 */
 	public $search_schema = [
 		'labelWidth' => 100,
-		'schemas' => [
-			['field' => 'id', 'label' => 'ID', 'component' => 'Input', 'colProps' => ['lg' => 12, 'xl' => 8, 'xxl' => 6]],
-		],
+		'baseColProps' => ['xxl' => 6, 'xl' => 8, 'lg' => 12, 'md' => 34],
+		'schemas' => [['field' => 'id', 'label' => 'ID', 'component' => 'Input']],
 	];
 
 	/**
@@ -180,98 +181,26 @@ class Address extends AddressAbstract
 	 */
 	public $form_schema = [
 		'labelWidth' => 120,
+		'baseColProps' => ['xxl' => 6, 'xl' => 8, 'lg' => 12, 'md' => 34],
 		'schemas' => [
-			[
-				'field' => 'member_id',
-				'label' => '会员id',
-				'component' => 'Input',
-				'required' => true,
-
-			],
-			[
-				'field' => 'name',
-				'label' => '用户姓名',
-				'component' => 'Input',
-				'required' => true,
-
-			],
-			[
-				'field' => 'mobile',
-				'label' => '手机',
-				'component' => 'Input',
-				'required' => true,
-
-			],
-			[
-				'field' => 'telephone',
-				'label' => '联系电话',
-				'component' => 'Input',
-				'required' => false,
-
-			],
-			[
-				'field' => 'address',
-				'label' => '地址信息',
-				'component' => 'Input',
-				'required' => true,
-
-			],
-			[
-				'field' => 'full_address',
-				'label' => '详细地址信息',
-				'component' => 'Input',
-				'required' => true,
-
-			],
-			[
-				'field' => 'province_id',
-				'label' => '省id',
-				'component' => 'Input',
-				'required' => true,
-
-			],
-			[
-				'field' => 'city_id',
-				'label' => '市id',
-				'component' => 'Input',
-				'required' => true,
-
-			],
-			[
-				'field' => 'district_id',
-				'label' => '区县id',
-				'component' => 'Input',
-				'required' => true,
-
-			],
-			[
-				'field' => 'community_id',
-				'label' => '社区ID',
-				'component' => 'Input',
-				'required' => true,
-
-			],
-			[
-				'field' => 'longitude',
-				'label' => '经度',
-				'component' => 'Input',
-				'required' => false,
-
-			],
-			[
-				'field' => 'latitude',
-				'label' => '纬度',
-				'component' => 'Input',
-				'required' => false,
-
-			],
+			['field' => 'member_id', 'label' => '会员id', 'component' => 'Input', 'required' => true],
+			['field' => 'name', 'label' => '用户姓名', 'component' => 'Input', 'required' => true],
+			['field' => 'mobile', 'label' => '手机', 'component' => 'Input', 'required' => true],
+			['field' => 'address', 'label' => '地址信息', 'component' => 'Input', 'required' => true],
+			['field' => 'full_address', 'label' => '详细地址信息', 'component' => 'Input', 'required' => true],
+			['field' => 'province_id', 'label' => '省id', 'component' => 'Input', 'required' => true],
+			['field' => 'city_id', 'label' => '市id', 'component' => 'Input', 'required' => true],
+			['field' => 'district_id', 'label' => '区县id', 'component' => 'Input', 'required' => true],
+			['field' => 'community_id', 'label' => '社区ID', 'component' => 'Input', 'required' => true],
+			['field' => 'longitude', 'label' => '经度', 'component' => 'Input', 'required' => false],
+			['field' => 'latitude', 'label' => '纬度', 'component' => 'Input', 'required' => false],
 			[
 				'field' => 'is_default',
 				'label' => '是否是默认地址 0否 1是',
 				'component' => 'Input',
 				'required' => true,
-
 			],
+			['field' => 'create_time', 'label' => 'CreateTime', 'component' => 'Input', 'required' => true],
 		],
 	];
 

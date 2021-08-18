@@ -66,6 +66,14 @@ class Detail extends DetailAbstract
 				'defaultHidden' => false,
 			],
 			[
+				'title' => '订单商品ID',
+				'dataIndex' => 'order_goods_ids',
+				'width' => 80,
+				'fixed' => false,
+				'align' => 'center',
+				'defaultHidden' => true,
+			],
+			[
 				'title' => '订单来源',
 				'dataIndex' => 'order_from',
 				'width' => 180,
@@ -74,7 +82,7 @@ class Detail extends DetailAbstract
 				'defaultHidden' => false,
 			],
 			[
-				'title' => '订单类型 1. 线上订单  2. 线下订单  3. 抵扣卷订单 ',
+				'title' => '订单类型 1. 线上订单  2. 线下订单  3. 抵扣卷订单  4余额订单 5现金券 6区域代理订单  10贡献值订单',
 				'dataIndex' => 'order_type',
 				'width' => 100,
 				'fixed' => false,
@@ -106,7 +114,7 @@ class Detail extends DetailAbstract
 				'defaultHidden' => false,
 			],
 			[
-				'title' => '配送状态',
+				'title' => '配送状态 1 待发货 2配送中  3已完成   4已退货 ',
 				'dataIndex' => 'delivery_status',
 				'width' => 100,
 				'fixed' => false,
@@ -114,7 +122,7 @@ class Detail extends DetailAbstract
 				'defaultHidden' => false,
 			],
 			[
-				'title' => '支付方式 1微信 2 支付宝 3 余额',
+				'title' => '支付方式 1微信 2 支付宝 3 余额 ',
 				'dataIndex' => 'pay_type',
 				'width' => 100,
 				'fixed' => false,
@@ -149,6 +157,38 @@ class Detail extends DetailAbstract
 				'title' => '购买人手机',
 				'dataIndex' => 'mobile',
 				'width' => 160,
+				'fixed' => false,
+				'align' => 'center',
+				'defaultHidden' => false,
+			],
+			[
+				'title' => '物流公司名称',
+				'dataIndex' => 'logistics',
+				'width' => 180,
+				'fixed' => false,
+				'align' => 'center',
+				'defaultHidden' => false,
+			],
+			[
+				'title' => '物流公司标识',
+				'dataIndex' => 'logistics_code',
+				'width' => 180,
+				'fixed' => false,
+				'align' => 'center',
+				'defaultHidden' => false,
+			],
+			[
+				'title' => '物流单号',
+				'dataIndex' => 'logistics_number',
+				'width' => 180,
+				'fixed' => false,
+				'align' => 'center',
+				'defaultHidden' => false,
+			],
+			[
+				'title' => '物流公司id',
+				'dataIndex' => 'logistics_id',
+				'width' => 100,
 				'fixed' => false,
 				'align' => 'center',
 				'defaultHidden' => false,
@@ -196,6 +236,14 @@ class Detail extends DetailAbstract
 			[
 				'title' => '购买人详细地址',
 				'dataIndex' => 'full_address',
+				'width' => 180,
+				'fixed' => false,
+				'align' => 'center',
+				'defaultHidden' => false,
+			],
+			[
+				'title' => '寄件地址',
+				'dataIndex' => 'mail_address',
 				'width' => 180,
 				'fixed' => false,
 				'align' => 'center',
@@ -282,8 +330,8 @@ class Detail extends DetailAbstract
 				'defaultHidden' => false,
 			],
 			[
-				'title' => '订单调整金额',
-				'dataIndex' => 'adjust_money',
+				'title' => '现金券支付余额',
+				'dataIndex' => 'cash_money',
 				'width' => 100,
 				'fixed' => false,
 				'align' => 'center',
@@ -338,7 +386,7 @@ class Detail extends DetailAbstract
 				'defaultHidden' => false,
 			],
 			[
-				'title' => '订单状态',
+				'title' => '订单状态  1待发货  2已发货 3已完成 4退款中 5 已退款 ',
 				'dataIndex' => 'order_status',
 				'width' => 100,
 				'fixed' => false,
@@ -346,7 +394,7 @@ class Detail extends DetailAbstract
 				'defaultHidden' => false,
 			],
 			[
-				'title' => '支付状态',
+				'title' => '支付状态 1已支付',
 				'dataIndex' => 'pay_status',
 				'width' => 100,
 				'fixed' => false,
@@ -442,7 +490,7 @@ class Detail extends DetailAbstract
 				'defaultHidden' => false,
 			],
 			[
-				'title' => '是否进行结算',
+				'title' => '是否进行结算 0：未结算  1：已结算',
 				'dataIndex' => 'is_settlement',
 				'width' => 100,
 				'fixed' => false,
@@ -586,8 +634,24 @@ class Detail extends DetailAbstract
 				'defaultHidden' => false,
 			],
 			[
+				'title' => 'GoodsBv',
+				'dataIndex' => 'goods_bv',
+				'width' => 100,
+				'fixed' => false,
+				'align' => 'center',
+				'defaultHidden' => false,
+			],
+			[
 				'title' => '订单操作',
 				'dataIndex' => 'order_status_action',
+				'width' => 80,
+				'fixed' => false,
+				'align' => 'center',
+				'defaultHidden' => true,
+			],
+			[
+				'title' => '订单详情',
+				'dataIndex' => 'order_detail',
 				'width' => 80,
 				'fixed' => false,
 				'align' => 'center',
@@ -611,6 +675,8 @@ class Detail extends DetailAbstract
 			'slots' => ['customRender' => 'action'],
 			'fixed' => 'right',
 		],
+		'dropActions' => '[{"icon":"clarity:note-edit-line","label":"修改","auth":"order:detail:update","onClick":"handleEdit.bind(null, record)"},{"label":"删除","icon":"ant-design:delete-outlined","color":"error","auth":"order:detail:delete","popConfirm":{"title":"是否确认删除","confirm":"handleDelete.bind(null, record)"}}]',
+		'actions' => '[]',
 	];
 
 	/**
@@ -618,14 +684,8 @@ class Detail extends DetailAbstract
 	 */
 	public $search_schema = [
 		'labelWidth' => 100,
-		'schemas' => [
-			[
-				'field' => 'order_id',
-				'label' => 'ID',
-				'component' => 'Input',
-
-			],
-		],
+		'baseColProps' => ['xxl' => 6, 'xl' => 8, 'lg' => 12, 'md' => 34],
+		'schemas' => [['field' => 'order_id', 'label' => 'ID', 'component' => 'Input']],
 	];
 
 	/**
@@ -633,490 +693,175 @@ class Detail extends DetailAbstract
 	 */
 	public $form_schema = [
 		'labelWidth' => 120,
+		'baseColProps' => ['xxl' => 6, 'xl' => 8, 'lg' => 12, 'md' => 34],
 		'schemas' => [
-			[
-				'field' => 'order_no',
-				'label' => '订单编号',
-				'component' => 'Input',
-				'required' => true,
-
-			],
-			[
-				'field' => 'site_id',
-				'label' => '商家id',
-				'component' => 'Input',
-				'required' => true,
-
-			],
-			[
-				'field' => 'order_name',
-				'label' => '订单内容',
-				'component' => 'Input',
-				'required' => true,
-
-			],
-			[
-				'field' => 'order_from',
-				'label' => '订单来源',
-				'component' => 'Input',
-				'required' => true,
-
-			],
+			['field' => 'order_no', 'label' => '订单编号', 'component' => 'Input', 'required' => true],
+			['field' => 'site_id', 'label' => '商家id', 'component' => 'Input', 'required' => true],
+			['field' => 'order_name', 'label' => '订单内容', 'component' => 'Input', 'required' => true],
+			['field' => 'order_goods_ids', 'label' => '订单商品ID', 'component' => 'Input', 'required' => false],
+			['field' => 'order_from', 'label' => '订单来源', 'component' => 'Input', 'required' => true],
 			[
 				'field' => 'order_type',
-				'label' => '订单类型 1. 线上订单  2. 线下订单  3. 抵扣卷订单 ',
+				'label' => '订单类型 1. 线上订单  2. 线下订单  3. 抵扣卷订单  4余额订单 5现金券 6区域代理订单  10贡献值订单',
 				'component' => 'Input',
 				'required' => true,
-
 			],
-			[
-				'field' => 'out_trade_no',
-				'label' => '支付流水号',
-				'component' => 'Input',
-				'required' => true,
-
-			],
+			['field' => 'out_trade_no', 'label' => '支付流水号', 'component' => 'Input', 'required' => true],
 			[
 				'field' => 'out_trade_no_2',
 				'label' => '支付流水号（多次支付）',
 				'component' => 'Input',
 				'required' => true,
-
 			],
-			[
-				'field' => 'delivery_code',
-				'label' => '整体提货编码',
-				'component' => 'Input',
-				'required' => true,
-
-			],
+			['field' => 'delivery_code', 'label' => '整体提货编码', 'component' => 'Input', 'required' => true],
 			[
 				'field' => 'delivery_status',
-				'label' => '配送状态',
+				'label' => '配送状态 1 待发货 2配送中  3已完成   4已退货 ',
 				'component' => 'Input',
 				'required' => true,
-
 			],
 			[
 				'field' => 'pay_type',
-				'label' => '支付方式 1微信 2 支付宝 3 余额',
+				'label' => '支付方式 1微信 2 支付宝 3 余额 ',
 				'component' => 'Input',
 				'required' => true,
-
 			],
 			[
 				'field' => 'delivery_type',
 				'label' => '配送方式 1物流 2 到店',
 				'component' => 'Input',
 				'required' => true,
-
 			],
-			[
-				'field' => 'member_id',
-				'label' => '购买人uid',
-				'component' => 'Input',
-				'required' => true,
-
-			],
-			[
-				'field' => 'name',
-				'label' => '购买人姓名',
-				'component' => 'Input',
-				'required' => true,
-
-			],
-			[
-				'field' => 'mobile',
-				'label' => '购买人手机',
-				'component' => 'Input',
-				'required' => true,
-
-			],
-			[
-				'field' => 'province_id',
-				'label' => '购买人省id',
-				'component' => 'Input',
-				'required' => true,
-
-			],
-			[
-				'field' => 'city_id',
-				'label' => '购买人市id',
-				'component' => 'Input',
-				'required' => true,
-
-			],
-			[
-				'field' => 'district_id',
-				'label' => '购买人区县id',
-				'component' => 'Input',
-				'required' => true,
-
-			],
-			[
-				'field' => 'community_id',
-				'label' => '购买人社区id',
-				'component' => 'Input',
-				'required' => true,
-
-			],
-			[
-				'field' => 'address',
-				'label' => '购买人地址',
-				'component' => 'Input',
-				'required' => true,
-
-			],
-			[
-				'field' => 'full_address',
-				'label' => '购买人详细地址',
-				'component' => 'Input',
-				'required' => true,
-
-			],
-			[
-				'field' => 'longitude',
-				'label' => '购买人地址经度',
-				'component' => 'Input',
-				'required' => true,
-
-			],
-			[
-				'field' => 'latitude',
-				'label' => '购买人地址纬度',
-				'component' => 'Input',
-				'required' => true,
-
-			],
-			[
-				'field' => 'buyer_message',
-				'label' => '购买人留言信息',
-				'component' => 'Input',
-				'required' => true,
-
-			],
+			['field' => 'member_id', 'label' => '购买人uid', 'component' => 'Input', 'required' => true],
+			['field' => 'name', 'label' => '购买人姓名', 'component' => 'Input', 'required' => true],
+			['field' => 'mobile', 'label' => '购买人手机', 'component' => 'Input', 'required' => true],
+			['field' => 'logistics', 'label' => '物流公司名称', 'component' => 'Input', 'required' => false],
+			['field' => 'logistics_code', 'label' => '物流公司标识', 'component' => 'Input', 'required' => false],
+			['field' => 'logistics_number', 'label' => '物流单号', 'component' => 'Input', 'required' => false],
+			['field' => 'logistics_id', 'label' => '物流公司id', 'component' => 'Input', 'required' => true],
+			['field' => 'province_id', 'label' => '购买人省id', 'component' => 'Input', 'required' => true],
+			['field' => 'city_id', 'label' => '购买人市id', 'component' => 'Input', 'required' => true],
+			['field' => 'district_id', 'label' => '购买人区县id', 'component' => 'Input', 'required' => true],
+			['field' => 'community_id', 'label' => '购买人社区id', 'component' => 'Input', 'required' => true],
+			['field' => 'address', 'label' => '购买人地址', 'component' => 'Input', 'required' => true],
+			['field' => 'full_address', 'label' => '购买人详细地址', 'component' => 'Input', 'required' => true],
+			['field' => 'mail_address', 'label' => '寄件地址', 'component' => 'Input', 'required' => true],
+			['field' => 'longitude', 'label' => '购买人地址经度', 'component' => 'Input', 'required' => true],
+			['field' => 'latitude', 'label' => '购买人地址纬度', 'component' => 'Input', 'required' => true],
+			['field' => 'buyer_message', 'label' => '购买人留言信息', 'component' => 'Input', 'required' => true],
 			[
 				'field' => 'order_invoice_company',
 				'label' => '发票公司名称',
 				'component' => 'Input',
 				'required' => true,
-
 			],
-			[
-				'field' => 'order_invoice_type',
-				'label' => '发票类型',
-				'component' => 'Input',
-				'required' => true,
-
-			],
+			['field' => 'order_invoice_type', 'label' => '发票类型', 'component' => 'Input', 'required' => true],
 			[
 				'field' => 'order_invoice_type_name',
 				'label' => '发票类型名称',
 				'component' => 'Input',
 				'required' => true,
-
 			],
 			[
 				'field' => 'order_invoice_trade_type',
 				'label' => '发票行业类型',
 				'component' => 'Input',
 				'required' => true,
-
 			],
-			[
-				'field' => 'goods_money',
-				'label' => '商品总金额',
-				'component' => 'Input',
-				'required' => true,
-
-			],
-			[
-				'field' => 'order_money',
-				'label' => '订单合计金额',
-				'component' => 'Input',
-				'required' => true,
-
-			],
-			[
-				'field' => 'deduct_money',
-				'label' => '优惠抵扣金额',
-				'component' => 'Input',
-				'required' => true,
-
-			],
-			[
-				'field' => 'adjust_money',
-				'label' => '订单调整金额',
-				'component' => 'Input',
-				'required' => true,
-
-			],
-			[
-				'field' => 'balance_money',
-				'label' => '余额支付金额',
-				'component' => 'Input',
-				'required' => true,
-
-			],
-			[
-				'field' => 'delivery_money',
-				'label' => '配送费用',
-				'component' => 'Input',
-				'required' => true,
-
-			],
-			[
-				'field' => 'order_invoice_rate',
-				'label' => '发票税率',
-				'component' => 'Input',
-				'required' => true,
-
-			],
-			[
-				'field' => 'invoice_money',
-				'label' => '发票金额',
-				'component' => 'Input',
-				'required' => true,
-
-			],
-			[
-				'field' => 'pay_money',
-				'label' => '实付金额',
-				'component' => 'Input',
-				'required' => true,
-
-			],
-			[
-				'field' => 'create_time',
-				'label' => '创建时间',
-				'component' => 'Input',
-				'required' => true,
-
-			],
+			['field' => 'goods_money', 'label' => '商品总金额', 'component' => 'Input', 'required' => false],
+			['field' => 'order_money', 'label' => '订单合计金额', 'component' => 'Input', 'required' => false],
+			['field' => 'deduct_money', 'label' => '优惠抵扣金额', 'component' => 'Input', 'required' => false],
+			['field' => 'cash_money', 'label' => '现金券支付余额', 'component' => 'Input', 'required' => false],
+			['field' => 'balance_money', 'label' => '余额支付金额', 'component' => 'Input', 'required' => false],
+			['field' => 'delivery_money', 'label' => '配送费用', 'component' => 'Input', 'required' => false],
+			['field' => 'order_invoice_rate', 'label' => '发票税率', 'component' => 'Input', 'required' => false],
+			['field' => 'invoice_money', 'label' => '发票金额', 'component' => 'Input', 'required' => false],
+			['field' => 'pay_money', 'label' => '实付金额', 'component' => 'Input', 'required' => false],
+			['field' => 'create_time', 'label' => '创建时间', 'component' => 'Input', 'required' => true],
 			[
 				'field' => 'order_status',
-				'label' => '订单状态',
+				'label' => '订单状态  1待发货  2已发货 3已完成 4退款中 5 已退款 ',
 				'component' => 'Input',
 				'required' => true,
-
 			],
-			[
-				'field' => 'pay_status',
-				'label' => '支付状态',
-				'component' => 'Input',
-				'required' => true,
-
-			],
-			[
-				'field' => 'pay_time',
-				'label' => '订单支付时间',
-				'component' => 'Input',
-				'required' => true,
-
-			],
-			[
-				'field' => 'delivery_time',
-				'label' => '订单配送时间',
-				'component' => 'Input',
-				'required' => true,
-
-			],
-			[
-				'field' => 'sign_time',
-				'label' => '订单签收时间',
-				'component' => 'Input',
-				'required' => true,
-
-			],
-			[
-				'field' => 'finish_time',
-				'label' => '订单完成时间',
-				'component' => 'Input',
-				'required' => true,
-
-			],
-			[
-				'field' => 'close_time',
-				'label' => '订单关闭时间',
-				'component' => 'Input',
-				'required' => true,
-
-			],
+			['field' => 'pay_status', 'label' => '支付状态 1已支付', 'component' => 'Input', 'required' => true],
+			['field' => 'pay_time', 'label' => '订单支付时间', 'component' => 'Input', 'required' => true],
+			['field' => 'delivery_time', 'label' => '订单配送时间', 'component' => 'Input', 'required' => true],
+			['field' => 'sign_time', 'label' => '订单签收时间', 'component' => 'Input', 'required' => true],
+			['field' => 'finish_time', 'label' => '订单完成时间', 'component' => 'Input', 'required' => true],
+			['field' => 'close_time', 'label' => '订单关闭时间', 'component' => 'Input', 'required' => true],
 			[
 				'field' => 'is_lock',
 				'label' => '是否锁定订单（针对维权，锁定不可操作）',
 				'component' => 'Input',
 				'required' => true,
-
 			],
-			[
-				'field' => 'is_evaluate',
-				'label' => '是否允许订单评价',
-				'component' => 'Input',
-				'required' => true,
-
-			],
-			[
-				'field' => 'delete_time',
-				'label' => '删除时间',
-				'component' => 'Input',
-				'required' => true,
-
-			],
-			[
-				'field' => 'is_enable_refund',
-				'label' => '是否允许退款',
-				'component' => 'Input',
-				'required' => true,
-
-			],
-			[
-				'field' => 'remark',
-				'label' => '卖家留言',
-				'component' => 'Input',
-				'required' => true,
-
-			],
-			[
-				'field' => 'goods_num',
-				'label' => '商品件数',
-				'component' => 'Input',
-				'required' => true,
-
-			],
+			['field' => 'is_evaluate', 'label' => '是否允许订单评价', 'component' => 'Input', 'required' => true],
+			['field' => 'delete_time', 'label' => '删除时间', 'component' => 'Input', 'required' => true],
+			['field' => 'is_enable_refund', 'label' => '是否允许退款', 'component' => 'Input', 'required' => true],
+			['field' => 'remark', 'label' => '卖家留言', 'component' => 'Input', 'required' => true],
+			['field' => 'goods_num', 'label' => '商品件数', 'component' => 'Input', 'required' => true],
 			[
 				'field' => 'is_settlement',
-				'label' => '是否进行结算',
+				'label' => '是否进行结算 0：未结算  1：已结算',
 				'component' => 'Input',
 				'required' => true,
-
 			],
-			[
-				'field' => 'promotion_id',
-				'label' => '营销活动id',
-				'component' => 'Input',
-				'required' => true,
-
-			],
-			[
-				'field' => 'promotion_type',
-				'label' => '营销类型',
-				'component' => 'Input',
-				'required' => true,
-
-			],
-			[
-				'field' => 'promotion_details',
-				'label' => '营销详情',
-				'component' => 'Input',
-				'required' => true,
-
-			],
+			['field' => 'promotion_id', 'label' => '营销活动id', 'component' => 'Input', 'required' => true],
+			['field' => 'promotion_type', 'label' => '营销类型', 'component' => 'Input', 'required' => true],
+			['field' => 'promotion_details', 'label' => '营销详情', 'component' => 'Input', 'required' => false],
 			[
 				'field' => 'evaluate_status',
 				'label' => '评价状态，0：未评价，1：已评价，2：已追评',
 				'component' => 'Input',
 				'required' => true,
-
 			],
-			[
-				'field' => 'shop_money',
-				'label' => '店铺金额',
-				'component' => 'Input',
-				'required' => true,
-
-			],
-			[
-				'field' => 'platform_money',
-				'label' => '平台金额',
-				'component' => 'Input',
-				'required' => true,
-
-			],
+			['field' => 'shop_money', 'label' => '店铺金额', 'component' => 'Input', 'required' => false],
+			['field' => 'platform_money', 'label' => '平台金额', 'component' => 'Input', 'required' => false],
 			[
 				'field' => 'is_invoice',
 				'label' => '是否需要发票 0 无发票  1 有发票',
 				'component' => 'Input',
 				'required' => true,
-
 			],
 			[
 				'field' => 'invoice_type',
 				'label' => '发票类型  1 纸质发票 2 电子发票',
 				'component' => 'Input',
 				'required' => true,
-
 			],
-			[
-				'field' => 'invoice_title',
-				'label' => '发票抬头',
-				'component' => 'Input',
-				'required' => true,
-
-			],
-			[
-				'field' => 'taxpayer_number',
-				'label' => '纳税人识别号',
-				'component' => 'Input',
-				'required' => true,
-
-			],
-			[
-				'field' => 'invoice_rate',
-				'label' => '发票税率',
-				'component' => 'Input',
-				'required' => true,
-
-			],
-			[
-				'field' => 'invoice_content',
-				'label' => '发票内容',
-				'component' => 'Input',
-				'required' => true,
-
-			],
+			['field' => 'invoice_title', 'label' => '发票抬头', 'component' => 'Input', 'required' => true],
+			['field' => 'taxpayer_number', 'label' => '纳税人识别号', 'component' => 'Input', 'required' => true],
+			['field' => 'invoice_rate', 'label' => '发票税率', 'component' => 'Input', 'required' => false],
+			['field' => 'invoice_content', 'label' => '发票内容', 'component' => 'Input', 'required' => true],
 			[
 				'field' => 'invoice_delivery_money',
 				'label' => '发票邮寄费用',
 				'component' => 'Input',
-				'required' => true,
-
+				'required' => false,
 			],
 			[
 				'field' => 'invoice_full_address',
 				'label' => '发票邮寄地址',
 				'component' => 'Input',
 				'required' => true,
-
 			],
 			[
 				'field' => 'is_tax_invoice',
 				'label' => '是否需要增值税专用发票',
 				'component' => 'Input',
 				'required' => true,
-
 			],
-			[
-				'field' => 'invoice_email',
-				'label' => '发票发送邮件',
-				'component' => 'Input',
-				'required' => true,
-
-			],
+			['field' => 'invoice_email', 'label' => '发票发送邮件', 'component' => 'Input', 'required' => true],
 			[
 				'field' => 'invoice_title_type',
 				'label' => '发票抬头类型  1 个人  2 企业',
 				'component' => 'Input',
 				'required' => true,
-
 			],
-			[
-				'field' => 'order_status_action',
-				'label' => '订单操作',
-				'component' => 'Input',
-				'required' => true,
-
-			],
+			['field' => 'goods_bv', 'label' => 'GoodsBv', 'component' => 'Input', 'required' => false],
+			['field' => 'order_status_action', 'label' => '订单操作', 'component' => 'Input', 'required' => false],
+			['field' => 'order_detail', 'label' => '订单详情', 'component' => 'Input', 'required' => false],
 		],
 	];
 

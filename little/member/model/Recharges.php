@@ -7,7 +7,7 @@
  * @version 1.0.0
  * @author @小小只^v^ <littlezov@qq.com>  littlezov@qq.com
  * @contact  littlezov@qq.com
- * @see     https://github.com/littlezo
+ * @link     https://github.com/littlezo
  * @document https://github.com/littlezo/wiki
  * @license  https://github.com/littlezo/MozillaPublicLicense/blob/main/LICENSE
  */
@@ -19,7 +19,7 @@ namespace little\member\model;
 use little\member\repository\model\RechargesAbstract;
 
 /**
- * 会员套餐 模型.
+ * 会员套餐 模型
  */
 class Recharges extends RechargesAbstract
 {
@@ -44,6 +44,14 @@ class Recharges extends RechargesAbstract
 			[
 				'title' => '套餐名称',
 				'dataIndex' => 'name',
+				'width' => 180,
+				'fixed' => false,
+				'align' => 'center',
+				'defaultHidden' => false,
+			],
+			[
+				'title' => '封面',
+				'dataIndex' => 'cover_img',
 				'width' => 180,
 				'fixed' => false,
 				'align' => 'center',
@@ -88,30 +96,14 @@ class Recharges extends RechargesAbstract
 				'fixed' => false,
 				'align' => 'center',
 				'defaultHidden' => false,
-				'customRender' => "({ record }) => {
-                    const textMap = {0:'否',1:'是',2:''};
-                    const colorMap = {0:'red',1:'blue',2:'green'};
-                    const value = record.is_new;
-                    const color = colorMap[value];
-                    const text = textMap[value];
-                    return h(ant('Tag'), { color: color }, () => text);
-                }",
 			],
 			[
-				'title' => '是否首页',
+				'title' => '是否首页推荐',
 				'dataIndex' => 'is_home',
 				'width' => 100,
 				'fixed' => false,
 				'align' => 'center',
 				'defaultHidden' => false,
-				'customRender' => "({ record }) => {
-                    const textMap = {0:'否',1:'是',2:''};
-                    const colorMap = {0:'red',1:'blue',2:'green'};
-                    const value = record.is_home;
-                    const color = colorMap[value];
-                    const text = textMap[value];
-                    return h(ant('Tag'), { color: color }, () => text);
-                }",
 			],
 			[
 				'title' => '排序',
@@ -122,26 +114,42 @@ class Recharges extends RechargesAbstract
 				'defaultHidden' => false,
 			],
 			[
-				'title' => '状态',
+				'title' => '状态（1正常 0关闭）',
 				'dataIndex' => 'status',
 				'width' => 100,
 				'fixed' => false,
 				'align' => 'center',
 				'defaultHidden' => false,
-				'customRender' => "({ record }) => {
-                    const textMap = {0:'禁用',1:'正常'};
-                    const colorMap = {0:'red',1:'green'};
-                    const value = record.status;
-                    const color = colorMap[value];
-                    const text = textMap[value];
-                    return h(ant('Tag'), { color: color }, () => text);
-                }",
+			],
+			[
+				'title' => '创建时间',
+				'dataIndex' => 'create_time',
+				'width' => 120,
+				'fixed' => false,
+				'align' => 'center',
+				'defaultHidden' => false,
+			],
+			[
+				'title' => '修改时间',
+				'dataIndex' => 'update_time',
+				'width' => 120,
+				'fixed' => false,
+				'align' => 'center',
+				'defaultHidden' => false,
+			],
+			[
+				'title' => '删除时间',
+				'dataIndex' => 'delete_time',
+				'width' => 120,
+				'fixed' => false,
+				'align' => 'center',
+				'defaultHidden' => false,
 			],
 		],
 		'formConfig' => [],
-		'pagination' => false,
+		'pagination' => true,
 		'striped' => true,
-		'useSearchForm' => false,
+		'useSearchForm' => true,
 		'showTableSetting' => true,
 		'bordered' => true,
 		'showIndexColumn' => false,
@@ -155,24 +163,8 @@ class Recharges extends RechargesAbstract
 			'slots' => ['customRender' => 'action'],
 			'fixed' => 'right',
 		],
-		'actions' => "[
-            {
-                icon: 'clarity:note-edit-line',
-                label: '修改',
-                auth: 'member:recharges:update',
-                onClick: handleEdit.bind(null, record),
-            },
-            {
-                label: '删除',
-                icon: 'ant-design:delete-outlined',
-                color: 'error',
-                auth: 'member:recharges:delete',
-                popConfirm: {
-                    title: '是否确认删除',
-                    confirm: handleDelete.bind(null, record),
-                },
-            },
-        ]",
+		'dropActions' => '[{"icon":"clarity:note-edit-line","label":"修改","auth":"member:recharges:update","onClick":"handleEdit.bind(null, record)"},{"label":"删除","icon":"ant-design:delete-outlined","color":"error","auth":"member:recharges:delete","popConfirm":{"title":"是否确认删除","confirm":"handleDelete.bind(null, record)"}}]',
+		'actions' => '[]',
 	];
 
 	/**
@@ -180,9 +172,8 @@ class Recharges extends RechargesAbstract
 	 */
 	public $search_schema = [
 		'labelWidth' => 100,
-		'schemas' => [
-			['field' => 'id', 'label' => 'ID', 'component' => 'Input', 'colProps' => ['lg' => 12, 'xl' => 8, 'xxl' => 6]],
-		],
+		'baseColProps' => ['xxl' => 6, 'xl' => 8, 'lg' => 12, 'md' => 34],
+		'schemas' => [['field' => 'id', 'label' => 'ID', 'component' => 'Input']],
 	];
 
 	/**
@@ -190,96 +181,21 @@ class Recharges extends RechargesAbstract
 	 */
 	public $form_schema = [
 		'labelWidth' => 120,
+		'baseColProps' => ['xxl' => 6, 'xl' => 8, 'lg' => 12, 'md' => 34],
 		'schemas' => [
-			[
-				'field' => 'name',
-				'label' => '套餐名称',
-				'component' => 'Input',
-				'required' => true,
-			],
-			[
-				'field' => 'face_value',
-				'label' => '面值',
-				'component' => 'Input',
-				'required' => true,
-			],
-			[
-				'field' => 'buy_money',
-				'label' => '购买金额',
-				'component' => 'Input',
-				'required' => true,
-			],
-			[
-				'field' => 'growth',
-				'label' => '贡献值',
-				'component' => 'Input',
-				'required' => true,
-			],
-
-			[
-				'field' => 'sort',
-				'label' => '排序',
-				'component' => 'InputNumber',
-				'required' => true,
-			],
-			[
-				'field' => 'is_new',
-				'label' => '是否新用户专享',
-				'component' => 'RadioButtonGroup',
-				'required' => true,
-
-				'defaultValue'=>1,
-				'componentProps' => [
-					'options' => [
-						[
-							'label' => '是',
-							'value' => 1,
-						],
-						[
-							'label' => '否',
-							'value' => 0,
-						],
-					],
-				],
-			],
-			[
-				'field' => 'is_home',
-				'label' => '是否首页推荐',
-				'component' => 'RadioButtonGroup',
-				'required' => true,
-				'defaultValue'=>1,
-				'componentProps' => [
-					'options' => [
-						[
-							'label' => '是',
-							'value' => 1,
-						],
-						[
-							'label' => '否',
-							'value' => 0,
-						],
-					],
-				],
-			],
-			[
-				'field' => 'status',
-				'label' => '状态',
-				'component' => 'Switch',
-				'required' => true,
-
-				'componentProps' => [
-					'checkedChildren' => '正常',
-					'unCheckedChildren' => '禁用',
-					'checkedValue' => 1,
-					'unCheckedValue' => 0,
-				],
-			],
-			[
-				'field' => 'desc',
-				'label' => '描述',
-				'component' => 'InputTextArea',
-				'required' => true,
-			],
+			['field' => 'name', 'label' => '套餐名称', 'component' => 'Input', 'required' => true],
+			['field' => 'cover_img', 'label' => '封面', 'component' => 'Input', 'required' => true],
+			['field' => 'face_value', 'label' => '面值', 'component' => 'Input', 'required' => true],
+			['field' => 'buy_money', 'label' => '购买金额', 'component' => 'Input', 'required' => true],
+			['field' => 'growth', 'label' => '贡献值', 'component' => 'Input', 'required' => true],
+			['field' => 'desc', 'label' => '描述', 'component' => 'Input', 'required' => true],
+			['field' => 'is_new', 'label' => '是否新用户', 'component' => 'Input', 'required' => true],
+			['field' => 'is_home', 'label' => '是否首页推荐', 'component' => 'Input', 'required' => true],
+			['field' => 'sort', 'label' => '排序', 'component' => 'Input', 'required' => true],
+			['field' => 'status', 'label' => '状态（1正常 0关闭）', 'component' => 'Input', 'required' => true],
+			['field' => 'create_time', 'label' => '创建时间', 'component' => 'Input', 'required' => true],
+			['field' => 'update_time', 'label' => '修改时间', 'component' => 'Input', 'required' => true],
+			['field' => 'delete_time', 'label' => '删除时间', 'component' => 'Input', 'required' => true],
 		],
 	];
 
