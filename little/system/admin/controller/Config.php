@@ -17,22 +17,30 @@ declare(strict_types=1);
 namespace little\system\admin\controller;
 
 use little\system\service\admin\ConfigService;
-use littler\annotation\docs\ApiDocs;
+use littler\BaseController as Controller;
+use littler\JWTAuth\Middleware\Jwt;
+use littler\Request;
+use littler\Response;
 use littler\annotation\Inject;
+use littler\annotation\Route;
+use littler\annotation\docs\ApiDocs;
 use littler\annotation\route\Group as RouteGroup;
 use littler\annotation\route\Middleware;
-use littler\BaseController as Controller;
+use littler\annotation\route\Resource;
+use littler\annotation\route\Validate;
 use littler\traits\DeleteTrait;
 use littler\traits\InfoTrait;
 use littler\traits\LayoutTrait;
 use littler\traits\ListTrait;
+use littler\traits\PageTrait;
 use littler\traits\SaveTrait;
 use littler\traits\UpdateTrait;
 
 /**
- * Class Config.
+ * Class Config
+ * @package little\system\admin\controller
  * @RouteGroup("admin/system/config")
- * @Middleware({littler\JWTAuth\Middleware\Jwt::class, "admin"})
+ * @Middleware({littler\JWTAuth\Middleware\Jwt::class,"admin"})
  * @apiDocs({
  *     "title": "系统配置",
  *     "version": "1.0.0",
@@ -53,7 +61,7 @@ class Config extends Controller
 	use DeleteTrait;
 
 	/**
-	 * @Inject
+	 * @Inject()
 	 * @var ConfigService
 	 */
 	protected $service;

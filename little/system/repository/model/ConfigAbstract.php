@@ -23,12 +23,12 @@ use littler\traits\RewriteTrait;
 
 /**
  * @property id $int 主键
- * @property site_id $int 站点id（店铺，分站）,总平台端为0
- * @property key $string 配置项关键字
+ * @property site_id $int 站点
+ * @property key $string 配置关键字
  * @property label $string 配置字段描述
- * @property value $string 配置值json
+ * @property value $string 配置字段值
  * @property desc $string 描述
- * @property is_use $int 是否启用 1启用 0不启用
+ * @property is_use $int 是否启用
  * @property create_time $int 创建时间
  * @property update_time $int 修改时间
  */

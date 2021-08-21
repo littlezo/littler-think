@@ -4,11 +4,15 @@
  * #logic 做事不讲究逻辑，再努力也只是重复犯错
  * ## 何为相思：不删不聊不打扰，可否具体点：曾爱过。何为遗憾：你来我往皆过客，可否具体点：再无你。
  * ## 只要思想不滑稽，方法总比苦难多！
+ *
  * @version 1.0.0
+ *
  * @author @小小只^v^ <littlezov@qq.com>  littlezov@qq.com
  * @contact  littlezov@qq.com
+ *
  * @see     https://github.com/littlezo
  * @document https://github.com/littlezo/wiki
+ *
  * @license  https://github.com/littlezo/MozillaPublicLicense/blob/main/LICENSE
  */
 
@@ -42,16 +46,40 @@ class Config extends ConfigAbstract
 				'defaultHidden' => false,
 			],
 			[
-				'title' => '配置项关键字',
-				'dataIndex' => 'config_key',
+				'title' => '站点',
+				'dataIndex' => 'site_id',
+				'width' => 100,
+				'fixed' => false,
+				'align' => 'center',
+				'defaultHidden' => false,
+			],
+			[
+				'title' => '配置关键字',
+				'dataIndex' => 'key',
 				'width' => 180,
 				'fixed' => false,
 				'align' => 'center',
 				'defaultHidden' => false,
 			],
 			[
+				'title' => '配置字段描述',
+				'dataIndex' => 'label',
+				'width' => 80,
+				'fixed' => false,
+				'align' => 'center',
+				'defaultHidden' => true,
+			],
+			[
+				'title' => '配置字段值',
+				'dataIndex' => 'value',
+				'width' => 80,
+				'fixed' => false,
+				'align' => 'center',
+				'defaultHidden' => true,
+			],
+			[
 				'title' => '描述',
-				'dataIndex' => 'config_desc',
+				'dataIndex' => 'desc',
 				'width' => 180,
 				'fixed' => false,
 				'align' => 'center',
@@ -70,11 +98,11 @@ class Config extends ConfigAbstract
                         checkedChildren: '正常',
                         unCheckedChildren: '禁用',
                         onChange(checked) {
-                        const newStatus = checked ? 1 : 0;
+                        const is_use = checked ? 1 : 0;
                         const row_id = record.id;
-                        api('put','/system/config/'+row_id, {is_use:newStatus})
+                        api('put','/system/config/'+row_id, {is_use})
                             .then(() => {
-                                record.is_use = newStatus;
+                                record.is_use = is_use;
                             })
                         },
                     });
@@ -100,34 +128,34 @@ class Config extends ConfigAbstract
 		'rowKey' => 'id',
 		'searchInfo' => ['order' => 'asc'],
 		'actionColumn' => [
-			'width' => 100,
+			'width' => 220,
 			'title' => '操作',
 			'dataIndex' => 'action',
 			'slots' => ['customRender' => 'action'],
 			'fixed' => 'right',
 		],
-		'dropActions' =>"[
-          {
-            icon: 'clarity:note-edit-line',
-            label: '修改',
-            auth: 'member:user:update',
-            onClick: handleEdit.bind(null, record),
-          },
-          {
-            label: '删除',
-            icon: 'ant-design:delete-outlined',
-            color: 'error',
-            auth: 'member:user:delete',
-            popConfirm: {
-                title: '是否确认删除',
-                confirm: handleDelete.bind(null, record),
+		'actions' => "[
+            {
+                icon: 'clarity:note-edit-line',
+                label: '修改',
+                auth: 'system:config:update',
+                onClick: onModal.bind(null, record)
             },
-          },
+            {
+                label: '删除',
+                icon: 'ant-design:delete-outlined',
+                color: 'error',
+                auth: 'system:config:delete',
+                popConfirm:{
+                    title: '是否确认删除',
+                    confirm: handleDelete.bind(null, record)
+                }
+           },
           {
             icon: 'clarity:note-edit-line',
             label: '字段管理',
-            auth: 'member:user:update',
-            onClick: handleRowPart.bind(null, record, {
+            auth: 'system:config:update',
+            onClick: onDrawer.bind(null, record, {
                 columns:[
                     {
                         title: '字段',
@@ -156,7 +184,49 @@ class Config extends ConfigAbstract
 						editComponent:'CodeEditor',
                     }
                 ],
-                field:'config_label',
+                field:'label',
+                record,
+                api:{
+                    method:'put',
+                    api:'/system/config',
+                },
+                title:'配置字段参数'
+            }),
+          },
+           {
+            icon: 'clarity:note-edit-line',
+            label: '配置管理',
+            auth: 'system:config:update',
+            onClick: onDrawer.bind(null, record, {
+                columns:[
+                    {
+                        title: '字段',
+                        dataIndex: 'field',
+                        editRow: true,
+                    },
+                    {
+                        title: '描述',
+                        dataIndex: 'label',
+                        editRow: true,
+                    },
+                    {
+                        title: '组件',
+                        dataIndex: 'component',
+                        editRow: true,
+                    },
+                    {
+                        title: '组件参数',
+                        dataIndex: 'props',
+                        editRow: true,
+                    },{
+                        title: '自定义组件',
+                        dataIndex: 'render',
+                        editRow: true,
+                        defaultValue:'{}',
+						editComponent:'CodeEditor',
+                    }
+                ],
+                field:'value',
                 record,
                 api:{
                     method:'put',
@@ -173,9 +243,8 @@ class Config extends ConfigAbstract
 	 */
 	public $search_schema = [
 		'labelWidth' => 100,
-		'schemas' => [
-			['field' => 'id', 'label' => 'ID', 'component' => 'Input', 'colProps' => ['lg' => 12, 'xl' => 8, 'xxl' => 6]],
-		],
+		'baseColProps' => ['xxl' => 6, 'xl' => 8, 'lg' => 12, 'md' => 34],
+		'schemas' => [['field' => 'id', 'label' => 'ID', 'component' => 'Input']],
 	];
 
 	/**
@@ -183,27 +252,27 @@ class Config extends ConfigAbstract
 	 */
 	public $form_schema = [
 		'labelWidth' => 120,
+		'baseColProps' => ['xxl' => 24, 'xl' => 24, 'lg' => 24, 'md' => 24],
+		'fullscreen'=>false,
 		'schemas' => [
 			[
-				'field' => 'config_key',
-				'label' => '配置项关键字',
+				'field' => 'key',
+				'label' => '配置关键字',
 				'component' => 'Input',
 				'required' => true,
-
 			],
 			[
-				'field' => 'config_desc',
+				'field' => 'desc',
 				'label' => '描述',
 				'component' => 'Input',
 				'required' => true,
-
 			],
 			[
 				'field' => 'is_use',
 				'label' => '是否启用',
 				'component' => 'Switch',
 				'required' => true,
-
+				'defaultValue' => 1,
 				'componentProps' => [
 					'checkedChildren' => '启用',
 					'unCheckedChildren' => '禁用',
