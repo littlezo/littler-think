@@ -23,6 +23,7 @@ use littler\traits\RewriteTrait;
 
 /**
  * @property id $int id
+ * @property parent $int 父级等级
  * @property name $string 等级名称
  * @property user_level $int 用户等级
  * @property market_sum $string 市场总数
@@ -53,6 +54,7 @@ abstract class SplAbstract extends Model
 	 */
 	protected $schema = [
 		'id' => 'int',
+		'parent' => 'int',
 		'name' => 'string',
 		'user_level' => 'int',
 		'market_sum' => 'string',
@@ -89,6 +91,7 @@ abstract class SplAbstract extends Model
 	 */
 	public $field = [
 		'id',
+		'parent',
 		'name',
 		'user_level',
 		'market_sum',
