@@ -22,6 +22,7 @@ use littler\traits\RewriteTrait;
 
 /**
  * @property level_id $int 会员等级
+ * @property parent $int 父级等级
  * @property level_name $string 等级名称
  * @property sort $int 等级排序列
  * @property level_money $float 升级金额
@@ -58,6 +59,7 @@ abstract class LevelAbstract extends Model
 	 */
 	public $field = [
 		'level_id',
+		'parent',
 		'level_name',
 		'sort',
 		'level_money',
@@ -90,6 +92,7 @@ abstract class LevelAbstract extends Model
 	 */
 	protected $schema = [
 		'level_id' => 'int',
+		'parent' => 'int',
 		'level_name' => 'string',
 		'sort' => 'int',
 		'level_money' => 'float',

@@ -1,54 +1,66 @@
 {
-  "settings": {
-    "http": {
-      "header_read_timeout": 10,
-      "body_read_timeout": 600,
-      "send_timeout": 3600,
-      "idle_timeout": 120,
-      "max_body_size": 5368709120
-    }
-  },
-  "listeners": {
-    "*:9580": {
-      "pass": "routes/api"
-    }
-  },
-  "routes": {
-    "api": [
-      {
-        "match": {
-          "uri": ["*.php", "*.php/*", "/public/"]
-        },
-
-        "action": {
-          "pass": "applications/api/direct"
+    "access_log": "/var/log/access.log",
+    "applications": {
+        "api": {
+            "group": "unit",
+            "limits": {
+                "requests": 6000,
+                "timeout": 600
+            },
+            "processes": {
+                "max": 64,
+                "spare": 8,
+                "idle_timeout": 20
+            },
+            "targets": {
+                "direct": {
+                    "root": "/app-src/public/"
+                },
+                "index": {
+                    "root": "/app-src/public/",
+                    "script": "index.php"
+                }
+            },
+            "type": "php",
+            "user": "unit"
         }
-      },
-      {
-        "action": {
-          "share": "/app-src/public/",
-          "fallback": {
-            "pass": "applications/api/index"
-          }
+    },
+    "listeners": {
+        "*:9580": {
+            "pass": "routes/api"
         }
-      }
-    ]
-  },
-  "applications": {
-    "api": {
-      "type": "php",
-      "user": "unit",
-      "group": "unit",
-      "targets": {
-        "direct": {
-          "root": "/app-src/public/"
-        },
-        "index": {
-          "root": "/app-src/public/",
-          "script": "index.php"
+    },
+    "routes": {
+        "api": [
+            {
+                "action": {
+                    "pass": "applications/api/direct"
+                },
+                "match": {
+                    "uri": [
+                        "*.php",
+                        "*.php/*",
+                        "/public/"
+                    ]
+                }
+            },
+            {
+                "action": {
+                    "fallback": {
+                        "pass": "applications/api/index"
+                    },
+                    "share": "/app-src/public/"
+                }
+            }
+        ]
+    },
+    "settings": {
+        "http": {
+            "body_read_timeout": 600,
+            "header_read_timeout": 600,
+            "idle_timeout": 120,
+            "max_body_size": 5368709120,
+            "send_timeout": 3600
         }
-      }
     }
-  },
-  "access_log": "/var/log/access.log"
 }
