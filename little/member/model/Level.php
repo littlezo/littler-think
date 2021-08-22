@@ -7,7 +7,7 @@
  * @version 1.0.0
  * @author @小小只^v^ <littlezov@qq.com>  littlezov@qq.com
  * @contact  littlezov@qq.com
- * @link     https://github.com/littlezo
+ * @see     https://github.com/littlezo
  * @document https://github.com/littlezo/wiki
  * @license  https://github.com/littlezo/MozillaPublicLicense/blob/main/LICENSE
  */
@@ -19,11 +19,10 @@ namespace little\member\model;
 use little\member\repository\model\LevelAbstract;
 
 /**
- * 会员等级 模型
+ * 会员等级 模型.
  */
 class Level extends LevelAbstract
 {
-    protected $connection = 'source';
 	/**
 	 * @var array 关联预载
 	 */
@@ -39,6 +38,14 @@ class Level extends LevelAbstract
 				'dataIndex' => 'level_id',
 				'width' => 80,
 				'fixed' => 'left',
+				'align' => 'center',
+				'defaultHidden' => false,
+			],
+			[
+				'title' => '父级等级',
+				'dataIndex' => 'parent',
+				'width' => 100,
+				'fixed' => false,
 				'align' => 'center',
 				'defaultHidden' => false,
 			],
@@ -194,6 +201,14 @@ class Level extends LevelAbstract
 				'align' => 'center',
 				'defaultHidden' => false,
 			],
+			[
+				'title' => '服务商',
+				'dataIndex' => 'is_spl',
+				'width' => 100,
+				'fixed' => false,
+				'align' => 'center',
+				'defaultHidden' => false,
+			],
 		],
 		'formConfig' => [],
 		'pagination' => true,
@@ -232,6 +247,7 @@ class Level extends LevelAbstract
 		'labelWidth' => 120,
 		'baseColProps' => ['xxl' => 6, 'xl' => 8, 'lg' => 12, 'md' => 34],
 		'schemas' => [
+			['field' => 'parent', 'label' => '父级等级', 'component' => 'Input', 'required' => true],
 			['field' => 'level_name', 'label' => '等级名称', 'component' => 'Input', 'required' => true],
 			['field' => 'sort', 'label' => '等级排序列', 'component' => 'Input', 'required' => true],
 			['field' => 'level_money', 'label' => '升级金额', 'component' => 'Input', 'required' => true],
@@ -276,6 +292,7 @@ class Level extends LevelAbstract
 				'required' => true,
 			],
 			['field' => 'status', 'label' => '状态 1启用', 'component' => 'Input', 'required' => true],
+			['field' => 'is_spl', 'label' => '服务商', 'component' => 'Input', 'required' => true],
 		],
 	];
 
@@ -283,4 +300,6 @@ class Level extends LevelAbstract
 	 * @var array 排除展示字段
 	 */
 	public $without = ['password', 'passwd', 'pay_passwd', 'pay_password'];
+
+	protected $connection = 'source';
 }

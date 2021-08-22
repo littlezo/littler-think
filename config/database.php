@@ -18,7 +18,7 @@ use think\facade\Env;
 
 return [
 	// 默认使用的数据库连接配置
-	'default' => Env::get('database.driver', 'source'),
+	'default' => Env::get('database.driver', 'mysql'),
 
 	// 自定义时间查询规则
 	'time_query_rule' => [],

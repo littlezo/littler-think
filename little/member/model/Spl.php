@@ -7,7 +7,7 @@
  * @version 1.0.0
  * @author @小小只^v^ <littlezov@qq.com>  littlezov@qq.com
  * @contact  littlezov@qq.com
- * @link     https://github.com/littlezo
+ * @see     https://github.com/littlezo
  * @document https://github.com/littlezo/wiki
  * @license  https://github.com/littlezo/MozillaPublicLicense/blob/main/LICENSE
  */
@@ -19,7 +19,7 @@ namespace little\member\model;
 use little\member\repository\model\SplAbstract;
 
 /**
- * 服务商等级 模型
+ * 服务商等级 模型.
  */
 class Spl extends SplAbstract
 {
@@ -42,6 +42,14 @@ class Spl extends SplAbstract
 				'defaultHidden' => false,
 			],
 			[
+				'title' => '父级等级',
+				'dataIndex' => 'parent',
+				'width' => 100,
+				'fixed' => false,
+				'align' => 'center',
+				'defaultHidden' => false,
+			],
+			[
 				'title' => '等级名称',
 				'dataIndex' => 'name',
 				'width' => 180,
@@ -58,23 +66,23 @@ class Spl extends SplAbstract
 				'defaultHidden' => false,
 			],
 			[
-				'title' => '店铺数量',
-				'dataIndex' => 'shop_sum',
-				'width' => 100,
-				'fixed' => false,
-				'align' => 'center',
-				'defaultHidden' => false,
-			],
-			[
-				'title' => '渠道条件',
-				'dataIndex' => 'channel',
+				'title' => '市场总数',
+				'dataIndex' => 'market_sum',
 				'width' => 80,
 				'fixed' => false,
 				'align' => 'center',
 				'defaultHidden' => true,
 			],
 			[
-				'title' => '比例',
+				'title' => '市场条件键',
+				'dataIndex' => 'market',
+				'width' => 80,
+				'fixed' => false,
+				'align' => 'center',
+				'defaultHidden' => true,
+			],
+			[
+				'title' => '分润比例',
 				'dataIndex' => 'ratio',
 				'width' => 100,
 				'fixed' => false,
@@ -82,8 +90,24 @@ class Spl extends SplAbstract
 				'defaultHidden' => false,
 			],
 			[
-				'title' => '奖励',
-				'dataIndex' => 'reward',
+				'title' => '管理津贴一级',
+				'dataIndex' => 'subsidy_one',
+				'width' => 100,
+				'fixed' => false,
+				'align' => 'center',
+				'defaultHidden' => false,
+			],
+			[
+				'title' => '管理津贴二级',
+				'dataIndex' => 'subsidy_tow',
+				'width' => 100,
+				'fixed' => false,
+				'align' => 'center',
+				'defaultHidden' => false,
+			],
+			[
+				'title' => '管理津贴三级',
+				'dataIndex' => 'subsidy_three',
 				'width' => 100,
 				'fixed' => false,
 				'align' => 'center',
@@ -135,12 +159,15 @@ class Spl extends SplAbstract
 		'labelWidth' => 120,
 		'baseColProps' => ['xxl' => 6, 'xl' => 8, 'lg' => 12, 'md' => 34],
 		'schemas' => [
+			['field' => 'parent', 'label' => '父级等级', 'component' => 'Input', 'required' => true],
 			['field' => 'name', 'label' => '等级名称', 'component' => 'Input', 'required' => true],
 			['field' => 'user_level', 'label' => '用户等级', 'component' => 'Input', 'required' => true],
-			['field' => 'shop_sum', 'label' => '店铺数量', 'component' => 'Input', 'required' => true],
-			['field' => 'channel', 'label' => '渠道条件', 'component' => 'Input', 'required' => false],
-			['field' => 'ratio', 'label' => '比例', 'component' => 'Input', 'required' => true],
-			['field' => 'reward', 'label' => '奖励', 'component' => 'Input', 'required' => true],
+			['field' => 'market_sum', 'label' => '市场总数', 'component' => 'Input', 'required' => false],
+			['field' => 'market', 'label' => '市场条件键', 'component' => 'Input', 'required' => false],
+			['field' => 'ratio', 'label' => '分润比例', 'component' => 'Input', 'required' => true],
+			['field' => 'subsidy_one', 'label' => '管理津贴一级', 'component' => 'Input', 'required' => true],
+			['field' => 'subsidy_tow', 'label' => '管理津贴二级', 'component' => 'Input', 'required' => true],
+			['field' => 'subsidy_three', 'label' => '管理津贴三级', 'component' => 'Input', 'required' => true],
 			['field' => 'status', 'label' => '状态', 'component' => 'Input', 'required' => true],
 		],
 	];
