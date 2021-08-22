@@ -7,7 +7,7 @@
  * @version 1.0.0
  * @author @小小只^v^ <littlezov@qq.com>  littlezov@qq.com
  * @contact  littlezov@qq.com
- * @see     https://github.com/littlezo
+ * @link     https://github.com/littlezo
  * @document https://github.com/littlezo/wiki
  * @license  https://github.com/littlezo/MozillaPublicLicense/blob/main/LICENSE
  */
@@ -17,6 +17,7 @@ declare(strict_types=1);
 namespace little\order\repository\model;
 
 use littler\BaseModel as Model;
+use littler\annotation\Inject;
 use littler\traits\BaseOptionsTrait;
 use littler\traits\RewriteTrait;
 use think\model\concern\SoftDelete;
@@ -26,7 +27,7 @@ use think\model\concern\SoftDelete;
  * @property order_no $string 订单编号
  * @property site_id $int 商家id
  * @property order_name $string 订单内容
- * @property order_goods_ids $string 订单商品ID
+ * @property order_goods_ids $string 订单商品ID(这里存的是拼团规格的id)
  * @property order_from $string 订单来源
  * @property order_type $int 订单类型 1. 线上订单  2. 线下订单  3. 抵扣卷订单  4余额订单 5现金券 6区域代理订单  10贡献值订单
  * @property out_trade_no $string 支付流水号
@@ -109,102 +110,17 @@ abstract class DetailAbstract extends Model
 	use SoftDelete;
 
 	/**
-	 * @var string 主键
-	 */
-	public $pk = 'order_id';
-
-	/**
-	 * @var array 允许写入字段
-	 */
-	public $field = [
-		'order_id',
-		'order_no',
-		'site_id',
-		'order_name',
-		'order_goods_ids',
-		'order_from',
-		'order_type',
-		'out_trade_no',
-		'out_trade_no_2',
-		'delivery_code',
-		'delivery_status',
-		'pay_type',
-		'delivery_type',
-		'member_id',
-		'name',
-		'mobile',
-		'logistics',
-		'logistics_code',
-		'logistics_number',
-		'logistics_id',
-		'province_id',
-		'city_id',
-		'district_id',
-		'community_id',
-		'address',
-		'full_address',
-		'mail_address',
-		'longitude',
-		'latitude',
-		'buyer_message',
-		'order_invoice_company',
-		'order_invoice_type',
-		'order_invoice_type_name',
-		'order_invoice_trade_type',
-		'goods_money',
-		'order_money',
-		'deduct_money',
-		'cash_money',
-		'balance_money',
-		'delivery_money',
-		'order_invoice_rate',
-		'invoice_money',
-		'pay_money',
-		'create_time',
-		'order_status',
-		'pay_status',
-		'pay_time',
-		'delivery_time',
-		'sign_time',
-		'finish_time',
-		'close_time',
-		'is_lock',
-		'is_evaluate',
-		'delete_time',
-		'is_enable_refund',
-		'remark',
-		'goods_num',
-		'is_settlement',
-		'promotion_id',
-		'promotion_type',
-		'promotion_details',
-		'evaluate_status',
-		'shop_money',
-		'platform_money',
-		'is_invoice',
-		'invoice_type',
-		'invoice_title',
-		'taxpayer_number',
-		'invoice_rate',
-		'invoice_content',
-		'invoice_delivery_money',
-		'invoice_full_address',
-		'is_tax_invoice',
-		'invoice_email',
-		'invoice_title_type',
-		'goods_bv',
-		'order_status_action',
-		'order_detail',
-		'goods_type',
-	];
-
-	/**
-	 * @var string 表名
+	 * @var string $name 表名
 	 */
 	protected $name = 'order_detail';
 
 	/**
-	 * @var array 字段信息
+	 * @var string $pk 主键
+	 */
+	public $pk = 'order_id';
+
+	/**
+	 * @var array $schema 字段信息
 	 */
 	protected $schema = [
 		'order_id' => 'int',
@@ -289,23 +205,102 @@ abstract class DetailAbstract extends Model
 	];
 
 	/**
-	 * @var array JSON类型字段
+	 * @var array $json JSON类型字段
 	 */
 	protected $json = ['order_goods_ids', 'promotion_details', 'order_status_action', 'order_detail'];
 
-	// 设置JSON字段的类型
-	protected $jsonType = [
-		'order_detail->level'	=>	'int',
-		'order_detail->is_spl'	=>	'int',
-	];
-
 	/**
-	 * @var array JSON字段自动转数组
+	 * @var array $json JSON字段自动转数组
 	 */
 	protected $jsonAssoc = true;
 
 	/**
-	 * @var array 关闭更新时间自动写入
+	 * @var array $updateTime 关闭更新时间自动写入
 	 */
 	protected $updateTime = false;
+
+	/**
+	 * @var array $field 允许写入字段
+	 */
+	public $field = [
+		'order_id',
+		'order_no',
+		'site_id',
+		'order_name',
+		'order_goods_ids',
+		'order_from',
+		'order_type',
+		'out_trade_no',
+		'out_trade_no_2',
+		'delivery_code',
+		'delivery_status',
+		'pay_type',
+		'delivery_type',
+		'member_id',
+		'name',
+		'mobile',
+		'logistics',
+		'logistics_code',
+		'logistics_number',
+		'logistics_id',
+		'province_id',
+		'city_id',
+		'district_id',
+		'community_id',
+		'address',
+		'full_address',
+		'mail_address',
+		'longitude',
+		'latitude',
+		'buyer_message',
+		'order_invoice_company',
+		'order_invoice_type',
+		'order_invoice_type_name',
+		'order_invoice_trade_type',
+		'goods_money',
+		'order_money',
+		'deduct_money',
+		'cash_money',
+		'balance_money',
+		'delivery_money',
+		'order_invoice_rate',
+		'invoice_money',
+		'pay_money',
+		'create_time',
+		'order_status',
+		'pay_status',
+		'pay_time',
+		'delivery_time',
+		'sign_time',
+		'finish_time',
+		'close_time',
+		'is_lock',
+		'is_evaluate',
+		'delete_time',
+		'is_enable_refund',
+		'remark',
+		'goods_num',
+		'is_settlement',
+		'promotion_id',
+		'promotion_type',
+		'promotion_details',
+		'evaluate_status',
+		'shop_money',
+		'platform_money',
+		'is_invoice',
+		'invoice_type',
+		'invoice_title',
+		'taxpayer_number',
+		'invoice_rate',
+		'invoice_content',
+		'invoice_delivery_money',
+		'invoice_full_address',
+		'is_tax_invoice',
+		'invoice_email',
+		'invoice_title_type',
+		'goods_bv',
+		'order_status_action',
+		'order_detail',
+		'goods_type',
+	];
 }

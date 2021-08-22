@@ -14,6 +14,6 @@
 	"author": "@小小只^v^",
 	"content": "",
 	"version_no": "20210821",
-    "ignore": ["order_complain","order_goods","order_logs","order_refund","order_settlement"],
+    "ignore": ["order_complain","order_goods","order_logs","order_refund","order_settlement","order_detail"],
     "allow_layer": ["admin"]
 }

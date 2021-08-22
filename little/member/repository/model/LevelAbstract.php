@@ -7,7 +7,7 @@
  * @version 1.0.0
  * @author @小小只^v^ <littlezov@qq.com>  littlezov@qq.com
  * @contact  littlezov@qq.com
- * @see     https://github.com/littlezo
+ * @link     https://github.com/littlezo
  * @document https://github.com/littlezo/wiki
  * @license  https://github.com/littlezo/MozillaPublicLicense/blob/main/LICENSE
  */
@@ -17,6 +17,7 @@ declare(strict_types=1);
 namespace little\member\repository\model;
 
 use littler\BaseModel as Model;
+use littler\annotation\Inject;
 use littler\traits\BaseOptionsTrait;
 use littler\traits\RewriteTrait;
 
@@ -34,8 +35,7 @@ use littler\traits\RewriteTrait;
  * @property is_region $int 是否允许申请区域代理
  * @property is_region_settle $int 开启代理佣金
  * @property is_shop $int 是否允许申请商家
- * @property is_spl $int 是否允许申请商家
- * @property is_shop_settle $int 开启商家佣金
+ * @property is_shop_settle $int  开启商家佣金
  * @property is_seller $int 是否出券 1出券
  * @property is_hand $int 是否立即结算
  * @property settle_ratio $int 分佣比例
@@ -43,6 +43,7 @@ use littler\traits\RewriteTrait;
  * @property s_to_b $float 小推大收益比例（如：0.30 即30%）
  * @property b_to_s $float 大推小收益比例（如：1.00 即100%）
  * @property status $int 状态 1启用
+ * @property is_spl $int 服务商
  */
 abstract class LevelAbstract extends Model
 {
@@ -50,45 +51,17 @@ abstract class LevelAbstract extends Model
 	use RewriteTrait;
 
 	/**
-	 * @var string 主键
-	 */
-	public $pk = 'level_id';
-
-	/**
-	 * @var array 允许写入字段
-	 */
-	public $field = [
-		'level_id',
-		'parent',
-		'level_name',
-		'sort',
-		'level_money',
-		'remark',
-		'is_default',
-		'is_diff',
-		'invite_reward',
-		'buy_ratio',
-		'is_region',
-		'is_region_settle',
-		'is_shop',
-		'is_shop_settle',
-		'is_seller',
-		'is_hand',
-		'settle_ratio',
-		'p_to_p',
-		's_to_b',
-		'b_to_s',
-		'status',
-		'is_spl',
-	];
-
-	/**
-	 * @var string 表名
+	 * @var string $name 表名
 	 */
 	protected $name = 'member_level';
 
 	/**
-	 * @var array 字段信息
+	 * @var string $pk 主键
+	 */
+	public $pk = 'level_id';
+
+	/**
+	 * @var array $schema 字段信息
 	 */
 	protected $schema = [
 		'level_id' => 'int',
@@ -116,17 +89,45 @@ abstract class LevelAbstract extends Model
 	];
 
 	/**
-	 * @var array JSON类型字段
+	 * @var array $json JSON类型字段
 	 */
 	protected $json = [];
 
 	/**
-	 * @var array 关闭创建时间自动写入
+	 * @var array $createTime 关闭创建时间自动写入
 	 */
 	protected $createTime = false;
 
 	/**
-	 * @var array 关闭更新时间自动写入
+	 * @var array $updateTime 关闭更新时间自动写入
 	 */
 	protected $updateTime = false;
+
+	/**
+	 * @var array $field 允许写入字段
+	 */
+	public $field = [
+		'level_id',
+		'parent',
+		'level_name',
+		'sort',
+		'level_money',
+		'remark',
+		'is_default',
+		'is_diff',
+		'invite_reward',
+		'buy_ratio',
+		'is_region',
+		'is_region_settle',
+		'is_shop',
+		'is_shop_settle',
+		'is_seller',
+		'is_hand',
+		'settle_ratio',
+		'p_to_p',
+		's_to_b',
+		'b_to_s',
+		'status',
+		'is_spl',
+	];
 }

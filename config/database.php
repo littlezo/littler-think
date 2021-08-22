@@ -18,7 +18,7 @@ use think\facade\Env;
 
 return [
 	// 默认使用的数据库连接配置
-	'default' => Env::get('database.driver', 'mysql'),
+	'default' => Env::get('database.driver', 'source'),
 
 	// 自定义时间查询规则
 	'time_query_rule' => [],
@@ -74,7 +74,7 @@ return [
 		],
 
 		// 更多的数据库配置信息
-        "source" => [
+		'source' => [
 			// 数据库类型
 			'type' => Env::get('database.type', 'mysql'),
 			// 服务器地址
@@ -113,6 +113,5 @@ return [
 			// 字段缓存路径
 			'schema_cache_path' => app()->getRuntimePath() . 'schema' . DIRECTORY_SEPARATOR,
 		],
-
 	],
 ];
