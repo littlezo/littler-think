@@ -38,34 +38,6 @@ class DetailService
 
 
 	/**
-	 * #title 布局获取
-	 * @param int $type form||table 页面布局类型
-	 * @return Detail
-	 */
-	public function layout(string $type): ?array
-	{
-		if (in_array($type, ['table', 'form'], true)) {
-		    switch ($type) {
-		        case 'table':
-		        $schema = $this->model->table_schema;
-		        $schema['formConfig'] = $this->model->search_schema;
-		        break;
-		    case 'form':
-		        $schema = $this->model->form_schema;
-		        break;
-		    default:
-		        $schema =null;
-		        break;
-		    }
-		    if ($schema) {
-		        return $schema;
-		    }
-		}
-		throw new Exception('类型错误', 9500901);
-	}
-
-
-	/**
 	 * #title 分页
 	 * @return Detail
 	 */

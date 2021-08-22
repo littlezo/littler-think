@@ -7,7 +7,7 @@
  * @version 1.0.0
  * @author @小小只^v^ <littlezov@qq.com>  littlezov@qq.com
  * @contact  littlezov@qq.com
- * @link     https://github.com/littlezo
+ * @see     https://github.com/littlezo
  * @document https://github.com/littlezo/wiki
  * @license  https://github.com/littlezo/MozillaPublicLicense/blob/main/LICENSE
  */
@@ -17,16 +17,19 @@ declare(strict_types=1);
 namespace little\member\model;
 
 use little\member\repository\model\UserAbstract;
+use littler\annotation\model\relation\HasOne;
 
 /**
- * 会员列表 模型
+ * 会员列表 模型.
+ * @HasOne("level",model="Level",foreignKey="level_id",localKey="level_id")
+ * @HasOne("spl",model="Spl",foreignKey="id",localKey="spl_id")
  */
 class User extends UserAbstract
 {
 	/**
 	 * @var array 关联预载
 	 */
-	public $with = [];
+	public $with = ['level', 'spl'];
 
 	/**
 	 * @var array 列表字段映射
@@ -329,6 +332,22 @@ class User extends UserAbstract
 				'align' => 'center',
 				'defaultHidden' => false,
 			],
+			[
+				'title' => '服务商等级',
+				'dataIndex' => 'spl_id',
+				'width' => 100,
+				'fixed' => false,
+				'align' => 'center',
+				'defaultHidden' => false,
+			],
+			[
+				'title' => '服务商状态',
+				'dataIndex' => 'spl_status',
+				'width' => 100,
+				'fixed' => false,
+				'align' => 'center',
+				'defaultHidden' => false,
+			],
 		],
 		'formConfig' => [],
 		'pagination' => true,
@@ -405,6 +424,8 @@ class User extends UserAbstract
 			['field' => 'update_time', 'label' => '更新时间', 'component' => 'Input', 'required' => true],
 			['field' => 'delete_time', 'label' => '删除时间', 'component' => 'Input', 'required' => true],
 			['field' => 'region_remark', 'label' => '代理审核备注', 'component' => 'Input', 'required' => false],
+			['field' => 'spl_id', 'label' => '服务商等级', 'component' => 'Input', 'required' => true],
+			['field' => 'spl_status', 'label' => '服务商状态', 'component' => 'Input', 'required' => true],
 		],
 	];
 
@@ -412,4 +433,6 @@ class User extends UserAbstract
 	 * @var array 排除展示字段
 	 */
 	public $without = ['password', 'passwd', 'pay_passwd', 'pay_password'];
+
+	protected $connection = 'source';
 }

@@ -17,15 +17,15 @@ declare(strict_types=1);
 namespace little\member\service\admin;
 
 use Exception;
-use little\member\model\Agent;
+use little\member\model\FlowingDays;
 use littler\Request;
 use littler\annotation\Inject;
 
-class AgentService
+class FlowingDaysService
 {
 	/**
 	 * @Inject()
-	 * @var Agent
+	 * @var FlowingDays
 	 */
 	private $model;
 
@@ -39,7 +39,7 @@ class AgentService
 
 	/**
 	 * #title 分页
-	 * @return Agent
+	 * @return FlowingDays
 	 */
 	public function paginate(): ?object
 	{
@@ -49,7 +49,7 @@ class AgentService
 
 	/**
 	 * #title 列表
-	 * @return Agent
+	 * @return FlowingDays
 	 */
 	public function list(): ?object
 	{
@@ -60,7 +60,7 @@ class AgentService
 	/**
 	 * #title 详情
 	 * @param int $id 数据主键
-	 * @return Agent
+	 * @return FlowingDays
 	 */
 	public function info(int $id): ?object
 	{

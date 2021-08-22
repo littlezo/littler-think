@@ -7,7 +7,7 @@
  * @version 1.0.0
  * @author @小小只^v^ <littlezov@qq.com>  littlezov@qq.com
  * @contact  littlezov@qq.com
- * @link     https://github.com/littlezo
+ * @see     https://github.com/littlezo
  * @document https://github.com/littlezo/wiki
  * @license  https://github.com/littlezo/MozillaPublicLicense/blob/main/LICENSE
  */
@@ -17,7 +17,6 @@ declare(strict_types=1);
 namespace little\order\repository\model;
 
 use littler\BaseModel as Model;
-use littler\annotation\Inject;
 use littler\traits\BaseOptionsTrait;
 use littler\traits\RewriteTrait;
 use think\model\concern\SoftDelete;
@@ -33,7 +32,7 @@ use think\model\concern\SoftDelete;
  * @property out_trade_no $string 支付流水号
  * @property out_trade_no_2 $string 支付流水号（多次支付）
  * @property delivery_code $string 整体提货编码
- * @property delivery_status $int 配送状态 1 待发货 2配送中  3已完成   4已退货
+ * @property delivery_status $int 配送状态 1 待发货 2配送中  3已完成   4已退货  5进行中
  * @property pay_type $int 支付方式 1微信 2 支付宝 3 余额
  * @property delivery_type $int 配送方式 1物流 2 到店
  * @property member_id $int 购买人uid
@@ -67,7 +66,7 @@ use think\model\concern\SoftDelete;
  * @property invoice_money $float 发票金额
  * @property pay_money $float 实付金额
  * @property create_time $int 创建时间
- * @property order_status $int 订单状态  1待发货  2已发货 3已完成 4退款中 5 已退款
+ * @property order_status $int 订单状态  1待发货  2已发货 3已完成 4退款中 5 已退款  6拼团进行中
  * @property pay_status $int 支付状态 1已支付
  * @property pay_time $int 订单支付时间
  * @property delivery_time $int 订单配送时间
@@ -101,6 +100,7 @@ use think\model\concern\SoftDelete;
  * @property goods_bv $float
  * @property order_status_action $string 订单操作
  * @property order_detail $string 订单详情
+ * @property goods_type $int 商品类型  1普通商品 2拼团商品
  */
 abstract class DetailAbstract extends Model
 {
@@ -109,116 +109,12 @@ abstract class DetailAbstract extends Model
 	use SoftDelete;
 
 	/**
-	 * @var string $name 表名
-	 */
-	protected $name = 'order_detail';
-
-	/**
-	 * @var string $pk 主键
+	 * @var string 主键
 	 */
 	public $pk = 'order_id';
 
 	/**
-	 * @var array $schema 字段信息
-	 */
-	protected $schema = [
-		'order_id' => 'int',
-		'order_no' => 'string',
-		'site_id' => 'int',
-		'order_name' => 'string',
-		'order_goods_ids' => 'string',
-		'order_from' => 'string',
-		'order_type' => 'int',
-		'out_trade_no' => 'string',
-		'out_trade_no_2' => 'string',
-		'delivery_code' => 'string',
-		'delivery_status' => 'int',
-		'pay_type' => 'int',
-		'delivery_type' => 'int',
-		'member_id' => 'int',
-		'name' => 'string',
-		'mobile' => 'string',
-		'logistics' => 'string',
-		'logistics_code' => 'string',
-		'logistics_number' => 'string',
-		'logistics_id' => 'int',
-		'province_id' => 'int',
-		'city_id' => 'int',
-		'district_id' => 'int',
-		'community_id' => 'int',
-		'address' => 'string',
-		'full_address' => 'string',
-		'mail_address' => 'string',
-		'longitude' => 'string',
-		'latitude' => 'string',
-		'buyer_message' => 'string',
-		'order_invoice_company' => 'string',
-		'order_invoice_type' => 'int',
-		'order_invoice_type_name' => 'string',
-		'order_invoice_trade_type' => 'int',
-		'goods_money' => 'float',
-		'order_money' => 'float',
-		'deduct_money' => 'float',
-		'cash_money' => 'float',
-		'balance_money' => 'float',
-		'delivery_money' => 'float',
-		'order_invoice_rate' => 'float',
-		'invoice_money' => 'float',
-		'pay_money' => 'float',
-		'create_time' => 'int',
-		'order_status' => 'int',
-		'pay_status' => 'int',
-		'pay_time' => 'int',
-		'delivery_time' => 'int',
-		'sign_time' => 'int',
-		'finish_time' => 'int',
-		'close_time' => 'int',
-		'is_lock' => 'int',
-		'is_evaluate' => 'int',
-		'delete_time' => 'int',
-		'is_enable_refund' => 'int',
-		'remark' => 'string',
-		'goods_num' => 'int',
-		'is_settlement' => 'int',
-		'promotion_id' => 'int',
-		'promotion_type' => 'string',
-		'promotion_details' => 'string',
-		'evaluate_status' => 'int',
-		'shop_money' => 'float',
-		'platform_money' => 'float',
-		'is_invoice' => 'int',
-		'invoice_type' => 'int',
-		'invoice_title' => 'string',
-		'taxpayer_number' => 'string',
-		'invoice_rate' => 'float',
-		'invoice_content' => 'string',
-		'invoice_delivery_money' => 'float',
-		'invoice_full_address' => 'string',
-		'is_tax_invoice' => 'int',
-		'invoice_email' => 'string',
-		'invoice_title_type' => 'int',
-		'goods_bv' => 'float',
-		'order_status_action' => 'string',
-		'order_detail' => 'string',
-	];
-
-	/**
-	 * @var array $json JSON类型字段
-	 */
-	protected $json = ['order_goods_ids', 'promotion_details', 'order_status_action', 'order_detail'];
-
-	/**
-	 * @var array $json JSON字段自动转数组
-	 */
-	protected $jsonAssoc = true;
-
-	/**
-	 * @var array $updateTime 关闭更新时间自动写入
-	 */
-	protected $updateTime = false;
-
-	/**
-	 * @var array $field 允许写入字段
+	 * @var array 允许写入字段
 	 */
 	public $field = [
 		'order_id',
@@ -299,5 +195,117 @@ abstract class DetailAbstract extends Model
 		'goods_bv',
 		'order_status_action',
 		'order_detail',
+		'goods_type',
 	];
+
+	/**
+	 * @var string 表名
+	 */
+	protected $name = 'order_detail';
+
+	/**
+	 * @var array 字段信息
+	 */
+	protected $schema = [
+		'order_id' => 'int',
+		'order_no' => 'string',
+		'site_id' => 'int',
+		'order_name' => 'string',
+		'order_goods_ids' => 'string',
+		'order_from' => 'string',
+		'order_type' => 'int',
+		'out_trade_no' => 'string',
+		'out_trade_no_2' => 'string',
+		'delivery_code' => 'string',
+		'delivery_status' => 'int',
+		'pay_type' => 'int',
+		'delivery_type' => 'int',
+		'member_id' => 'int',
+		'name' => 'string',
+		'mobile' => 'string',
+		'logistics' => 'string',
+		'logistics_code' => 'string',
+		'logistics_number' => 'string',
+		'logistics_id' => 'int',
+		'province_id' => 'int',
+		'city_id' => 'int',
+		'district_id' => 'int',
+		'community_id' => 'int',
+		'address' => 'string',
+		'full_address' => 'string',
+		'mail_address' => 'string',
+		'longitude' => 'string',
+		'latitude' => 'string',
+		'buyer_message' => 'string',
+		'order_invoice_company' => 'string',
+		'order_invoice_type' => 'int',
+		'order_invoice_type_name' => 'string',
+		'order_invoice_trade_type' => 'int',
+		'goods_money' => 'float',
+		'order_money' => 'float',
+		'deduct_money' => 'float',
+		'cash_money' => 'float',
+		'balance_money' => 'float',
+		'delivery_money' => 'float',
+		'order_invoice_rate' => 'float',
+		'invoice_money' => 'float',
+		'pay_money' => 'float',
+		'create_time' => 'int',
+		'order_status' => 'int',
+		'pay_status' => 'int',
+		'pay_time' => 'int',
+		'delivery_time' => 'int',
+		'sign_time' => 'int',
+		'finish_time' => 'int',
+		'close_time' => 'int',
+		'is_lock' => 'int',
+		'is_evaluate' => 'int',
+		'delete_time' => 'int',
+		'is_enable_refund' => 'int',
+		'remark' => 'string',
+		'goods_num' => 'int',
+		'is_settlement' => 'int',
+		'promotion_id' => 'int',
+		'promotion_type' => 'string',
+		'promotion_details' => 'string',
+		'evaluate_status' => 'int',
+		'shop_money' => 'float',
+		'platform_money' => 'float',
+		'is_invoice' => 'int',
+		'invoice_type' => 'int',
+		'invoice_title' => 'string',
+		'taxpayer_number' => 'string',
+		'invoice_rate' => 'float',
+		'invoice_content' => 'string',
+		'invoice_delivery_money' => 'float',
+		'invoice_full_address' => 'string',
+		'is_tax_invoice' => 'int',
+		'invoice_email' => 'string',
+		'invoice_title_type' => 'int',
+		'goods_bv' => 'float',
+		'order_status_action' => 'string',
+		'order_detail' => 'string',
+		'goods_type' => 'int',
+	];
+
+	/**
+	 * @var array JSON类型字段
+	 */
+	protected $json = ['order_goods_ids', 'promotion_details', 'order_status_action', 'order_detail'];
+
+	// 设置JSON字段的类型
+	protected $jsonType = [
+		'order_detail->level'	=>	'int',
+		'order_detail->is_spl'	=>	'int',
+	];
+
+	/**
+	 * @var array JSON字段自动转数组
+	 */
+	protected $jsonAssoc = true;
+
+	/**
+	 * @var array 关闭更新时间自动写入
+	 */
+	protected $updateTime = false;
 }

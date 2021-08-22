@@ -14,18 +14,18 @@
 
 declare(strict_types=1);
 
-namespace little\member\service\admin;
+namespace little\order\service\admin;
 
 use Exception;
-use little\member\model\Agent;
+use little\order\model\Settlement;
 use littler\Request;
 use littler\annotation\Inject;
 
-class AgentService
+class SettlementService
 {
 	/**
 	 * @Inject()
-	 * @var Agent
+	 * @var Settlement
 	 */
 	private $model;
 
@@ -39,7 +39,7 @@ class AgentService
 
 	/**
 	 * #title 分页
-	 * @return Agent
+	 * @return Settlement
 	 */
 	public function paginate(): ?object
 	{
@@ -49,7 +49,7 @@ class AgentService
 
 	/**
 	 * #title 列表
-	 * @return Agent
+	 * @return Settlement
 	 */
 	public function list(): ?object
 	{
@@ -60,7 +60,7 @@ class AgentService
 	/**
 	 * #title 详情
 	 * @param int $id 数据主键
-	 * @return Agent
+	 * @return Settlement
 	 */
 	public function info(int $id): ?object
 	{

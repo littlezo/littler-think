@@ -17,15 +17,15 @@ declare(strict_types=1);
 namespace little\member\service\admin;
 
 use Exception;
-use little\member\model\Agent;
+use little\member\model\Flowing;
 use littler\Request;
 use littler\annotation\Inject;
 
-class AgentService
+class FlowingService
 {
 	/**
 	 * @Inject()
-	 * @var Agent
+	 * @var Flowing
 	 */
 	private $model;
 
@@ -38,8 +38,36 @@ class AgentService
 
 
 	/**
+	 * #title 布局获取
+	 * @param int $type form||table 页面布局类型
+	 * @return Flowing
+	 */
+	public function layout(string $type): ?array
+	{
+		if (in_array($type, ['table', 'form'], true)) {
+		    switch ($type) {
+		        case 'table':
+		        $schema = $this->model->table_schema;
+		        $schema['formConfig'] = $this->model->search_schema;
+		        break;
+		    case 'form':
+		        $schema = $this->model->form_schema;
+		        break;
+		    default:
+		        $schema =null;
+		        break;
+		    }
+		    if ($schema) {
+		        return $schema;
+		    }
+		}
+		throw new Exception('类型错误', 9500901);
+	}
+
+
+	/**
 	 * #title 分页
-	 * @return Agent
+	 * @return Flowing
 	 */
 	public function paginate(): ?object
 	{
@@ -49,7 +77,7 @@ class AgentService
 
 	/**
 	 * #title 列表
-	 * @return Agent
+	 * @return Flowing
 	 */
 	public function list(): ?object
 	{
@@ -60,7 +88,7 @@ class AgentService
 	/**
 	 * #title 详情
 	 * @param int $id 数据主键
-	 * @return Agent
+	 * @return Flowing
 	 */
 	public function info(int $id): ?object
 	{

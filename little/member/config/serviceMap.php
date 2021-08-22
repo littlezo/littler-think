@@ -8,5 +8,9 @@ return [
 	'service.admin.member.BankService' => 'little\member\service\admin\BankService',
 	'service.admin.member.LevelService' => 'little\member\service\admin\LevelService',
 	'service.admin.member.RechargesService' => 'little\member\service\admin\RechargesService',
+	'service.admin.member.SplService' => 'little\member\service\admin\SplService',
 	'service.admin.member.UserService' => 'little\member\service\admin\UserService',
+	'service.admin.member.FlowingService' => 'little\member\service\admin\FlowingService',
+	'service.admin.member.FlowingDaysService' => 'little\member\service\admin\FlowingDaysService',
+	'service.admin.member.FlowingLockService' => 'little\member\service\admin\FlowingLockService',
 ];

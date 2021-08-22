@@ -58,7 +58,7 @@ class Balance extends BalanceAbstract
 				'defaultHidden' => false,
 			],
 			[
-				'title' => '交易类型: 1充值，2提现，3转账，4购物，5销售利润，6代理收益，7货款结算  8商家保证金 9区域代理申请  10贡献值记录',
+				'title' => '交易类型: 1充值，2提现，3转账，4购物，5销售利润，6代理收益，7货款结算  8商家保证金 9区域代理申请  10贡献值记录 99后台充值',
 				'dataIndex' => 'trade_type',
 				'width' => 100,
 				'fixed' => false,
@@ -303,11 +303,11 @@ class Balance extends BalanceAbstract
 		'labelWidth' => 120,
 		'baseColProps' => ['xxl' => 6, 'xl' => 8, 'lg' => 12, 'md' => 34],
 		'schemas' => [
-			['field' => 'trade_no', 'label' => '交易号', 'component' => 'Input', 'required' => true],
+			['field' => 'trade_no', 'label' => '交易号', 'component' => 'Input', 'required' => false],
 			['field' => 'member_id', 'label' => '会员id', 'component' => 'Input', 'required' => true],
 			[
 				'field' => 'trade_type',
-				'label' => '交易类型: 1充值，2提现，3转账，4购物，5销售利润，6代理收益，7货款结算  8商家保证金 9区域代理申请  10贡献值记录',
+				'label' => '交易类型: 1充值，2提现，3转账，4购物，5销售利润，6代理收益，7货款结算  8商家保证金 9区域代理申请  10贡献值记录 99后台充值',
 				'component' => 'Input',
 				'required' => true,
 			],

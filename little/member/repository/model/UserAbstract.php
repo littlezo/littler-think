@@ -61,6 +61,8 @@ use think\model\concern\SoftDelete;
  * @property update_time $int 更新时间
  * @property delete_time $int 删除时间
  * @property region_remark $string 代理审核备注
+ * @property spl_id $int 服务商等级
+ * @property spl_status $int 服务商状态
  */
 abstract class UserAbstract extends Model
 {
@@ -120,6 +122,8 @@ abstract class UserAbstract extends Model
 		'update_time' => 'int',
 		'delete_time' => 'int',
 		'region_remark' => 'string',
+		'spl_id' => 'int',
+		'spl_status' => 'int',
 	];
 
 	/**
@@ -169,5 +173,7 @@ abstract class UserAbstract extends Model
 		'update_time',
 		'delete_time',
 		'region_remark',
+		'spl_id',
+		'spl_status',
 	];
 }

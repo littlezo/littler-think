@@ -17,15 +17,15 @@ declare(strict_types=1);
 namespace little\member\service\admin;
 
 use Exception;
-use little\member\model\Agent;
+use little\member\model\FlowingLock;
 use littler\Request;
 use littler\annotation\Inject;
 
-class AgentService
+class FlowingLockService
 {
 	/**
 	 * @Inject()
-	 * @var Agent
+	 * @var FlowingLock
 	 */
 	private $model;
 
@@ -39,7 +39,7 @@ class AgentService
 
 	/**
 	 * #title 分页
-	 * @return Agent
+	 * @return FlowingLock
 	 */
 	public function paginate(): ?object
 	{
@@ -49,7 +49,7 @@ class AgentService
 
 	/**
 	 * #title 列表
-	 * @return Agent
+	 * @return FlowingLock
 	 */
 	public function list(): ?object
 	{
@@ -60,7 +60,7 @@ class AgentService
 	/**
 	 * #title 详情
 	 * @param int $id 数据主键
-	 * @return Agent
+	 * @return FlowingLock
 	 */
 	public function info(int $id): ?object
 	{

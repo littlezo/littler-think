@@ -25,7 +25,7 @@ use littler\traits\RewriteTrait;
  * @property id $int
  * @property trade_no $string 交易号
  * @property member_id $int 会员id
- * @property trade_type $int 交易类型: 1充值，2提现，3转账，4购物，5销售利润，6代理收益，7货款结算  8商家保证金 9区域代理申请  10贡献值记录
+ * @property trade_type $int 交易类型: 1充值，2提现，3转账，4购物，5销售利润，6代理收益，7货款结算  8商家保证金 9区域代理申请  10贡献值记录 99后台充值
  * @property to_member_id $int 目标用户
  * @property status $int 状态0待审核1.待到账2已到账 -1已拒绝
  * @property settlement_status $int 结算状态：0 未结算  1已结算 默认:1

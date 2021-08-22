@@ -7,7 +7,7 @@
  * @version 1.0.0
  * @author @小小只^v^ <littlezov@qq.com>  littlezov@qq.com
  * @contact  littlezov@qq.com
- * @link     https://github.com/littlezo
+ * @see     https://github.com/littlezo
  * @document https://github.com/littlezo/wiki
  * @license  https://github.com/littlezo/MozillaPublicLicense/blob/main/LICENSE
  */
@@ -17,7 +17,6 @@ declare(strict_types=1);
 namespace little\member\repository\model;
 
 use littler\BaseModel as Model;
-use littler\annotation\Inject;
 use littler\traits\BaseOptionsTrait;
 use littler\traits\RewriteTrait;
 
@@ -34,7 +33,8 @@ use littler\traits\RewriteTrait;
  * @property is_region $int 是否允许申请区域代理
  * @property is_region_settle $int 开启代理佣金
  * @property is_shop $int 是否允许申请商家
- * @property is_shop_settle $int  开启商家佣金
+ * @property is_spl $int 是否允许申请商家
+ * @property is_shop_settle $int 开启商家佣金
  * @property is_seller $int 是否出券 1出券
  * @property is_hand $int 是否立即结算
  * @property settle_ratio $int 分佣比例
@@ -49,58 +49,12 @@ abstract class LevelAbstract extends Model
 	use RewriteTrait;
 
 	/**
-	 * @var string $name 表名
-	 */
-	protected $name = 'member_level';
-
-	/**
-	 * @var string $pk 主键
+	 * @var string 主键
 	 */
 	public $pk = 'level_id';
 
 	/**
-	 * @var array $schema 字段信息
-	 */
-	protected $schema = [
-		'level_id' => 'int',
-		'level_name' => 'string',
-		'sort' => 'int',
-		'level_money' => 'float',
-		'remark' => 'string',
-		'is_default' => 'int',
-		'is_diff' => 'int',
-		'invite_reward' => 'float',
-		'buy_ratio' => 'float',
-		'is_region' => 'int',
-		'is_region_settle' => 'int',
-		'is_shop' => 'int',
-		'is_shop_settle' => 'int',
-		'is_seller' => 'int',
-		'is_hand' => 'int',
-		'settle_ratio' => 'int',
-		'p_to_p' => 'float',
-		's_to_b' => 'float',
-		'b_to_s' => 'float',
-		'status' => 'int',
-	];
-
-	/**
-	 * @var array $json JSON类型字段
-	 */
-	protected $json = [];
-
-	/**
-	 * @var array $createTime 关闭创建时间自动写入
-	 */
-	protected $createTime = false;
-
-	/**
-	 * @var array $updateTime 关闭更新时间自动写入
-	 */
-	protected $updateTime = false;
-
-	/**
-	 * @var array $field 允许写入字段
+	 * @var array 允许写入字段
 	 */
 	public $field = [
 		'level_id',
@@ -123,5 +77,53 @@ abstract class LevelAbstract extends Model
 		's_to_b',
 		'b_to_s',
 		'status',
+		'is_spl',
 	];
+
+	/**
+	 * @var string 表名
+	 */
+	protected $name = 'member_level';
+
+	/**
+	 * @var array 字段信息
+	 */
+	protected $schema = [
+		'level_id' => 'int',
+		'level_name' => 'string',
+		'sort' => 'int',
+		'level_money' => 'float',
+		'remark' => 'string',
+		'is_default' => 'int',
+		'is_diff' => 'int',
+		'invite_reward' => 'float',
+		'buy_ratio' => 'float',
+		'is_region' => 'int',
+		'is_region_settle' => 'int',
+		'is_shop' => 'int',
+		'is_shop_settle' => 'int',
+		'is_seller' => 'int',
+		'is_hand' => 'int',
+		'settle_ratio' => 'int',
+		'p_to_p' => 'float',
+		's_to_b' => 'float',
+		'b_to_s' => 'float',
+		'status' => 'int',
+		'is_spl' => 'int',
+	];
+
+	/**
+	 * @var array JSON类型字段
+	 */
+	protected $json = [];
+
+	/**
+	 * @var array 关闭创建时间自动写入
+	 */
+	protected $createTime = false;
+
+	/**
+	 * @var array 关闭更新时间自动写入
+	 */
+	protected $updateTime = false;
 }

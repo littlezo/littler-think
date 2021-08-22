@@ -7,7 +7,7 @@
  * @version 1.0.0
  * @author @小小只^v^ <littlezov@qq.com>  littlezov@qq.com
  * @contact  littlezov@qq.com
- * @link     https://github.com/littlezo
+ * @see     https://github.com/littlezo
  * @document https://github.com/littlezo/wiki
  * @license  https://github.com/littlezo/MozillaPublicLicense/blob/main/LICENSE
  */
@@ -19,7 +19,7 @@ namespace little\order\model;
 use little\order\repository\model\DetailAbstract;
 
 /**
- * 订单详情 模型
+ * 订单详情 模型.
  */
 class Detail extends DetailAbstract
 {
@@ -114,7 +114,7 @@ class Detail extends DetailAbstract
 				'defaultHidden' => false,
 			],
 			[
-				'title' => '配送状态 1 待发货 2配送中  3已完成   4已退货 ',
+				'title' => '配送状态 1 待发货 2配送中  3已完成   4已退货  5进行中',
 				'dataIndex' => 'delivery_status',
 				'width' => 100,
 				'fixed' => false,
@@ -386,7 +386,7 @@ class Detail extends DetailAbstract
 				'defaultHidden' => false,
 			],
 			[
-				'title' => '订单状态  1待发货  2已发货 3已完成 4退款中 5 已退款 ',
+				'title' => '订单状态  1待发货  2已发货 3已完成 4退款中 5 已退款  6拼团进行中',
 				'dataIndex' => 'order_status',
 				'width' => 100,
 				'fixed' => false,
@@ -657,6 +657,14 @@ class Detail extends DetailAbstract
 				'align' => 'center',
 				'defaultHidden' => true,
 			],
+			[
+				'title' => '商品类型  1普通商品 2拼团商品',
+				'dataIndex' => 'goods_type',
+				'width' => 100,
+				'fixed' => false,
+				'align' => 'center',
+				'defaultHidden' => false,
+			],
 		],
 		'formConfig' => [],
 		'pagination' => true,
@@ -716,7 +724,7 @@ class Detail extends DetailAbstract
 			['field' => 'delivery_code', 'label' => '整体提货编码', 'component' => 'Input', 'required' => true],
 			[
 				'field' => 'delivery_status',
-				'label' => '配送状态 1 待发货 2配送中  3已完成   4已退货 ',
+				'label' => '配送状态 1 待发货 2配送中  3已完成   4已退货  5进行中',
 				'component' => 'Input',
 				'required' => true,
 			],
@@ -780,7 +788,7 @@ class Detail extends DetailAbstract
 			['field' => 'create_time', 'label' => '创建时间', 'component' => 'Input', 'required' => true],
 			[
 				'field' => 'order_status',
-				'label' => '订单状态  1待发货  2已发货 3已完成 4退款中 5 已退款 ',
+				'label' => '订单状态  1待发货  2已发货 3已完成 4退款中 5 已退款  6拼团进行中',
 				'component' => 'Input',
 				'required' => true,
 			],
@@ -862,6 +870,12 @@ class Detail extends DetailAbstract
 			['field' => 'goods_bv', 'label' => 'GoodsBv', 'component' => 'Input', 'required' => false],
 			['field' => 'order_status_action', 'label' => '订单操作', 'component' => 'Input', 'required' => false],
 			['field' => 'order_detail', 'label' => '订单详情', 'component' => 'Input', 'required' => false],
+			[
+				'field' => 'goods_type',
+				'label' => '商品类型  1普通商品 2拼团商品',
+				'component' => 'Input',
+				'required' => false,
+			],
 		],
 	];
 
@@ -869,4 +883,12 @@ class Detail extends DetailAbstract
 	 * @var array 排除展示字段
 	 */
 	public $without = ['password', 'passwd', 'pay_passwd', 'pay_password'];
+
+	protected $connection = 'source';
+
+	// 设置JSON字段的类型
+	protected $jsonType = [
+		'order_detail->level'	=>	'int',
+		'order_detail->is_spl'	=>	'int',
+	];
 }

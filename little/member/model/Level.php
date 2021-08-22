@@ -23,6 +23,7 @@ use little\member\repository\model\LevelAbstract;
  */
 class Level extends LevelAbstract
 {
+    protected $connection = 'source';
 	/**
 	 * @var array 关联预载
 	 */
