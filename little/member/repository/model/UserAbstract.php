@@ -27,42 +27,15 @@ use think\model\concern\SoftDelete;
  * @property parent $int 推荐人
  * @property username $string 用户名
  * @property nickname $string 用户昵称
+ * @property spl_id $int 服务商等级
+ * @property level_id $int 用户等级
  * @property mobile $string 手机号
  * @property email $string 邮箱
- * @property password $string 用户密码
- * @property pay_password $string 交易密码
  * @property status $int 用户状态 1启用
- * @property avatar $string 用户头像
- * @property level_id $int 用户等级
- * @property wx_openid $string 微信用户openid
- * @property wx_account $string 微信号
- * @property weapp_openid $string 微信小程序openid
- * @property wx_unionid $string 微信unionid
- * @property ali_openid $string 支付宝账户id
- * @property realname $string 真实姓名
- * @property sex $int 性别 0保密 1男 2女
- * @property location $string 地址
- * @property birthday $int 出生日期
- * @property growth $float 贡献值
- * @property balance_money $float 现金余额
- * @property balance_cash $float 现金卷余额
- * @property balance_deduct $float 抵扣券余额
- * @property balance_withdraw $float 已提现余额
- * @property balance_withdraw_apply $float 提现中余额
- * @property is_auth $int 是否认证
- * @property is_region $int 是否区域代理
- * @property region_level $int 区域代理等级
- * @property invite_region $int 代理区域
- * @property invite_name $string 代理区域名称
- * @property region_verify $int 代理是否审核 -9未申请 0待审核 1审核通过 2审核驳回
- * @property region_desc $string 代理申请备注
- * @property invite_code $string 邀请码
+ * @property spl_status $int 服务商状态
  * @property create_time $int 注册时间
  * @property update_time $int 更新时间
  * @property delete_time $int 删除时间
- * @property region_remark $string 代理审核备注
- * @property spl_id $int 服务商等级
- * @property spl_status $int 服务商状态
  */
 abstract class UserAbstract extends Model
 {
@@ -88,42 +61,15 @@ abstract class UserAbstract extends Model
 		'parent' => 'int',
 		'username' => 'string',
 		'nickname' => 'string',
+		'spl_id' => 'int',
+		'level_id' => 'int',
 		'mobile' => 'string',
 		'email' => 'string',
-		'password' => 'string',
-		'pay_password' => 'string',
 		'status' => 'int',
-		'avatar' => 'string',
-		'level_id' => 'int',
-		'wx_openid' => 'string',
-		'wx_account' => 'string',
-		'weapp_openid' => 'string',
-		'wx_unionid' => 'string',
-		'ali_openid' => 'string',
-		'realname' => 'string',
-		'sex' => 'int',
-		'location' => 'string',
-		'birthday' => 'int',
-		'growth' => 'float',
-		'balance_money' => 'float',
-		'balance_cash' => 'float',
-		'balance_deduct' => 'float',
-		'balance_withdraw' => 'float',
-		'balance_withdraw_apply' => 'float',
-		'is_auth' => 'int',
-		'is_region' => 'int',
-		'region_level' => 'int',
-		'invite_region' => 'int',
-		'invite_name' => 'string',
-		'region_verify' => 'int',
-		'region_desc' => 'string',
-		'invite_code' => 'string',
+		'spl_status' => 'int',
 		'create_time' => 'int',
 		'update_time' => 'int',
 		'delete_time' => 'int',
-		'region_remark' => 'string',
-		'spl_id' => 'int',
-		'spl_status' => 'int',
 	];
 
 	/**
@@ -139,41 +85,14 @@ abstract class UserAbstract extends Model
 		'parent',
 		'username',
 		'nickname',
+		'spl_id',
+		'level_id',
 		'mobile',
 		'email',
-		'password',
-		'pay_password',
 		'status',
-		'avatar',
-		'level_id',
-		'wx_openid',
-		'wx_account',
-		'weapp_openid',
-		'wx_unionid',
-		'ali_openid',
-		'realname',
-		'sex',
-		'location',
-		'birthday',
-		'growth',
-		'balance_money',
-		'balance_cash',
-		'balance_deduct',
-		'balance_withdraw',
-		'balance_withdraw_apply',
-		'is_auth',
-		'is_region',
-		'region_level',
-		'invite_region',
-		'invite_name',
-		'region_verify',
-		'region_desc',
-		'invite_code',
+		'spl_status',
 		'create_time',
 		'update_time',
 		'delete_time',
-		'region_remark',
-		'spl_id',
-		'spl_status',
 	];
 }
