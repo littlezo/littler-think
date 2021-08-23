@@ -48,6 +48,33 @@ services:
     networks:
       appnetwork:
         ipv4_address: 10.21.0.90
+  canal:
+    container_name: canal
+    image: canal/canal-server:latest
+    env_file: .env
+    environment:
+      - canal.auto.scan=false
+      - canal.destinations=hphk
+      - canal.instance.detecting.enable=true
+      - canal.instance.master.address:10.21.0.80:3306
+      - canal.instance.dbUsername=canal
+      - canal.instance.dbPassword=canal
+      - canal.instance.connectionCharset=UTF-8
+      - canal.instance.tsdb.enable=true
+      - canal.instance.gtidon=false
+    # ports:
+    #   - "11110:11110"
+    #   - "11111:11111"
+    #   - "11112:11112"
+    #   - "9100:9100"
+    network_mode: host
+    volumes:
+      # - ./data/redis:/data
+      - "/usr/share/zoneinfo/Asia/Shanghai:/etc/localtime:ro"
+    restart: always
+    # networks:
+    #   appnetwork:
+    #     ipv4_address: 10.21.0.100
 networks:
   appnetwork:
     ipam:

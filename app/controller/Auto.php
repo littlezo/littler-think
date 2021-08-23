@@ -22,6 +22,7 @@ use littler\annotation\docs\ApiDocs;
 use littler\annotation\Inject;
 use littler\annotation\Route;
 use littler\annotation\route\Group;
+use littler\facade\Http;
 use littler\Request;
 use littler\Response;
 
@@ -32,7 +33,7 @@ use littler\Response;
 /**
  * #title test
  * Class Auto.
- * @Group("Auto")
+ * @Group("auto")
  * @ApiDocs({
  *     "title": "自动结算",
  *     "version": "1.0.0"
@@ -53,7 +54,7 @@ class Auto extends Request
 
 	/**
 	 * #title 非分页列表.
-	 * @Route("/", method="GET", ignore_verify=true)
+	 * @Route("/sub", method="GET", ignore_verify=true)
 	 * @return \think\Response
 	 *
 	 * @ApiDocs({
@@ -87,7 +88,55 @@ class Auto extends Request
 		// if (! $run) {
 		// 	exit('process abort');
 		// }
+		// $response = Http::get('http://localhost:9580/auto/upgrade/0');
+
+		// return Response::success($response->json());
 		return Response::success($this->settlement->auto());
+		// sleep($interval); // 等待5分钟
+		// } while (true);
+
+		// return true;
+	}
+
+	/**
+	 * #title 非分页列表.
+	 * @Route("/upgrade/:id", method="GET", ignore_verify=true)
+	 * @return \think\Response
+	 *
+	 * @ApiDocs({
+	 *  "title": "测试",
+	 *  "version": "v1.0.0",
+	 *  "name": "upgrade",
+	 *  "group": "auto",
+	 *      "success": {
+	 *          "code": 200,
+	 *          "message": "success",
+	 *         "data": {},
+	 *      },
+	 *      "error": {
+	 *          "code": 500,
+	 *          "message": "error",
+	 *      },
+	 *      "param": {
+	 *         "page": {
+	 *            "required": true,
+	 *            "desc": "页数",
+	 *            "type": "int",
+	 *         }
+	 *      },
+	 *  })
+	 */
+	public function upgrade($id)
+	{
+		// $interval=60*30;
+		// do {
+		// $run = include 'config.php';
+		// if (! $run) {
+		// 	exit('process abort');
+		// }
+		if ($id) {
+			return Response::success($this->settlement->upgrade((int) $id));
+		}
 		// sleep($interval); // 等待5分钟
 		// } while (true);
 
