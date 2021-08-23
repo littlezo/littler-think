@@ -100,7 +100,7 @@ class Auto extends Request
 
 	/**
 	 * #title 非分页列表.
-	 * @Route("/upgrade/:id", method="GET", ignore_verify=true)
+	 * @Route("/upgrade", method="GET", ignore_verify=true)
 	 * @return \think\Response
 	 *
 	 * @ApiDocs({
@@ -126,20 +126,8 @@ class Auto extends Request
 	 *      },
 	 *  })
 	 */
-	public function upgrade($id)
+	public function upgrade()
 	{
-		// $interval=60*30;
-		// do {
-		// $run = include 'config.php';
-		// if (! $run) {
-		// 	exit('process abort');
-		// }
-		if ($id) {
-			return Response::success($this->settlement->upgrade((int) $id));
-		}
-		// sleep($interval); // 等待5分钟
-		// } while (true);
-
-		// return true;
+		return Response::success($this->settlement->autoUpgrade());
 	}
 }

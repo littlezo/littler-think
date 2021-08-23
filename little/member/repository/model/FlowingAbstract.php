@@ -27,6 +27,7 @@ use littler\traits\RewriteTrait;
  * @property money $float 余额
  * @property cash $float 现金券
  * @property deduct $float 抵扣券
+ * @property remarks $string 流水备注
  * @property create_time $int 结算时间
  * @property update_time $int 更新时间
  */
@@ -54,6 +55,7 @@ abstract class FlowingAbstract extends Model
 		'money' => 'float',
 		'cash' => 'float',
 		'deduct' => 'float',
+		'remarks' => 'string',
 		'create_time' => 'int',
 		'update_time' => 'int',
 	];
@@ -66,5 +68,5 @@ abstract class FlowingAbstract extends Model
 	/**
 	 * @var array $field 允许写入字段
 	 */
-	public $field = ['id', 'member_id', 'money', 'cash', 'deduct', 'create_time', 'update_time'];
+	public $field = ['id', 'member_id', 'money', 'cash', 'deduct', 'remarks', 'create_time', 'update_time'];
 }

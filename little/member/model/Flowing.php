@@ -76,6 +76,14 @@ class Flowing extends FlowingAbstract
 				'defaultHidden' => false,
 			],
 			[
+				'title' => '流水备注',
+				'dataIndex' => 'remarks',
+				'width' => 180,
+				'fixed' => false,
+				'align' => 'center',
+				'defaultHidden' => false,
+			],
+			[
 				'title' => '结算时间',
 				'dataIndex' => 'create_time',
 				'width' => 120,
@@ -133,6 +141,7 @@ class Flowing extends FlowingAbstract
 			['field' => 'money', 'label' => '余额', 'component' => 'Input', 'required' => true],
 			['field' => 'cash', 'label' => '现金券', 'component' => 'Input', 'required' => true],
 			['field' => 'deduct', 'label' => '抵扣券', 'component' => 'Input', 'required' => true],
+			['field' => 'remarks', 'label' => '流水备注', 'component' => 'Input', 'required' => true],
 			['field' => 'create_time', 'label' => '结算时间', 'component' => 'Input', 'required' => true],
 			['field' => 'update_time', 'label' => '更新时间', 'component' => 'Input', 'required' => true],
 		],

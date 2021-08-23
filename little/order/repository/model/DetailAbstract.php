@@ -40,6 +40,7 @@ use littler\traits\RewriteTrait;
  * @property pay_time $int 订单支付时间
  * @property is_lock $int 是否锁定订单（针对维权，锁定不可操作）
  * @property order_detail $string 订单详情
+ * @property is_spl $int 服务商锁
  */
 abstract class DetailAbstract extends Model
 {
@@ -78,6 +79,7 @@ abstract class DetailAbstract extends Model
 		'pay_time' => 'int',
 		'is_lock' => 'int',
 		'order_detail' => 'string',
+		'is_spl' => 'int',
 	];
 
 	/**
@@ -117,5 +119,6 @@ abstract class DetailAbstract extends Model
 		'pay_time',
 		'is_lock',
 		'order_detail',
+		'is_spl',
 	];
 }

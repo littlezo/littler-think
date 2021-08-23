@@ -28,6 +28,7 @@ services:
     volumes:
       - ./data/mysql:/var/lib/mysql
       - "/usr/share/zoneinfo/Asia/Shanghai:/etc/localtime:ro"
+      - "./my.cnf:/etc/mysql/my.cnf:ro"
     ports:
       - "53306:3306"
     restart: always
