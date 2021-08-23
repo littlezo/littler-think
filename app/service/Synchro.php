@@ -39,14 +39,15 @@ class Synchro
 	public function syncUser()
 	{
 		$last_id = $this->member->order('id', 'desc')->value('id');
-		// dd($this->member->field);
-		$original = User::connect('source')->order('id', 'asc')->field($this->member->field)->select()->toArray();
-		// $save_list = [];
-		// return $original;
+		$original = User::connect('source')->where('id', '>', $last_id)->order('id', 'asc')->field($this->member->field)->select()->toArray();
+		$save_list = [];
 		foreach ($original as $item) {
 			// dd($item);
-
-			$save_list[] = (new User())->save($item);
+			if ($this->member->find($item['id'])) {
+				$save_list[] = User::create($item);
+			} else {
+				$save_list[] = User::update($item['id'], $item, ['id', 'parent', 'username', 'nickname', 'mobile', 'email', 'status', 'create_time', 'delete_time']);
+			}
 		}
 		// return $this->member->allowField([
 		// 		'id', 'parent', 'username', 'nickname', 'spl_id', 'level_id', 'mobile', 'email', 'status', 'create_time', 'delete_time',

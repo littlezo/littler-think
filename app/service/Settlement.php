@@ -114,72 +114,48 @@ class Settlement
 	 */
 	public function auto()
 	{
-		// return $this->upgrade(1); ->where('id', '<=', 60)
 		$t1 = microtime(true);
 
-		// foreach ($list = $this->member->order('id', 'desc')->column('id') as $item) {
-		// 	// $upgrade[] = $item;
-		// 	// return $item;
-		// 	$upgrade[] = [$item => $this->upgrade($item)];
-		// }
-
-		// return $upgrade;
-		// 配置
-		$config = $this->config->getConfig();
 		// 已结算订单
-		// $locks = $this->lock->column('order_id');
-		// 待结算订单 ['order_id', 'not in', $locks] ['member_id', '<=', 60]]
 		$orders = $this->order->order('order_id', 'desc')
-			->where([['order_detail->is_spl', '=', 1], ['member_id', '<=', 60]])
+			->where([['order_detail->is_spl', '=', 1], ['is_lock', '=', 0]])
 			->field('order_id,member_id,order_type,pay_money,order_detail')
 			->select();
 		$t2 = microtime(true);
-		$res = $this->lvDiff($orders);
-		// echo '耗时' . round($t2-$t1, 3) . '秒';
-		return $res;
-		// return $this->upgrade(88);
-		// 升级逻辑
-		$upgrade = [];
-		$this->member->order('id', 'desc')->chunk(100, function ($items) {
-			foreach ($items as $item) {
-				var_dump($this->upgrade($item->id));
-				// return $item;
-				// $upgrade[]=$item;
-			}
-		});
-		return $upgrade;
-		// return count($this->member->column('id'));
-		foreach ($this->member->order('id', 'desc')->column('id') as $item) {
-			// $upgrade[] = $item;
-			$upgrade[] = [$item => $this->upgrade($item)];
-		}
-		return [
-			'升级人数' => count($upgrade),
-			'升级详情' => $upgrade,
-		];
-		return $this->upgrade(1351);
+		$this->lvDiff($orders);
+		return '耗时' . round($t2-$t1, 3) . '秒';
 	}
 
 	/**
 	 * 级差结算.
 	 *
-	 * @return array|object
+	 * @return void
 	 */
 	private function lvDiff(array|object $orders)
 	{
-		$map = [];
 		foreach ($orders as $order) {
-			// return $orders;
+			// dd($order);
 			$parents = $this->getParents($order->member_id, $this->member->where('id', $order->member_id)->value('parent'));
-			// $map[$order->order_id] =$parents;
-			// return $parents[0];
 			if ($parents) {
-				echo PHP_EOL;
-				echo PHP_EOL;
-				$map[] =    $this->lookupDiff($parents[0], 1, $order);
+				$result = $this->lookupDiff($parents[0], 1, $order);
+				foreach ($result as $item) {
+					$this->flowing->storeBy($item);
+					$days = $this->days->whereDay('create_time')->where('member_id', $item['member_id'])->find();
+					if (! $days) {
+						$this->days->storeBy($item);
+					} else {
+						$this->days->updateBy($item['member_id'], [
+							'member_id' => $days['member_id'] + $item['member_id'],
+							'money' => $days['money'] + $item['money'],
+							'cash' => $days['cash'] + $item['cash'],
+							'deduct' => $days['deduct'] + $item['deduct'],
+						]);
+					}
+					$order->is_lock = 1;
+					$order->save();
+				}
 			}
 		}
-		return $map;
 	}
 
 	/**
@@ -188,51 +164,42 @@ class Settlement
 	 * @param mixed $tree
 	 * @param mixed $current
 	 * @param mixed $order
-	 * @return void
+	 * @return array
 	 */
-	private function lookupDiff($tree, $current, $order, float $ratio = 0.00)
+	private function lookupDiff($tree, $current, $order, float $ratio = 0.00, $result = [])
 	{
-		// $info = [
-		// 	'id' => $tree['id'],
-		// 	'level_id' => $tree['level_id'],
-		// 	'parent' => $tree['parent'],
-		// 	'spl_id' => $tree['spl_id'],
-		// 	'spl_status' => $tree['spl_status'],
-		// 	'spl' =>  $tree['spl'],
-		// ];
-		// return $tree;
-		// dd($tree);
+		// 配置
+		$config = $this->config->getConfig();
 		if ($tree['spl_id'] >= $current) {
-			// dd(0);
 			$next = $this->spl->where('parent', $tree['spl_id'])->value('id');
-			// echo 'next:' . $next . PHP_EOL;
-			// return $tree;
+			$money  = (float) $order['pay_money'] * ((float) $tree['spl']['ratio'] - (float) $ratio);
+			$member = $this->member->where('id', $order->member_id)->field('nickname,mobile,level_id')->find();
+			$result[] = [
+				'member_id' => $tree['id'],
+				'money' => round($money * (float) $config['income_balance_scale'], 2),
+				'cash' => round($money *  (float) $config['income_cash_scale'], 2),
+				'deduct' => round(($money *  (float) $config['income_deduction_scale']) / (float) $member['level']['buy_ratio'], 2),
+				'remarks' => "来自[{$member['nickname']}/{$member['mobile']}]的分润",
+			];
 
-			echo "====================极差 {$order['order_id']} ============================" . PHP_EOL;
-			echo '订单金额:' . (float) $order['pay_money'] . ' 下单会员:' . $order['member_id'] . PHP_EOL;
-			echo '当前结算等级:' . $tree['spl_id'] . ' 比例:' . (float) $tree['spl']['ratio'] . ' 当前结算比例:' . (float) $tree['spl']['ratio'] - (float) $ratio . ' 会员:' . $tree['id'] . PHP_EOL .
-				' 会员等级:' . $tree['spl']['name'] . ' 下次结算等级:' . $next . ' 分润:' . (float) $order['pay_money'] * ((float) $tree['spl']['ratio'] - (float) $ratio) . PHP_EOL;
-			echo '====================极差============================' . PHP_EOL;
-			// return $tree['children'][0];
 			if ($tree['children'] ?? false) {
-				$this->subsidy($tree['children'][0], (float) $order['pay_money'] * ((float) $tree['spl']['ratio'] - (float) $ratio));
-				// return $tree['children'][0];
-				// var_dump($tree['children'][0]);
-				// $this->lookupDiff($tree['children'][0], $current, $order);
-				$this->lookupDiff($tree['children'][0], $next, $order, (float) $tree['spl']['ratio'] ?? $ratio);
+				$subsidy = $this->subsidy($tree['children'][0], (float) $order['pay_money'] * ((float) $tree['spl']['ratio'] - (float) $ratio), $tree['nickname'] . '/' . $tree['mobile']);
+				if ($subsidy) {
+					$result = array_merge($result, $subsidy);
+				}
+				return $this->lookupDiff($tree['children'][0], $next, $order, (float) $tree['spl']['ratio'] ?? $ratio, $result);
 			}
 		} elseif ($tree['children'] ?? false) {
-			// echo 'children:' . $current . PHP_EOL;
-			$this->lookupDiff($tree['children'][0], $current, $order, $ratio);
+			return $this->lookupDiff($tree['children'][0], $current, $order, $ratio, $result);
 		}
-		// return false;
+		return $result;
 	}
 
-	private function subsidy($tree, $money, $lv = 1)
+	private function subsidy($tree, $money, $remarks, $lv = 1, $result = [])
 	{
 		$current = $this->spl->find($tree['spl_id']);
-		if ($lv>3) {
-			return;
+		if ($lv > 3) {
+			return $result;
 		}
 		if ($current) {
 			switch ($lv) {
@@ -251,17 +218,18 @@ class Settlement
 				default:
 					break;
 			}
-			echo '====================管理津贴============================' . PHP_EOL;
-			echo '当前结算等级:' . $text . ' 比例:' . $ratio . ' 会员等级:' . $tree['spl']['name'] . ' 会员:' . $tree['id'] . PHP_EOL .
-				' 津贴金额:' . (float) $money . ' 津贴:' . (float) $money * $ratio . PHP_EOL;
-			echo '===================管理津贴=============================' . PHP_EOL;
+			$result[] = [
+				'member_id' => $tree['id'],
+				'money' => (float) round($money * $ratio),
+				'remarks' => "来自[$remarks]的{$text}津贴",
+			];
 			if ($tree['children'] ?? false) {
-				$this->subsidy($tree['children'][0], $money, ++$lv);
+				return $this->subsidy($tree['children'][0], $money, $tree['nickname'] . '/' . $tree['mobile'], ++$lv, $result);
 			}
 		} elseif ($tree['children'] ?? false) {
-			// echo 'children:' . $current . PHP_EOL;
-			$this->subsidy($tree['children'][0], $money, ++$lv);
+			return $this->subsidy($tree['children'][0], $money, $tree['nickname'] . '/' . $tree['mobile'], ++$lv, $result);
 		}
+		return $result;
 	}
 
 	/**
@@ -277,7 +245,7 @@ class Settlement
 		// 获取父级树
 		$parent_tree = $this->member->withOnlyRelation('spl')
 			->where([['id', 'in', $ids]])
-			->field('id,level_id,parent,spl_id,spl_status')
+			->field('id,level_id,nickname,mobile,parent,spl_id,spl_status')
 			->select()
 			->toTree($parent, 'parent', 'id');
 		return $parent_tree;
@@ -299,7 +267,7 @@ class Settlement
 		$ids = array_unique($ids);
 		// 获取会员信息
 		$info =  $this->member->where('id', $id)->field('id,level_id,parent,mobile,nickname,username,spl_id,spl_status,status')->find();
-		// $this->upgrade($info->parent);
+		//  $this->upgrade($info->parent);
 		if (! $info) {
 			return '未找到用户';
 		}
@@ -311,31 +279,21 @@ class Settlement
 		if (! $next_level) {
 			return '等级上限';
 		}
-		// return $next_level;
-		// return $info->parent;
 		// 获取团队树
 		$team_tree = $this->member->where([['id', 'in', $ids]])->field('id,level_id,parent,spl_id,spl_status')->select()->toTree($id);
 		// 等级是否满足条件
-		if (! $next_level->user_level === $info->level_id) {
-			// dd(0);
+		if (! ($next_level->user_level === $info->level_id)) {
 			return '等级条件不满足';
 		}
-		// return $info;
 		// 团队是否满足条件
-		// return $this->verifyTeam($next_level->market_sum, $info);
 		if (! $this->verifyTeam($next_level->market_sum, $info)) {
-			// dd(1);
 			return '团队条件不满足';
 		}
-		// return $this->verifyMarket($next_level->market, $team_tree);
 		// 市场是否满足条件
 		if (! $this->verifyMarket($next_level->market, $team_tree)) {
-			// dd(2);
 			return '市场条件不满足';
 		}
-		// return $info;
 		if ($this->member->updateBy($id, ['spl_id' => $next_level->id])) {
-			// dd(3);
 			return $this->upgrade($id);
 		}
 		return $info;
@@ -420,7 +378,6 @@ class Settlement
 	 */
 	private function teamCount($id, $self = false): ?array
 	{
-		$member = new User();
 		// 获取团队ID合集
 		$ids = array_unique($this->member->select()->getAllChildrenIds([$id], 'parent', 'id'));
 		if ($self) {
@@ -441,7 +398,6 @@ class Settlement
 	 */
 	private function splCount($id, $self = false): ?array
 	{
-		$member = new User();
 		// 获取团队ID合集
 		$ids = array_unique($this->member->select()->getAllChildrenIds([$id], 'parent', 'id'));
 		if ($self) {
