@@ -24,6 +24,9 @@ use littler\traits\RewriteTrait;
 /**
  * @property id $int 记录ID
  * @property member_id $int 会员ID
+ * @property order_id $int 订单ID
+ * @property orig_money $float 原始金额
+ * @property ratio $float 结算比例
  * @property money $float 余额
  * @property cash $float 现金券
  * @property deduct $float 抵扣券
@@ -52,6 +55,9 @@ abstract class FlowingAbstract extends Model
 	protected $schema = [
 		'id' => 'int',
 		'member_id' => 'int',
+		'order_id' => 'int',
+		'orig_money' => 'float',
+		'ratio' => 'float',
 		'money' => 'float',
 		'cash' => 'float',
 		'deduct' => 'float',
@@ -68,5 +74,17 @@ abstract class FlowingAbstract extends Model
 	/**
 	 * @var array $field 允许写入字段
 	 */
-	public $field = ['id', 'member_id', 'money', 'cash', 'deduct', 'remarks', 'create_time', 'update_time'];
+	public $field = [
+		'id',
+		'member_id',
+		'order_id',
+		'orig_money',
+		'ratio',
+		'money',
+		'cash',
+		'deduct',
+		'remarks',
+		'create_time',
+		'update_time',
+	];
 }
