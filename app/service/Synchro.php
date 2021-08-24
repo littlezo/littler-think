@@ -38,6 +38,7 @@ class Synchro
 
 	public function syncUser()
 	{
+		return;
 		$last_id = $this->member->order('id', 'desc')->value('id');
 		$original = User::connect('source')->where('id', '>', $last_id)->order('id', 'asc')->field($this->member->field)->select()->toArray();
 		$save_list = [];

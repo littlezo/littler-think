@@ -17,6 +17,7 @@ declare(strict_types=1);
 namespace app\service;
 
 use app\model\Config;
+use Exception;
 use little\member\model\Balance;
 use little\member\model\Days;
 use little\member\model\Flowing;
@@ -26,6 +27,7 @@ use little\member\model\Spl;
 use little\member\model\User;
 use little\order\model\Detail;
 use littler\annotation\Inject;
+use littler\exceptions\FailedException;
 
 class Settlement
 {
@@ -99,13 +101,13 @@ class Settlement
 	public function autoUpgrade()
 	{
 		$s = microtime(true);
-		foreach ($list = $this->member->order('id', 'desc')->column('id') as $item) {
-			$this->upgrade($item);
-			// $upgrade[] = [$item => $this->upgrade($item)];
-		}
+		// foreach ($list = $this->member->order('id', 'desc')->column('id') as $item) {
+		// $this->upgrade($item);
+		// $upgrade[] = [$item => $this->upgrade($item)];
+		// }
 		$e = microtime(true);
-		$upgrade[] = '耗时' . round($s - $e, 3) . '秒';
-		return $upgrade;
+		// $upgrade[] = '耗时' . round($s - $e, 3) . '秒';
+		return '耗时' . round($s - $e, 3) . '秒';
 	}
 
 	/**
@@ -115,15 +117,20 @@ class Settlement
 	public function auto()
 	{
 		$t1 = microtime(true);
-
-		// 已结算订单
-		$orders = $this->order->order('order_id', 'desc')
-			->where([['order_detail->is_spl', '=', 1], ['is_lock', '=', 0]])
+		$this->order->startTrans();
+		try {
+			// 已结算订单
+			$orders = $this->order->order('order_id', 'desc')
+			->where([['order_detail->is_spl', '=', 1], ['is_lock', '=', 0], ['member_id', '<=', 60]])
 			->field('order_id,member_id,order_type,pay_money,order_detail')
 			->select();
-		$t2 = microtime(true);
-		$this->lvDiff($orders);
-		return '耗时' . round($t2-$t1, 3) . '秒';
+			$t2 = microtime(true);
+			return $this->lvDiff($orders);
+			return '耗时' . round($t2-$t1, 3) . '秒';
+		} catch (\Throwable $e) {
+			// throw new FailedException($e->getMessage(), $e->getCode(), $e);
+			throw new Exception($e->getMessage(), $e->getCode(), $e);
+		}
 	}
 
 	/**
@@ -134,27 +141,29 @@ class Settlement
 	private function lvDiff(array|object $orders)
 	{
 		foreach ($orders as $order) {
-			// dd($order);
+			// return $orders;
 			$parents = $this->getParents($order->member_id, $this->member->where('id', $order->member_id)->value('parent'));
 			if ($parents) {
 				$result = $this->lookupDiff($parents[0], 1, $order);
 				foreach ($result as $item) {
-					$this->flowing->storeBy($item);
-					$days = $this->days->whereDay('create_time')->where('member_id', $item['member_id'])->find();
-					if (! $days) {
-						$this->days->storeBy($item);
+					$flowing = new Flowing();
+					$days = new Days();
+					$flowing->storeBy($item);
+					$record = $days->whereDay('create_time')->where('member_id', $item['member_id'])->find();
+					if (! $record) {
+						$days->storeBy($item);
 					} else {
-						$this->days->updateBy($item['member_id'], [
-							'member_id' => $days['member_id'] + $item['member_id'],
-							'money' => $days['money'] + $item['money'],
-							'cash' => $days['cash'] + $item['cash'],
-							'deduct' => $days['deduct'] + $item['deduct'],
+						$days->updateBy($record['member_id'], [
+							'money' => $record['money'] + $item['money'],
+							'cash' => $record['cash'] + $item['cash'],
+							'deduct' => $record['deduct'] + $item['deduct'],
 						]);
 					}
-					$order->is_lock = 1;
-					$order->save();
 				}
+				return $result;
 			}
+			// $order->is_lock = 1;
+			// $order->save();
 		}
 	}
 
@@ -171,19 +180,23 @@ class Settlement
 		// 配置
 		$config = $this->config->getConfig();
 		if ($tree['spl_id'] >= $current) {
+			// return $tree;
 			$next = $this->spl->where('parent', $tree['spl_id'])->value('id');
-			$money  = (float) $order['pay_money'] * ((float) $tree['spl']['ratio'] - (float) $ratio);
+			$real_ratio = (float) $tree['spl']['ratio'] - (float) $ratio;
+			$money  =(float) round((float) $order['pay_money'] * $real_ratio);
 			$member = $this->member->where('id', $order->member_id)->field('nickname,mobile,level_id')->find();
 			$result[] = [
 				'member_id' => $tree['id'],
+				'order_id' =>  $order['order_id'],
+				'orig_money' => (float) $order['pay_money'],
+				'ratio' => $real_ratio,
 				'money' => round($money * (float) $config['income_balance_scale'], 2),
 				'cash' => round($money *  (float) $config['income_cash_scale'], 2),
 				'deduct' => round(($money *  (float) $config['income_deduction_scale']) / (float) $member['level']['buy_ratio'], 2),
-				'remarks' => "来自[{$member['nickname']}/{$member['mobile']}]的分润",
+				'remarks' => "来自[{$member['nickname']}/{$member['mobile']}]的{$tree['spl']['name']}分润",
 			];
-
 			if ($tree['children'] ?? false) {
-				$subsidy = $this->subsidy($tree['children'][0], (float) $order['pay_money'] * ((float) $tree['spl']['ratio'] - (float) $ratio), $tree['nickname'] . '/' . $tree['mobile']);
+				$subsidy = $this->subsidy($tree['children'][0], (float) $money, $order['order_id'], $tree['nickname'] . '/' . $tree['mobile']);
 				if ($subsidy) {
 					$result = array_merge($result, $subsidy);
 				}
@@ -195,7 +208,7 @@ class Settlement
 		return $result;
 	}
 
-	private function subsidy($tree, $money, $remarks, $lv = 1, $result = [])
+	private function subsidy($tree, $money, $order_id, $remarks, $lv = 1, $result = [], )
 	{
 		$current = $this->spl->find($tree['spl_id']);
 		if ($lv > 3) {
@@ -220,14 +233,19 @@ class Settlement
 			}
 			$result[] = [
 				'member_id' => $tree['id'],
+				'order_id' =>  $order_id,
+				'orig_money' => $money,
+				'ratio' => $ratio,
+				'cash' => 0,
+				'deduct' => 0,
 				'money' => (float) round($money * $ratio),
 				'remarks' => "来自[$remarks]的{$text}津贴",
 			];
 			if ($tree['children'] ?? false) {
-				return $this->subsidy($tree['children'][0], $money, $tree['nickname'] . '/' . $tree['mobile'], ++$lv, $result);
+				return $this->subsidy($tree['children'][0], $money, $order_id, $tree['nickname'] . '/' . $tree['mobile'], ++$lv, $result);
 			}
 		} elseif ($tree['children'] ?? false) {
-			return $this->subsidy($tree['children'][0], $money, $tree['nickname'] . '/' . $tree['mobile'], ++$lv, $result);
+			return $this->subsidy($tree['children'][0], $money, $order_id, $tree['nickname'] . '/' . $tree['mobile'], ++$lv, $result);
 		}
 		return $result;
 	}
@@ -239,7 +257,6 @@ class Settlement
 	 */
 	private function getParents(int $id, int $parent)
 	{
-		$member = new User();
 		// 获取父级ID合集 不包含自己
 		$ids = array_unique($this->member->select()->getAllChildrenIds([$id], 'id', 'parent'));
 		// 获取父级树

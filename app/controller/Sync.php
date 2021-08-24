@@ -91,6 +91,7 @@ class Sync extends Request
 		// $response = Http::get('http://localhost:9580/auto/upgrade/0');
 
 		// return Response::success($response->json());
+		return Response::success();
 		return Response::success($this->sync->syncUser());
 		// sleep($interval); // 等待5分钟
 		// } while (true);
@@ -128,6 +129,7 @@ class Sync extends Request
 	 */
 	public function order($id)
 	{
+		return Response::success();
 		if ($id) {
 			return Response::success($this->sync->syncOrder());
 		}
