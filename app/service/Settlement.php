@@ -28,6 +28,7 @@ use little\member\model\User;
 use little\order\model\Detail;
 use littler\annotation\Inject;
 use littler\exceptions\FailedException;
+use think\facade\Log;
 
 class Settlement
 {
@@ -36,7 +37,7 @@ class Settlement
 	 * @Inject()
 	 * @var Detail
 	 */
-	protected $order;
+	protected $orderModel;
 
 	// /**
 	//  * 订单锁
@@ -50,83 +51,123 @@ class Settlement
 	 * @Inject()
 	 * @var Days
 	 */
-	protected $days;
+	protected $daysModel;
 
 	/**
 	 * 流水.
 	 * @Inject()
 	 * @var Flowing
 	 */
-	protected $flowing;
+	protected $flowingModel;
 
 	/**
 	 * 余额记录.
 	 * @Inject()
 	 * @var Balance
 	 */
-	protected $balance;
+	protected $balanceModel;
 
 	/**
 	 * 会员.
 	 * @Inject()
 	 * @var User
 	 */
-	protected $member;
+	protected $memberModel;
 
 	/**
 	 * 会员等级.
 	 * @Inject()
 	 * @var Level
 	 */
-	protected $level;
+	protected $levelModel;
 
 	/**
 	 * 服务商等级.
 	 * @Inject()
 	 * @var Spl
 	 */
-	protected $spl;
+	protected $splModel;
 
 	/**
 	 * 配置.
 	 * @Inject()
 	 * @var Config
 	 */
-	protected $config;
+	protected $configModel;
 
 	/**
 	 * 自动升级.
 	 * @return bool
 	 */
-	public function autoUpgrade()
+	public static function autoUpgrade()
 	{
-		$s = microtime(true);
-		// foreach ($list = $this->member->order('id', 'desc')->column('id') as $item) {
-		// $this->upgrade($item);
-		// $upgrade[] = [$item => $this->upgrade($item)];
+		return self::upgrade(1);
+		// $manager = app('\think\swoole\Manager');
+		// // dd();
+		// return $manager;
+
+		// echo PHP_SAPI;
+		// $cars = ['Volvo', 'BMW', 'Toyota', 'Honda', 'Mercedes', 'Opel'];
+		// $memberModel = new User();
+		// $list = $memberModel->order('id', 'desc')->column('id');
+		// $count = count($list);
+		// return array_chunk($list, (int) ceil($count / 8));
+		// echo PHP_SAPI; 1
+
+		// $client = new \WebSocket\Client('ws://10.21.0.11:9910', ['timeout'=>6000]);
+		// if (! $client) {
+		// 	exit('can not connect');
 		// }
-		$e = microtime(true);
-		// $upgrade[] = '耗时' . round($s - $e, 3) . '秒';
-		return '耗时' . round($s - $e, 3) . '秒';
+		// $result = $client->receive();
+		// $client->close();
+		// return $result;
+
+		// $client = stream_socket_client('tcp://10.21.0.1:9910');
+		// if (! $client) {
+		// 	exit('can not connect');
+		// }
+		// return fwrite($client, '1');
+		$log_dir = runtime_path() . 'logs/task/';
+		$log_file = $log_dir . date('Y-m-d-H') . '.log';
+
+		$upgrade = [];
+		$memberModel = new User();
+		foreach ($memberModel->order('id', 'desc')->column('id') as $item) {
+			// $client->text((string) $item);
+			// $upgrade[] = $client->receive();
+			$s = microtime(true);
+			$result =    self::upgrade($item);
+			$e = microtime(true);
+			$result .= '-耗时' . round($s - $e, 3) . '秒';
+			$upgrade[] = $result;
+			Log::channel('task')->write($result, 'task');
+
+			// return 0; // file_get_contents($log_file);
+		}
+		// $client->close();
+		// return $upgrade;
+
+		return $upgrade;
 	}
 
 	/**
 	 * 自动结算.
 	 * @return bool
 	 */
-	public function auto()
+	public static function auto()
 	{
 		$t1 = microtime(true);
-		$this->order->startTrans();
+		$orderModel = new Detail();
+		$orderModel->startTrans();
 		try {
 			// 已结算订单
-			$orders = $this->order->order('order_id', 'desc')
-			->where([['order_detail->is_spl', '=', 1], ['is_lock', '=', 0], ['member_id', '<=', 60]])
-			->field('order_id,member_id,order_type,pay_money,order_detail')
-			->select();
+			$orders = $orderModel->order('order_id', 'desc')
+				->where([['order_detail->is_spl', '=', 1], ['is_lock', '=', 0], ['member_id', '<=', 60]])
+				->field('order_id,member_id,order_type,pay_money,order_detail')
+				->select();
 			$t2 = microtime(true);
-			return $this->lvDiff($orders);
-			return '耗时' . round($t2-$t1, 3) . '秒';
+			return self::lvDiff($orders);
+			return '耗时' . round($t2 - $t1, 3) . '秒';
 		} catch (\Throwable $e) {
 			// throw new FailedException($e->getMessage(), $e->getCode(), $e);
 			throw new Exception($e->getMessage(), $e->getCode(), $e);
@@ -134,36 +175,93 @@ class Settlement
 	}
 
 	/**
+	 * 会员升级.
+	 *
+	 * @return void
+	 */
+	public static function upgrade($id)
+	{
+		return self::auto();
+		// sleep(5);
+		// return $id;
+		// echo "upgrade id:$id";
+		// return $id;
+		if (! $id) {
+			return '参数错误' . $id;
+		}
+		// return $id;
+		$memberModel = new User();
+		$splModel = new Spl();
+		// 获取团队ID合集 不包含自己
+		$ids =$memberModel->select()->getAllChildrenIds([(int) $id], 'parent', 'id');
+
+		$ids = array_unique($ids);
+
+		// 获取会员信息
+		$info =  $memberModel->where('id', $id)->field('id,level_id,parent,mobile,nickname,username,spl_id,spl_status,status')->find();
+		//  self::upgrade($info->parent);
+		if (! $info) {
+			return "{$id}未找到用户";
+		}
+		$info->member_map = self::teamCount($id);
+		$info->spl_map = self::splCount($id);
+		// return $info;
+		// 获取下一等级
+		$next_level = $splModel->where('parent', $info->spl_id)->find();
+		if (! $next_level) {
+			return "{$id}等级上限";
+		}
+		// 获取团队树
+		$team_tree = $memberModel->where([['id', 'in', $ids]])->field('id,level_id,parent,spl_id,spl_status')->select()->toTree($id);
+		return $team_tree;
+		// 等级是否满足条件
+		if (! ($next_level->user_level === $info->level_id)) {
+			return "{$id}等级条件不满足";
+		}
+		// 团队是否满足条件
+		if (! self::verifyTeam($next_level->market_sum, $info)) {
+			return "{$id}团队条件不满足";
+		}
+		// 市场是否满足条件
+		if (! self::verifyMarket($next_level->market, $team_tree)) {
+			return "{$id}市场条件不满足";
+		}
+		return "用户{$id}" . $memberModel->updateBy($id, ['spl_id' => $next_level->id]) . "升级{$next_level->id}";
+		return $info;
+	}
+
+	/**
 	 * 级差结算.
 	 *
 	 * @return void
 	 */
-	private function lvDiff(array|object $orders)
+	private static function lvDiff(array|object $orders)
 	{
-		foreach ($orders as $order) {
-			// return $orders;
-			$parents = $this->getParents($order->member_id, $this->member->where('id', $order->member_id)->value('parent'));
+		$memberModel = new User();
+		foreach ($orders as $current_order) {
+			$parents = self::getParents((int) $current_order->member_id, (int) $memberModel->where('id', $current_order->member_id)->value('parent'));
 			if ($parents) {
-				$result = $this->lookupDiff($parents[0], 1, $order);
+				return $parents;
+				$result = self::lookupDiff($parents[0], 1, $current_order);
 				foreach ($result as $item) {
-					$flowing = new Flowing();
-					$days = new Days();
-					$flowing->storeBy($item);
-					$record = $days->whereDay('create_time')->where('member_id', $item['member_id'])->find();
-					if (! $record) {
-						$days->storeBy($item);
+					$flowingModel = new Flowing();
+					$daysModel = new Days();
+					$flowingModel->storeBy($item);
+					$record = $daysModel->whereDay('create_time')->where('member_id', $item['member_id'])->findOrEmpty();
+					// dd($record->isEmpty());
+					if ($record->isEmpty()) {
+						$daysModel->storeBy($item);
 					} else {
-						$days->updateBy($record['member_id'], [
-							'money' => $record['money'] + $item['money'],
-							'cash' => $record['cash'] + $item['cash'],
-							'deduct' => $record['deduct'] + $item['deduct'],
-						]);
+						$record->money +=  $item['money'];
+						$record->cash +=  $item['cash'];
+						$record->deduct +=  $item['deduct'];
+						$record->save();
 					}
 				}
 				return $result;
 			}
-			// $order->is_lock = 1;
-			// $order->save();
+			// $current_order->is_lock = 1;
+			// $current_order->save();
 		}
 	}
 
@@ -172,48 +270,58 @@ class Settlement
 	 *
 	 * @param mixed $tree
 	 * @param mixed $current
-	 * @param mixed $order
+	 * @param mixed $current_order
 	 * @return array
 	 */
-	private function lookupDiff($tree, $current, $order, float $ratio = 0.00, $result = [])
+	private static function lookupDiff($tree, $current, $current_order, float $ratio = 0.00, $result = [])
 	{
+		$memberModel = new User();
+		$configModel = new Config();
+		$splModel = new Spl();
+
 		// 配置
-		$config = $this->config->getConfig();
+		$config = $configModel->getConfig();
 		if ($tree['spl_id'] >= $current) {
 			// return $tree;
-			$next = $this->spl->where('parent', $tree['spl_id'])->value('id');
+			$next = $splModel->where('parent', $tree['spl_id'])->value('id');
 			$real_ratio = (float) $tree['spl']['ratio'] - (float) $ratio;
-			$money  =(float) round((float) $order['pay_money'] * $real_ratio);
-			$member = $this->member->where('id', $order->member_id)->field('nickname,mobile,level_id')->find();
+			$money  = (float) round((float) $current_order['pay_money'] * $real_ratio);
+			$current_member = $memberModel->where('id', $current_order->member_id)->field('nickname,mobile,level_id')->find();
 			$result[] = [
 				'member_id' => $tree['id'],
-				'order_id' =>  $order['order_id'],
-				'orig_money' => (float) $order['pay_money'],
+				'order_id' =>  $current_order['order_id'],
+				'orig_money' => (float) $current_order['pay_money'],
 				'ratio' => $real_ratio,
 				'money' => round($money * (float) $config['income_balance_scale'], 2),
 				'cash' => round($money *  (float) $config['income_cash_scale'], 2),
-				'deduct' => round(($money *  (float) $config['income_deduction_scale']) / (float) $member['level']['buy_ratio'], 2),
-				'remarks' => "来自[{$member['nickname']}/{$member['mobile']}]的{$tree['spl']['name']}分润",
+				'deduct' => round(($money *  (float) $config['income_deduction_scale']) / (float) $current_member['level']['buy_ratio'], 2),
+				'remarks' => "来自[{$current_member['nickname']}/{$current_member['mobile']}]的{$tree['spl']['name']}分润",
 			];
 			if ($tree['children'] ?? false) {
-				$subsidy = $this->subsidy($tree['children'][0], (float) $money, $order['order_id'], $tree['nickname'] . '/' . $tree['mobile']);
+				$subsidy = self::subsidy($tree['children'][0], (float) $money, $current_order['order_id'], $tree['nickname'] . '/' . $tree['mobile']);
 				if ($subsidy) {
 					$result = array_merge($result, $subsidy);
 				}
-				return $this->lookupDiff($tree['children'][0], $next, $order, (float) $tree['spl']['ratio'] ?? $ratio, $result);
+				return self::lookupDiff($tree['children'][0], $next, $current_order, (float) $tree['spl']['ratio'] ?? $ratio, $result);
 			}
 		} elseif ($tree['children'] ?? false) {
-			return $this->lookupDiff($tree['children'][0], $current, $order, $ratio, $result);
+			return self::lookupDiff($tree['children'][0], $current, $current_order, $ratio, $result);
 		}
 		return $result;
 	}
 
-	private function subsidy($tree, $money, $order_id, $remarks, $lv = 1, $result = [], )
+	private static function subsidy($tree, $money, $order_id, $remarks, $lv = 1, $result = [], )
 	{
-		$current = $this->spl->find($tree['spl_id']);
+		$memberModel = new User();
+		$configModel = new Config();
+		$splModel = new Spl();
+		$current = $splModel->find($tree['spl_id']);
 		if ($lv > 3) {
 			return $result;
 		}
+		// 配置
+		$config = $configModel->getConfig();
+		$current_member = $memberModel->where('id', $tree['id'])->field('nickname,mobile,level_id')->find();
 		if ($current) {
 			switch ($lv) {
 				case 1:
@@ -236,16 +344,16 @@ class Settlement
 				'order_id' =>  $order_id,
 				'orig_money' => $money,
 				'ratio' => $ratio,
-				'cash' => 0,
-				'deduct' => 0,
-				'money' => (float) round($money * $ratio),
+				'money' => round(((float) round($money * $ratio)) * (float) $config['income_balance_scale'], 2),
+				'cash' => round(((float) round($money * $ratio)) *  (float) $config['income_cash_scale'], 2),
+				'deduct' => round((((float) round($money * $ratio)) *  (float) $config['income_deduction_scale']) / (float) $current_member['level']['buy_ratio'], 2),
 				'remarks' => "来自[$remarks]的{$text}津贴",
 			];
 			if ($tree['children'] ?? false) {
-				return $this->subsidy($tree['children'][0], $money, $order_id, $tree['nickname'] . '/' . $tree['mobile'], ++$lv, $result);
+				return self::subsidy($tree['children'][0], $money, $order_id, $tree['nickname'] . '/' . $tree['mobile'], ++$lv, $result);
 			}
 		} elseif ($tree['children'] ?? false) {
-			return $this->subsidy($tree['children'][0], $money, $order_id, $tree['nickname'] . '/' . $tree['mobile'], ++$lv, $result);
+			return self::subsidy($tree['children'][0], $money, $order_id, $tree['nickname'] . '/' . $tree['mobile'], ++$lv, $result);
 		}
 		return $result;
 	}
@@ -255,12 +363,14 @@ class Settlement
 	 * lookup.
 	 * @return array
 	 */
-	private function getParents(int $id, int $parent)
+	private static function getParents(int $id, int $parent)
 	{
+		$memberModel = new User();
 		// 获取父级ID合集 不包含自己
-		$ids = array_unique($this->member->select()->getAllChildrenIds([$id], 'id', 'parent'));
+		$ids = array_unique($memberModel->select()->getAllChildrenIds([$id], 'id', 'parent'));
+		return $ids;
 		// 获取父级树
-		$parent_tree = $this->member->withOnlyRelation('spl')
+		$parent_tree = $memberModel->withOnlyRelation('spl')
 			->where([['id', 'in', $ids]])
 			->field('id,level_id,nickname,mobile,parent,spl_id,spl_status')
 			->select()
@@ -269,60 +379,12 @@ class Settlement
 	}
 
 	/**
-	 * 会员升级.
-	 *
-	 * @return void
-	 */
-	private function upgrade($id)
-	{
-		if (! $id) {
-			return;
-		}
-		// 获取团队ID合集 不包含自己
-		$ids = $this->member->select()->getAllChildrenIds([$id], 'parent', 'id');
-
-		$ids = array_unique($ids);
-		// 获取会员信息
-		$info =  $this->member->where('id', $id)->field('id,level_id,parent,mobile,nickname,username,spl_id,spl_status,status')->find();
-		//  $this->upgrade($info->parent);
-		if (! $info) {
-			return '未找到用户';
-		}
-		$info->member_map = $this->teamCount($id);
-		$info->spl_map = $this->splCount($id);
-
-		// 获取下一等级
-		$next_level = $this->spl->where('parent', $info->spl_id)->find();
-		if (! $next_level) {
-			return '等级上限';
-		}
-		// 获取团队树
-		$team_tree = $this->member->where([['id', 'in', $ids]])->field('id,level_id,parent,spl_id,spl_status')->select()->toTree($id);
-		// 等级是否满足条件
-		if (! ($next_level->user_level === $info->level_id)) {
-			return '等级条件不满足';
-		}
-		// 团队是否满足条件
-		if (! $this->verifyTeam($next_level->market_sum, $info)) {
-			return '团队条件不满足';
-		}
-		// 市场是否满足条件
-		if (! $this->verifyMarket($next_level->market, $team_tree)) {
-			return '市场条件不满足';
-		}
-		if ($this->member->updateBy($id, ['spl_id' => $next_level->id])) {
-			return $this->upgrade($id);
-		}
-		return $info;
-	}
-
-	/**
 	 * 团队验证
 	 *
 	 * @param mixed $id
 	 * @return \littler\ModelCollection|null
 	 */
-	private function verifyTeam($next_level, $info)
+	private static function verifyTeam($next_level, $info)
 	{
 		// 市场是否满足条件
 		$type = $next_level['type'] ?? false;
@@ -334,7 +396,7 @@ class Settlement
 				$map[$item['key']] = $item;
 			}
 		}
-		if ($this->diffCount($map, $key) >= (int) $value) {
+		if (self::diffCount($map, $key) >= (int) $value) {
 			return true;
 		}
 		return false;
@@ -346,7 +408,7 @@ class Settlement
 	 * @param mixed $id
 	 * @return \littler\ModelCollection|null
 	 */
-	private function verifyMarket($next_level, $team_tree)
+	private static function verifyMarket($next_level, $team_tree)
 	{
 		// 市场是否满足条件
 		$type = $next_level['type'] ?? false;
@@ -361,14 +423,14 @@ class Settlement
 			$is_adopt = false;
 			$maps = [];
 			foreach ($team_tree as $item) {
-				$item['member_map'] = $this->teamCount($item['id'], true);
-				$item['spl_map'] = $this->splCount($item['id'], true);
+				$item['member_map'] = self::teamCount($item['id'], true);
+				$item['spl_map'] = self::splCount($item['id'], true);
 				$map = [];
 				foreach ($item[$type . '_map'] as $info) {
 					$map[$info['key']] = $info;
 				}
 				$maps[$item['id']] = $item[$type . '_map'];
-				if ($this->diffCount($map, $key) >= 1) {
+				if (self::diffCount($map, $key) >= 1) {
 					++$stepping;
 				}
 				if ($stepping >= (int) $value) {
@@ -380,10 +442,10 @@ class Settlement
 		return $is_adopt;
 	}
 
-	private function diffCount($map, $parent = 0, $value = 0)
+	private static function diffCount($map, $parent = 0, $value = 0)
 	{
 		if ($map[$parent] ?? false) {
-			return $this->diffCount($map, $map[$parent]['parent'], $value + $map[$parent]['value']);
+			return self::diffCount($map, $map[$parent]['parent'], $value + $map[$parent]['value']);
 		}
 		return $value;
 	}
@@ -393,17 +455,21 @@ class Settlement
 	 *
 	 * @return void
 	 */
-	private function teamCount($id, $self = false): ?array
+	private static function teamCount($id, $self = false): ?array
 	{
+		$memberModel = new User();
+		$levelModel = new Level();
 		// 获取团队ID合集
-		$ids = array_unique($this->member->select()->getAllChildrenIds([$id], 'parent', 'id'));
+		$ids = array_unique($memberModel->select()->getAllChildrenIds([$id], 'parent', 'id'));
 		if ($self) {
 			$ids = [$id, ...$ids];
 		}
-		return $this->level->order('level_id', 'asc')->field('level_id')->select()->each(function ($item) use ($ids) {
+		return $levelModel->order('level_id', 'asc')->field('level_id')->select()->each(function ($item) use ($ids) {
+			$memberModel = new User();
+			$levelModel = new Level();
 			$item->key = $item->level_id;
-			$item->value = $this->member->whereIn('id', $ids)->order('level_id', 'asc')->where('level_id', $item->level_id)->count();
-			$item->parent = $this->level->where('parent', $item->level_id)->value('level_id');
+			$item->value = $memberModel->whereIn('id', $ids)->order('level_id', 'asc')->where('level_id', $item->level_id)->count();
+			$item->parent = $levelModel->where('parent', $item->level_id)->value('level_id');
 			unset($item->level_id);
 		})->toArray();
 	}
@@ -413,17 +479,21 @@ class Settlement
 	 *
 	 * @return void
 	 */
-	private function splCount($id, $self = false): ?array
+	private static function splCount($id, $self = false): ?array
 	{
+		$memberModel = new User();
+		$splModel = new Spl();
 		// 获取团队ID合集
-		$ids = array_unique($this->member->select()->getAllChildrenIds([$id], 'parent', 'id'));
+		$ids = array_unique($memberModel->select()->getAllChildrenIds([$id], 'parent', 'id'));
 		if ($self) {
 			$ids = [$id, ...$ids];
 		}
-		return $this->spl->order('id', 'asc')->field('id,parent')->select()->each(function ($item) use ($ids) {
+		return $splModel->order('id', 'asc')->field('id,parent')->select()->each(function ($item) use ($ids) {
 			$item->key = $item->id;
-			$item->value = $this->member->whereIn('id', $ids)->order('level_id', 'asc')->where('spl_id', $item->id)->count();
-			$item->parent = $this->spl->where('parent', $item->id)->value('id');
+			$memberModel = new User();
+			$item->value = $memberModel->whereIn('id', $ids)->order('level_id', 'asc')->where('spl_id', $item->id)->count();
+			$splModel = new Spl();
+			$item->parent = $splModel->where('parent', $item->id)->value('id');
 			unset($item->id);
 		})->toArray();
 	}

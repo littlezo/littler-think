@@ -32,7 +32,8 @@
     "nette/utils": "^3.2",
     "erusev/parsedown": "^1.7",
     "topthink/think-worker": "^3.0",
-    "xingwenge/canal_php": "^1.0"
+    "workerman/gatewayclient": "^3.0",
+    "textalk/websocket": "^1.5"
   },
   "require-dev": {
     "symfony/var-dumper": "^4.2",

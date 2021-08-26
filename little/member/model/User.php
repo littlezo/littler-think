@@ -23,13 +23,14 @@ use littler\annotation\model\relation\HasOne;
  * 会员列表 模型.
  * @HasOne("level",model="Level",foreignKey="level_id",localKey="level_id")
  * @HasOne("spl",model="Spl",foreignKey="id",localKey="spl_id")
+ * @HasOne("parents",model="User",foreignKey="id",localKey="parent")
  */
 class User extends UserAbstract
 {
 	/**
 	 * @var array 关联预载
 	 */
-	public $with = ['level', 'spl'];
+	public $with = ['level', 'spl', 'parents'];
 
 	/**
 	 * @var array 列表字段映射

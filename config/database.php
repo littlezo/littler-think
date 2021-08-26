@@ -78,7 +78,7 @@ return [
 			// 数据库类型
 			'type' => Env::get('database.type', 'mysql'),
 			// 服务器地址
-			'hostname' => '8.134.119.14',
+			'hostname' => '10.21.0.1',
 			// 数据库名
 			'database' => 'app_hphk1688_com',
 			// 用户名

@@ -12,8 +12,8 @@ services:
     ports:
       - "9580:9580"
       - "9501:9501"
-      - "8443:8443"
-      - "9443:9443"
+      # - "8443:8443"
+      # - "9443:9443"
     restart: on-failure
     # depends_on:
     #   - mysql
@@ -21,6 +21,41 @@ services:
     networks:
       appnetwork:
         ipv4_address: 10.21.0.10
+  # task:
+  #   container_name: task
+  #   image: littleof/php-zts:8
+  #   env_file: .env
+  #   volumes:
+  #     - ./:/app-src/
+  #     - ./config.json:/entrypoint.d/config.json
+  #     - ./php.ini:/etc/php.ini
+  #     - "/usr/share/zoneinfo/Asia/Shanghai:/etc/localtime:ro"
+  #   ports:
+  #     - "19580:9580"
+  #     - "19501:9501"
+  #     - "18443:8443"
+  #     - "19443:9443"
+  #   restart: on-failure
+  #   command:
+  #     depends_on:
+  #     - redis
+  #   command: >
+  #     /bin/bash -c '
+  #     rm -rf /tmp/gateway.pid;
+
+  #     while ! nc -z redis 6379;
+  #     do
+  #       echo "wait for redis";
+  #       sleep 1;
+  #     done;
+
+  #     echo "redis is ready!";
+  #     echo "start task service here";
+  #     php think worker:gateway;
+  #     '
+  #   networks:
+  #     appnetwork:
+  #       ipv4_address: 10.21.0.11
   mysql:
     container_name: mysql
     image: mysql:latest
@@ -49,33 +84,33 @@ services:
     networks:
       appnetwork:
         ipv4_address: 10.21.0.90
-  canal:
-    container_name: canal
-    image: canal/canal-server:latest
-    env_file: .env
-    environment:
-      - canal.auto.scan=false
-      - canal.destinations=hphk
-      - canal.instance.detecting.enable=true
-      - canal.instance.master.address:10.21.0.80:3306
-      - canal.instance.dbUsername=canal
-      - canal.instance.dbPassword=canal
-      - canal.instance.connectionCharset=UTF-8
-      - canal.instance.tsdb.enable=true
-      - canal.instance.gtidon=false
-    # ports:
-    #   - "11110:11110"
-    #   - "11111:11111"
-    #   - "11112:11112"
-    #   - "9100:9100"
-    network_mode: host
-    volumes:
-      # - ./data/redis:/data
-      - "/usr/share/zoneinfo/Asia/Shanghai:/etc/localtime:ro"
-    restart: always
-    # networks:
-    #   appnetwork:
-    #     ipv4_address: 10.21.0.100
+  # canal:
+  #   container_name: canal
+  #   image: canal/canal-server:latest
+  #   env_file: .env
+  #   environment:
+  #     - canal.auto.scan=false
+  #     - canal.destinations=hphk
+  #     - canal.instance.detecting.enable=true
+  #     - canal.instance.master.address:10.21.0.80:3306
+  #     - canal.instance.dbUsername=canal
+  #     - canal.instance.dbPassword=canal
+  #     - canal.instance.connectionCharset=UTF-8
+  #     - canal.instance.tsdb.enable=true
+  #     - canal.instance.gtidon=false
+  #   # ports:
+  #   #   - "11110:11110"
+  #   #   - "11111:11111"
+  #   #   - "11112:11112"
+  #   #   - "9100:9100"
+  #   network_mode: host
+  #   volumes:
+  #     # - ./data/redis:/data
+  #     - "/usr/share/zoneinfo/Asia/Shanghai:/etc/localtime:ro"
+  #   restart: always
+  #   # networks:
+  #   #   appnetwork:
+  #   #     ipv4_address: 10.21.0.100
 networks:
   appnetwork:
     ipam:

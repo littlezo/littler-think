@@ -1,1 +1,0 @@
-import{D as s,r as e,H as r,J as t}from"./vendor.2a694682.js";var a=s({components:{},setup(){const s=e(!0);return setTimeout((()=>{s.value=!1}),1500),{loading:s}}});const n={class:"p-4"};a.render=function(s,e,a,o,u,c){return r(),t("div",n)};export{a as default};

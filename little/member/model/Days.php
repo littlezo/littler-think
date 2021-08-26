@@ -7,7 +7,7 @@
  * @version 1.0.0
  * @author @小小只^v^ <littlezov@qq.com>  littlezov@qq.com
  * @contact  littlezov@qq.com
- * @link     https://github.com/littlezo
+ * @see     https://github.com/littlezo
  * @document https://github.com/littlezo/wiki
  * @license  https://github.com/littlezo/MozillaPublicLicense/blob/main/LICENSE
  */
@@ -17,16 +17,18 @@ declare(strict_types=1);
 namespace little\member\model;
 
 use little\member\repository\model\DaysAbstract;
+use littler\annotation\model\relation\HasOne;
 
 /**
- * 会员流水天统计 模型
+ * 会员流水天统计 模型.
+ * @HasOne("member",model="User",foreignKey="id",localKey="member_id")
  */
 class Days extends DaysAbstract
 {
 	/**
 	 * @var array 关联预载
 	 */
-	public $with = [];
+	public $with = ['member'];
 
 	/**
 	 * @var array 列表字段映射

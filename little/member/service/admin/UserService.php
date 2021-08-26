@@ -53,9 +53,24 @@ class UserService
 	 * #title 分页.
 	 * @return User
 	 */
-	public function paginate(): ?object
+	public function paginate(): array|object
 	{
-		return $this->model->getList();
+		$list = $this->model->getList();
+		$spl_levels = $this->level->where([['is_spl', '=', 1]])->column('level_id');
+
+		$list->each(function (&$item) use ($spl_levels) {
+			$ids=array_unique($this->model->select()->getAllChildrenIds([$item->id], 'parent', 'id'));
+			$item->level_count=$this->model->whereIn('id', $ids)->order('level_id', 'asc')->field('id,level_id,COUNT(id) AS count')->group('level_id')->select();
+			$item->spl_count=$this->model->whereIn('id', $ids)->order('spl_id', 'asc')->field('id,spl_id,COUNT(id) AS count')->group('spl_id')->select();
+			if (in_array($item->level_id, $spl_levels, true)) {
+				$item['my_order_money']=$this->order->where([['order_type', '=', 3], ['order_detail->is_spl', '=', 1], ['order_detail->level', 'in', $spl_levels], ['member_id', '=', $item->id], ['pay_status', '=', 1]])->sum('pay_money');
+			} else {
+				$item['my_order_money']=0;
+			}
+			$item['team_order_money']=$this->order->where([['order_type', '=', 3], ['order_detail->is_spl', '=', 1], ['order_detail->level', 'in', $spl_levels], ['member_id', 'in', $ids], ['pay_status', '=', 1]])->sum('pay_money');
+		});
+		// dd($list->toArray());
+		return $list;
 	}
 
 	/**

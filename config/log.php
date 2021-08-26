@@ -14,6 +14,7 @@ declare(strict_types=1);
  * @license  https://github.com/littlezo/MozillaPublicLicense/blob/main/LICENSE
  *
  */
+
 use think\facade\Env;
 
 // +----------------------------------------------------------------------
@@ -51,10 +52,34 @@ return [
 			// 关闭通道日志写入
 			'close' => false,
 			// 日志输出格式化
-			'format' => '[%s][%s] %s',
+			'time_format'   =>    'Y-m-d H:i:s',
+			'format'        =>    '[%s][%s] %s',
+			// 'format' => '[%s][%s] %s',
 			// 是否实时写入
 			'realtime_write' => false,
 		],
 		// 其它日志通道配置
+		'task' => [
+			// 日志记录方式
+			'type' => 'File',
+			// 日志保存目录
+			'path' => runtime_path() . '/logs/task',
+			// 单文件日志写入
+			'single' => true,
+			// 独立日志级别
+			'apart_level' => [],
+			// 最大日志文件数量
+			'max_files' => 0,
+			// 使用JSON格式记录
+			'json' => true,
+			// 日志处理
+			'processor' => null,
+			// 关闭通道日志写入
+			'close' => false,
+			// 日志输出格式化
+			'format' => '[%s][%s] %s',
+			// 是否实时写入
+			'realtime_write' => true,
+		],
 	],
 ];

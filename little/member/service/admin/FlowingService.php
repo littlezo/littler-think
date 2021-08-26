@@ -7,7 +7,7 @@
  * @version 1.0.0
  * @author @小小只^v^ <littlezov@qq.com>  littlezov@qq.com
  * @contact  littlezov@qq.com
- * @link     https://github.com/littlezo
+ * @see     https://github.com/littlezo
  * @document https://github.com/littlezo/wiki
  * @license  https://github.com/littlezo/MozillaPublicLicense/blob/main/LICENSE
  */
@@ -16,10 +16,9 @@ declare(strict_types=1);
 
 namespace little\member\service\admin;
 
-use Exception;
 use little\member\model\Flowing;
-use littler\Request;
 use littler\annotation\Inject;
+use littler\Request;
 
 class FlowingService
 {
@@ -32,13 +31,12 @@ class FlowingService
 	/**
 	 * @Inject()
 	 * @var Request
-	 * desc  Request对象 request->user 可以取当前用户信息
+	 *              desc  Request对象 request->user 可以取当前用户信息
 	 */
 	private $request;
 
-
 	/**
-	 * #title 分页
+	 * #title 分页.
 	 * @return Flowing
 	 */
 	public function paginate(): ?object
@@ -46,9 +44,8 @@ class FlowingService
 		return $this->model->getList();
 	}
 
-
 	/**
-	 * #title 列表
+	 * #title 列表.
 	 * @return Flowing
 	 */
 	public function list(): ?object
@@ -56,9 +53,8 @@ class FlowingService
 		return $this->model->getList(false);
 	}
 
-
 	/**
-	 * #title 详情
+	 * #title 详情.
 	 * @param int $id 数据主键
 	 * @return Flowing
 	 */
@@ -67,9 +63,8 @@ class FlowingService
 		return $this->model->findBy($id);
 	}
 
-
 	/**
-	 * #title 保存
+	 * #title 保存.
 	 * @param array $args 待写入数据
 	 * @return int||bool
 	 */
@@ -78,9 +73,8 @@ class FlowingService
 		return $this->model->storeBy($args);
 	}
 
-
 	/**
-	 * #title 更新
+	 * #title 更新.
 	 * @param int $id ID
 	 * @param array $args 待更新的数据
 	 * @return int|bool
@@ -90,9 +84,8 @@ class FlowingService
 		return $this->model->updateBy($id, $args);
 	}
 
-
 	/**
-	 * #title 删除
+	 * #title 删除.
 	 * @param int $id ID
 	 * @return bool
 	 */

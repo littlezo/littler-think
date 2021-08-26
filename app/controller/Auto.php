@@ -91,7 +91,7 @@ class Auto extends Request
 		// $response = Http::get('http://localhost:9580/auto/upgrade/0');
 
 		// return Response::success($response->json());
-		return Response::success($this->settlement->auto());
+		// return Response::success($this->settlement->auto());
 		// sleep($interval); // 等待5分钟
 		// } while (true);
 
@@ -128,6 +128,19 @@ class Auto extends Request
 	 */
 	public function upgrade()
 	{
-		return Response::success($this->settlement->autoUpgrade());
+		// $data = [
+		// 	'task' => 'sendTask',
+		// 	'mobile' => '152****6268',
+		// ];
+		// //传递参数
+		// $manager = app('\think\swoole\Manager');
+
+		// $manager->getServer()->task($data);
+		// return '注册成功！' . time();
+		// return $manager->getServer()->task(1);
+		// $s = microtime(true);
+		// $result =$this->settlement->autoUpgrade();
+		// $e = microtime(true);
+		// return Response::success($result, '耗时' . round($s - $e, 3) . '秒');
 	}
 }
