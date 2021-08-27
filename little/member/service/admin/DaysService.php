@@ -52,7 +52,10 @@ class DaysService
 	 */
 	public function list(): ?object
 	{
-		return $this->model->getList(false);
+		return $this->model->withoutRelation('member')->quickSearch()
+			// ->field('id', 'member_id', 'money', 'cash', 'deduct', 'create_time', 'update_time')
+			->lzOrder()
+			->select();
 	}
 
 	/**

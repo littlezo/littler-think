@@ -21,41 +21,41 @@ services:
     networks:
       appnetwork:
         ipv4_address: 10.21.0.10
-  # task:
-  #   container_name: task
-  #   image: littleof/php-zts:8
-  #   env_file: .env
-  #   volumes:
-  #     - ./:/app-src/
-  #     - ./config.json:/entrypoint.d/config.json
-  #     - ./php.ini:/etc/php.ini
-  #     - "/usr/share/zoneinfo/Asia/Shanghai:/etc/localtime:ro"
-  #   ports:
-  #     - "19580:9580"
-  #     - "19501:9501"
-  #     - "18443:8443"
-  #     - "19443:9443"
-  #   restart: on-failure
-  #   command:
-  #     depends_on:
-  #     - redis
-  #   command: >
-  #     /bin/bash -c '
-  #     rm -rf /tmp/gateway.pid;
+  task:
+    container_name: task
+    image: littleof/php-zts:8
+    env_file: .env
+    volumes:
+      - ./task:/app-src/
+      - ./config.json:/entrypoint.d/config.json
+      - ./php.ini:/etc/php.ini
+      - "/usr/share/zoneinfo/Asia/Shanghai:/etc/localtime:ro"
+    ports:
+      - "19580:9580"
+      - "19501:9501"
+      - "18443:8443"
+      - "19443:9443"
+    restart: on-failure
+    command:
+      depends_on:
+      - redis
+    command: >
+      /bin/bash -c '
+      rm -rf /tmp/gateway.pid;
 
-  #     while ! nc -z redis 6379;
-  #     do
-  #       echo "wait for redis";
-  #       sleep 1;
-  #     done;
+      while ! nc -z redis 6379;
+      do
+        echo "wait for redis";
+        sleep 1;
+      done;
 
-  #     echo "redis is ready!";
-  #     echo "start task service here";
-  #     php think worker:gateway;
-  #     '
-  #   networks:
-  #     appnetwork:
-  #       ipv4_address: 10.21.0.11
+      echo "redis is ready!";
+      echo "start task service here";
+      php bin/hyperf.php start;
+      '
+    networks:
+      appnetwork:
+        ipv4_address: 10.21.0.11
   mysql:
     container_name: mysql
     image: mysql:latest
