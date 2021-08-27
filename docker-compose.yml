@@ -23,32 +23,30 @@ services:
         ipv4_address: 10.21.0.10
   task:
     container_name: task
-    image: littleof/php-zts:8
+    image: littleof/php-nts:8
     env_file: .env
     volumes:
       - ./task:/app-src/
       - ./config.json:/entrypoint.d/config.json
       - ./php.ini:/etc/php.ini
       - "/usr/share/zoneinfo/Asia/Shanghai:/etc/localtime:ro"
-    ports:
-      - "19580:9580"
-      - "19501:9501"
-      - "18443:8443"
-      - "19443:9443"
+    # ports:
+    #   - "19580:9580"
+    #   - "19501:9501"
+    #   - "18443:8443"
+    #   - "19443:9443"
     restart: on-failure
     command:
       depends_on:
       - redis
+      - mysql
     command: >
       /bin/bash -c '
-      rm -rf /tmp/gateway.pid;
-
       while ! nc -z redis 6379;
       do
         echo "wait for redis";
         sleep 1;
       done;
-
       echo "redis is ready!";
       echo "start task service here";
       php bin/hyperf.php start;
