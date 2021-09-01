@@ -84,7 +84,7 @@ return [
 			// 用户名
 			'username' => 'root',
 			// 密码
-			'password' => 'c705a85d9f445951',
+			'password' => 'hphk123...',
 			// 端口
 			'hostport' => Env::get('database.hostport', '3306'),
 			// 数据库连接参数
